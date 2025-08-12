@@ -1,10 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
 function App() {
   return (
-    <div className='bg-green-500 w-full h-screen'>  
-      <h1 className='text-3xl font-bold underline'>Hello World</h1>
-      <button className='bg-blue-500 text-white p-2 rounded-md'>Click me</button>
-    </div>
-  )
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
