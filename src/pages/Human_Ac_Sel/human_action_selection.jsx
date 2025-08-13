@@ -1,16 +1,29 @@
 import React from 'react';
 import Dashboard_Header from '../../components/General_Page_Content/Dashboard_Header';
+import URL_presentation from '../../components/General_Page_Content/URL_presentation';
+import Separator from '../../components/General_Page_Content/Separator';
+import Make_Decision_Botton from '../../components/Human_Action_Selection/Make_Decision_Botton';
+import Progress_Bar from '../../components/General_Page_Content/Progress_Bar';
 
 function HumanActionSelection() {
   return (
     <div className="min-h-screen bg-gray-900 p-8">
-      <div className="container mx-auto">
+      <div className="container mx-auto flex flex-col items-center space-y-8">
+        {/* Header */}
         <Dashboard_Header />
-        <div className="mt-8">
-          {/* Additional content for the human action selection page can go here */}
-          <p className="text-white text-lg">
-            Welcome to the Human Action Selection page. This is where users can select their actions.
-          </p>
+        
+        {/* URL Input Section */}
+        <URL_presentation />
+        
+        {/* Separator */}
+        <Separator />
+        
+        {/* Make Decision Button */}
+        <Make_Decision_Botton />
+        
+        {/* Progress Bar */}
+        <div className="flex flex-col items-center space-y-4">
+          <Progress_Bar />
         </div>
       </div>
     </div>
