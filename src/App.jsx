@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import HumanActionSelection from './pages/Human_Ac_Sel/human_action_selection';
+import HumanActionImplementation from './pages/Human_Ac_Impl/human_action_implementation';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               </div>
             } />
             <Route path="/human-action-selection" element={<HumanActionSelection />} />
+            <Route path="/human-action-implementation" element={<HumanActionImplementation />} />
           </Routes>
         </main>
       </div>

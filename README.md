@@ -1,12 +1,37 @@
-# React + Vite
+# URL Analysis Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application for analyzing and managing URL access permissions.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 18** - Frontend framework with hooks
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first styling
+- **React Router** - Client-side routing
+- **Bun** - Package manager and runtime
+- **ESLint** - Code linting
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+bun install
+
+# Start development server
+bun run dev
+
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── General_Page_Content/     # Reusable UI components
+│   └── Human_Action_Implementation/  # Action-specific components
+├── pages/
+│   ├── Human_Ac_Sel/             # Action selection
+│   └── Human_Ac_Impl/            # Action implementation
+├── App.jsx                       # Main app component
+└── main.jsx                      # Entry point
+```

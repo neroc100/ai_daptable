@@ -1,8 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Make_Decision_Botton() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/human-action-implementation');
+  };
+
   return (
-    <div className="w-96 h-16 relative rounded-lg">
+    <div 
+      className="w-96 h-16 relative rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+      onClick={handleClick}
+    >
       <div className="w-96 h-16 p-2 left-0 top-0 absolute bg-emerald-50 rounded-lg outline outline-4 outline-offset-[-4px] outline-green-600 inline-flex justify-center items-center gap-2">
         <div className="text-center justify-center">
           <span className="text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">Make</span>
