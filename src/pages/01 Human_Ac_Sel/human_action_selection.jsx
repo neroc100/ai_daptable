@@ -1,9 +1,9 @@
 import React from 'react';
-import Dashboard_Header from '../../components/General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../components/General_Page_Content/URL_presentation';
-import Separator from '../../components/General_Page_Content/Separator';
-import Make_Decision_Botton from '../../components/Human_Action_Selection/Make_Decision_Botton';
-import Progress_Bar from '../../components/General_Page_Content/Progress_Bar';
+import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
+import Separator from '../../components/00 General_Page_Content/Separator';
+import Make_Decision_Botton from '../../components/01 Human_Action_Selection/Make_Decision_Botton';
+import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
 
 function HumanActionSelection() {
   return (

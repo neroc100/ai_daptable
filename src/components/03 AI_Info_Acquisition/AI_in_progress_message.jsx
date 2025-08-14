@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 /**
  * AI In Progress Message Component
  * 
  * This component displays a message indicating that AI is currently gathering information.
  * It includes an information icon, title, description, and a progress indicator that
- * fills up over 2 seconds before automatically navigating to the AI info acquisition display.
+ * fills up over 2 seconds before automatically navigating to the appropriate page
+ * based on which button was clicked on the main page.
+ * 
+ * Navigation logic:
+ * - Button 2: Navigate to AI info acquisition display page
+ * - Buttons 3, 4, 5: Navigate to dummy page
  * 
  * @returns {JSX.Element} AI in progress message component
  */
 function AI_in_progress_message() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [progress, setProgress] = useState(0);
+
+  // Get the button number from navigation state
+  const buttonClicked = location.state?.buttonClicked;
 
   useEffect(() => {
     // Timer that runs for 2 seconds (2000ms)
@@ -27,9 +36,18 @@ function AI_in_progress_message() {
         
         if (newProgress >= 100) {
           clearInterval(timer);
-          // Navigate to AI info acquisition display page after 2 seconds
+          // Navigate to appropriate page after 2 seconds based on button clicked
           setTimeout(() => {
-            navigate('/ai-info-acquisition-display');
+            if (buttonClicked === 2) {
+              // Button 2 leads to AI info acquisition display
+              navigate('/ai-info-acquisition-display');
+            } else if (buttonClicked === 3 || buttonClicked === 4 || buttonClicked === 5) {
+              // Buttons 3, 4, 5 lead to dummy page
+              navigate('/dummy');
+            } else {
+              // Default fallback to AI info acquisition display
+              navigate('/ai-info-acquisition-display');
+            }
           }, 100);
           return 100;
         }
@@ -39,7 +57,8 @@ function AI_in_progress_message() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [navigate]);
+  }, [navigate, buttonClicked]);
+
   return (
     <div className="w-[602px] h-64 relative">
       {/* Main container with white background and dark border */}

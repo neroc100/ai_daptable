@@ -1,8 +1,8 @@
 import React from 'react';
-import Dashboard_Header from '../../components/General_Page_Content/Dashboard_Header';
-import Progress_Bar from '../../components/General_Page_Content/Progress_Bar';
-import Allow_Button from '../../components/Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../components/Human_Action_Implementation/Block_Button';
+import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
+import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
+import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
 
 function HumanActionImplementation() {
   return (

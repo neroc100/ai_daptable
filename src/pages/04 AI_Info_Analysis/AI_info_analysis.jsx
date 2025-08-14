@@ -12,14 +12,14 @@ import Geographical_Hosting_Box from '../../components/03 AI_Info_Acquisition/Ge
 import Make_Decision_Botton from '../../components/01 Human_Action_Selection/Make_Decision_Botton';
 
 /**
- * AI Information Acquisition Display Page
+ * AI Information Analysis Page
  * 
- * This page displays the results of AI information acquisition.
- * It shows the gathered information after the AI processing is complete.
+ * This page displays the results of AI information analysis.
+ * It shows the analyzed information after the AI processing is complete.
  * 
- * @returns {JSX.Element} AI information acquisition display page component
+ * @returns {JSX.Element} AI information analysis page component
  */
-function AI_info_acquisition_display() {
+function AI_info_analysis() {
   return (
     <div className="min-h-screen bg-gray-900 p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
@@ -59,4 +59,4 @@ function AI_info_acquisition_display() {
   );
 }
 
-export default AI_info_acquisition_display;
+export default AI_info_analysis;
