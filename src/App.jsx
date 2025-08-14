@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import HumanActionSelection from './pages/Human_Ac_Sel/human_action_selection';
 import HumanActionImplementation from './pages/Human_Ac_Impl/human_action_implementation';
 import AI_info_acquisition from './pages/AI_info_Acquisition/AI_info_acquisition';
+import AI_info_acquisition_display from './pages/AI_info_Acquisition/AI_info_acquisition_display';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
             <Route path="/human-action-selection" element={<HumanActionSelection />} />
             <Route path="/human-action-implementation" element={<HumanActionImplementation />} />
             <Route path="/ai-info-acquisition" element={<AI_info_acquisition />} />
+            <Route path="/ai-info-acquisition-display" element={<AI_info_acquisition_display />} />
           </Routes>
         </main>
       </div>
