@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 /**
  * Feature Display Box Component
@@ -61,31 +62,14 @@ function Feature_Display_Box() {
       
       {/* Collapsible arrow indicator - positioned in top-right */}
       <div 
-        data-svg-wrapper 
-        data-size="24" 
-        className="left-[307px] top-[23px] absolute cursor-pointer hover:opacity-70 transition-opacity"
+        className="left-[350px] top-[23px] absolute cursor-pointer hover:opacity-70 transition-opacity"
         onClick={handleArrowClick}
       >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ 
-            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-            transition: 'transform 0.2s ease-in-out'
-          }}
-        >
-          {/* Arrow that rotates based on expanded state */}
-          <path 
-            d="M18 15L12 9L6 15" 
-            stroke="#1E1E1E" 
-            strokeWidth="2.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          />
-        </svg>
+        {isExpanded ? (
+          <ChevronUp className="w-6 h-6 text-gray-800" />
+        ) : (
+          <ChevronDown className="w-6 h-6 text-gray-800" />
+        )}
       </div>
     </div>
   );

@@ -37,15 +37,15 @@ function AI_info_analysis_display() {
           {/* Top Row - Three boxes */}
           <div className="flex justify-between space-x-6">
             <URL_String_Analysis_Box isAnalysisPage={true} />
-            <Domain_Characteristics_Box />
-            <Encryption_HTTP_Box />
+            <Domain_Characteristics_Box isAnalysisPage={true} />
+            <Encryption_HTTP_Box isAnalysisPage={true} />
           </div>
           
           {/* Bottom Row - Three boxes */}
           <div className="flex justify-between space-x-6">
-            <DNS_Network_Box />
-            <Webpage_Content_Box />
-            <Geographical_Hosting_Box />
+            <DNS_Network_Box isAnalysisPage={true} />
+            <Webpage_Content_Box isAnalysisPage={true} />
+            <Geographical_Hosting_Box isAnalysisPage={true} />
           </div>
         </div>
         

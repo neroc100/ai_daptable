@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ThumbsUp } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { ThumbsUp, ThumbsDown, ChevronUp, ChevronDown } from 'lucide-react';
 
 /**
  * URL String Analysis Feature Display Box Component
@@ -10,7 +10,7 @@ import { ThumbsUp } from 'lucide-react';
  * 
  * The component can render in two different styles:
  * - Default style: White background with gray outline (for acquisition pages)
- * - Analysis style: White background with green outline and icon (for analysis pages)
+ * - Analysis style: White background with outline color based on majority of features
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisPage - Whether to use the analysis page design
@@ -19,13 +19,34 @@ import { ThumbsUp } from 'lucide-react';
 function URL_String_Analysis_Box({ isAnalysisPage = false }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
+  // Generate stable random icons for each feature using a seed
+  const featureIcons = useMemo(() => {
+    const seed = 42; // Stable seed for consistent results
+    const features = ['URL Length', 'Protocol', 'Special Characters'];
+    
+    return features.map((feature, index) => {
+      // Simple hash function for consistent randomness
+      const hash = feature.split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+      }, seed + index);
+      
+      return hash % 2 === 0 ? 'thumbsUp' : 'thumbsDown';
+    });
+  }, []);
+
+  // Calculate majority for outline color
+  const thumbsUpCount = featureIcons.filter(icon => icon === 'thumbsUp').length;
+  const thumbsDownCount = featureIcons.filter(icon => icon === 'thumbsDown').length;
+  const majorityIsPositive = thumbsUpCount >= thumbsDownCount;
+
   const handleArrowClick = () => {
     setIsExpanded(!isExpanded);
   };
 
-  // Determine outline color and width based on page type
+  // Determine outline color and width based on page type and majority
   const outlineClass = isAnalysisPage 
-    ? "outline-green-600 outline-4" 
+    ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
     : "outline-zinc-300 outline-1";
 
   return (
@@ -41,7 +62,11 @@ function URL_String_Analysis_Box({ isAnalysisPage = false }) {
       <div className={`absolute flex flex-col space-y-3 ${isAnalysisPage ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
         {/* First feature-value combination - always visible */}
         <div className="flex items-start gap-[10px]">
-          {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+          {isAnalysisPage && (
+            featureIcons[0] === 'thumbsUp' ? 
+              <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
+              <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+          )}
           <div className="flex flex-col justify-start items-start flex-1 min-w-0">
             <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
               URL Length
@@ -54,7 +79,11 @@ function URL_String_Analysis_Box({ isAnalysisPage = false }) {
         
         {/* Second feature-value combination - always visible */}
         <div className="flex items-start gap-[10px]">
-          {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+          {isAnalysisPage && (
+            featureIcons[1] === 'thumbsUp' ? 
+              <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
+              <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+          )}
           <div className="flex flex-col justify-start items-start flex-1 min-w-0">
             <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
               Protocol
@@ -68,7 +97,11 @@ function URL_String_Analysis_Box({ isAnalysisPage = false }) {
         {/* Third feature-value combination - only visible when expanded */}
         {isExpanded && (
           <div className="flex items-start gap-[10px]">
-            {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+            {isAnalysisPage && (
+              featureIcons[2] === 'thumbsUp' ? 
+                <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
+                <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+            )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
               <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
                 Special Characters
@@ -83,31 +116,14 @@ function URL_String_Analysis_Box({ isAnalysisPage = false }) {
       
       {/* Collapsible arrow indicator - positioned in top-right */}
       <div 
-        data-svg-wrapper 
-        data-size="24" 
         className="left-[350px] top-[23px] absolute cursor-pointer hover:opacity-70 transition-opacity"
         onClick={handleArrowClick}
       >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ 
-            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-            transition: 'transform 0.2s ease-in-out'
-          }}
-        >
-          {/* Arrow that rotates based on expanded state */}
-          <path 
-            d="M18 15L12 9L6 15" 
-            stroke="#1E1E1E" 
-            strokeWidth="2.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          />
-        </svg>
+        {isExpanded ? (
+          <ChevronUp className="w-6 h-6 text-gray-800" />
+        ) : (
+          <ChevronDown className="w-6 h-6 text-gray-800" />
+        )}
       </div>
     </div>
   );
