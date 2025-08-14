@@ -3,7 +3,12 @@ import Dashboard_Header from '../../components/General_Page_Content/Dashboard_He
 import URL_presentation from '../../components/General_Page_Content/URL_presentation';
 import Separator from '../../components/General_Page_Content/Separator';
 import Progress_Bar from '../../components/General_Page_Content/Progress_Bar';
-import Feature_Display_Box from '../../components/AI_Info_Acquisition/Feature_Display_Box';
+import URL_String_Analysis_Box from '../../components/AI_Info_Acquisition/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from '../../components/AI_Info_Acquisition/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from '../../components/AI_Info_Acquisition/Encryption_HTTP_Box';
+import DNS_Network_Box from '../../components/AI_Info_Acquisition/DNS_Network_Box';
+import Webpage_Content_Box from '../../components/AI_Info_Acquisition/Webpage_Content_Box';
+import Geographical_Hosting_Box from '../../components/AI_Info_Acquisition/Geographical_Hosting_Box';
 import Make_Decision_Botton from '../../components/Human_Action_Selection/Make_Decision_Botton';
 
 /**
@@ -27,17 +32,21 @@ function AI_info_acquisition_display() {
         {/* Separator */}
         <Separator />
         
-        {/* Analysis Sections Grid */}
-        <div className="grid grid-cols-3 gap-6 max-w-7xl">
-          {/* Top Row */}
-          <Feature_Display_Box />
-          <Feature_Display_Box />
-          <Feature_Display_Box />
+        {/* Analysis Sections - Three boxes per row with same width as URL box */}
+        <div className="w-[1250px] flex flex-col space-y-6">
+          {/* Top Row - Three boxes */}
+          <div className="flex justify-between space-x-6">
+            <URL_String_Analysis_Box />
+            <Domain_Characteristics_Box />
+            <Encryption_HTTP_Box />
+          </div>
           
-          {/* Bottom Row */}
-          <Feature_Display_Box />
-          <Feature_Display_Box />
-          <Feature_Display_Box />
+          {/* Bottom Row - Three boxes */}
+          <div className="flex justify-between space-x-6">
+            <DNS_Network_Box />
+            <Webpage_Content_Box />
+            <Geographical_Hosting_Box />
+          </div>
         </div>
         
         {/* Make Decision Button */}

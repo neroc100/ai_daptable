@@ -4,14 +4,19 @@ import React from 'react';
  * Progress Bar Component
  * 
  * This component displays a progress indicator showing the current progress
- * through a list of URLs. It includes a thin white progress track with a blue
- * circular indicator and descriptive text below.
+ * through a list of URLs. It includes descriptive text centered over a thin white 
+ * progress track with a blue circular indicator.
  * 
- * @returns {JSX.Element} Progress bar component with indicator and text
+ * @returns {JSX.Element} Progress bar component with text centered over the bar
  */
 function Progress_Bar() {
   return (
-    <>
+    <div className="w-96 h-11 relative">
+      {/* Progress text - centered over the progress bar */}
+      <div className="w-96 justify-center text-white text-base font-normal font-['Inter'] leading-none absolute top-0 left-0 z-10">
+        Progress x out of 12 URLs
+      </div>
+      
       {/* Progress bar container with data attribute for current value */}
       <div data-value="0%" className="w-96 h-11 relative">
         {/* White progress track - thin horizontal line */}
@@ -25,12 +30,7 @@ function Progress_Bar() {
           </div>
         </div>
       </div>
-      
-      {/* Progress text - shows current progress count */}
-      <div className="w-48 justify-center text-white text-base font-normal font-['Inter'] leading-none">
-        Progress x out of 12 URLs
-      </div>
-    </>
+    </div>
   );
 }
 

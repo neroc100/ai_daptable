@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import HumanActionSelection from './pages/Human_Ac_Sel/human_action_selection';
-import HumanActionImplementation from './pages/Human_Ac_Impl/human_action_implementation';
-import AI_info_acquisition from './pages/AI_info_Acquisition/AI_info_acquisition';
-import AI_info_acquisition_display from './pages/AI_info_Acquisition/AI_info_acquisition_display';
+import HumanActionSelection from './pages/01 Human_Ac_Sel/human_action_selection';
+import HumanActionImplementation from './pages/02 Human_Ac_Impl/human_action_implementation';
+import AI_info_acquisition from './pages/03 AI_Info_Acquisition/AI_info_acquisition';
+import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display';
 
 function App() {
   return (
@@ -35,24 +35,24 @@ function App() {
                     >
                       2
                     </Link>
-                    <button 
-                      className="bg-gray-400 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg cursor-not-allowed"
-                      disabled
+                    <Link 
+                      to="/ai-info-acquisition" 
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
                     >
                       3
-                    </button>
-                    <button 
-                      className="bg-gray-400 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg cursor-not-allowed"
-                      disabled
+                    </Link>
+                    <Link 
+                      to="/ai-info-acquisition" 
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
                     >
                       4
-                    </button>
-                    <button 
-                      className="bg-gray-400 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg cursor-not-allowed"
-                      disabled
+                    </Link>
+                    <Link 
+                      to="/ai-info-acquisition" 
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
                     >
                       5
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
