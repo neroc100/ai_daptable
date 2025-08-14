@@ -9,28 +9,28 @@ import Encryption_HTTP_Box from '../../components/03 AI_Info_Acquisition/Encrypt
 import DNS_Network_Box from '../../components/03 AI_Info_Acquisition/DNS_Network_Box';
 import Webpage_Content_Box from '../../components/03 AI_Info_Acquisition/Webpage_Content_Box';
 import Geographical_Hosting_Box from '../../components/03 AI_Info_Acquisition/Geographical_Hosting_Box';
-import AI_info_analysis_message from '../../components/04 AI_Info_Analysis/AI_info_analysis_message';
+import AI_Action_Selection_message from '../../components/05 AI_Action_Selection/AI_Action_Selection_message';
 
 /**
- * AI Information Analysis Page
+ * AI Action Selection Page
  * 
- * This page handles the AI information analysis process.
- * Users can interact with AI systems to analyze information about URLs.
+ * This page displays the results of AI information analysis for action selection.
+ * It shows the analyzed information after the AI processing is complete,
+ * without the Make Decision button to allow for AI-driven action selection.
  * 
- * The page displays the analysis results in a grid layout similar to the acquisition display page,
- * with a modal overlay containing the AI_info_analysis_message component,
- * which handles the navigation logic to the next page (display or dummy)
- * based on the button that was clicked on the main page.
+ * The page displays a modal overlay with the AI_Action_Selection_message component,
+ * which handles the navigation logic to the next page (dummy) based on the button
+ * that was clicked on the main page.
  * 
- * @returns {JSX.Element} AI information analysis page component
+ * @returns {JSX.Element} AI action selection page component
  */
-function AI_info_analysis() {
+function AI_Action_Selection() {
   // State to control modal visibility
   const [showModal, setShowModal] = useState(true);
 
   /**
    * Handles the modal close event
-   * Note: The actual page navigation is handled within the AI_info_analysis_message component
+   * Note: The actual page navigation is handled within the AI_Action_Selection_message component
    * This function is currently not used as the navigation logic is centralized in the modal component
    */
   const handleCloseModal = () => {
@@ -53,28 +53,28 @@ function AI_info_analysis() {
         <div className="w-[1250px] flex flex-col space-y-6">
           {/* Top Row - Three boxes */}
           <div className="flex justify-between space-x-6">
-            <URL_String_Analysis_Box />
-            <Domain_Characteristics_Box />
-            <Encryption_HTTP_Box />
+            <URL_String_Analysis_Box isAnalysisPage={true} />
+            <Domain_Characteristics_Box isAnalysisPage={true} />
+            <Encryption_HTTP_Box isAnalysisPage={true} />
           </div>
           
           {/* Bottom Row - Three boxes */}
           <div className="flex justify-between space-x-6">
-            <DNS_Network_Box />
-            <Webpage_Content_Box />
-            <Geographical_Hosting_Box />
+            <DNS_Network_Box isAnalysisPage={true} />
+            <Webpage_Content_Box isAnalysisPage={true} />
+            <Geographical_Hosting_Box isAnalysisPage={true} />
           </div>
         </div>
         
         {/* Progress Bar */}
         <Progress_Bar />
 
-        {/* Modal Overlay - appears when AI analysis is active */}
-        {/* The AI_info_analysis_message component handles the navigation logic */}
+        {/* Modal Overlay - appears when AI action selection is active */}
+        {/* The AI_Action_Selection_message component handles the navigation logic */}
         {showModal && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
-            {/* AI info analysis message component - handles page navigation */}
-            <AI_info_analysis_message />
+            {/* AI action selection message component - handles page navigation */}
+            <AI_Action_Selection_message />
           </div>
         )}
       </div>
@@ -82,4 +82,4 @@ function AI_info_analysis() {
   );
 }
 
-export default AI_info_analysis;
+export default AI_Action_Selection;

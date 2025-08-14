@@ -17,7 +17,7 @@ import { useButtonContext } from '../../context/ButtonContext';
  * 
  * Navigation logic:
  * - Button 3: Navigate to AI info analysis display page
- * - Buttons 4, 5: Navigate to dummy page
+ * - Buttons 4, 5, 6: Navigate to AI Action Selection page
  * 
  * @returns {JSX.Element} AI info analysis message component
  */
@@ -45,9 +45,9 @@ function AI_info_analysis_message() {
             if (buttonClicked === 3) {
               // Button 3 leads to AI info analysis display
               navigate('/ai-info-analysis-display');
-            } else if (buttonClicked === 4 || buttonClicked === 5) {
-              // Buttons 4, 5 lead to dummy page
-              navigate('/dummy');
+            } else if (buttonClicked === 4 || buttonClicked === 5 || buttonClicked === 6) {
+              // Buttons 4, 5, 6 lead to AI Action Selection page
+              navigate('/ai-action-selection');
             } else {
               // Default fallback to AI info analysis display
               navigate('/ai-info-analysis-display');

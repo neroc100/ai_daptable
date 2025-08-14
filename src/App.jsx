@@ -6,6 +6,7 @@ import AI_info_acquisition from './pages/03 AI_Info_Acquisition/AI_info_acquisit
 import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display';
 import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
 import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';
+import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ButtonContext';
 
@@ -31,11 +32,11 @@ function MainPage() {
   /**
    * Handles button clicks and sets the button number globally
    * 
-   * This function is called when any of the 5 buttons is clicked.
+   * This function is called when any of the 6 buttons is clicked.
    * It sets the button number in the global ButtonContext and then
    * navigates to the appropriate page.
    * 
-   * @param {number} buttonNumber - The number of the button that was clicked (1-5)
+   * @param {number} buttonNumber - The number of the button that was clicked (1-6)
    */
   const handleButtonClick = (buttonNumber) => {
     // Set the button number globally using ButtonContext
@@ -51,6 +52,8 @@ function MainPage() {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === 5) {
       navigate('/ai-info-acquisition');
+    } else if (buttonNumber === 6) {
+      navigate('/ai-info-acquisition');
     }
   };
 
@@ -65,7 +68,7 @@ function MainPage() {
         </p>
         
         {/* Condition Buttons */}
-        <div className="grid grid-cols-5 gap-4 max-w-2xl mx-auto">
+        <div className="grid grid-cols-6 gap-4 max-w-3xl mx-auto">
           <button 
             onClick={() => handleButtonClick(1)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
@@ -95,6 +98,12 @@ function MainPage() {
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
           >
             5
+          </button>
+          <button 
+            onClick={() => handleButtonClick(6)}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+          >
+            6
           </button>
         </div>
       </div>
@@ -129,6 +138,7 @@ function App() {
               <Route path="/ai-info-acquisition-display" element={<AI_info_acquisition_display />} />
               <Route path="/ai-info-analysis" element={<AI_info_analysis />} />
               <Route path="/ai-info-analysis-display" element={<AI_info_analysis_display />} />
+              <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>

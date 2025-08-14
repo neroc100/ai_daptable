@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useButtonContext } from '../../context/ButtonContext';
 
 /**
- * AI In Progress Message Component
+ * AI Action Selection Message Component
  * 
- * This component displays a message indicating that AI is currently gathering information.
+ * This component displays a message indicating that AI is currently finding appropriate actions.
  * It includes an information icon, title, description, and a progress indicator that
  * fills up over 2 seconds before automatically navigating to the appropriate page
  * based on which button was clicked on the main page.
@@ -16,12 +16,11 @@ import { useButtonContext } from '../../context/ButtonContext';
  * - No longer depends on React Router navigation state
  * 
  * Navigation logic:
- * - Button 2: Navigate to AI info acquisition display page
- * - Buttons 3, 4, 5, 6: Navigate to AI info analysis page
+ * - Buttons 4, 5, 6: Navigate to dummy page
  * 
- * @returns {JSX.Element} AI in progress message component
+ * @returns {JSX.Element} AI action selection message component
  */
-function AI_in_progress_message() {
+function AI_Action_Selection_message() {
   const navigate = useNavigate();
   // Access the globally stored button number from ButtonContext
   const { buttonClicked } = useButtonContext();
@@ -42,15 +41,12 @@ function AI_in_progress_message() {
           clearInterval(timer);
           // Navigate to appropriate page after 2 seconds based on globally stored button number
           setTimeout(() => {
-            if (buttonClicked === 2) {
-              // Button 2 leads to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
-            } else if (buttonClicked === 3 || buttonClicked === 4 || buttonClicked === 5 || buttonClicked === 6) {
-              // Buttons 3, 4, 5, 6 lead to AI info analysis page
-              navigate('/ai-info-analysis');
+            if (buttonClicked === 4 || buttonClicked === 5 || buttonClicked === 6) {
+              // Buttons 4, 5, 6 lead to dummy page
+              navigate('/dummy');
             } else {
-              // Default fallback to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
+              // Default fallback to dummy page
+              navigate('/dummy');
             }
           }, 100);
           return 100;
@@ -66,7 +62,7 @@ function AI_in_progress_message() {
   return (
     <div className="w-[602px] h-64 relative">
       {/* Main container with white background and dark border */}
-      <div className="w-[602px] h-64 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-zinc-800" />
+      <div className="w-[602px] h-64 min-w-60 px-8 py-6 pr-10 left-0 top-0 absolute bg-white rounded-lg border-4 border-zinc-800" />
       
       {/* Information icon - positioned in top-left area */}
       <div data-svg-wrapper data-size="32" className="left-[32px] top-[31px] absolute">
@@ -82,12 +78,12 @@ function AI_in_progress_message() {
       </div>
       
       {/* Description text */}
-      <div className="w-[475px] h-11 left-[95px] top-[90.78px] absolute justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
-        AI is gathering information. Please wait.
+      <div className="w-[500px] h-11 left-[95px] top-[90.78px] absolute justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
+        AI is finding appropriate action. Please wait.
       </div>
       
       {/* Progress bar container */}
-      <div data-value={`${Math.round(progress)}%`} className="w-96 h-24 left-[95px] top-[113px] absolute">
+      <div data-value={`${Math.round(progress)}%`} className="w-96 h-24 left-[95px] top-[130px] absolute">
         {/* Progress track - gray background */}
         <div className="w-96 h-1.5 left-[16px] top-[44px] absolute bg-neutral-400 rounded-[3px] relative overflow-hidden">
           {/* Green progress fill - animated based on progress state */}
@@ -112,4 +108,4 @@ function AI_in_progress_message() {
   );
 }
 
-export default AI_in_progress_message;
+export default AI_Action_Selection_message;
