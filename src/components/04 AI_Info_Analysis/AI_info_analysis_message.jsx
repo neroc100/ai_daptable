@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useButtonContext } from '../../context/ButtonContext';
 
 /**
- * AI In Progress Message Component
+ * AI Info Analysis Message Component
  * 
- * This component displays a message indicating that AI is currently gathering information.
+ * This component displays a message indicating that AI is currently analyzing information.
  * It includes an information icon, title, description, and a progress indicator that
  * fills up over 2 seconds before automatically navigating to the appropriate page
  * based on which button was clicked on the main page.
@@ -16,12 +16,12 @@ import { useButtonContext } from '../../context/ButtonContext';
  * - No longer depends on React Router navigation state
  * 
  * Navigation logic:
- * - Button 2: Navigate to AI info acquisition display page
- * - Buttons 3, 4, 5: Navigate to AI info analysis page
+ * - Button 3: Navigate to AI info analysis display page
+ * - Buttons 4, 5: Navigate to dummy page
  * 
- * @returns {JSX.Element} AI in progress message component
+ * @returns {JSX.Element} AI info analysis message component
  */
-function AI_in_progress_message() {
+function AI_info_analysis_message() {
   const navigate = useNavigate();
   // Access the globally stored button number from ButtonContext
   const { buttonClicked } = useButtonContext();
@@ -42,15 +42,15 @@ function AI_in_progress_message() {
           clearInterval(timer);
           // Navigate to appropriate page after 2 seconds based on globally stored button number
           setTimeout(() => {
-            if (buttonClicked === 2) {
-              // Button 2 leads to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
-            } else if (buttonClicked === 3 || buttonClicked === 4 || buttonClicked === 5) {
-              // Buttons 3, 4, 5 lead to AI info analysis page
-              navigate('/ai-info-analysis');
+            if (buttonClicked === 3) {
+              // Button 3 leads to AI info analysis display
+              navigate('/ai-info-analysis-display');
+            } else if (buttonClicked === 4 || buttonClicked === 5) {
+              // Buttons 4, 5 lead to dummy page
+              navigate('/dummy');
             } else {
-              // Default fallback to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
+              // Default fallback to AI info analysis display
+              navigate('/ai-info-analysis-display');
             }
           }, 100);
           return 100;
@@ -83,7 +83,7 @@ function AI_in_progress_message() {
       
       {/* Description text */}
       <div className="w-[475px] h-11 left-[95px] top-[90.78px] absolute justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
-        AI is gathering information. Please wait.
+        AI is analyzing information. Please wait.
       </div>
       
       {/* Progress bar container */}
@@ -112,4 +112,4 @@ function AI_in_progress_message() {
   );
 }
 
-export default AI_in_progress_message;
+export default AI_info_analysis_message;

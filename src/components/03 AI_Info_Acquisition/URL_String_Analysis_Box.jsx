@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ThumbsUp } from 'lucide-react';
 
 /**
  * URL String Analysis Feature Display Box Component
@@ -7,17 +8,28 @@ import React, { useState } from 'react';
  * It includes a collapsible arrow indicator and structured layout for URL analysis information.
  * The arrow is clickable and expands to show all feature-value combinations.
  * 
+ * The component can render in two different styles:
+ * - Default style: White background with gray outline (for acquisition pages)
+ * - Analysis style: White background with green outline and icon (for analysis pages)
+ * 
+ * @param {Object} props - Component props
+ * @param {boolean} props.isAnalysisPage - Whether to use the analysis page design
  * @returns {JSX.Element} URL String Analysis feature display box component
  */
-function URL_String_Analysis_Box() {
+function URL_String_Analysis_Box({ isAnalysisPage = false }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const handleArrowClick = () => {
     setIsExpanded(!isExpanded);
   };
 
+  // Determine outline color and width based on page type
+  const outlineClass = isAnalysisPage 
+    ? "outline-green-600 outline-4" 
+    : "outline-zinc-300 outline-1";
+
   return (
-    <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-1 outline-offset-[-1px] outline-zinc-300 transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-48'}`}>
+    <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-48'}`}>
       {/* Title section - "URL String Analysis" */}
       <div className="w-80 h-14 left-[24px] top-[24px] absolute inline-flex justify-start items-start">
         <div className="flex-1 justify-start text-stone-900 text-2xl font-semibold font-['Inter'] leading-7">
@@ -26,35 +38,44 @@ function URL_String_Analysis_Box() {
       </div>
       
       {/* Feature content section - shows features based on expanded state */}
-      <div className="absolute left-[24px] top-[106px] flex flex-col space-y-3">
+      <div className={`absolute flex flex-col space-y-3 ${isAnalysisPage ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
         {/* First feature-value combination - always visible */}
-        <div className="flex flex-col justify-start items-start">
-          <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
-            URL Length
-          </div>
-          <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-            67 characters
+        <div className="flex items-start gap-[10px]">
+          {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+          <div className="flex flex-col justify-start items-start flex-1 min-w-0">
+            <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+              URL Length
+            </div>
+            <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+              67 characters
+            </div>
           </div>
         </div>
         
         {/* Second feature-value combination - always visible */}
-        <div className="flex flex-col justify-start items-start">
-          <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
-            Protocol
-          </div>
-          <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-            HTTPS
+        <div className="flex items-start gap-[10px]">
+          {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+          <div className="flex flex-col justify-start items-start flex-1 min-w-0">
+            <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+              Protocol
+            </div>
+            <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+              HTTPS
+            </div>
           </div>
         </div>
         
         {/* Third feature-value combination - only visible when expanded */}
         {isExpanded && (
-          <div className="flex flex-col justify-start items-start">
-            <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
-              Special Characters
-            </div>
-            <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-              8 instances
+          <div className="flex items-start gap-[10px]">
+            {isAnalysisPage && <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />}
+            <div className="flex flex-col justify-start items-start flex-1 min-w-0">
+              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+                Special Characters
+              </div>
+              <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+                8 instances
+              </div>
             </div>
           </div>
         )}
