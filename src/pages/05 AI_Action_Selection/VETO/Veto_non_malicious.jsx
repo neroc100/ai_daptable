@@ -7,6 +7,8 @@ import Information_Display from '../../../components/05 AI_Action_Selection/Info
 import Veto_non_malicious_message from '../../../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
 import AI_allowed_message from '../../../components/06 AI Action Implementation/AI_allowed_message';
 import AI_blocked_message from '../../../components/06 AI Action Implementation/AI_blocked_message';
+import AI_allowing_progress from '../../../components/06 AI Action Implementation/AI_allowing_progress';
+import AI_blocking_progress from '../../../components/06 AI Action Implementation/AI_blocking_progress';
 
 /**
  * Veto Non Malicious Page
@@ -19,15 +21,17 @@ import AI_blocked_message from '../../../components/06 AI Action Implementation/
 function Veto_Non_Malicious() {
   const [showAllowedMessage, setShowAllowedMessage] = useState(false);
   const [showBlockedMessage, setShowBlockedMessage] = useState(false);
+  const [showAllowingProgress, setShowAllowingProgress] = useState(false);
+  const [showBlockingProgress, setShowBlockingProgress] = useState(false);
 
   const handleCancel = () => {
-    // Handle cancel action - could navigate back or show different message
-    console.log('Cancel clicked');
+    // When cancel is clicked on veto non-malicious page, show blocking progress
+    setShowBlockingProgress(true);
   };
 
   const handleVetoComplete = () => {
-    // When veto progress completes, show allowed message
-    setShowAllowedMessage(true);
+    // When veto progress completes, show allowing progress
+    setShowAllowingProgress(true);
   };
 
   const handleCloseAllowedMessage = () => {
@@ -36,6 +40,16 @@ function Veto_Non_Malicious() {
 
   const handleCloseBlockedMessage = () => {
     setShowBlockedMessage(false);
+  };
+
+  const handleAllowingComplete = () => {
+    setShowAllowingProgress(false);
+    setShowAllowedMessage(true);
+  };
+
+  const handleBlockingComplete = () => {
+    setShowBlockingProgress(false);
+    setShowBlockedMessage(true);
   };
 
   return (
@@ -50,6 +64,18 @@ function Veto_Non_Malicious() {
         />
         <Information_Display />
         <Progress_Bar />
+        
+        {showAllowingProgress && (
+          <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
+            <AI_allowing_progress onComplete={handleAllowingComplete} />
+          </div>
+        )}
+        
+        {showBlockingProgress && (
+          <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
+            <AI_blocking_progress onComplete={handleBlockingComplete} />
+          </div>
+        )}
         
         {showAllowedMessage && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
