@@ -21,7 +21,7 @@ function Success_Message_URL_Blocked({ onOKClick }) {
             URL successfully blocked
           </div>
           
-          <div className="w-[600px] h-16 center text-neutral-500 text-2xl font-normal font-['Inter'] leading-20">
+          <div className="w-[600px] h-16 center text-neutral-500 text-2xl font-normal font-['Inter'] leading-2">
             You successfully blocked traffic to this URL
           </div>
         </div>

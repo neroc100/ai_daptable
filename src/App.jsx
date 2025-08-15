@@ -11,6 +11,8 @@ import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_maliciou
 import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
 import Veto_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_malicious';
 import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_malicious';
+import Auto_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_malicious';
+import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_malicious';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 
@@ -147,6 +149,8 @@ function App() {
               <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
               <Route path="/veto-malicious" element={<Veto_Malicious />} />
               <Route path="/veto-non-malicious" element={<Veto_Non_Malicious />} />
+              <Route path="/auto-malicious" element={<Auto_Malicious />} />
+              <Route path="/auto-non-malicious" element={<Auto_Non_Malicious />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>

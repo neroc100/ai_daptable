@@ -21,7 +21,7 @@ function AI_blocked_message({ onOKClick }) {
             AI successfully blocked URL
           </div>
           
-          <div className="w-[600px] h-16 center text-neutral-500 text-2xl font-normal font-['Inter'] leading-20">
+          <div className="w-[600px] h-16 center text-neutral-500 text-2xl font-normal font-['Inter'] leading-2">
             The AI has successfully blocked traffic to this URL
           </div>
         </div>
