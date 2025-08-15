@@ -3,12 +3,7 @@ import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard
 import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
 import Separator from '../../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
-import URL_String_Analysis_Box from '../../components/03 AI_Info_Acquisition/URL_String_Analysis_Box';
-import Domain_Characteristics_Box from '../../components/03 AI_Info_Acquisition/Domain_Characteristics_Box';
-import Encryption_HTTP_Box from '../../components/03 AI_Info_Acquisition/Encryption_HTTP_Box';
-import DNS_Network_Box from '../../components/03 AI_Info_Acquisition/DNS_Network_Box';
-import Webpage_Content_Box from '../../components/03 AI_Info_Acquisition/Webpage_Content_Box';
-import Geographical_Hosting_Box from '../../components/03 AI_Info_Acquisition/Geographical_Hosting_Box';
+import Analyzed_Info_Display from '../../components/04 AI_Info_Analysis/Analyzed_Info_Display';
 import Make_Decision_Botton from '../../components/01 Human_Action_Selection/Make_Decision_Botton';
 
 /**
@@ -32,22 +27,8 @@ function AI_info_analysis_display() {
         {/* Separator */}
         <Separator />
         
-        {/* Analysis Sections - Three boxes per row with same width as URL box */}
-        <div className="w-[1250px] flex flex-col space-y-6">
-          {/* Top Row - Three boxes */}
-          <div className="flex justify-between space-x-6">
-            <URL_String_Analysis_Box isAnalysisPage={true} />
-            <Domain_Characteristics_Box isAnalysisPage={true} />
-            <Encryption_HTTP_Box isAnalysisPage={true} />
-          </div>
-          
-          {/* Bottom Row - Three boxes */}
-          <div className="flex justify-between space-x-6">
-            <DNS_Network_Box isAnalysisPage={true} />
-            <Webpage_Content_Box isAnalysisPage={true} />
-            <Geographical_Hosting_Box isAnalysisPage={true} />
-          </div>
-        </div>
+        {/* Analysis Sections - Using the Analyzed_Info_Display component */}
+        <Analyzed_Info_Display isAnalysisPage={true} />
         
         {/* Make Decision Button */}
         <Make_Decision_Botton />

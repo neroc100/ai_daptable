@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useButtonContext } from '../../context/ButtonContext';
+import { useButtonContext } from '../../context/Condition';
 
 /**
  * AI In Progress Message Component
@@ -11,7 +11,7 @@ import { useButtonContext } from '../../context/ButtonContext';
  * based on which button was clicked on the main page.
  * 
  * ButtonContext Integration:
- * - Uses useButtonContext() to access the globally stored buttonClicked value
+ * - Uses useButtonContext() to access the globally stored Condition value
  * - Determines navigation logic based on the button number from global state
  * - No longer depends on React Router navigation state
  * 
@@ -24,7 +24,7 @@ import { useButtonContext } from '../../context/ButtonContext';
 function AI_in_progress_message() {
   const navigate = useNavigate();
   // Access the globally stored button number from ButtonContext
-  const { buttonClicked } = useButtonContext();
+  const { Condition } = useButtonContext();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -42,10 +42,10 @@ function AI_in_progress_message() {
           clearInterval(timer);
           // Navigate to appropriate page after 2 seconds based on globally stored button number
           setTimeout(() => {
-            if (buttonClicked === 2) {
+            if (Condition === 2) {
               // Button 2 leads to AI info acquisition display
               navigate('/ai-info-acquisition-display');
-            } else if (buttonClicked === 3 || buttonClicked === 4 || buttonClicked === 5 || buttonClicked === 6) {
+            } else if (Condition === 3 || Condition === 4 || Condition === 5 || Condition === 6) {
               // Buttons 3, 4, 5, 6 lead to AI info analysis page
               navigate('/ai-info-analysis');
             } else {
@@ -61,7 +61,7 @@ function AI_in_progress_message() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [navigate, buttonClicked]);
+  }, [navigate, Condition]);
 
   return (
     <div className="w-[602px] h-64 relative">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useButtonContext } from '../../context/ButtonContext';
+import { useButtonContext } from '../../context/Condition';
 
 /**
  * AI Action Selection Message Component
@@ -11,19 +11,20 @@ import { useButtonContext } from '../../context/ButtonContext';
  * based on which button was clicked on the main page.
  * 
  * ButtonContext Integration:
- * - Uses useButtonContext() to access the globally stored buttonClicked value
+ * - Uses useButtonContext() to access the globally stored Condition value
  * - Determines navigation logic based on the button number from global state
  * - No longer depends on React Router navigation state
  * 
  * Navigation logic:
- * - Buttons 4, 5, 6: Navigate to dummy page
+ * - Button 4: Randomly navigate to allow_malicious or allow_non_malicious page
+ * - Buttons 5, 6: Navigate to dummy page
  * 
  * @returns {JSX.Element} AI action selection message component
  */
 function AI_Action_Selection_message() {
   const navigate = useNavigate();
   // Access the globally stored button number from ButtonContext
-  const { buttonClicked } = useButtonContext();
+  const { Condition } = useButtonContext();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -41,8 +42,21 @@ function AI_Action_Selection_message() {
           clearInterval(timer);
           // Navigate to appropriate page after 2 seconds based on globally stored button number
           setTimeout(() => {
-            if (buttonClicked === 4 || buttonClicked === 5 || buttonClicked === 6) {
-              // Buttons 4, 5, 6 lead to dummy page
+            if (Condition === 4) {
+              // Button 4 randomly leads to allow_malicious or allow_non_malicious
+              const seed = 42; // Stable seed for consistent results
+              const hash = Condition.toString().split('').reduce((a, b) => {
+                a = ((a << 5) - a) + b.charCodeAt(0);
+                return a & a;
+              }, seed);
+              
+              if (hash % 2 === 0) {
+                navigate('/allow-malicious');
+              } else {
+                navigate('/allow-non-malicious');
+              }
+            } else if (Condition === 5 || Condition === 6) {
+              // Buttons 5, 6 lead to dummy page
               navigate('/dummy');
             } else {
               // Default fallback to dummy page
@@ -57,7 +71,7 @@ function AI_Action_Selection_message() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [navigate, buttonClicked]);
+  }, [navigate, Condition]);
 
   return (
     <div className="w-[602px] h-64 relative">

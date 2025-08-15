@@ -13,8 +13,8 @@ import React, { createContext, useContext, useState } from 'react';
  * - Navigation logic is based on the globally stored button number
  * 
  * State:
- * - buttonClicked: The number of the button that was clicked (1-5) or null if no button clicked
- * - setButtonClicked: Function to update the button number
+ * - Condition: The number of the button that was clicked (1-5) or null if no button clicked
+ * - setCondition: Function to update the button number
  * 
  */
 
@@ -27,7 +27,7 @@ const ButtonContext = createContext();
  * This hook provides access to the button context and includes error handling
  * to ensure it's only used within a ButtonProvider.
  * 
- * @returns {Object} Object containing buttonClicked and setButtonClicked
+ * @returns {Object} Object containing Condition and setCondition
  * @throws {Error} If used outside of ButtonProvider
  */
 export const useButtonContext = () => {
@@ -42,7 +42,7 @@ export const useButtonContext = () => {
  * ButtonProvider Component
  * 
  * This provider component wraps the application and provides global access
- * to the button state. It manages the buttonClicked state and provides
+ * to the button state. It manages the Condition state and provides
  * the setter function to update it.
  * 
  * @param {Object} props - Component props
@@ -51,12 +51,12 @@ export const useButtonContext = () => {
  */
 export const ButtonProvider = ({ children }) => {
   // State to store which button was clicked (1-5) or null
-  const [buttonClicked, setButtonClicked] = useState(null);
+  const [Condition, setCondition] = useState(null);
 
   // Context value object containing state and setter
   const value = {
-    buttonClicked,
-    setButtonClicked
+    Condition,
+    setCondition
   };
 
   return (

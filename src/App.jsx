@@ -7,18 +7,20 @@ import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_
 import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
 import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';
 import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
+import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
+import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
 import Dummy from './pages/dummy';
-import { ButtonProvider, useButtonContext } from './context/ButtonContext';
+import { ButtonProvider, useButtonContext } from './context/Condition';
 
 /**
  * Main Page Component with Button Click Handling
  * 
  * This component handles button clicks on the main page and sets the button number
- * globally using the ButtonContext. It uses the global setButtonClicked function
+ * globally using the ButtonContext. It uses the global setCondition function
  * to store which button was clicked, making it accessible throughout the app.
  * 
  * ButtonContext Usage:
- * - Uses useButtonContext() to access setButtonClicked
+ * - Uses useButtonContext() to access setCondition
  * - Sets the button number globally when any button is clicked
  * - Enables other components to access the button number without prop drilling
  * 
@@ -27,7 +29,7 @@ import { ButtonProvider, useButtonContext } from './context/ButtonContext';
 function MainPage() {
   const navigate = useNavigate();
   // Access the global button context to set the clicked button number
-  const { setButtonClicked } = useButtonContext();
+  const { setCondition } = useButtonContext();
 
   /**
    * Handles button clicks and sets the button number globally
@@ -40,7 +42,7 @@ function MainPage() {
    */
   const handleButtonClick = (buttonNumber) => {
     // Set the button number globally using ButtonContext
-    setButtonClicked(buttonNumber);
+    setCondition(buttonNumber);
     
     if (buttonNumber === 1) {
       navigate('/human-action-selection');
@@ -119,7 +121,7 @@ function MainPage() {
  * 
  * ButtonContext Integration:
  * - Wraps the entire app with ButtonProvider
- * - Enables all child components to access buttonClicked state
+ * - Enables all child components to access Condition state
  * - Provides global state management for button selection
  * 
  * @returns {JSX.Element} App component with global context provider
@@ -139,6 +141,8 @@ function App() {
               <Route path="/ai-info-analysis" element={<AI_info_analysis />} />
               <Route path="/ai-info-analysis-display" element={<AI_info_analysis_display />} />
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
+              <Route path="/allow-malicious" element={<Allow_malicious />} />
+              <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>
