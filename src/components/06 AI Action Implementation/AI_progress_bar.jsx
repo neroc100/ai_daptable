@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Circle } from 'lucide-react';
 
 /**
  * AI Progress Bar Component
@@ -54,10 +55,7 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
           className="absolute top-0 transition-all duration-50 ease-linear"
           style={{ left: `${(progress / 100) * (384 - 6)}px` }}
         >
-          <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Circular indicator filled with green color */}
-            <rect width="6" height="6" rx="3" fill="#14AE5C"/>
-          </svg>
+          <Circle className="w-1.5 h-1.5 text-green-500 fill-current" />
         </div>
       </div>
     </div>

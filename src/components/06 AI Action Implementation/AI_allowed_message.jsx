@@ -1,4 +1,5 @@
 import React from 'react';
+import { Check } from 'lucide-react';
 import AI_Success_Message_Button from './AI_Success_Message_Button';
 
 /**
@@ -26,9 +27,7 @@ function AI_allowed_message({ onOKClick }) {
         <AI_Success_Message_Button onOKClick={onOKClick} />
         
         <div data-svg-wrapper className="left-0 top-0 absolute">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M40 12L18 34L8 24" stroke="#14AE5C" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Check className="w-12 h-12 text-green-500" />
         </div>
       </div>
     </div>
