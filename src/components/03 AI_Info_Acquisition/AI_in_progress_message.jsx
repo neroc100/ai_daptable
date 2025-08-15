@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useButtonContext } from '../../context/ConditionContext';
+import AI_progress_bar from '../06 AI Action Implementation/AI_progress_bar';
 
 /**
  * AI In Progress Message Component
@@ -25,43 +26,20 @@ function AI_in_progress_message() {
   const navigate = useNavigate();
   // Access the globally stored button number from ButtonContext
   const { Condition } = useButtonContext();
-  const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    // Timer that runs for 2 seconds (2000ms)
-    const duration = 2000;
-    const interval = 50; // Update every 50ms for smooth animation
-    const steps = duration / interval;
-    const increment = 100 / steps;
-
-    const timer = setInterval(() => {
-      setProgress(prevProgress => {
-        const newProgress = prevProgress + increment;
-        
-        if (newProgress >= 100) {
-          clearInterval(timer);
-          // Navigate to appropriate page after 2 seconds based on globally stored button number
-          setTimeout(() => {
-            if (Condition === 2) {
-              // Button 2 leads to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
-            } else if (Condition === 3 || Condition === 4 || Condition === 5 || Condition === 6) {
-              // Buttons 3, 4, 5, 6 lead to AI info analysis page
-              navigate('/ai-info-analysis');
-            } else {
-              // Default fallback to AI info acquisition display
-              navigate('/ai-info-acquisition-display');
-            }
-          }, 100);
-          return 100;
-        }
-        
-        return newProgress;
-      });
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [navigate, Condition]);
+  const handleComplete = () => {
+    // Navigate to appropriate page based on globally stored button number
+    if (Condition === 2) {
+      // Button 2 leads to AI info acquisition display
+      navigate('/ai-info-acquisition-display');
+    } else if (Condition === 3 || Condition === 4 || Condition === 5 || Condition === 6) {
+      // Buttons 3, 4, 5, 6 lead to AI info analysis page
+      navigate('/ai-info-analysis');
+    } else {
+      // Default fallback to AI info acquisition display
+      navigate('/ai-info-acquisition-display');
+    }
+  };
 
   return (
     <div className="w-[602px] h-64 relative">
@@ -86,28 +64,8 @@ function AI_in_progress_message() {
         AI is gathering information. Please wait.
       </div>
       
-      {/* Progress bar container */}
-      <div data-value={`${Math.round(progress)}%`} className="w-96 h-24 left-[95px] top-[113px] absolute">
-        {/* Progress track - gray background */}
-        <div className="w-96 h-1.5 left-[16px] top-[44px] absolute bg-neutral-400 rounded-[3px] relative overflow-hidden">
-          {/* Green progress fill - animated based on progress state */}
-          <div 
-            className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-50 ease-linear rounded-[3px]"
-            style={{ width: `${progress}%` }}
-          />
-          {/* Green progress indicator dot - positioned at the end of the fill */}
-          <div 
-            data-svg-wrapper 
-            className="absolute top-0 transition-all duration-50 ease-linear"
-            style={{ left: `${(progress / 100) * (384 - 6)}px` }}
-          >
-            <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Circular indicator filled with green color */}
-              <rect width="6" height="6" rx="3" fill="#14AE5C"/>
-            </svg>
-          </div>
-        </div>
-      </div>
+      {/* Progress bar component */}
+      <AI_progress_bar onComplete={handleComplete} />
     </div>
   );
 }

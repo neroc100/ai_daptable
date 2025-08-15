@@ -1,45 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import AI_progress_bar from './AI_progress_bar';
 
 /**
  * AI Allowing Progress Component
  * 
  * This component displays a progress message while AI is proceeding to allow a URL.
  * It includes an information icon, title, description, and a progress indicator that
- * fills up over 2 seconds.
+ * fills up over 5 seconds.
  * 
  * @param {Function} onComplete - Callback function called when progress reaches 100%
  * @returns {JSX.Element} AI allowing progress component
  */
 function AI_allowing_progress({ onComplete }) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const interval = 50;
-    const steps = duration / interval;
-    const increment = 100 / steps;
-
-    const timer = setInterval(() => {
-      setProgress(prevProgress => {
-        const newProgress = prevProgress + increment;
-        
-        if (newProgress >= 100) {
-          clearInterval(timer);
-          setTimeout(() => {
-            if (onComplete) {
-              onComplete();
-            }
-          }, 100);
-          return 100;
-        }
-        
-        return newProgress;
-      });
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [onComplete]);
-
   return (
     <div className="w-[602px] h-64 relative">
       <div className="w-[602px] h-64 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-zinc-800" />
@@ -58,23 +30,7 @@ function AI_allowing_progress({ onComplete }) {
         AI is proceeding to allow URL. Please wait.
       </div>
       
-      <div data-value={`${Math.round(progress)}%`} className="w-96 h-24 left-[95px] top-[113px] absolute">
-        <div className="w-96 h-1.5 left-[16px] top-[44px] absolute bg-neutral-400 rounded-[3px] relative overflow-hidden">
-          <div 
-            className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-50 ease-linear rounded-[3px]"
-            style={{ width: `${progress}%` }}
-          />
-          <div 
-            data-svg-wrapper 
-            className="absolute top-0 transition-all duration-50 ease-linear"
-            style={{ left: `${(progress / 100) * (384 - 6)}px` }}
-          >
-            <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="6" height="6" rx="3" fill="#14AE5C"/>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <AI_progress_bar duration={5000} onComplete={onComplete} />
     </div>
   );
 }
