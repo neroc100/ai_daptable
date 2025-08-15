@@ -56,7 +56,7 @@ function AI_in_progress_message() {
         
         {/* Title - "AI in progress" */}
         <div className="w-[475px] h-12 ml-[95px] justify-start text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
-          AI in progress
+          Gathering information
         </div>
         
         {/* Description text */}

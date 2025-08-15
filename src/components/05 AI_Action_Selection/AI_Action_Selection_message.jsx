@@ -68,7 +68,7 @@ function AI_Action_Selection_message() {
           <Loader2 className="w-10 h-10 text-stone-900 animate-spin" />
         </div>
         <div className="w-[475px] h-12 ml-[95px] justify-start text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
-          AI in progress
+          Finding appropriate action
         </div>
         <div className="w-[500px] h-11 ml-[95px] justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
           AI is finding appropriate action. Please wait.
