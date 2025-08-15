@@ -27,7 +27,7 @@ function Success_Message_Button({ onOKClick }) {
       data-size="Medium" 
       data-state="Default" 
       data-variant="Primary" 
-      className="w-44 h-14 p-3 left-[158px] top-[129px] absolute bg-zinc-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-zinc-800 inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+      className="w-44 h-14 p-3 bg-zinc-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-zinc-800 inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
       onClick={handleClick}
     >
       {/* Double arrow icon inside OK button */}
