@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useButtonContext } from '../../context/Condition';
+import { useButtonContext } from '../../context/ConditionContext';
 
 /**
  * AI Action Selection Message Component
