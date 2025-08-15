@@ -4,11 +4,9 @@ import URL_presentation from '../../../components/00 General_Page_Content/URL_pr
 import Separator from '../../../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../../../components/00 General_Page_Content/Progress_Bar';
 import Information_Display from '../../../components/05 AI_Action_Selection/Information_Display';
-import Non_malicious_message from '../../../components/05 AI_Action_Selection/ALLOW/non_malicious_message';
+import Veto_non_malicious_message from '../../../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
 import AI_allowed_message from '../../../components/06 AI Action Implementation/AI_allowed_message';
 import AI_blocked_message from '../../../components/06 AI Action Implementation/AI_blocked_message';
-import AI_allowing_progress from '../../../components/06 AI Action Implementation/AI_allowing_progress';
-import AI_blocking_progress from '../../../components/06 AI Action Implementation/AI_blocking_progress';
 
 /**
  * Veto Non Malicious Page
@@ -21,15 +19,15 @@ import AI_blocking_progress from '../../../components/06 AI Action Implementatio
 function Veto_Non_Malicious() {
   const [showAllowedMessage, setShowAllowedMessage] = useState(false);
   const [showBlockedMessage, setShowBlockedMessage] = useState(false);
-  const [showAllowingProgress, setShowAllowingProgress] = useState(false);
-  const [showBlockingProgress, setShowBlockingProgress] = useState(false);
-
-  const handleConfirm = () => {
-    setShowAllowingProgress(true);
-  };
 
   const handleCancel = () => {
-    setShowBlockingProgress(true);
+    // Handle cancel action - could navigate back or show different message
+    console.log('Cancel clicked');
+  };
+
+  const handleVetoComplete = () => {
+    // When veto progress completes, show allowed message
+    setShowAllowedMessage(true);
   };
 
   const handleCloseAllowedMessage = () => {
@@ -40,40 +38,18 @@ function Veto_Non_Malicious() {
     setShowBlockedMessage(false);
   };
 
-  const handleAllowingComplete = () => {
-    setShowAllowingProgress(false);
-    setShowAllowedMessage(true);
-  };
-
-  const handleBlockingComplete = () => {
-    setShowBlockingProgress(false);
-    setShowBlockedMessage(true);
-  };
-
   return (
     <div className="min-h-screen bg-gray-900 p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation />
         <Separator />
-        <Non_malicious_message 
-          onConfirm={handleConfirm}
+        <Veto_non_malicious_message 
           onCancel={handleCancel}
+          onComplete={handleVetoComplete}
         />
         <Information_Display />
         <Progress_Bar />
-        
-        {showAllowingProgress && (
-          <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
-            <AI_allowing_progress onComplete={handleAllowingComplete} />
-          </div>
-        )}
-        
-        {showBlockingProgress && (
-          <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
-            <AI_blocking_progress onComplete={handleBlockingComplete} />
-          </div>
-        )}
         
         {showAllowedMessage && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
