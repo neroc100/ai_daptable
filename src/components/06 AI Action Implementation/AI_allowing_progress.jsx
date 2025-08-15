@@ -13,8 +13,8 @@ import AI_progress_bar from './AI_progress_bar';
  */
 function AI_allowing_progress({ onComplete }) {
   return (
-    <div className="w-[602px] h-64 relative">
-      <div className="w-[602px] h-64 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-zinc-800" />
+    <div className="w-[647px] h-64 relative">
+      <div className="w-[647px] h-64 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-zinc-800" />
       
       {/* Content container with relative positioning */}
       <div className="relative z-10 h-full flex flex-col justify-center">
@@ -28,7 +28,7 @@ function AI_allowing_progress({ onComplete }) {
           AI in progress
         </div>
         
-        <div className="w-[475px] h-11 ml-[95px] justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
+        <div className="w-[520px] h-11 ml-[95px] justify-start text-neutral-500 text-2xl font-normal font-['Inter'] leading-loose">
           AI is proceeding to allow URL. Please wait.
         </div>
         

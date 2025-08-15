@@ -65,18 +65,20 @@ function Veto_Malicious() {
         <Information_Display />
         <Progress_Bar />
         
-        {showAllowingProgress && (
+        {/* Progress messages - shown after timer completion */}
+        {showAllowingProgress && !showAllowedMessage && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
             <AI_allowing_progress onComplete={handleAllowingComplete} />
           </div>
         )}
         
-        {showBlockingProgress && (
+        {showBlockingProgress && !showBlockedMessage && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
             <AI_blocking_progress onComplete={handleBlockingComplete} />
           </div>
         )}
         
+        {/* Success messages - shown after progress completion */}
         {showAllowedMessage && (
           <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
             <AI_allowed_message onOKClick={handleCloseAllowedMessage} />
