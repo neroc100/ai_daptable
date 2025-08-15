@@ -18,7 +18,8 @@ import AI_progress_bar from '../06 AI Action Implementation/AI_progress_bar';
  * 
  * Navigation logic:
  * - Button 4: Randomly navigate to allow-malicious or allow-non-malicious
- * - Buttons 5, 6: Navigate to dummy page
+ * - Button 5: Randomly navigate to veto-malicious or veto-non-malicious
+ * - Button 6: Navigate to dummy page
  * 
  * @returns {JSX.Element} AI action selection message component
  */
@@ -38,7 +39,18 @@ function AI_Action_Selection_message() {
       } else {
         navigate('/allow-non-malicious');
       }
-    } else if (Condition === 5 || Condition === 6) {
+    } else if (Condition === 5) {
+      const seed = 42;
+      const hash = Condition.toString().split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+      }, seed);
+      if (hash % 2 === 0) {
+        navigate('/veto-malicious');
+      } else {
+        navigate('/veto-non-malicious');
+      }
+    } else if (Condition === 6) {
       navigate('/dummy');
     } else {
       navigate('/dummy');

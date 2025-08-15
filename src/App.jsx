@@ -9,6 +9,8 @@ import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analys
 import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
 import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
 import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
+import Veto_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_malicious';
+import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_malicious';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 
@@ -143,6 +145,8 @@ function App() {
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
               <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
+              <Route path="/veto-malicious" element={<Veto_Malicious />} />
+              <Route path="/veto-non-malicious" element={<Veto_Non_Malicious />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>
