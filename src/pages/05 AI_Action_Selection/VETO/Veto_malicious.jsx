@@ -23,14 +23,17 @@ function Veto_Malicious() {
   const [showBlockedMessage, setShowBlockedMessage] = useState(false);
   const [showAllowingProgress, setShowAllowingProgress] = useState(false);
   const [showBlockingProgress, setShowBlockingProgress] = useState(false);
+  const [hideVetoMessage, setHideVetoMessage] = useState(false);
 
   const handleCancel = () => {
-    // When cancel is clicked on veto malicious page, show allowing progress
+    // When cancel is clicked on veto malicious page, hide veto message and show allowing progress
+    setHideVetoMessage(true);
     setShowAllowingProgress(true);
   };
 
   const handleVetoComplete = () => {
-    // When veto progress completes, show blocking progress
+    // When veto progress completes, hide veto message and show blocking progress
+    setHideVetoMessage(true);
     setShowBlockingProgress(true);
   };
 
@@ -61,6 +64,7 @@ function Veto_Malicious() {
         <Veto_malicious_message 
           onCancel={handleCancel}
           onComplete={handleVetoComplete}
+          hidden={hideVetoMessage}
         />
         <Information_Display />
         <Progress_Bar />

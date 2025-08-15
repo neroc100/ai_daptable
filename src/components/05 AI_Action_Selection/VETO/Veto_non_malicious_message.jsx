@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Info } from 'lucide-react';
 import Cancel_Button from '../ALLOW/Cancel_Button';
 import AI_progress_bar from '../../06 AI Action Implementation/AI_progress_bar';
@@ -12,9 +12,14 @@ import AI_progress_bar from '../../06 AI Action Implementation/AI_progress_bar';
  * @param {Object} props - Component props
  * @param {Function} props.onCancel - Cancel button click handler
  * @param {Function} props.onComplete - Progress completion handler
+ * @param {boolean} props.hidden - Whether to hide this component
  * @returns {JSX.Element} Veto non malicious message component
  */
-function Veto_non_malicious_message({ onCancel, onComplete }) {
+function Veto_non_malicious_message({ onCancel, onComplete, hidden = false }) {
+  if (hidden) {
+    return null;
+  }
+
   return (
     <div className="w-[1250px] h-72 relative">
       <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
