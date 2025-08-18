@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Circle } from 'lucide-react';
+import { Circle, Play, Pause } from 'lucide-react';
 
 /**
  * AI Progress Bar Component
  * 
  * This component renders a progress bar with animated fill and indicator dot.
  * It handles the progress animation logic and is used across various AI message components.
+ * Progress can be paused/resumed using the space bar.
  * 
  * @param {number} duration - Duration in milliseconds (default: 2000ms)
  * @param {Function} onComplete - Callback function called when progress reaches 100%
@@ -13,8 +14,28 @@ import { Circle } from 'lucide-react';
  */
 function AI_progress_bar({ duration = 2000, onComplete }) {
   const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault(); // Prevent page scroll
+        setIsPaused(prev => !prev);
+      }
+    };
+
+    // Add keyboard event listener
+    window.addEventListener('keydown', handleKeyPress);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return; // Don't run timer when paused
+
     const interval = 50;
     const steps = duration / interval;
     const increment = 100 / steps;
@@ -38,7 +59,7 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [duration, onComplete]);
+  }, [duration, onComplete, isPaused]);
 
   return (
     <div data-value={`${Math.round(progress)}%`} className="w-96 h-24">
@@ -58,6 +79,7 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
           <Circle className="w-1.5 h-1.5 text-green-500 fill-current" />
         </div>
       </div>
+      
     </div>
   );
 }
