@@ -41,7 +41,7 @@ function Auto_non_malicious_message({ onComplete, hidden = false }) {
         
         {/* Progress Bar - positioned centrally */}
         <div className="flex justify-center mt-2">
-          <AI_progress_bar duration={10000} onComplete={onComplete} />
+          <AI_progress_bar duration={3000} onComplete={onComplete} />
         </div>
       </div>
     </div>
