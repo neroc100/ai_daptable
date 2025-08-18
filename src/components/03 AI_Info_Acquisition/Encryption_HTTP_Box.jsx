@@ -50,7 +50,7 @@ function Encryption_HTTP_Box({ isAnalysisPage = false }) {
     : "outline-zinc-300 outline-1";
 
   return (
-    <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-48'}`}>
+    <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-24'}`}>
       {/* Title section - "Encryption and HTTP Response" */}
       <div className="w-80 h-14 left-[24px] top-[24px] absolute inline-flex justify-start items-start">
         <div className="flex-1 justify-start text-stone-900 text-2xl font-semibold font-['Inter'] leading-7">
@@ -58,44 +58,44 @@ function Encryption_HTTP_Box({ isAnalysisPage = false }) {
         </div>
       </div>
       
-      {/* Feature content section - shows features based on expanded state */}
-      <div className={`absolute flex flex-col space-y-3 ${isAnalysisPage ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
-        {/* First feature-value combination - always visible */}
-        <div className="flex items-start gap-[10px]">
-          {isAnalysisPage && (
-            featureIcons[0] === 'thumbsUp' ? 
-              <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
-              <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
-          )}
-          <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-            <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
-              SSL Certificate
-            </div>
-            <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-              Valid (Let's Encrypt)
-            </div>
-          </div>
-        </div>
-        
-        {/* Second feature-value combination - always visible */}
-        <div className="flex items-start gap-[10px]">
-          {isAnalysisPage && (
-            featureIcons[1] === 'thumbsUp' ? 
-              <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
-              <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
-          )}
-          <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-            <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
-              HTTP Status
-            </div>
-            <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-              200 OK
+      {/* Feature content section - shows features only when expanded */}
+      {isExpanded && (
+        <div className={`absolute flex flex-col space-y-3 ${isAnalysisPage ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
+          {/* First feature-value combination */}
+          <div className="flex items-start gap-[10px]">
+            {isAnalysisPage && (
+              featureIcons[0] === 'thumbsUp' ? 
+                <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
+                <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+            )}
+            <div className="flex flex-col justify-start items-start flex-1 min-w-0">
+              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+                SSL Certificate
+              </div>
+              <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+                Valid (Let's Encrypt)
+              </div>
             </div>
           </div>
-        </div>
-        
-        {/* Third feature-value combination - only visible when expanded */}
-        {isExpanded && (
+          
+          {/* Second feature-value combination */}
+          <div className="flex items-start gap-[10px]">
+            {isAnalysisPage && (
+              featureIcons[1] === 'thumbsUp' ? 
+                <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
+                <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+            )}
+            <div className="flex flex-col justify-start items-start flex-1 min-w-0">
+              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+                HTTP Status
+              </div>
+              <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+                200 OK
+              </div>
+            </div>
+          </div>
+          
+          {/* Third feature-value combination */}
           <div className="flex items-start gap-[10px]">
             {isAnalysisPage && (
               featureIcons[2] === 'thumbsUp' ? 
@@ -111,8 +111,8 @@ function Encryption_HTTP_Box({ isAnalysisPage = false }) {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       
       {/* Collapsible arrow indicator - positioned in top-right */}
       <div 

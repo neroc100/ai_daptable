@@ -62,7 +62,7 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
   }, [duration, onComplete, isPaused]);
 
   return (
-    <div data-value={`${Math.round(progress)}%`} className="w-96 h-24">
+    <div data-value={`${Math.round(progress)}%`} className="w-96 h-10">
       {/* Progress track - gray background */}
       <div className="w-96 h-1.5 bg-neutral-400 rounded-[3px] relative overflow-hidden">
         {/* Green progress fill - animated based on progress state */}

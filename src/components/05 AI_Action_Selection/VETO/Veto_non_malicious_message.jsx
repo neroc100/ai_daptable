@@ -25,19 +25,19 @@ function Veto_non_malicious_message({ onCancel, onComplete, hidden = false }) {
       <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
       
       {/* Content container with relative positioning */}
-      <div className="relative z-10 h-full flex flex-col justify-center">
+      <div className="relative z-10 h-full flex flex-col justify-center items-center">
         {/* Info Icon */}
         <div data-svg-wrapper data-size="32" className="absolute left-[32px] top-[31px]">
           <Info className="w-[55px] h-[38px] text-stone-900" />
         </div>
         
         {/* Main Title */}
-        <div className="w-[934.78px] h-10 ml-[95px] text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
+        <div className="text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
           URL is likely non-malicious
         </div>
         
         {/* Subtitle */}
-        <div className="w-[934.78px] h-9 ml-[95px] text-center text-stone-900 text-2xl font-semibold font-['Inter'] leading-loose">
+        <div className="text-center text-stone-900 text-2xl font-semibold font-['Inter'] leading-loose ">
           Proceeding to allow URL
         </div>
         
@@ -46,9 +46,12 @@ function Veto_non_malicious_message({ onCancel, onComplete, hidden = false }) {
           <AI_progress_bar duration={3000} onComplete={onComplete} />
         </div>
         
-        {/* Cancel Button - positioned below progress bar */}
-        <div className="flex justify-center mt-4">
-          <Cancel_Button onClick={onCancel} />
+        {/* Cancel Button - positioned right below progress bar */}
+        <div className="flex justify-center ">
+          <Cancel_Button 
+            onClick={onCancel} 
+            tooltipText="Override: AI will block the URL instead"
+          />
         </div>
       </div>
     </div>

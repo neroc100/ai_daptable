@@ -36,12 +36,18 @@ function Malicious_Message({ onConfirm, onCancel }) {
       
       {/* Confirm Button */}
       <div className="left-[182.43px] top-[123.88px] absolute">
-        <Confirm_Button onClick={onConfirm} />
+        <Confirm_Button 
+          onClick={onConfirm} 
+          tooltipText="AI will block the URL"
+        />
       </div>
       
       {/* Cancel Button */}
       <div className="left-[686.78px] top-[123.88px] absolute">
-        <Cancel_Button onClick={onCancel} />
+        <Cancel_Button 
+          onClick={onCancel} 
+          tooltipText="Override: AI will allow the URL instead"
+        />
       </div>
     </div>
   );
