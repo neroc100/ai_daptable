@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import HumanActionSelection from './pages/01 Human_Ac_Sel/human_action_selection';
+import HumanActionSelectionA from './pages/01 Human_Ac_Sel/human_action_selection_a';
 import HumanActionImplementation from './pages/02 Human_Ac_Impl/human_action_implementation';
 import AI_info_acquisition from './pages/03 AI_Info_Acquisition/AI_info_acquisition';
 import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display';
@@ -15,6 +16,7 @@ import Auto_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_malicious';
 import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_malicious';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
+import Condition_1a_Button from './components/01 Human_Action_Selection/Condition_1a_Button';
 
 /**
  * Main Page Component with Button Click Handling
@@ -38,11 +40,11 @@ function MainPage() {
   /**
    * Handles button clicks and sets the button number globally
    * 
-   * This function is called when any of the 6 buttons is clicked.
+   * This function is called when any of the 7 buttons is clicked.
    * It sets the button number in the global ButtonContext and then
    * navigates to the appropriate page.
    * 
-   * @param {number} buttonNumber - The number of the button that was clicked (1-6)
+   * @param {number} buttonNumber - The number of the button that was clicked (1, 1a, 2-6)
    */
   const handleButtonClick = (buttonNumber) => {
     // Set the button number globally using ButtonContext
@@ -50,6 +52,8 @@ function MainPage() {
     
     if (buttonNumber === 1) {
       navigate('/human-action-selection');
+    } else if (buttonNumber === '1a') {
+      navigate('/human-action-selection-a');
     } else if (buttonNumber === 2) {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === 3) {
@@ -74,43 +78,53 @@ function MainPage() {
         </p>
         
         {/* Condition Buttons */}
-        <div className="grid grid-cols-6 gap-4 max-w-3xl mx-auto">
-          <button 
-            onClick={() => handleButtonClick(1)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            1
-          </button>
-          <button 
-            onClick={() => handleButtonClick(2)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            2
-          </button>
-          <button 
-            onClick={() => handleButtonClick(3)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            3
-          </button>
-          <button 
-            onClick={() => handleButtonClick(4)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            4
-          </button>
-          <button 
-            onClick={() => handleButtonClick(5)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            5
-          </button>
-          <button 
-            onClick={() => handleButtonClick(6)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            6
-          </button>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 gap-8">
+            {/* First column with button 1 and 1a stacked */}
+            <div className="flex flex-col gap-4">
+              <button 
+                onClick={() => handleButtonClick(1)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                1
+              </button>
+              <Condition_1a_Button onClick={() => handleButtonClick('1a')} />
+            </div>
+            
+            {/* Second column with buttons 2-6 in a grid */}
+            <div className="grid grid-cols-5 gap-4">
+              <button 
+                onClick={() => handleButtonClick(2)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                2
+              </button>
+              <button 
+                onClick={() => handleButtonClick(3)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                3
+              </button>
+              <button 
+                onClick={() => handleButtonClick(4)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                4
+              </button>
+              <button 
+                onClick={() => handleButtonClick(5)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                5
+              </button>
+              <button 
+                onClick={() => handleButtonClick(6)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                6
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -139,6 +153,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/human-action-selection" element={<HumanActionSelection />} />
+              <Route path="/human-action-selection-a" element={<HumanActionSelectionA />} />
               <Route path="/human-action-implementation" element={<HumanActionImplementation />} />
               <Route path="/ai-info-acquisition" element={<AI_info_acquisition />} />
               <Route path="/ai-info-acquisition-display" element={<AI_info_acquisition_display />} />
