@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from 'react';
+import { Play, Pause } from 'lucide-react';
+import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
+import Separator from '../../components/00 General_Page_Content/Separator';
+import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
+import URL_String_Analysis_Box from '../../components/03 AI_Info_Acquisition/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from '../../components/03 AI_Info_Acquisition/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from '../../components/03 AI_Info_Acquisition/Encryption_HTTP_Box';
+import DNS_Network_Box from '../../components/03 AI_Info_Acquisition/DNS_Network_Box';
+import Webpage_Content_Box from '../../components/03 AI_Info_Acquisition/Webpage_Content_Box';
+import Geographical_Hosting_Box from '../../components/03 AI_Info_Acquisition/Geographical_Hosting_Box';
+import AI_info_Acq_box from '../../components/03 AI_Info_Acquisition/AI_info_Acq_box';
+import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
+
+/**
+ * AI Information Acquisition Display Page A
+ * 
+ * This page displays the results of AI information acquisition.
+ * It shows the gathered information after the AI processing is complete.
+ * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
+ * 
+ * @returns {JSX.Element} AI information acquisition display page component with Allow/Block buttons
+ */
+function AI_info_acquisition_display_a() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        setIsPaused(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || !isLoading) return;
+
+    const timer = setInterval(() => {
+      setTimeElapsed(prev => {
+        if (prev >= 1000) {
+          setIsLoading(false);
+          return prev;
+        }
+        return prev + 100;
+      });
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [isPaused, isLoading]);
+
+  return (
+    <div className="min-h-screen bg-gray-900 p-8">
+      <div className="container mx-auto flex flex-col items-center space-y-8">
+        {/* Header */}
+        <Dashboard_Header />
+        
+        {/* URL Input Section */}
+        <URL_presentation />
+        
+        {/* Separator */}
+        <Separator />
+        
+        {/* Loading/Completion Status */}
+        <div className="flex flex-col items-center space-y-2">
+          <AI_info_Acq_box isLoading={isLoading} />
+          
+          {/* Pause/Resume Instructions */}
+          {isLoading && (
+            <div className="flex items-center space-x-2 text-gray-400 text-sm">
+              
+            </div>
+          )}
+        </div>
+        
+        {/* Analysis Sections - Three boxes per row with same width as URL box */}
+        {!isLoading && (
+          <div className="w-[1250px] flex flex-col space-y-6">
+            {/* Top Row - Three boxes */}
+            <div className="flex justify-between space-x-6">
+              <URL_String_Analysis_Box />
+              <Domain_Characteristics_Box />
+              <Encryption_HTTP_Box />
+            </div>
+            
+            {/* Bottom Row - Three boxes */}
+            <div className="flex justify-between space-x-6">
+              <DNS_Network_Box />
+              <Webpage_Content_Box />
+              <Geographical_Hosting_Box />
+            </div>
+          </div>
+        )}
+        
+        {/* Action Buttons - Allow and Block */}
+        {!isLoading && (
+          <div className="flex flex-row space-x-4 w-full max-w-2xl">
+            <Allow_Button />
+            <Block_Button />
+          </div>
+        )}
+        
+        {/* Progress Bar */}
+        <Progress_Bar />
+      </div>
+    </div>
+  );
+}
+
+export default AI_info_acquisition_display_a;
