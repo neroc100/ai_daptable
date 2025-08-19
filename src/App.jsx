@@ -8,6 +8,7 @@ import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_
 import AI_info_acquisition_display_a from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display_a';
 import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
 import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';
+import AI_info_analysis_display_a from './pages/04 AI_Info_Analysis/AI_info_analysis_display_a';
 import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
 import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
 import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
@@ -19,6 +20,7 @@ import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import Condition_1a_Button from './components/00 Conditions/Condition_1a_Button';
 import Condition_2a_Button from './components/00 Conditions/Condition_2a_Button';
+import Condition_3a_Button from './components/00 Conditions/Condition_3a_Button';
 
 /**
  * Main Page Component with Button Click Handling
@@ -62,6 +64,8 @@ function MainPage() {
       navigate('/ai-info-acquisition-display-a');
     } else if (buttonNumber === 3) {
       navigate('/ai-info-acquisition');
+    } else if (buttonNumber === '3a') {
+      navigate('/ai-info-analysis-display-a');
     } else if (buttonNumber === 4) {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === 5) {
@@ -127,7 +131,7 @@ function MainPage() {
           <div className="grid grid-cols-6 gap-4">
             <Condition_1a_Button onClick={() => handleButtonClick('1a')} />
             <Condition_2a_Button onClick={() => handleButtonClick('2a')} />
-            <div></div> {/* Empty space for button 3 */}
+            <Condition_3a_Button onClick={() => handleButtonClick('3a')} />
             <div></div> {/* Empty space for button 4 */}
             <div></div> {/* Empty space for button 5 */}
             <div></div> {/* Empty space for button 6 */}
@@ -167,6 +171,7 @@ function App() {
               <Route path="/ai-info-acquisition-display-a" element={<AI_info_acquisition_display_a />} />
               <Route path="/ai-info-analysis" element={<AI_info_analysis />} />
               <Route path="/ai-info-analysis-display" element={<AI_info_analysis_display />} />
+              <Route path="/ai-info-analysis-display-a" element={<AI_info_analysis_display_a />} />
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
               <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />

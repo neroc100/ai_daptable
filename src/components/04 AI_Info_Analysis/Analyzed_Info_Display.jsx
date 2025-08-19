@@ -14,24 +14,24 @@ import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Geographical_Hos
  * 3x2 grid layout with proper spacing and analysis page styling.
  * 
  * @param {Object} props - Component props
- * @param {boolean} props.isAnalysisPage - Whether to use the analysis page design (default: true)
+ * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design (default: true)
  * @returns {JSX.Element} Analyzed info display component
  */
-function Analyzed_Info_Display({ isAnalysisPage = true }) {
+function Analyzed_Info_Display({ isAnalysisDisplayed = true }) {
   return (
     <div className="w-[1250px] flex flex-col space-y-6">
       {/* Top Row - Three boxes */}
       <div className="flex justify-between space-x-6">
-        <URL_String_Analysis_Box isAnalysisPage={isAnalysisPage} />
-        <Domain_Characteristics_Box isAnalysisPage={isAnalysisPage} />
-        <Encryption_HTTP_Box isAnalysisPage={isAnalysisPage} />
+        <URL_String_Analysis_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Domain_Characteristics_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Encryption_HTTP_Box isAnalysisDisplayed={isAnalysisDisplayed} />
       </div>
       
       {/* Bottom Row - Three boxes */}
       <div className="flex justify-between space-x-6">
-        <DNS_Network_Box isAnalysisPage={isAnalysisPage} />
-        <Webpage_Content_Box isAnalysisPage={isAnalysisPage} />
-        <Geographical_Hosting_Box isAnalysisPage={isAnalysisPage} />
+        <DNS_Network_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Webpage_Content_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Geographical_Hosting_Box isAnalysisDisplayed={isAnalysisDisplayed} />
       </div>
     </div>
   );

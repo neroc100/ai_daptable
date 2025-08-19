@@ -40,7 +40,7 @@ function Information_Display() {
       {/* Analyzed Info Display - shown when toggled */}
       {showAnalysis && (
         <div className="transition-all duration-300 ease-in-out flex justify-center">
-          <Analyzed_Info_Display isAnalysisPage={true} />
+          <Analyzed_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}
     </div>

@@ -13,10 +13,10 @@ import { ThumbsUp, ThumbsDown, ChevronUp, ChevronDown } from 'lucide-react';
  * - Analysis style: White background with outline color based on majority of features
  * 
  * @param {Object} props - Component props
- * @param {boolean} props.isAnalysisPage - Whether to use the analysis page design
+ * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design
  * @returns {JSX.Element} Domain Characteristics feature display box component
  */
-function Domain_Characteristics_Box({ isAnalysisPage = false }) {
+function Domain_Characteristics_Box({ isAnalysisDisplayed = false }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   // Generate stable random icons for each feature using a seed
@@ -45,7 +45,7 @@ function Domain_Characteristics_Box({ isAnalysisPage = false }) {
   };
 
   // Determine outline color and width based on page type and majority
-  const outlineClass = isAnalysisPage 
+  const outlineClass = isAnalysisDisplayed 
     ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
     : "outline-zinc-300 outline-1";
 
@@ -60,10 +60,10 @@ function Domain_Characteristics_Box({ isAnalysisPage = false }) {
       
       {/* Feature content section - shows features only when expanded */}
       {isExpanded && (
-        <div className={`absolute flex flex-col space-y-3 ${isAnalysisPage ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
+        <div className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
           {/* First feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisPage && (
+            {isAnalysisDisplayed && (
               featureIcons[0] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
@@ -80,7 +80,7 @@ function Domain_Characteristics_Box({ isAnalysisPage = false }) {
           
           {/* Second feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisPage && (
+            {isAnalysisDisplayed && (
               featureIcons[1] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
@@ -97,7 +97,7 @@ function Domain_Characteristics_Box({ isAnalysisPage = false }) {
           
           {/* Third feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisPage && (
+            {isAnalysisDisplayed && (
               featureIcons[2] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />

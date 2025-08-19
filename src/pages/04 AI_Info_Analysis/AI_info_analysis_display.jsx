@@ -28,7 +28,7 @@ function AI_info_analysis_display() {
         <Separator />
         
         {/* Analysis Sections - Using the Analyzed_Info_Display component */}
-        <Analyzed_Info_Display isAnalysisPage={true} />
+        <Analyzed_Info_Display isAnalysisDisplayed={true} />
         
         {/* Make Decision Button */}
         <Make_Decision_Botton />
