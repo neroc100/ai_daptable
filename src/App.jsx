@@ -21,6 +21,7 @@ import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import Condition_1a_Button from './components/00 Conditions/Condition_1a_Button';
 import Condition_2a_Button from './components/00 Conditions/Condition_2a_Button';
 import Condition_3a_Button from './components/00 Conditions/Condition_3a_Button';
+import Condition_4a_Button from './components/00 Conditions/Condition_4a_Button';
 
 /**
  * Main Page Component with Button Click Handling
@@ -69,6 +70,8 @@ function MainPage() {
     } else if (buttonNumber === 4) {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === 5) {
+      navigate('/ai-info-acquisition');
+    } else if (buttonNumber === '4a') {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === 6) {
       navigate('/ai-info-acquisition');
@@ -132,7 +135,7 @@ function MainPage() {
             <Condition_1a_Button onClick={() => handleButtonClick('1a')} />
             <Condition_2a_Button onClick={() => handleButtonClick('2a')} />
             <Condition_3a_Button onClick={() => handleButtonClick('3a')} />
-            <div></div> {/* Empty space for button 4 */}
+            <Condition_4a_Button onClick={() => handleButtonClick('4a')} />
             <div></div> {/* Empty space for button 5 */}
             <div></div> {/* Empty space for button 6 */}
           </div>

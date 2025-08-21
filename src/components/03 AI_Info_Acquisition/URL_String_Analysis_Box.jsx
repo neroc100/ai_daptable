@@ -8,15 +8,17 @@ import { ThumbsUp, ThumbsDown, ChevronUp, ChevronDown } from 'lucide-react';
  * It includes a collapsible arrow indicator and structured layout for URL analysis information.
  * The arrow is clickable and expands to show all feature-value combinations.
  * 
- * The component can render in two different styles:
+ * The component can render in three different styles:
  * - Default style: White background with gray outline (for acquisition pages)
  * - Analysis style: White background with outline color based on majority of features
+ * - Highlight Malicious style: Only red highlights with black borders, no green icons
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design
+ * @param {boolean} props.highlightMalicious - Whether to use the highlight malicious design
  * @returns {JSX.Element} URL String Analysis feature display box component
  */
-function URL_String_Analysis_Box({ isAnalysisDisplayed = false }) {
+function URL_String_Analysis_Box({ isAnalysisDisplayed = false, highlightMalicious = false }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   // Generate stable random icons for each feature using a seed
@@ -35,19 +37,42 @@ function URL_String_Analysis_Box({ isAnalysisDisplayed = false }) {
     });
   }, []);
 
+  // Generate malicious icons for highlightMalicious condition
+  const maliciousIcons = useMemo(() => {
+    const seed = 123; // Different seed for malicious icons
+    const features = ['URL Length', 'Protocol', 'Special Characters'];
+    
+    return features.map((feature, index) => {
+      // Simple hash function for consistent randomness
+      const hash = feature.split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+      }, seed + index);
+      
+      // 33% chance of red icon (hash % 3 === 0)
+      return hash % 3 === 0 ? 'thumbsDown' : 'none';
+    });
+  }, []);
+
   // Calculate majority for outline color
   const thumbsUpCount = featureIcons.filter(icon => icon === 'thumbsUp').length;
   const thumbsDownCount = featureIcons.filter(icon => icon === 'thumbsDown').length;
   const majorityIsPositive = thumbsUpCount >= thumbsDownCount;
+
+  // Calculate malicious majority for highlightMalicious condition
+  const maliciousThumbsDownCount = maliciousIcons.filter(icon => icon === 'thumbsDown').length;
+  const maliciousMajorityIsNegative = maliciousThumbsDownCount >= 2; // At least 2 out of 3 features
 
   const handleArrowClick = () => {
     setIsExpanded(!isExpanded);
   };
 
   // Determine outline color and width based on page type and majority
-  const outlineClass = isAnalysisDisplayed 
-    ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
-    : "outline-zinc-300 outline-1";
+  const outlineClass = highlightMalicious 
+    ? "outline-black outline-4"
+    : isAnalysisDisplayed 
+      ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
+      : "outline-zinc-300 outline-1";
 
   return (
     <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-24'}`}>
@@ -60,54 +85,54 @@ function URL_String_Analysis_Box({ isAnalysisDisplayed = false }) {
       
       {/* Feature content section - shows features only when expanded */}
       {isExpanded && (
-        <div className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
+        <div className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed || highlightMalicious ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
           {/* First feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisDisplayed && (
+            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
               featureIcons[0] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[0] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
                 URL Length
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                67 characters
+                {highlightMalicious ? (maliciousIcons[0] === 'thumbsDown' ? "156 characters" : "45 characters") : "67 characters"}
               </div>
             </div>
           </div>
           
           {/* Second feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisDisplayed && (
+            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
               featureIcons[1] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[1] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
                 Protocol
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                HTTPS
+                {highlightMalicious ? (maliciousIcons[1] === 'thumbsDown' ? "HTTP" : "HTTPS") : "HTTPS"}
               </div>
             </div>
           </div>
           
           {/* Third feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {isAnalysisDisplayed && (
+            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
               featureIcons[2] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className="text-stone-900 text-xl font-semibold font-['Inter'] leading-7">
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[2] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
                 Special Characters
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                8 instances
+                {highlightMalicious ? (maliciousIcons[2] === 'thumbsDown' ? "23 instances" : "3 instances") : "8 instances"}
               </div>
             </div>
           </div>

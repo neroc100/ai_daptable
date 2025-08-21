@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from 'react';
+import { Loader2, Check, Square, Play, Pause } from 'lucide-react';
+import URL_String_Analysis_Box from '../03 AI_Info_Acquisition/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from '../03 AI_Info_Acquisition/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from '../03 AI_Info_Acquisition/Encryption_HTTP_Box';
+import DNS_Network_Box from '../03 AI_Info_Acquisition/DNS_Network_Box';
+import Webpage_Content_Box from '../03 AI_Info_Acquisition/Webpage_Content_Box';
+import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Geographical_Hosting_Box';
+
+/**
+ * AI Information Analysis Box A Component
+ * 
+ * This component displays a loading icon that transitions to a checkmark with square outline
+ * after the loading period. It includes the "AI Information Analysis" label and uses
+ * the highlightMalicious design for feature boxes.
+ * 
+ * @param {Object} props - Component props
+ * @param {boolean} props.isLoading - Whether the component is in loading state
+ * @returns {JSX.Element} AI information analysis box A component
+ */
+function AI_info_ana_box_a({ isLoading }) {
+  return (
+    <div className="flex flex-col items-center space-y-2">
+      <div className="flex items-center space-x-3 text-white">
+        {isLoading ? (
+          <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
+        ) : (
+          <div className="relative">
+            <Square className="w-6 h-6 text-blue-400" strokeWidth={2} />
+            <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
+          </div>
+        )}
+        <span className="text-xl font-semibold">AI Information Analysis</span>
+      </div>
+      
+      {/* Feature Display with highlightMalicious design */}
+      {!isLoading && (
+        <div className="w-[1250px] flex flex-col space-y-6">
+          {/* Top Row - Three boxes */}
+          <div className="flex justify-between space-x-6">
+            <URL_String_Analysis_Box highlightMalicious={true} />
+            <Domain_Characteristics_Box highlightMalicious={true} />
+            <Encryption_HTTP_Box highlightMalicious={true} />
+          </div>
+          
+          {/* Bottom Row - Three boxes */}
+          <div className="flex justify-between space-x-6">
+            <DNS_Network_Box highlightMalicious={true} />
+            <Webpage_Content_Box highlightMalicious={true} />
+            <Geographical_Hosting_Box highlightMalicious={true} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default AI_info_ana_box_a;
+

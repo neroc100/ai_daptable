@@ -33,8 +33,8 @@ function AI_in_progress_message() {
     if (Condition === 2) {
       // Button 2 leads to AI info acquisition display
       navigate('/ai-info-acquisition-display');
-    } else if (Condition === 3 || Condition === 4 || Condition === 5 || Condition === 6) {
-      // Buttons 3, 4, 5, 6 lead to AI info analysis page
+    } else if (Condition === 3 || Condition === 4 || Condition === 5 || Condition === 6 || Condition === '4a') {
+      // Buttons 3, 4, 5, 6, 4a lead to AI info analysis page
       navigate('/ai-info-analysis');
     } else {
       // Default fallback to AI info acquisition display
