@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause } from 'lucide-react';
+import { Play, Pause, Check } from 'lucide-react';
 import Dashboard_Header from '../../../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../../../components/00 General_Page_Content/URL_presentation';
 import Separator from '../../../components/00 General_Page_Content/Separator';
@@ -29,6 +29,7 @@ function Allow_malicious_a() {
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -105,17 +106,38 @@ function Allow_malicious_a() {
         </div>
         
         {/* Malicious Message - Shows only when AI Action Selection is complete */}
-        {!isActionSelectionLoading && (
+        {!isActionSelectionLoading && !showSuccess && (
           <Malicious_Message 
             onConfirm={() => {
               // Handle confirm action - AI will block the URL
               console.log('AI will block the URL');
+              setShowSuccess(true);
             }}
             onCancel={() => {
               // Handle cancel action - Override: AI will allow the URL instead
               console.log('Override: AI will allow the URL instead');
+              setShowSuccess(true);
             }}
           />
+        )}
+        
+        {/* Success Message - Shows when action is completed */}
+        {showSuccess && (
+          <div className="flex flex-col items-center space-y-6">
+            <div className="flex items-center space-x-3 text-white">
+              <Check className="w-8 h-8 text-green-400" />
+              <span className="text-2xl font-semibold">Success</span>
+            </div>
+            <button
+              onClick={() => {
+                // Navigate to main page
+                window.location.href = '/';
+              }}
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+            >
+              Next
+            </button>
+          </div>
         )}
         
         {/* Review Button - Shows when AI Action Selection is complete */}

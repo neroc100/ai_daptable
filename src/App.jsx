@@ -11,6 +11,7 @@ import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analys
 import AI_info_analysis_display_a from './pages/04 AI_Info_Analysis/AI_info_analysis_display_a';
 import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
 import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
+import Allow_malicious_a from './pages/05 AI_Action_Selection/ALLOW/allow_malicious_a';
 import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
 import Veto_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_malicious';
 import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_malicious';
@@ -72,7 +73,7 @@ function MainPage() {
     } else if (buttonNumber === 5) {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === '4a') {
-      navigate('/ai-info-acquisition');
+      navigate('/allow-malicious-a');
     } else if (buttonNumber === 6) {
       navigate('/ai-info-acquisition');
     }
@@ -177,6 +178,7 @@ function App() {
               <Route path="/ai-info-analysis-display-a" element={<AI_info_analysis_display_a />} />
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
+              <Route path="/allow-malicious-a" element={<Allow_malicious_a />} />
               <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
               <Route path="/veto-malicious" element={<Veto_Malicious />} />
               <Route path="/veto-non-malicious" element={<Veto_Non_Malicious />} />
