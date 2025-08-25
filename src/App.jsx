@@ -18,6 +18,7 @@ import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_mal
 import Veto_non_malicious_a from './pages/05 AI_Action_Selection/VETO/veto_non_malicious_a';
 import Auto_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_malicious';
 import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_malicious';
+import Auto_malicious_a from './pages/05 AI_Action_Selection/AUTO/Auto_malicious_a';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import Condition_1a_Button from './components/00 Conditions/Condition_1a_Button';
@@ -80,7 +81,7 @@ function MainPage() {
     } else if (buttonNumber === '5a') {
       navigate('/veto-non-malicious-a');
     } else if (buttonNumber === '6a') {
-      navigate('/ai-info-acquisition');
+      navigate('/auto-malicious-a');
     } else if (buttonNumber === 6) {
       navigate('/ai-info-acquisition');
     }
@@ -192,6 +193,7 @@ function App() {
               <Route path="/veto-non-malicious-a" element={<Veto_non_malicious_a />} />
               <Route path="/auto-malicious" element={<Auto_Malicious />} />
               <Route path="/auto-non-malicious" element={<Auto_Non_Malicious />} />
+              <Route path="/auto-malicious-a" element={<Auto_malicious_a />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>
