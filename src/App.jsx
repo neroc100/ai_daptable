@@ -15,6 +15,7 @@ import Allow_malicious_a from './pages/05 AI_Action_Selection/ALLOW/allow_malici
 import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
 import Veto_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_malicious';
 import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_malicious';
+import Veto_non_malicious_a from './pages/05 AI_Action_Selection/VETO/veto_non_malicious_a';
 import Auto_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_malicious';
 import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_malicious';
 import Dummy from './pages/dummy';
@@ -23,6 +24,8 @@ import Condition_1a_Button from './components/00 Conditions/Condition_1a_Button'
 import Condition_2a_Button from './components/00 Conditions/Condition_2a_Button';
 import Condition_3a_Button from './components/00 Conditions/Condition_3a_Button';
 import Condition_4a_Button from './components/00 Conditions/Condition_4a_Button';
+import Condition_5a_Button from './components/00 Conditions/Condition_5a_Button';
+import Condition_6a_Button from './components/00 Conditions/Condition_6a_Button';
 
 /**
  * Main Page Component with Button Click Handling
@@ -74,6 +77,10 @@ function MainPage() {
       navigate('/ai-info-acquisition');
     } else if (buttonNumber === '4a') {
       navigate('/allow-malicious-a');
+    } else if (buttonNumber === '5a') {
+      navigate('/veto-non-malicious-a');
+    } else if (buttonNumber === '6a') {
+      navigate('/ai-info-acquisition');
     } else if (buttonNumber === 6) {
       navigate('/ai-info-acquisition');
     }
@@ -137,8 +144,8 @@ function MainPage() {
             <Condition_2a_Button onClick={() => handleButtonClick('2a')} />
             <Condition_3a_Button onClick={() => handleButtonClick('3a')} />
             <Condition_4a_Button onClick={() => handleButtonClick('4a')} />
-            <div></div> {/* Empty space for button 5 */}
-            <div></div> {/* Empty space for button 6 */}
+            <Condition_5a_Button onClick={() => handleButtonClick('5a')} />
+            <Condition_6a_Button onClick={() => handleButtonClick('6a')} />
           </div>
         </div>
       </div>
@@ -182,6 +189,7 @@ function App() {
               <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
               <Route path="/veto-malicious" element={<Veto_Malicious />} />
               <Route path="/veto-non-malicious" element={<Veto_Non_Malicious />} />
+              <Route path="/veto-non-malicious-a" element={<Veto_non_malicious_a />} />
               <Route path="/auto-malicious" element={<Auto_Malicious />} />
               <Route path="/auto-non-malicious" element={<Auto_Non_Malicious />} />
               <Route path="/dummy" element={<Dummy />} />

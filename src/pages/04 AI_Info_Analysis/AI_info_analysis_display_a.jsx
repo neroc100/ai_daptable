@@ -43,7 +43,7 @@ function AI_info_analysis_display_a() {
 
     const timer = setInterval(() => {
       setTimeElapsed(prev => {
-        if (prev >= 1000) {
+        if (prev >= 0) {
           setIsLoading(false);
           return prev;
         }
@@ -59,7 +59,7 @@ function AI_info_analysis_display_a() {
 
     const timer = setTimeout(() => {
       setIsAnalysisLoading(false);
-    }, 2000);
+    }, 0);
 
     return () => clearTimeout(timer);
   }, [isPaused, isAnalysisLoading]);

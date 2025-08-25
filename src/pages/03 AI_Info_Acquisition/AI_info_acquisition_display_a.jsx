@@ -45,7 +45,7 @@ function AI_info_acquisition_display_a() {
 
     const timer = setInterval(() => {
       setTimeElapsed(prev => {
-        if (prev >= 1000) {
+        if (prev >= 0) {
           setIsLoading(false);
           return prev;
         }

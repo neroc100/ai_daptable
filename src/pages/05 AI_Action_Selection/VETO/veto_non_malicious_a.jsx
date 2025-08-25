@@ -9,21 +9,21 @@ import AI_info_Acq_box from '../../../components/03 AI_Info_Acquisition/AI_info_
 import AI_info_ana_box_a from '../../../components/04 AI_Info_Analysis/AI_info_ana_box_a';
 import AI_Action_Selection_box from '../../../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../../../components/05 AI_Action_Selection/Review_Button';
-import Malicious_Message from '../../../components/05 AI_Action_Selection/ALLOW/malicious_message';
+import Veto_non_malicious_message from '../../../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
 import Allow_Button from '../../../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../../../components/02 Human_Action_Implementation/Block_Button';
 
 /**
- * Allow Malicious A Page
+ * Veto Non Malicious A Page
  * 
- * This page displays the results of AI information analysis for condition 4a.
+ * This page displays the results of AI information analysis for condition 5a.
  * It shows the analyzed information after the AI processing is complete.
  * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
- * This page looks the same as ai_info_analysis_display_a but is placed in the ALLOW folder.
+ * This page looks the same as allow_malicious_a but is placed in the VETO folder.
  * 
- * @returns {JSX.Element} Allow malicious A page component with Allow/Block buttons
+ * @returns {JSX.Element} Veto non malicious A page component with Allow/Block buttons
  */
-function Allow_malicious_a() {
+function Veto_non_malicious_a() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
@@ -105,17 +105,17 @@ function Allow_malicious_a() {
           )}
         </div>
         
-        {/* Malicious Message - Shows only when AI Action Selection is complete */}
+        {/* Veto Non Malicious Message - Shows only when AI Action Selection is complete */}
         {!isActionSelectionLoading && !showSuccess && (
-          <Malicious_Message 
-            onConfirm={() => {
-              // Handle confirm action - AI will block the URL
-              console.log('AI will block the URL');
+          <Veto_non_malicious_message 
+            onCancel={() => {
+              // Handle cancel action - Override: AI will block the URL instead
+              console.log('Override: AI will block the URL instead');
               setShowSuccess(true);
             }}
-            onCancel={() => {
-              // Handle cancel action - Override: AI will allow the URL instead
-              console.log('Override: AI will allow the URL instead');
+            onComplete={() => {
+              // Handle completion - AI will allow the URL
+              console.log('AI will allow the URL');
               setShowSuccess(true);
             }}
           />
@@ -149,10 +149,6 @@ function Allow_malicious_a() {
           <Review_Button />
         )}
         
-
-        
-
-        
         {/* Progress Bar */}
         <Progress_Bar />
       </div>
@@ -160,5 +156,4 @@ function Allow_malicious_a() {
   );
 }
 
-export default Allow_malicious_a;
-
+export default Veto_non_malicious_a;
