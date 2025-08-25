@@ -94,7 +94,7 @@ function Domain_Characteristics_Box({ isAnalysisDisplayed = false, highlightMali
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[0] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[0] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
                 Domain Age
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
@@ -111,7 +111,7 @@ function Domain_Characteristics_Box({ isAnalysisDisplayed = false, highlightMali
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[1] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[1] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
                 Domain Reputation
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
@@ -128,7 +128,7 @@ function Domain_Characteristics_Box({ isAnalysisDisplayed = false, highlightMali
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[2] === 'thumbsDown' ? 'text-red-600' : 'text-stone-900'}`}>
+              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[2] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
                 Subdomain Count
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, Check, Square } from 'lucide-react';
+import { Play, Pause, Check, Square, Info } from 'lucide-react';
 import Dashboard_Header from '../../../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../../../components/00 General_Page_Content/URL_presentation';
 import Separator from '../../../components/00 General_Page_Content/Separator';
@@ -10,6 +10,7 @@ import AI_info_ana_box_a from '../../../components/04 AI_Info_Analysis/AI_info_a
 import AI_Action_Selection_box from '../../../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../../../components/05 AI_Action_Selection/Review_Button';
 import Auto_malicious_message_a from '../../../components/05 AI_Action_Selection/AUTO/Auto_malicious_message_a';
+import Highlight_Malicious_Display from '../../../components/05 AI_Action_Selection/Highlight_Malicious_Display';
 import Allow_Button from '../../../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../../../components/02 Human_Action_Implementation/Block_Button';
 
@@ -30,6 +31,7 @@ function Auto_malicious_a() {
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showReview, setShowReview] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -107,7 +109,33 @@ function Auto_malicious_a() {
         
         {/* Auto Malicious Message A - Shows only when AI Action Selection is complete */}
         {!isActionSelectionLoading && !showSuccess && (
-          <Auto_malicious_message_a />
+          <div className="w-[1250px] h-56 relative">
+            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
+            
+            {/* Content container with relative positioning */}
+            <div className="relative z-10 h-full flex flex-col justify-center items-center space-y-4">
+              {/* Info Icon */}
+              <div data-svg-wrapper data-size="32" className="absolute left-[32px] top-[25px]">
+                <Info className="w-[55px] h-[38px] text-stone-900" />
+              </div>
+              
+              {/* Main Title */}
+              <div className="w-[934.78px] h-10 ml-[95px] text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
+                URL is likely malicious
+              </div>
+              
+              {/* Review Button */}
+              <Review_Button 
+                onClick={() => setShowReview(!showReview)}
+                showAnalysis={showReview}
+              />
+            </div>
+          </div>
+        )}
+        
+        {/* Highlight Malicious Display - Shows when review button is clicked */}
+        {showReview && (
+          <Highlight_Malicious_Display />
         )}
         
         {/* AI Blocked URL Text - Shows when message is displayed */}
@@ -155,10 +183,7 @@ function Auto_malicious_a() {
           </div>
         )}
         
-        {/* Review Button - Shows when AI Action Selection is complete */}
-        {!isActionSelectionLoading && !showSuccess && (
-          <Review_Button />
-        )}
+
         
         {/* Progress Bar */}
         <Progress_Bar />

@@ -8,13 +8,24 @@ import Highlight_Malicious_Display from './Highlight_Malicious_Display';
  * This component provides a button that allows users to review the analyzed information.
  * When clicked, it toggles the display of the Analyzed_Info_Display component.
  * 
+ * @param {Object} props - Component props
+ * @param {Function} props.onClick - External click handler (optional)
+ * @param {boolean} props.showAnalysis - External state for showing analysis (optional)
  * @returns {JSX.Element} Review button component with toggle functionality
  */
-function Review_Button() {
-  const [showAnalysis, setShowAnalysis] = useState(false);
+function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
+  const [internalShowAnalysis, setInternalShowAnalysis] = useState(false);
+  
+  // Use external state if provided, otherwise use internal state
+  const showAnalysis = externalShowAnalysis !== undefined ? externalShowAnalysis : internalShowAnalysis;
+  const setShowAnalysis = externalShowAnalysis !== undefined ? onClick : setInternalShowAnalysis;
 
   const handleReviewClick = () => {
-    setShowAnalysis(!showAnalysis);
+    if (onClick) {
+      onClick();
+    } else {
+      setInternalShowAnalysis(!internalShowAnalysis);
+    }
   };
 
   return (
@@ -37,8 +48,8 @@ function Review_Button() {
         )}
       </button>
 
-      {/* Highlight Malicious Display - Shows when button is toggled on */}
-      {showAnalysis && (
+      {/* Highlight Malicious Display - Shows when button is toggled on (only when using internal state) */}
+      {showAnalysis && !onClick && (
         <div className="mt-6">
           <Highlight_Malicious_Display />
         </div>
