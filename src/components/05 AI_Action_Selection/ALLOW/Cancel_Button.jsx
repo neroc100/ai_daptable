@@ -21,13 +21,13 @@ function Cancel_Button({ onClick, tooltipText = "Override the AI's recommendatio
         onClick={onClick}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className="w-96 h-11 p-3 bg-zinc-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-zinc-800 inline-flex justify-center items-center gap-2 overflow-hidden hover:bg-zinc-700 transition-colors duration-200"
+        className="w-96 h-11 p-3 bg-blue-600 rounded-lg outline outline-1 outline-offset-[-1px] outline-blue-600 inline-flex justify-center items-center gap-2 overflow-hidden hover:bg-blue-700 transition-colors duration-200"
       >
         <div data-svg-wrapper data-size="16" className="relative">
           <ChevronsRight className="w-4 h-4 text-neutral-100" />
         </div>
         <div className="justify-start text-neutral-100 text-2xl font-semibold font-['Inter'] leading-normal">
-          Cancel
+          Override AI Action
         </div>
       </button>
       

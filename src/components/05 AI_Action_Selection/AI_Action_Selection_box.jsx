@@ -8,18 +8,18 @@ import Webpage_Content_Box from '../03 AI_Info_Acquisition/Webpage_Content_Box';
 import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Geographical_Hosting_Box';
 
 /**
- * AI Information Analysis Box A Component
+ * AI Action Selection Box Component
  * 
  * This component displays a loading icon that transitions to a checkmark with square outline
- * after the loading period. It includes the "AI Information Analysis" label and uses
+ * after the loading period. It includes the "AI Action Selection" label and uses
  * the highlightMalicious design for feature boxes.
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isLoading - Whether the component is in loading state
  * @param {boolean} props.showDisplay - Whether to show the highlight malicious display (default: false)
- * @returns {JSX.Element} AI information analysis box A component
+ * @returns {JSX.Element} AI action selection box component
  */
-function AI_info_ana_box_a({ isLoading, showDisplay = false }) {
+function AI_Action_Selection_box({ isLoading, showDisplay = false }) {
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="flex items-center space-x-3 text-white">
@@ -31,7 +31,7 @@ function AI_info_ana_box_a({ isLoading, showDisplay = false }) {
             <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
           </div>
         )}
-        <span className="text-xl font-semibold">AI Information Analysis</span>
+        <span className="text-xl font-semibold">AI Action Selection</span>
       </div>
       
       {/* Feature Display with highlightMalicious design */}
@@ -56,5 +56,4 @@ function AI_info_ana_box_a({ isLoading, showDisplay = false }) {
   );
 }
 
-export default AI_info_ana_box_a;
-
+export default AI_Action_Selection_box;
