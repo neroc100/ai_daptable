@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Manual from './pages/manual';
-import Info_acquisition from './pages/info_acquisition';
-import Info_analysis from './pages/info_analysis';
+import Manual from './pages/01_manual';
+import Info_acquisition from './pages/02_info_acquisition';
+import Info_analysis from './pages/03_info_analysis';
 import Allow_malicious from './pages/04_allow_malicious';
 import Veto_non_malicious from './pages/05_veto_non_malicious';
 import Auto_malicious from './pages/06_auto_malicious';
@@ -147,8 +147,8 @@ function App() {
               <Route path="/info-acquisition" element={<Info_acquisition />} />
               <Route path="/info-analysis" element={<Info_analysis />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
-              <Route path="/veto-non-malicious-a" element={<Veto_non_malicious />} />
-              <Route path="/auto-malicious-a" element={<Auto_malicious />} />
+              <Route path="/veto-non-malicious" element={<Veto_non_malicious />} />
+              <Route path="/auto-malicious" element={<Auto_malicious />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>
