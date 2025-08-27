@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Manual from './pages/01 Human_Ac_Sel/manual';
+import Manual from './pages/manual';
 import Info_acquisition from './pages/03 AI_Info_Acquisition/info_acquisition';
 import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
 import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';

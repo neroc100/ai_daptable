@@ -1,10 +1,10 @@
 import React from 'react';
-import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
-import Separator from '../../components/00 General_Page_Content/Separator';
-import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
-import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
+import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
+import Separator from '../components/00 General_Page_Content/Separator';
+import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
+import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 
 /**
  * Manual Condition Page
