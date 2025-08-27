@@ -1,10 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import HumanActionSelection from './pages/01 Human_Ac_Sel/human_action_selection';
-import HumanActionImplementation from './pages/02 Human_Ac_Impl/human_action_implementation';
-import AI_info_acquisition from './pages/03 AI_Info_Acquisition/AI_info_acquisition';
-import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display';
-import AI_info_acquisition_display_a from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display_a';
+import Info_acquisition from './pages/03 AI_Info_Acquisition/info_acquisition';
 import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
 import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';
 import AI_info_analysis_display_a from './pages/04 AI_Info_Analysis/AI_info_analysis_display_a';
@@ -57,7 +54,7 @@ function MainPage() {
     if (buttonNumber === 1) {
       navigate('/human-action-selection');
     } else if (buttonNumber === 2) {
-      navigate('/ai-info-acquisition-display-a');
+      navigate('/info-acquisition');
     } else if (buttonNumber === 3) {
       navigate('/ai-info-analysis-display-a');
     } else if (buttonNumber === 4) {
@@ -156,13 +153,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/human-action-selection" element={<HumanActionSelection />} />
-              <Route path="/human-action-implementation" element={<HumanActionImplementation />} />
-              <Route path="/ai-info-acquisition" element={<AI_info_acquisition />} />
-              <Route path="/ai-info-acquisition-display" element={<AI_info_acquisition_display />} />
-              <Route path="/ai-info-acquisition-display-a" element={<AI_info_acquisition_display_a />} />
-              <Route path="/ai-info-analysis" element={<AI_info_analysis />} />
-              <Route path="/ai-info-analysis-display" element={<AI_info_analysis_display />} />
-              <Route path="/ai-info-analysis-display-a" element={<AI_info_analysis_display_a />} />
+              <Route path="/info-acquisition" element={<Info_acquisition />} />
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
               <Route path="/allow-malicious-a" element={<Allow_malicious_a />} />

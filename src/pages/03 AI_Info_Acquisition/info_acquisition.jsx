@@ -15,15 +15,15 @@ import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_
 import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
 
 /**
- * AI Information Acquisition Display Page A
+ * Information Acquisition Page
  * 
- * This page displays the results of AI information acquisition.
- * It shows the gathered information after the AI processing is complete.
+ * This page displays the results of information acquisition.
+ * It shows the gathered information after the processing is complete.
  * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
  * 
- * @returns {JSX.Element} AI information acquisition display page component with Allow/Block buttons
+ * @returns {JSX.Element} Information acquisition page component with Allow/Block buttons
  */
-function AI_info_acquisition_display_a() {
+function Info_acquisition() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
@@ -114,4 +114,4 @@ function AI_info_acquisition_display_a() {
   );
 }
 
-export default AI_info_acquisition_display_a;
+export default Info_acquisition;
