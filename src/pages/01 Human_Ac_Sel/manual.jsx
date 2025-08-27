@@ -7,14 +7,11 @@ import Block_Button from '../../components/02 Human_Action_Implementation/Block_
 import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
 
 /**
- * Human Action Selection A Page
+ * Manual Condition Page
  * 
- * This page is similar to the normal human action selection page but replaces
- * the make decision button with allow and block buttons from human action implementation.
- * 
- * @returns {JSX.Element} Human action selection a page component
+ * @returns {JSX.Element}
  */
-function HumanActionSelectionA() {
+function Manual() {
   return (
     <div className="min-h-screen bg-black p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
@@ -42,4 +39,4 @@ function HumanActionSelectionA() {
   );
 }
 
-export default HumanActionSelectionA;
+export default Manual;
