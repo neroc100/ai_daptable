@@ -21,11 +21,7 @@ import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_mal
 import Auto_malicious_a from './pages/05 AI_Action_Selection/AUTO/Auto_malicious_a';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
-import Condition_2a_Button from './components/00 Conditions/Condition_2a_Button';
-import Condition_3a_Button from './components/00 Conditions/Condition_3a_Button';
-import Condition_4a_Button from './components/00 Conditions/Condition_4a_Button';
-import Condition_5a_Button from './components/00 Conditions/Condition_5a_Button';
-import Condition_6a_Button from './components/00 Conditions/Condition_6a_Button';
+
 
 /**
  * Main Page Component with Button Click Handling
@@ -64,17 +60,17 @@ function MainPage() {
     } else if (buttonNumber === '1a') {
       navigate('/human-action-selection-a');
     } else if (buttonNumber === 2) {
-      navigate('/ai-info-acquisition');
+      navigate('/ai-info-acquisition-display-a');
     } else if (buttonNumber === '2a') {
       navigate('/ai-info-acquisition-display-a');
     } else if (buttonNumber === 3) {
-      navigate('/ai-info-acquisition');
+      navigate('/ai-info-analysis-display-a');
     } else if (buttonNumber === '3a') {
       navigate('/ai-info-analysis-display-a');
     } else if (buttonNumber === 4) {
-      navigate('/ai-info-acquisition');
+      navigate('/allow-malicious-a');
     } else if (buttonNumber === 5) {
-      navigate('/ai-info-acquisition');
+      navigate('/veto-non-malicious-a');
     } else if (buttonNumber === '4a') {
       navigate('/allow-malicious-a');
     } else if (buttonNumber === '5a') {
@@ -82,7 +78,7 @@ function MainPage() {
     } else if (buttonNumber === '6a') {
       navigate('/auto-malicious-a');
     } else if (buttonNumber === 6) {
-      navigate('/ai-info-acquisition');
+      navigate('/auto-malicious-a');
     }
   };
 
@@ -103,37 +99,42 @@ function MainPage() {
             <button 
               onClick={() => handleButtonClick(1)}
               className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-              style={{ backgroundColor: 'rgb(33, 92, 175)' }}
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               1
             </button>
             <button 
               onClick={() => handleButtonClick(2)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               2
             </button>
             <button 
               onClick={() => handleButtonClick(3)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               3
             </button>
             <button 
               onClick={() => handleButtonClick(4)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               4
             </button>
             <button 
               onClick={() => handleButtonClick(5)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               5
             </button>
             <button 
               onClick={() => handleButtonClick(6)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               6
             </button>
@@ -141,11 +142,6 @@ function MainPage() {
           
           {/* "a" condition buttons row */}
           <div className="grid grid-cols-6 gap-4">
-            <Condition_2a_Button onClick={() => handleButtonClick('2a')} />
-            <Condition_3a_Button onClick={() => handleButtonClick('3a')} />
-            <Condition_4a_Button onClick={() => handleButtonClick('4a')} />
-            <Condition_5a_Button onClick={() => handleButtonClick('5a')} />
-            <Condition_6a_Button onClick={() => handleButtonClick('6a')} />
           </div>
         </div>
       </div>
