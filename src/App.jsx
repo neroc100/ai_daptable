@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import HumanActionSelection from './pages/01 Human_Ac_Sel/human_action_selection';
-import HumanActionSelectionA from './pages/01 Human_Ac_Sel/human_action_selection_a';
 import HumanActionImplementation from './pages/02 Human_Ac_Impl/human_action_implementation';
 import AI_info_acquisition from './pages/03 AI_Info_Acquisition/AI_info_acquisition';
 import AI_info_acquisition_display from './pages/03 AI_Info_Acquisition/AI_info_acquisition_display';
@@ -56,7 +55,7 @@ function MainPage() {
     setCondition(buttonNumber);
     
     if (buttonNumber === 1) {
-      navigate('/human-action-selection-a');
+      navigate('/human-action-selection');
     } else if (buttonNumber === 2) {
       navigate('/ai-info-acquisition-display-a');
     } else if (buttonNumber === 3) {
@@ -157,7 +156,6 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/human-action-selection" element={<HumanActionSelection />} />
-              <Route path="/human-action-selection-a" element={<HumanActionSelectionA />} />
               <Route path="/human-action-implementation" element={<HumanActionImplementation />} />
               <Route path="/ai-info-acquisition" element={<AI_info_acquisition />} />
               <Route path="/ai-info-acquisition-display" element={<AI_info_acquisition_display />} />
