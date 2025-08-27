@@ -21,7 +21,6 @@ import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_mal
 import Auto_malicious_a from './pages/05 AI_Action_Selection/AUTO/Auto_malicious_a';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
-import Condition_1a_Button from './components/00 Conditions/Condition_1a_Button';
 import Condition_2a_Button from './components/00 Conditions/Condition_2a_Button';
 import Condition_3a_Button from './components/00 Conditions/Condition_3a_Button';
 import Condition_4a_Button from './components/00 Conditions/Condition_4a_Button';
@@ -61,7 +60,7 @@ function MainPage() {
     setCondition(buttonNumber);
     
     if (buttonNumber === 1) {
-      navigate('/human-action-selection');
+      navigate('/human-action-selection-a');
     } else if (buttonNumber === '1a') {
       navigate('/human-action-selection-a');
     } else if (buttonNumber === 2) {
@@ -88,12 +87,12 @@ function MainPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-5xl font-bold text-gray-800 mb-8">
+        <h1 className="text-5xl font-bold text-black mb-8">
           URL Analysis Dashboard
         </h1>
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-black mb-8 max-w-2xl mx-auto">
           Welcome to the URL Analysis Dashboard. Select a condition to get started.
         </p>
         
@@ -103,7 +102,8 @@ function MainPage() {
           <div className="grid grid-cols-6 gap-4 mb-4">
             <button 
               onClick={() => handleButtonClick(1)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              style={{ backgroundColor: 'rgb(33, 92, 175)' }}
             >
               1
             </button>
@@ -141,7 +141,6 @@ function MainPage() {
           
           {/* "a" condition buttons row */}
           <div className="grid grid-cols-6 gap-4">
-            <Condition_1a_Button onClick={() => handleButtonClick('1a')} />
             <Condition_2a_Button onClick={() => handleButtonClick('2a')} />
             <Condition_3a_Button onClick={() => handleButtonClick('3a')} />
             <Condition_4a_Button onClick={() => handleButtonClick('4a')} />

@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+:root {
+  --eth-green-20: rgb(224, 227, 208);
+  --eth-green-40: rgb(192, 199, 161);
+  --eth-green-60: rgb(161, 171, 113);
+  --eth-green-80: rgb(129, 143, 66);
+  --eth-green-100: rgb(98, 115, 19);
+  --eth-green-120: rgb(54, 82, 19);
+
+
+  --eth-red-100: rgb(183, 53, 45);
+}

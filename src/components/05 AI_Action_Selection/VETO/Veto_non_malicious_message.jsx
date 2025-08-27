@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Info } from 'lucide-react';
 import Cancel_Button from '../ALLOW/Cancel_Button';
 import AI_progress_bar from '../../06 AI Action Implementation/AI_progress_bar';
+import Review_Button from '../Review_Button';
 
 /**
  * Veto Non Malicious Message Component
@@ -13,9 +14,11 @@ import AI_progress_bar from '../../06 AI Action Implementation/AI_progress_bar';
  * @param {Function} props.onCancel - Cancel button click handler
  * @param {Function} props.onComplete - Progress completion handler
  * @param {boolean} props.hidden - Whether to hide this component
+ * @param {boolean} props.showReview - Whether to show the review analysis
+ * @param {Function} props.onReviewClick - Review button click handler
  * @returns {JSX.Element} Veto non malicious message component
  */
-function Veto_non_malicious_message({ onCancel, onComplete, hidden = false }) {
+function Veto_non_malicious_message({ onCancel, onComplete, hidden = false, showReview = false, onReviewClick }) {
   if (hidden) {
     return null;
   }
@@ -51,6 +54,14 @@ function Veto_non_malicious_message({ onCancel, onComplete, hidden = false }) {
           <Cancel_Button 
             onClick={onCancel} 
             tooltipText="Override: AI will block the URL instead"
+          />
+        </div>
+        
+        {/* Review Button - positioned below cancel button */}
+        <div className="flex justify-center mt-4">
+          <Review_Button 
+            onClick={onReviewClick}
+            showAnalysis={showReview}
           />
         </div>
       </div>

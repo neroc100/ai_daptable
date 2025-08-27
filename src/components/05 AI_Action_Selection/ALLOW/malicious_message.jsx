@@ -2,6 +2,7 @@ import React from 'react';
 import { Info } from 'lucide-react';
 import Confirm_Button from './Confirm_Button';
 import Cancel_Button from './Cancel_Button';
+import Review_Button from '../Review_Button';
 
 /**
  * Malicious Message Component
@@ -12,12 +13,14 @@ import Cancel_Button from './Cancel_Button';
  * @param {Object} props - Component props
  * @param {Function} props.onConfirm - Confirm button click handler
  * @param {Function} props.onCancel - Cancel button click handler
+ * @param {boolean} props.showReview - Whether to show the review analysis
+ * @param {Function} props.onReviewClick - Review button click handler
  * @returns {JSX.Element} Malicious message component
  */
-function Malicious_Message({ onConfirm, onCancel }) {
+function Malicious_Message({ onConfirm, onCancel, showReview = false, onReviewClick }) {
   return (
-    <div className="w-[1250px] h-56 relative">
-      <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
+    <div className="w-[1250px] h-72 relative">
+      <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
       
       {/* Info Icon */}
       <div data-svg-wrapper data-size="32" className="left-[252px] top-[25px] absolute">
@@ -35,7 +38,7 @@ function Malicious_Message({ onConfirm, onCancel }) {
       </div>
       
       {/* Confirm Button */}
-      <div className="left-[182.43px] top-[123.88px] absolute">
+      <div className="left-[150px] top-[140px] absolute">
         <Confirm_Button 
           onClick={onConfirm} 
           tooltipText="AI will block the URL"
@@ -43,10 +46,18 @@ function Malicious_Message({ onConfirm, onCancel }) {
       </div>
       
       {/* Cancel Button */}
-      <div className="left-[686.78px] top-[123.88px] absolute">
+      <div className="left-[750px] top-[140px] absolute">
         <Cancel_Button 
           onClick={onCancel} 
           tooltipText="Override: AI will allow the URL instead"
+        />
+      </div>
+      
+      {/* Review Button */}
+      <div className="flex justify-center absolute top-[200px] left-0 right-0">
+        <Review_Button 
+          onClick={onReviewClick}
+          showAnalysis={showReview}
         />
       </div>
     </div>

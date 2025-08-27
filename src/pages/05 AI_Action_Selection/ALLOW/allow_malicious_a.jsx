@@ -10,6 +10,7 @@ import AI_info_ana_box_a from '../../../components/04 AI_Info_Analysis/AI_info_a
 import AI_Action_Selection_box from '../../../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../../../components/05 AI_Action_Selection/Review_Button';
 import Malicious_Message from '../../../components/05 AI_Action_Selection/ALLOW/malicious_message';
+import Highlight_Malicious_Display from '../../../components/05 AI_Action_Selection/Highlight_Malicious_Display';
 import Allow_Button from '../../../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../../../components/02 Human_Action_Implementation/Block_Button';
 
@@ -30,6 +31,7 @@ function Allow_malicious_a() {
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showReview, setShowReview] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -118,7 +120,14 @@ function Allow_malicious_a() {
               console.log('Override: AI will allow the URL instead');
               setShowSuccess(true);
             }}
+            showReview={showReview}
+            onReviewClick={() => setShowReview(!showReview)}
           />
+        )}
+        
+        {/* Highlight Malicious Display - Shows when review button is clicked */}
+        {showReview && (
+          <Highlight_Malicious_Display />
         )}
         
         {/* Success Message - Shows when action is completed */}
@@ -144,10 +153,7 @@ function Allow_malicious_a() {
           </div>
         )}
         
-        {/* Review Button - Shows when AI Action Selection is complete */}
-        {!isActionSelectionLoading && !showSuccess && (
-          <Review_Button />
-        )}
+
         
 
         

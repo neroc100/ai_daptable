@@ -16,7 +16,7 @@ import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar'
  */
 function HumanActionSelectionA() {
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-black p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         {/* Header */}
         <Dashboard_Header />
