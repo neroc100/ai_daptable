@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause, Check } from 'lucide-react';
-import Dashboard_Header from '../../../components/00 General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../../components/00 General_Page_Content/URL_presentation';
-import Separator from '../../../components/00 General_Page_Content/Separator';
-import Progress_Bar from '../../../components/00 General_Page_Content/Progress_Bar';
-import Acquired_Info_Display from '../../../components/03 AI_Info_Acquisition/Acquired_Info_Display';
-import AI_info_Acq_box from '../../../components/03 AI_Info_Acquisition/AI_info_Acq_box';
-import AI_info_ana_box_a from '../../../components/04 AI_Info_Analysis/AI_info_ana_box_a';
-import AI_Action_Selection_box from '../../../components/05 AI_Action_Selection/AI_Action_Selection_box';
-import Review_Button from '../../../components/05 AI_Action_Selection/Review_Button';
-import Malicious_Message from '../../../components/05 AI_Action_Selection/ALLOW/malicious_message';
-import Highlight_Malicious_Display from '../../../components/05 AI_Action_Selection/Highlight_Malicious_Display';
-import Allow_Button from '../../../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../../components/02 Human_Action_Implementation/Block_Button';
+import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
+import Separator from '../components/00 General_Page_Content/Separator';
+import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import Acquired_Info_Display from '../components/03 AI_Info_Acquisition/Acquired_Info_Display';
+import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
+import AI_info_ana_box_a from '../components/04 AI_Info_Analysis/AI_info_ana_box_a';
+import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
+import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
+import Malicious_Message from '../components/05 AI_Action_Selection/ALLOW/malicious_message';
+import Highlight_Malicious_Display from '../components/05 AI_Action_Selection/Highlight_Malicious_Display';
 
 /**
- * Allow Malicious A Page
- * 
- * This page displays the results of AI information analysis for condition 4a.
- * It shows the analyzed information after the AI processing is complete.
- * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
- * This page looks the same as ai_info_analysis_display_a but is placed in the ALLOW folder.
- * 
- * @returns {JSX.Element} Allow malicious A page component with Allow/Block buttons
+ * Allow Malicious Page
+ * For the malicious message display in condition 4
+ *
+ * @returns {JSX.Element} Allow malicious page component with Allow/Block buttons
  */
-function Allow_malicious_a() {
+function Allow_malicious() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
@@ -166,5 +160,5 @@ function Allow_malicious_a() {
   );
 }
 
-export default Allow_malicious_a;
+export default Allow_malicious;
 

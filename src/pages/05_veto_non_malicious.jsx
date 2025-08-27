@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, Check, Square, Info } from 'lucide-react';
-import Dashboard_Header from '../../../components/00 General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../../components/00 General_Page_Content/URL_presentation';
-import Separator from '../../../components/00 General_Page_Content/Separator';
-import Progress_Bar from '../../../components/00 General_Page_Content/Progress_Bar';
-import Acquired_Info_Display from '../../../components/03 AI_Info_Acquisition/Acquired_Info_Display';
-import AI_info_Acq_box from '../../../components/03 AI_Info_Acquisition/AI_info_Acq_box';
-import AI_info_ana_box_a from '../../../components/04 AI_Info_Analysis/AI_info_ana_box_a';
-import AI_Action_Selection_box from '../../../components/05 AI_Action_Selection/AI_Action_Selection_box';
-import Review_Button from '../../../components/05 AI_Action_Selection/Review_Button';
-import Auto_malicious_message_a from '../../../components/05 AI_Action_Selection/AUTO/Auto_malicious_message_a';
-import Highlight_Malicious_Display from '../../../components/05 AI_Action_Selection/Highlight_Malicious_Display';
-import Allow_Button from '../../../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../../components/02 Human_Action_Implementation/Block_Button';
+import { Play, Pause, Check } from 'lucide-react';
+import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
+import Separator from '../components/00 General_Page_Content/Separator';
+import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import Acquired_Info_Display from '../components/03 AI_Info_Acquisition/Acquired_Info_Display';
+import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
+import AI_info_ana_box_a from '../components/04 AI_Info_Analysis/AI_info_ana_box_a';
+import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
+import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
+import Veto_non_malicious_message from '../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
+import Highlight_Malicious_Display from '../components/05 AI_Action_Selection/Highlight_Malicious_Display';
+import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 
 /**
- * Auto Malicious A Page
+ * Veto Non Malicious A Page
  * 
- * This page displays the results of AI information analysis for condition 6a.
+ * This page displays the results of AI information analysis for condition 5a.
  * It shows the analyzed information after the AI processing is complete.
  * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
- * This page looks the same as veto_non_malicious_a but is placed in the AUTO folder.
+ * This page looks the same as allow_malicious_a but is placed in the VETO folder.
  * 
- * @returns {JSX.Element} Auto malicious A page component with Allow/Block buttons
+ * @returns {JSX.Element} Veto non malicious A page component with Allow/Block buttons
  */
-function Auto_malicious_a() {
+function Veto_non_malicious() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
@@ -107,57 +107,27 @@ function Auto_malicious_a() {
           )}
         </div>
         
-        {/* Auto Malicious Message A - Shows only when AI Action Selection is complete */}
+        {/* Veto Non Malicious Message - Shows only when AI Action Selection is complete */}
         {!isActionSelectionLoading && !showSuccess && (
-          <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
-            
-            {/* Content container with relative positioning */}
-            <div className="relative z-10 h-full flex flex-col justify-center items-center space-y-4">
-              {/* Info Icon */}
-              <div data-svg-wrapper data-size="32" className="absolute left-[32px] top-[25px]">
-                <Info className="w-[55px] h-[38px] text-stone-900" />
-              </div>
-              
-              {/* Main Title */}
-              <div className="w-[934.78px] h-10 ml-[95px] text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
-                URL is likely malicious
-              </div>
-              
-              {/* Review Button */}
-              <Review_Button 
-                onClick={() => setShowReview(!showReview)}
-                showAnalysis={showReview}
-              />
-            </div>
-          </div>
+          <Veto_non_malicious_message 
+            onCancel={() => {
+              // Handle cancel action - Override: AI will block the URL instead
+              console.log('Override: AI will block the URL instead');
+              setShowSuccess(true);
+            }}
+            onComplete={() => {
+              // Handle completion - AI will allow the URL
+              console.log('AI will allow the URL');
+              setShowSuccess(true);
+            }}
+            showReview={showReview}
+            onReviewClick={() => setShowReview(!showReview)}
+          />
         )}
         
         {/* Highlight Malicious Display - Shows when review button is clicked */}
         {showReview && (
           <Highlight_Malicious_Display />
-        )}
-        
-        {/* AI Blocked URL Text - Shows when message is displayed */}
-        {!isActionSelectionLoading && !showSuccess && (
-          <div className="flex flex-col items-center space-y-4">
-            <div className="flex items-center space-x-3 text-white">
-              <div className="relative">
-                <Square className="w-6 h-6 text-blue-400" strokeWidth={2} />
-                <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
-              </div>
-              <span className="text-xl font-semibold">AI blocked URL</span>
-            </div>
-            <button
-              onClick={() => {
-                // Navigate to main page
-                window.location.href = '/';
-              }}
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-            >
-              Next
-            </button>
-          </div>
         )}
         
         {/* Success Message - Shows when action is completed */}
@@ -192,4 +162,4 @@ function Auto_malicious_a() {
   );
 }
 
-export default Auto_malicious_a;
+export default Veto_non_malicious;

@@ -3,16 +3,9 @@ import { Link } from 'react-router-dom';
 import Manual from './pages/manual';
 import Info_acquisition from './pages/info_acquisition';
 import Info_analysis from './pages/info_analysis';
-import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
-import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
-import Allow_malicious_a from './pages/05 AI_Action_Selection/ALLOW/allow_malicious_a';
-import Allow_non_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_non_malicious';
-import Veto_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_malicious';
-import Veto_Non_Malicious from './pages/05 AI_Action_Selection/VETO/Veto_non_malicious';
-import Veto_non_malicious_a from './pages/05 AI_Action_Selection/VETO/veto_non_malicious_a';
-import Auto_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_malicious';
-import Auto_Non_Malicious from './pages/05 AI_Action_Selection/AUTO/Auto_non_malicious';
-import Auto_malicious_a from './pages/05 AI_Action_Selection/AUTO/Auto_malicious_a';
+import Allow_malicious from './pages/04_allow_malicious';
+import Veto_non_malicious from './pages/05_veto_non_malicious';
+import Auto_malicious from './pages/06_auto_malicious';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 
@@ -56,11 +49,11 @@ function MainPage() {
     } else if (buttonNumber === 3) {
       navigate('/info-analysis');
     } else if (buttonNumber === 4) {
-      navigate('/allow-malicious-a');
+      navigate('/allow-malicious');
     } else if (buttonNumber === 5) {
-      navigate('/veto-non-malicious-a');
+      navigate('/veto-non-malicious');
     } else if (buttonNumber === 6) {
-      navigate('/auto-malicious-a');
+      navigate('/auto-malicious');
     }
   };
 
@@ -153,16 +146,9 @@ function App() {
               <Route path="/manual" element={<Manual />} />
               <Route path="/info-acquisition" element={<Info_acquisition />} />
               <Route path="/info-analysis" element={<Info_analysis />} />
-              <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
-              <Route path="/allow-malicious-a" element={<Allow_malicious_a />} />
-              <Route path="/allow-non-malicious" element={<Allow_non_malicious />} />
-              <Route path="/veto-malicious" element={<Veto_Malicious />} />
-              <Route path="/veto-non-malicious" element={<Veto_Non_Malicious />} />
-              <Route path="/veto-non-malicious-a" element={<Veto_non_malicious_a />} />
-              <Route path="/auto-malicious" element={<Auto_Malicious />} />
-              <Route path="/auto-non-malicious" element={<Auto_Non_Malicious />} />
-              <Route path="/auto-malicious-a" element={<Auto_malicious_a />} />
+              <Route path="/veto-non-malicious-a" element={<Veto_non_malicious />} />
+              <Route path="/auto-malicious-a" element={<Auto_malicious />} />
               <Route path="/dummy" element={<Dummy />} />
             </Routes>
           </main>
