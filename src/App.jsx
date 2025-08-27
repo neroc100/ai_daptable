@@ -45,11 +45,11 @@ function MainPage() {
   /**
    * Handles button clicks and sets the button number globally
    * 
-   * This function is called when any of the 8 buttons is clicked.
+   * This function is called when any of the 6 buttons is clicked.
    * It sets the button number in the global ButtonContext and then
    * navigates to the appropriate page.
    * 
-   * @param {number} buttonNumber - The number of the button that was clicked (1, 1a, 2, 2a, 3-6)
+   * @param {number} buttonNumber - The number of the button that was clicked (1-6)
    */
   const handleButtonClick = (buttonNumber) => {
     // Set the button number globally using ButtonContext
@@ -57,26 +57,14 @@ function MainPage() {
     
     if (buttonNumber === 1) {
       navigate('/human-action-selection-a');
-    } else if (buttonNumber === '1a') {
-      navigate('/human-action-selection-a');
     } else if (buttonNumber === 2) {
       navigate('/ai-info-acquisition-display-a');
-    } else if (buttonNumber === '2a') {
-      navigate('/ai-info-acquisition-display-a');
     } else if (buttonNumber === 3) {
-      navigate('/ai-info-analysis-display-a');
-    } else if (buttonNumber === '3a') {
       navigate('/ai-info-analysis-display-a');
     } else if (buttonNumber === 4) {
       navigate('/allow-malicious-a');
     } else if (buttonNumber === 5) {
       navigate('/veto-non-malicious-a');
-    } else if (buttonNumber === '4a') {
-      navigate('/allow-malicious-a');
-    } else if (buttonNumber === '5a') {
-      navigate('/veto-non-malicious-a');
-    } else if (buttonNumber === '6a') {
-      navigate('/auto-malicious-a');
     } else if (buttonNumber === 6) {
       navigate('/auto-malicious-a');
     }
@@ -140,9 +128,7 @@ function MainPage() {
             </button>
           </div>
           
-          {/* "a" condition buttons row */}
-          <div className="grid grid-cols-6 gap-4">
-          </div>
+
         </div>
       </div>
     </div>
