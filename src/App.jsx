@@ -1,10 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Manual from './pages/manual';
-import Info_acquisition from './pages/03 AI_Info_Acquisition/info_acquisition';
-import AI_info_analysis from './pages/04 AI_Info_Analysis/AI_info_analysis';
-import AI_info_analysis_display from './pages/04 AI_Info_Analysis/AI_info_analysis_display';
-import AI_info_analysis_display_a from './pages/04 AI_Info_Analysis/AI_info_analysis_display_a';
+import Info_acquisition from './pages/info_acquisition';
+import Info_analysis from './pages/info_analysis';
 import AI_Action_Selection from './pages/05 AI_Action_Selection/AI_Action_Selection';
 import Allow_malicious from './pages/05 AI_Action_Selection/ALLOW/allow_malicious';
 import Allow_malicious_a from './pages/05 AI_Action_Selection/ALLOW/allow_malicious_a';
@@ -56,7 +54,7 @@ function MainPage() {
     } else if (buttonNumber === 2) {
       navigate('/info-acquisition');
     } else if (buttonNumber === 3) {
-      navigate('/ai-info-analysis-display-a');
+      navigate('/info-analysis');
     } else if (buttonNumber === 4) {
       navigate('/allow-malicious-a');
     } else if (buttonNumber === 5) {
@@ -154,6 +152,7 @@ function App() {
               <Route path="/" element={<MainPage />} />
               <Route path="/manual" element={<Manual />} />
               <Route path="/info-acquisition" element={<Info_acquisition />} />
+              <Route path="/info-analysis" element={<Info_analysis />} />
               <Route path="/ai-action-selection" element={<AI_Action_Selection />} />
               <Route path="/allow-malicious" element={<Allow_malicious />} />
               <Route path="/allow-malicious-a" element={<Allow_malicious_a />} />

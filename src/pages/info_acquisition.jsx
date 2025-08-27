@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
-import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
-import Separator from '../../components/00 General_Page_Content/Separator';
-import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
-import URL_String_Analysis_Box from '../../components/03 AI_Info_Acquisition/URL_String_Analysis_Box';
-import Domain_Characteristics_Box from '../../components/03 AI_Info_Acquisition/Domain_Characteristics_Box';
-import Encryption_HTTP_Box from '../../components/03 AI_Info_Acquisition/Encryption_HTTP_Box';
-import DNS_Network_Box from '../../components/03 AI_Info_Acquisition/DNS_Network_Box';
-import Webpage_Content_Box from '../../components/03 AI_Info_Acquisition/Webpage_Content_Box';
-import Geographical_Hosting_Box from '../../components/03 AI_Info_Acquisition/Geographical_Hosting_Box';
-import AI_info_Acq_box from '../../components/03 AI_Info_Acquisition/AI_info_Acq_box';
-import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
+import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
+import Separator from '../components/00 General_Page_Content/Separator';
+import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import URL_String_Analysis_Box from '../components/03 AI_Info_Acquisition/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from '../components/03 AI_Info_Acquisition/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from '../components/03 AI_Info_Acquisition/Encryption_HTTP_Box';
+import DNS_Network_Box from '../components/03 AI_Info_Acquisition/DNS_Network_Box';
+import Webpage_Content_Box from '../components/03 AI_Info_Acquisition/Webpage_Content_Box';
+import Geographical_Hosting_Box from '../components/03 AI_Info_Acquisition/Geographical_Hosting_Box';
+import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
+import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 
 /**
  * Information Acquisition Page

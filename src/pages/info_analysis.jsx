@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause } from 'lucide-react';
-import Dashboard_Header from '../../components/00 General_Page_Content/Dashboard_Header';
-import URL_presentation from '../../components/00 General_Page_Content/URL_presentation';
-import Separator from '../../components/00 General_Page_Content/Separator';
-import Progress_Bar from '../../components/00 General_Page_Content/Progress_Bar';
-import Acquired_Info_Display from '../../components/03 AI_Info_Acquisition/Acquired_Info_Display';
-import AI_info_Acq_box from '../../components/03 AI_Info_Acquisition/AI_info_Acq_box';
-import AI_info_ana_box_a from '../../components/04 AI_Info_Analysis/AI_info_ana_box_a';
-import Highlight_Malicious_Display from '../../components/05 AI_Action_Selection/Highlight_Malicious_Display';
-import Allow_Button from '../../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../../components/02 Human_Action_Implementation/Block_Button';
+import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
+import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
+import Separator from '../components/00 General_Page_Content/Separator';
+import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import Acquired_Info_Display from '../components/03 AI_Info_Acquisition/Acquired_Info_Display';
+import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
+import AI_info_ana_box_a from '../components/04 AI_Info_Analysis/AI_info_ana_box_a';
+import Highlight_Malicious_Display from '../components/05 AI_Action_Selection/Highlight_Malicious_Display';
+import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
+import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 
 /**
- * AI Information Analysis Display Page A
+ * Page for info analysis condition
  * 
- * This page displays the results of AI information analysis.
- * It shows the analyzed information after the AI processing is complete.
- * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
- * 
- * @returns {JSX.Element} AI information analysis display page component with Allow/Block buttons
+ * @returns {JSX.Element} 
  */
-function AI_info_analysis_display_a() {
+function Info_analysis() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
@@ -114,4 +109,4 @@ function AI_info_analysis_display_a() {
   );
 }
 
-export default AI_info_analysis_display_a;
+export default Info_analysis;
