@@ -4,13 +4,12 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import Acquired_Info_Display from '../components/03 AI_Info_Acquisition/Acquired_Info_Display';
+import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
 import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
 import AI_info_ana_box from '../components/04 AI_Info_Analysis/AI_info_ana_box';
 import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
 import Malicious_Message from '../components/05 AI_Action_Selection/ALLOW/malicious_message';
-import Analyzed_Info_Display from '../components/04 AI_Info_Analysis/Analyzed_Info_Display';
 
 /**
  * Allow Malicious Page
@@ -119,9 +118,9 @@ function Allow_malicious() {
           />
         )}
         
-        {/* Analyzed Info Display - Shows when review button is clicked */}
+        {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <Analyzed_Info_Display />
+          <Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Success Message - Shows when action is completed */}

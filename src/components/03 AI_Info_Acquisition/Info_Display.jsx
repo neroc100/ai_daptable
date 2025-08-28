@@ -3,17 +3,21 @@ import Feature_Box from './Feature_boxes/Feature_Box';
 import { featureConfigs } from './Feature_boxes/featureConfig';
 
 /**
- * Acquired Info Display Component
+ * Unified Info Display Component
  * 
  * This component displays the grid of six analysis boxes that show the results
- * of AI information acquisition. It contains all the feature display boxes in a
- * 3x2 grid layout with proper spacing and acquisition page styling.
+ * of AI information processing. It contains all the feature display boxes in a
+ * 3x2 grid layout with proper spacing and styling.
+ * 
+ * The component can render in two different styles:
+ * - Acquisition style: White background with gray outline (isAnalysisDisplayed = false)
+ * - Analysis style: White background with outline color based on majority of features (isAnalysisDisplayed = true)
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design (default: false)
- * @returns {JSX.Element} Acquired info display component
+ * @returns {JSX.Element} Unified info display component
  */
-function Acquired_Info_Display({ isAnalysisDisplayed = false }) {
+function Info_Display({ isAnalysisDisplayed = false }) {
   return (
     <div className="w-[1250px] flex flex-col space-y-6">
       {/* Top Row - Three boxes */}
@@ -63,4 +67,4 @@ function Acquired_Info_Display({ isAnalysisDisplayed = false }) {
   );
 }
 
-export default Acquired_Info_Display;
+export default Info_Display;

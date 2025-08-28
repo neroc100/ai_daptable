@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Acquired_Info_Display from '../03 AI_Info_Acquisition/Acquired_Info_Display';
+import Info_Display from '../03 AI_Info_Acquisition/Info_Display';
 import { Check, Square } from 'lucide-react';
 
 /**
@@ -7,7 +7,7 @@ import { Check, Square } from 'lucide-react';
  * 
  * This component displays a loading icon that transitions to a checkmark with square outline
  * after the loading period. It includes the "AI Action Selection" label and uses
- * the acquired info display component.
+ * the info display component.
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isLoading - Whether the component is in loading state
@@ -51,7 +51,7 @@ function AI_Action_Selection_box({ isLoading = true, showDisplay = false }) {
       
       {/* Feature Display */}
       {!isLoading && showDisplay && (
-        <Acquired_Info_Display isAnalysisDisplayed={false} />
+        <Info_Display isAnalysisDisplayed={false} />
       )}
     </div>
   );

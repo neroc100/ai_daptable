@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import Analyzed_Info_Display from '../04 AI_Info_Analysis/Analyzed_Info_Display';
+import Info_Display from '../03 AI_Info_Acquisition/Info_Display';
 
 /**
  * Review Button Component
  * 
  * This component provides a button that allows users to review the analyzed information.
- * When clicked, it toggles the display of the Analyzed_Info_Display component.
+ * When clicked, it toggles the display of the Info_Display component.
  * 
  * @param {Object} props - Component props
  * @param {Function} props.onClick - External click handler (optional)
@@ -48,10 +48,10 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
         )}
       </button>
 
-      {/* Analyzed Info Display - Shows when button is toggled on (only when using internal state) */}
+      {/* Info Display - Shows when button is toggled on (only when using internal state) */}
       {showAnalysis && !onClick && (
         <div className="mt-6">
-          <Analyzed_Info_Display />
+          <Info_Display isAnalysisDisplayed={true} />
         </div>
       )}
     </div>
