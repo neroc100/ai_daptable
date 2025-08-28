@@ -9,7 +9,7 @@ import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_bo
 import AI_info_ana_box from '../components/04 AI_Info_Analysis/AI_info_ana_box';
 import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
-import Auto_malicious_message_a from '../components/05 AI_Action_Selection/AUTO/Auto_malicious_message_a';
+import Auto_malicious_message from '../components/05 AI_Action_Selection/AUTO/auto_malicious_message';
 import Highlight_Malicious_Display from '../components/05 AI_Action_Selection/Highlight_Malicious_Display';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';

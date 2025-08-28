@@ -3,14 +3,14 @@ import { Info } from 'lucide-react';
 import Review_Button from '../Review_Button';
 
 /**
- * Auto Malicious Message A Component
+ * Auto Malicious Message Component
  * 
  * This component displays a message about automatically handling a malicious URL.
  * It includes an info icon and message text, but no progress bar or timer.
  * 
- * @returns {JSX.Element} Auto malicious message A component
+ * @returns {JSX.Element} Auto malicious message component
  */
-function Auto_malicious_message_a() {
+function Auto_malicious_message() {
   return (
     <div className="w-[1250px] h-56 relative">
       <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
@@ -34,4 +34,4 @@ function Auto_malicious_message_a() {
   );
 }
 
-export default Auto_malicious_message_a;
+export default Auto_malicious_message;
