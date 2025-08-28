@@ -3,8 +3,9 @@ import React from 'react';
 /**
  * Separator Component
  * 
- * This component creates a visual divider with a thin horizontal line.
- * It's used to separate different sections of content on the page.
+ * Creates a visual divider between different sections of the experiment interface.
+ * Uses ETH gray-100 color for consistent styling across the application.
+ * Provides clear visual separation between URL display and experiment components.
  * 
  * @returns {JSX.Element} Visual separator component
  */

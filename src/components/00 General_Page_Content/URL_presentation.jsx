@@ -3,8 +3,9 @@ import React from 'react';
 /**
  * URL Presentation Component
  * 
- * This component displays a URL input field with a label. It shows a sample URL
- * and provides a structured layout for URL display and input.
+ * Displays the URL evaluated in the security experiment.
+ * Shows a sample URL with proper formatting and ETH gray outline styling.
+ * Used across all experiment conditions to present the target URL.
  * 
  * @returns {JSX.Element} URL presentation component with input field
  */

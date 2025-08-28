@@ -3,11 +3,11 @@ import React from 'react';
 /**
  * Progress Bar Component
  * 
- * This component displays a progress indicator showing the current progress
- * through a list of URLs. It includes descriptive text centered over a thin white 
- * progress track with a blue circular indicator.
+ * Displays experiment progress through the URL evaluation sequence.
+ * Shows current position (x out of 12 URLs) with a visual progress indicator.
+ * Uses ETH styling with black text and outline for consistency.
  * 
- * @returns {JSX.Element} Progress bar component with text centered over the bar
+ * @returns {JSX.Element} Progress bar component with text and visual indicator
  */
 function Progress_Bar() {
   return (
