@@ -5,26 +5,24 @@ import { ThumbsUp, ThumbsDown, ChevronUp, ChevronDown } from 'lucide-react';
  * DNS & Network Feature Display Box Component
  * 
  * This component displays DNS and network features with title, icon, and values.
- * It includes a collapsible arrow indicator and structured layout for network analysis information.
+ * It includes a collapsible arrow indicator and structured layout for DNS analysis information.
  * The arrow is clickable and expands to show all feature-value combinations.
  * 
- * The component can render in three different styles:
+ * The component can render in two different styles:
  * - Default style: White background with gray outline (for acquisition pages)
  * - Analysis style: White background with outline color based on majority of features
- * - Highlight Malicious style: Only red highlights with black borders, no green icons
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design
- * @param {boolean} props.highlightMalicious - Whether to use the highlight malicious design
  * @returns {JSX.Element} DNS & Network feature display box component
  */
-function DNS_Network_Box({ isAnalysisDisplayed = false, highlightMalicious = false }) {
+function DNS_Network_Box({ isAnalysisDisplayed = false }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   // Generate stable random icons for each feature using a seed
   const featureIcons = useMemo(() => {
     const seed = 42; // Stable seed for consistent results
-    const features = ['IP Address', 'DNS Records', 'Response Time'];
+    const features = ['DNS Records', 'IP Reputation', 'Network Location'];
     
     return features.map((feature, index) => {
       // Simple hash function for consistent randomness
@@ -37,42 +35,19 @@ function DNS_Network_Box({ isAnalysisDisplayed = false, highlightMalicious = fal
     });
   }, []);
 
-  // Generate malicious icons for highlightMalicious condition
-  const maliciousIcons = useMemo(() => {
-    const seed = 123; // Different seed for malicious icons
-    const features = ['DNS Records', 'IP Address', 'Network Location'];
-    
-    return features.map((feature, index) => {
-      // Simple hash function for consistent randomness
-      const hash = feature.split('').reduce((a, b) => {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a;
-      }, seed + index);
-      
-      // 33% chance of red icon (hash % 3 === 0)
-      return hash % 3 === 0 ? 'thumbsDown' : 'none';
-    });
-  }, []);
-
   // Calculate majority for outline color
   const thumbsUpCount = featureIcons.filter(icon => icon === 'thumbsUp').length;
   const thumbsDownCount = featureIcons.filter(icon => icon === 'thumbsDown').length;
   const majorityIsPositive = thumbsUpCount >= thumbsDownCount;
-
-  // Calculate malicious majority for highlightMalicious condition
-  const maliciousThumbsDownCount = maliciousIcons.filter(icon => icon === 'thumbsDown').length;
-  const maliciousMajorityIsNegative = maliciousThumbsDownCount >= 2; // At least 2 out of 3 features
 
   const handleArrowClick = () => {
     setIsExpanded(!isExpanded);
   };
 
   // Determine outline color and width based on page type and majority
-  const outlineClass = highlightMalicious 
-    ? "outline-black outline-4"
-    : isAnalysisDisplayed 
-      ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
-      : "outline-zinc-300 outline-1";
+  const outlineClass = isAnalysisDisplayed 
+    ? (majorityIsPositive ? "outline-green-600 outline-4" : "outline-red-600 outline-4")
+    : "outline-zinc-300 outline-1";
 
   return (
     <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-24'}`}>
@@ -85,54 +60,54 @@ function DNS_Network_Box({ isAnalysisDisplayed = false, highlightMalicious = fal
       
       {/* Feature content section - shows features only when expanded */}
       {isExpanded && (
-        <div className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed || highlightMalicious ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
+        <div className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}>
           {/* First feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
+            {isAnalysisDisplayed && (
               featureIcons[0] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[0] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
+              <div className="text-xl font-semibold font-['Inter'] leading-7 text-stone-900">
                 DNS Records
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                {highlightMalicious ? (maliciousIcons[0] === 'thumbsDown' ? "Malicious" : "Clean") : "Suspicious"}
+                Complete
               </div>
             </div>
           </div>
           
           {/* Second feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
+            {isAnalysisDisplayed && (
               featureIcons[1] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[1] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
-                IP Address
+              <div className="text-xl font-semibold font-['Inter'] leading-7 text-stone-900">
+                IP Reputation
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                {highlightMalicious ? (maliciousIcons[1] === 'thumbsDown' ? "10.0.0.1" : "8.8.8.8") : "192.168.1.100"}
+                Clean
               </div>
             </div>
           </div>
           
           {/* Third feature-value combination */}
           <div className="flex items-start gap-[10px]">
-            {(isAnalysisDisplayed || highlightMalicious) && !highlightMalicious && (
+            {isAnalysisDisplayed && (
               featureIcons[2] === 'thumbsUp' ? 
                 <ThumbsUp className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" /> :
                 <ThumbsDown className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
             )}
             <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-              <div className={`text-xl font-semibold font-['Inter'] leading-7 ${highlightMalicious && maliciousIcons[2] === 'thumbsDown' ? 'text-orange-500' : 'text-stone-900'}`}>
+              <div className="text-xl font-semibold font-['Inter'] leading-7 text-stone-900">
                 Network Location
               </div>
               <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
-                {highlightMalicious ? (maliciousIcons[2] === 'thumbsDown' ? "Blocked" : "Verified") : "Unknown"}
+                United States
               </div>
             </div>
           </div>

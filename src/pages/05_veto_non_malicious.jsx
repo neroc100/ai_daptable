@@ -10,7 +10,7 @@ import AI_info_ana_box from '../components/04 AI_Info_Analysis/AI_info_ana_box';
 import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
 import Veto_non_malicious_message from '../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
-import Highlight_Malicious_Display from '../components/05 AI_Action_Selection/Highlight_Malicious_Display';
+import Analyzed_Info_Display from '../components/04 AI_Info_Analysis/Analyzed_Info_Display';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 
@@ -125,9 +125,9 @@ function Veto_non_malicious() {
           />
         )}
         
-        {/* Highlight Malicious Display - Shows when review button is clicked */}
+        {/* Analyzed Info Display - Shows when review button is clicked */}
         {showReview && (
-          <Highlight_Malicious_Display />
+          <Analyzed_Info_Display />
         )}
         
         {/* Success Message - Shows when action is completed */}

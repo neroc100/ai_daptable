@@ -12,7 +12,7 @@ import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Feature_boxes/Ge
  * 
  * This component displays a loading icon that transitions to a checkmark with square outline
  * after the loading period. It includes the "AI Action Selection" label and uses
- * the highlightMalicious design for feature boxes.
+ * the feature boxes.
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isLoading - Whether the component is in loading state
@@ -34,21 +34,21 @@ function AI_Action_Selection_box({ isLoading, showDisplay = false }) {
         <span className="text-xl font-semibold">AI Action Selection</span>
       </div>
       
-      {/* Feature Display with highlightMalicious design */}
+      {/* Feature Display */}
       {!isLoading && showDisplay && (
         <div className="w-[1250px] flex flex-col space-y-6">
           {/* Top Row - Three boxes */}
           <div className="flex justify-between space-x-6">
-            <URL_String_Analysis_Box highlightMalicious={true} />
-            <Domain_Characteristics_Box highlightMalicious={true} />
-            <Encryption_HTTP_Box highlightMalicious={true} />
+            <URL_String_Analysis_Box />
+            <Domain_Characteristics_Box />
+            <Encryption_HTTP_Box />
           </div>
           
           {/* Bottom Row - Three boxes */}
           <div className="flex justify-between space-x-6">
-            <DNS_Network_Box highlightMalicious={true} />
-            <Webpage_Content_Box highlightMalicious={true} />
-            <Geographical_Hosting_Box highlightMalicious={true} />
+            <DNS_Network_Box />
+            <Webpage_Content_Box />
+            <Geographical_Hosting_Box />
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import Highlight_Malicious_Display from './Highlight_Malicious_Display';
+import Analyzed_Info_Display from '../04 AI_Info_Analysis/Analyzed_Info_Display';
 
 /**
  * Review Button Component
@@ -48,10 +48,10 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
         )}
       </button>
 
-      {/* Highlight Malicious Display - Shows when button is toggled on (only when using internal state) */}
+      {/* Analyzed Info Display - Shows when button is toggled on (only when using internal state) */}
       {showAnalysis && !onClick && (
         <div className="mt-6">
-          <Highlight_Malicious_Display />
+          <Analyzed_Info_Display />
         </div>
       )}
     </div>
