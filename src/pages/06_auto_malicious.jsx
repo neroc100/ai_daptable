@@ -109,7 +109,7 @@ function Auto_malicious() {
         {/* Auto Malicious Message A - Shows only when AI Action Selection is complete */}
         {!isActionSelectionLoading && !showSuccess && (
           <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
+            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-red-100)' }} />
             
             {/* Content container with relative positioning */}
             <div className="relative z-10 h-full flex flex-col justify-center items-center space-y-4">
@@ -162,11 +162,11 @@ function Auto_malicious() {
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
           <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
+            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
             
             <div className="flex flex-col items-center justify-center h-full space-y-6 relative z-10">
               <div className="flex items-center space-x-3 text-stone-900">
-                <Check className="w-8 h-8 text-green-400" />
+                <Check className="w-8 h-8" style={{ color: 'var(--eth-green-100)' }} />
                 <span className="text-2xl font-semibold">Success</span>
               </div>
               <button

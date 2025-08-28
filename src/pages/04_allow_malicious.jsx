@@ -10,6 +10,7 @@ import AI_info_ana_box from '../components/04 AI_Info_Analysis/AI_info_ana_box';
 import AI_Action_Selection_box from '../components/05 AI_Action_Selection/AI_Action_Selection_box';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
 import Malicious_Message from '../components/05 AI_Action_Selection/ALLOW/malicious_message';
+import AI_info_message from '../components/AI information/ai_info_message';
 
 /**
  * Allow Malicious Page
@@ -25,6 +26,7 @@ function Allow_malicious() {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [showAIInfo, setShowAIInfo] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -92,6 +94,8 @@ function Allow_malicious() {
           <AI_info_ana_box isLoading={isAnalysisLoading} showDisplay={false} />
           <AI_Action_Selection_box isLoading={isActionSelectionLoading} showDisplay={false} />
           
+
+          
           {/* Pause/Resume Instructions */}
           {isLoading && (
             <div className="flex items-center space-x-2 text-gray-400 text-sm">
@@ -156,6 +160,15 @@ function Allow_malicious() {
         {/* Progress Bar */}
         <Progress_Bar />
       </div>
+      
+      {/* AI Info Popup */}
+      <AI_info_message 
+        isOpen={showAIInfo}
+        onClose={() => setShowAIInfo(false)}
+        isLoading={isLoading}
+        isAnalysisLoading={isAnalysisLoading}
+        isActionSelectionLoading={isActionSelectionLoading}
+      />
     </div>
   );
 }

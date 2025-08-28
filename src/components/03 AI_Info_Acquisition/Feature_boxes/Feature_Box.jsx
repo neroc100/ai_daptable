@@ -52,11 +52,11 @@ function Feature_Box({
   // Determine outline color and width based on page type and majority
   const outlineClass = isAnalysisDisplayed 
     ? "outline-4"
-    : "outline-zinc-300 outline-1";
+    : "outline-1";
   
   const outlineStyle = isAnalysisDisplayed 
     ? { outlineColor: majorityIsPositive ? 'var(--eth-green-100)' : 'var(--eth-red-100)' }
-    : {};
+    : { outlineColor: 'var(--eth-gray-100)' };
 
   return (
     <div className={`w-[420px] min-w-72 relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden ${isExpanded ? 'h-80' : 'h-24'}`} style={outlineStyle}>

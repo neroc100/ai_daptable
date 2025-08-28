@@ -13,7 +13,7 @@ function Separator() {
     // Separator container with padding and rounded corners
     <div className="w-72 px-4 py-2 rounded-lg inline-flex flex-col justify-center items-center">
       {/* Thin horizontal line separator */}
-      <div className="self-stretch h-px bg-zinc-300" />
+      <div className="self-stretch h-px" style={{ backgroundColor: 'var(--eth-gray-100)' }} />
     </div>
   );
 }
