@@ -38,9 +38,9 @@ function Success_Message_Button({ onOKClick }) {
         </svg>
       </div>
       
-      {/* OK button text */}
+      {/* Next button text */}
       <div className="justify-start text-neutral-100 text-2xl font-semibold font-['Inter'] leading-normal">
-        OK
+        Next
       </div>
     </div>
   );

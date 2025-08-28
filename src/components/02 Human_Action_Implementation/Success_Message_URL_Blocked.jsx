@@ -13,8 +13,17 @@ import Success_Message_Button from './Success_Message_Button';
  */
 function Success_Message_URL_Blocked({ onOKClick }) {
   return (
-    <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-white rounded-lg border-4 border-black">
-      <div className="w-[810px] h-44 relative flex flex-col justify-between items-center">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
+      <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg border-4 border-black relative">
+        {/* Close button */}
+        <button
+          onClick={onOKClick}
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+        >
+          ×
+        </button>
+        
+        <div className="w-[810px] h-44 relative flex flex-col justify-between items-center">
         
         <div className="flex flex-col items-center pt-4 space-y-1">
           <div className="w-[584.39px] h-12 center text-stone-900 text-3xl font-semibold font-['Inter'] leading-4">
@@ -34,6 +43,7 @@ function Success_Message_URL_Blocked({ onOKClick }) {
           <ShieldCheck className="w-12 h-12 text-black" />
         </div>
       </div>
+    </div>
     </div>
   );
 }
