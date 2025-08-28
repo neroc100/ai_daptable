@@ -1,10 +1,10 @@
 import React from 'react';
-import URL_String_Analysis_Box from './URL_String_Analysis_Box';
-import Domain_Characteristics_Box from './Domain_Characteristics_Box';
-import Encryption_HTTP_Box from './Encryption_HTTP_Box';
-import DNS_Network_Box from './DNS_Network_Box';
-import Webpage_Content_Box from './Webpage_Content_Box';
-import Geographical_Hosting_Box from './Geographical_Hosting_Box';
+import URL_String_Analysis_Box from './Feature_boxes/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from './Feature_boxes/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from './Feature_boxes/Encryption_HTTP_Box';
+import DNS_Network_Box from './Feature_boxes/DNS_Network_Box';
+import Webpage_Content_Box from './Feature_boxes/Webpage_Content_Box';
+import Geographical_Hosting_Box from './Feature_boxes/Geographical_Hosting_Box';
 
 /**
  * Acquired Info Display Component

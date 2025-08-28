@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, Check, Square, Play, Pause } from 'lucide-react';
-import URL_String_Analysis_Box from '../03 AI_Info_Acquisition/URL_String_Analysis_Box';
-import Domain_Characteristics_Box from '../03 AI_Info_Acquisition/Domain_Characteristics_Box';
-import Encryption_HTTP_Box from '../03 AI_Info_Acquisition/Encryption_HTTP_Box';
-import DNS_Network_Box from '../03 AI_Info_Acquisition/DNS_Network_Box';
-import Webpage_Content_Box from '../03 AI_Info_Acquisition/Webpage_Content_Box';
-import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Geographical_Hosting_Box';
+import URL_String_Analysis_Box from '../03 AI_Info_Acquisition/Feature_boxes/URL_String_Analysis_Box';
+import Domain_Characteristics_Box from '../03 AI_Info_Acquisition/Feature_boxes/Domain_Characteristics_Box';
+import Encryption_HTTP_Box from '../03 AI_Info_Acquisition/Feature_boxes/Encryption_HTTP_Box';
+import DNS_Network_Box from '../03 AI_Info_Acquisition/Feature_boxes/DNS_Network_Box';
+import Webpage_Content_Box from '../03 AI_Info_Acquisition/Feature_boxes/Webpage_Content_Box';
+import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Feature_boxes/Geographical_Hosting_Box';
 
 /**
  * AI Action Selection Box Component
