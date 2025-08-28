@@ -1,10 +1,6 @@
 import React from 'react';
-import URL_String_Analysis_Box from '../03 AI_Info_Acquisition/Feature_boxes/URL_String_Analysis_Box';
-import Domain_Characteristics_Box from '../03 AI_Info_Acquisition/Feature_boxes/Domain_Characteristics_Box';
-import Encryption_HTTP_Box from '../03 AI_Info_Acquisition/Feature_boxes/Encryption_HTTP_Box';
-import DNS_Network_Box from '../03 AI_Info_Acquisition/Feature_boxes/DNS_Network_Box';
-import Webpage_Content_Box from '../03 AI_Info_Acquisition/Feature_boxes/Webpage_Content_Box';
-import Geographical_Hosting_Box from '../03 AI_Info_Acquisition/Feature_boxes/Geographical_Hosting_Box';
+import Feature_Box from '../03 AI_Info_Acquisition/Feature_boxes/Feature_Box';
+import { featureConfigs } from '../03 AI_Info_Acquisition/Feature_boxes/featureConfig';
 
 /**
  * Analyzed Info Display Component
@@ -22,16 +18,46 @@ function Analyzed_Info_Display({ isAnalysisDisplayed = true }) {
     <div className="w-[1250px] flex flex-col space-y-6">
       {/* Top Row - Three boxes */}
       <div className="flex justify-between space-x-6">
-        <URL_String_Analysis_Box isAnalysisDisplayed={isAnalysisDisplayed} />
-        <Domain_Characteristics_Box isAnalysisDisplayed={isAnalysisDisplayed} />
-        <Encryption_HTTP_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.urlStringAnalysis.title}
+          features={featureConfigs.urlStringAnalysis.features}
+          seed={featureConfigs.urlStringAnalysis.seed}
+        />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.domainCharacteristics.title}
+          features={featureConfigs.domainCharacteristics.features}
+          seed={featureConfigs.domainCharacteristics.seed}
+        />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.encryptionHttp.title}
+          features={featureConfigs.encryptionHttp.features}
+          seed={featureConfigs.encryptionHttp.seed}
+        />
       </div>
       
       {/* Bottom Row - Three boxes */}
       <div className="flex justify-between space-x-6">
-        <DNS_Network_Box isAnalysisDisplayed={isAnalysisDisplayed} />
-        <Webpage_Content_Box isAnalysisDisplayed={isAnalysisDisplayed} />
-        <Geographical_Hosting_Box isAnalysisDisplayed={isAnalysisDisplayed} />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.dnsNetwork.title}
+          features={featureConfigs.dnsNetwork.features}
+          seed={featureConfigs.dnsNetwork.seed}
+        />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.webpageContent.title}
+          features={featureConfigs.webpageContent.features}
+          seed={featureConfigs.webpageContent.seed}
+        />
+        <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.geographicalHosting.title}
+          features={featureConfigs.geographicalHosting.features}
+          seed={featureConfigs.geographicalHosting.seed}
+        />
       </div>
     </div>
   );

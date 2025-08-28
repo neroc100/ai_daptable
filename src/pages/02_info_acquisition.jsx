@@ -4,12 +4,7 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import URL_String_Analysis_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/URL_String_Analysis_Box';
-import Domain_Characteristics_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/Domain_Characteristics_Box';
-import Encryption_HTTP_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/Encryption_HTTP_Box';
-import DNS_Network_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/DNS_Network_Box';
-import Webpage_Content_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/Webpage_Content_Box';
-import Geographical_Hosting_Box from '../components/03 AI_Info_Acquisition/Feature_boxes/Geographical_Hosting_Box';
+import Acquired_Info_Display from '../components/03 AI_Info_Acquisition/Acquired_Info_Display';
 import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
@@ -80,23 +75,9 @@ function Info_acquisition() {
           )}
         </div>
         
-        {/* Analysis Sections - Three boxes per row with same width as URL box */}
+        {/* Acquired Information Display - Shows when acquisition is complete */}
         {!isLoading && (
-          <div className="w-[1250px] flex flex-col space-y-6">
-            {/* Top Row - Three boxes */}
-            <div className="flex justify-between space-x-6">
-              <URL_String_Analysis_Box />
-              <Domain_Characteristics_Box />
-              <Encryption_HTTP_Box />
-            </div>
-            
-            {/* Bottom Row - Three boxes */}
-            <div className="flex justify-between space-x-6">
-              <DNS_Network_Box />
-              <Webpage_Content_Box />
-              <Geographical_Hosting_Box />
-            </div>
-          </div>
+          <Acquired_Info_Display isAnalysisDisplayed={false} />
         )}
         
         {/* Action Buttons - Allow and Block */}
