@@ -52,7 +52,7 @@ function Info_acquisition() {
   }, [isPaused, isLoading]);
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         {/* Header */}
         <Dashboard_Header />

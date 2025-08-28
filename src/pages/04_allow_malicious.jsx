@@ -75,7 +75,7 @@ function Allow_malicious() {
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         {/* Header */}
         <Dashboard_Header />
@@ -126,11 +126,11 @@ function Allow_malicious() {
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
           <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
+            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
             
             <div className="flex flex-col items-center justify-center h-full space-y-6 relative z-10">
               <div className="flex items-center space-x-3 text-stone-900">
-                <Check className="w-8 h-8 text-green-400" />
+                <Check className="w-8 h-8" style={{ color: 'var(--eth-green-100)' }} />
                 <span className="text-2xl font-semibold">Success</span>
               </div>
               <button
@@ -138,7 +138,8 @@ function Allow_malicious() {
                   // Navigate to main page
                   window.location.href = '/';
                 }}
-                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+                className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
               >
                 Next
               </button>

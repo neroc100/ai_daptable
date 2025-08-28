@@ -13,7 +13,7 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
  */
 function Manual() {
   return (
-    <div className="min-h-screen bg-black p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         {/* Header */}
         <Dashboard_Header />

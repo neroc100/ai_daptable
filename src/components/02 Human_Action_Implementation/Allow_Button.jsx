@@ -39,7 +39,7 @@ function Allow_Button() {
         data-state="Default" 
         data-variant="Subtle" 
         className="w-96 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-        style={{ outlineColor: 'var(--eth-green-80)' }}
+        style={{ outlineColor: 'var(--eth-green-100)' }}
         onClick={handleClick}
       >
         {/* Button text */}

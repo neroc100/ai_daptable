@@ -67,7 +67,8 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
       <div className="w-96 h-1.5 bg-neutral-400 rounded-[3px] relative overflow-hidden">
         {/* Green progress fill - animated based on progress state */}
         <div 
-          className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-50 ease-linear rounded-[3px]"
+                      className="absolute top-0 left-0 h-full transition-all duration-50 ease-linear rounded-[3px]"
+            style={{ backgroundColor: 'var(--eth-green-100)' }}
           style={{ width: `${progress}%` }}
         />
         {/* Green progress indicator dot - positioned at the end of the fill */}
@@ -76,7 +77,7 @@ function AI_progress_bar({ duration = 2000, onComplete }) {
           className="absolute top-0 transition-all duration-50 ease-linear"
           style={{ left: `${(progress / 100) * (384 - 6)}px` }}
         >
-          <Circle className="w-1.5 h-1.5 text-green-500 fill-current" />
+                      <Circle className="w-1.5 h-1.5 fill-current" style={{ color: 'var(--eth-green-100)' }} />
         </div>
       </div>
       

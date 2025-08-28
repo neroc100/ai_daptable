@@ -31,9 +31,9 @@ function AI_Action_Selection_box({ isLoading = true, showDisplay = false }) {
     return (
       <div className="flex flex-col items-center space-y-4">
         <div className="relative">
-          <div className="w-12 h-12 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin" style={{ borderColor: 'var(--eth-blue-100)' }}></div>
         </div>
-        <div className="text-white text-lg font-semibold">AI Action Selection</div>
+        <div className="text-black text-lg font-semibold">AI Action Selection</div>
       </div>
     );
   }
@@ -43,10 +43,10 @@ function AI_Action_Selection_box({ isLoading = true, showDisplay = false }) {
       {/* Checkmark with square outline and text positioned next to it */}
       <div className="flex items-center space-x-3">
         <div className="relative">
-          <Square className="w-6 h-6 text-blue-400" strokeWidth={2} />
-          <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
+          <Square className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
+          <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
         </div>
-        <div className="text-white text-lg font-semibold">AI Action Selection</div>
+        <div className="text-black text-lg font-semibold">AI Action Selection</div>
       </div>
       
       {/* Feature Display */}

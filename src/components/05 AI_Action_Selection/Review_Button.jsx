@@ -33,17 +33,18 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
       {/* Review Button */}
       <button
         onClick={handleReviewClick}
-        className="flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+        className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
+        style={{ backgroundColor: 'var(--eth-blue-20)' }}
       >
         {showAnalysis ? (
           <>
-            <EyeOff size={20} />
-            <span>Hide Information</span>
+            <EyeOff size={20} style={{ color: 'black' }} />
+            <span style={{ color: 'black' }}>Hide Information</span>
           </>
         ) : (
           <>
-            <Eye size={20} />
-            <span>Review Information</span>
+            <Eye size={20} style={{ color: 'black' }} />
+            <span style={{ color: 'black' }}>Review Information</span>
           </>
         )}
       </button>

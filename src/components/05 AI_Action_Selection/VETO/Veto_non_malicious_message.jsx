@@ -25,7 +25,7 @@ function Veto_non_malicious_message({ onCancel, onComplete, hidden = false, show
 
   return (
     <div className="w-[1250px] h-72 relative">
-      <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
+              <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
       
       {/* Content container with relative positioning */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center">

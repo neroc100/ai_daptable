@@ -81,7 +81,7 @@ function Auto_malicious() {
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         {/* Header */}
         <Dashboard_Header />
@@ -140,10 +140,10 @@ function Auto_malicious() {
         {/* AI Blocked URL Text - Shows when message is displayed */}
         {!isActionSelectionLoading && !showSuccess && (
           <div className="flex flex-col items-center space-y-4">
-            <div className="flex items-center space-x-3 text-white">
+                          <div className="flex items-center space-x-3 text-black">
               <div className="relative">
-                <Square className="w-6 h-6 text-blue-400" strokeWidth={2} />
-                <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
+                <Square className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
+                <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
               </div>
               <span className="text-xl font-semibold">AI blocked URL</span>
             </div>

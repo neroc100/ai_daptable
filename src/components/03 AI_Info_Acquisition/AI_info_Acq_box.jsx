@@ -14,13 +14,13 @@ import { Loader2, Check, Square } from 'lucide-react';
 function AI_info_Acq_box({ isLoading }) {
   return (
     <div className="flex flex-col items-center space-y-2">
-      <div className="flex items-center space-x-3 text-white">
+      <div className="flex items-center space-x-3 text-black">
         {isLoading ? (
-          <Loader2 className="w-6 h-6 animate-spin text-blue-400" />
+          <Loader2 className="w-6 h-6 animate-spin" style={{ color: 'var(--eth-blue-100)' }} />
         ) : (
           <div className="relative">
-            <Square className="w-6 h-6 text-blue-400" strokeWidth={2} />
-            <Check className="w-4 h-4 text-blue-400 absolute inset-0 m-auto" strokeWidth={3} />
+            <Square className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
+            <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
           </div>
         )}
         <span className="text-xl font-semibold">AI Information Acquisition</span>

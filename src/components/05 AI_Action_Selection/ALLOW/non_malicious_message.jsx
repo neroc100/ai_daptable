@@ -17,7 +17,7 @@ import Cancel_Button from './Cancel_Button';
 function Non_malicious_message({ onConfirm, onCancel }) {
   return (
     <div className="w-[1250px] h-56 relative">
-      <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-green-600" />
+              <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
       
       {/* Info Icon */}
       <div data-svg-wrapper data-size="32" className="left-[252px] top-[25px] absolute">

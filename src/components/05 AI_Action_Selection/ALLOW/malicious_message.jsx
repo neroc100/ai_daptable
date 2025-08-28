@@ -20,7 +20,7 @@ import Review_Button from '../Review_Button';
 function Malicious_Message({ onConfirm, onCancel, showReview = false, onReviewClick }) {
   return (
     <div className="w-[1250px] h-72 relative">
-      <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
+              <div className="w-[1250px] h-72 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-red-100)' }} />
       
       {/* Info Icon */}
       <div data-svg-wrapper data-size="32" className="left-[252px] top-[25px] absolute">

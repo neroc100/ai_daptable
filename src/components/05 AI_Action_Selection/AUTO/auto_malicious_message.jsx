@@ -13,7 +13,7 @@ import Review_Button from '../Review_Button';
 function Auto_malicious_message() {
   return (
     <div className="w-[1250px] h-56 relative">
-      <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4 border-red-600" />
+              <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-red-100)' }} />
       
       {/* Content container with relative positioning */}
       <div className="relative z-10 h-full flex flex-col justify-center items-center space-y-4">

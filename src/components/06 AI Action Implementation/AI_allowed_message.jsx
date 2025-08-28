@@ -13,7 +13,7 @@ import AI_Success_Message_Button from './AI_Success_Message_Button';
  */
 function AI_allowed_message({ onOKClick }) {
   return (
-    <div className="w-[750px] h-60 min-w-60 px-8 py-6 bg-white rounded-lg border-4 border-green-500">
+            <div className="w-[750px] h-60 min-w-60 px-8 py-6 bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }}>
       <div className="w-[800px] h-44 relative flex flex-col justify-between items-center">
         
         <div className="flex flex-col items-center pt-4">
