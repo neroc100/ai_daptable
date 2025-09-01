@@ -6,7 +6,7 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
-
+import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import AI_Action_info_box from '../components/AI_Action_info_box';
@@ -28,6 +28,7 @@ function Allow() {
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
+  const [showAIClassification, setShowAIClassification] = useState(false);
 
   // Generate random classification on component mount
   useEffect(() => {
@@ -84,6 +85,17 @@ function Allow() {
     return () => clearTimeout(timer);
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
+  // Show AI classification after AI action selection time has passed
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setTimeout(() => {
+      setShowAIClassification(true);
+    }, LOAD_TIME_AI_ACTION_SELECTION);
+
+    return () => clearTimeout(timer);
+  }, [isPaused]);
+
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
@@ -91,7 +103,7 @@ function Allow() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={true} classification={classification} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
         
         {/* Separator */}
         <Separator />
@@ -107,7 +119,7 @@ function Allow() {
         )}
         
         {/* AI Action Request - Shows only when AI Action Selection is complete */}
-        {!isActionSelectionLoading && !showSuccess && (
+        {showAIClassification && !showSuccess && (
           <AI_Action_request 
             onConfirm={() => {
               // Handle confirm action - follow AI recommendation
