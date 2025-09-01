@@ -4,12 +4,12 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
-import AI_Action_info_box from '../components/AI_Action_info_box';
-import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
-import AI_veto_request from '../components/AI_veto_request';
-import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
+import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
+import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
+import Review_Button from '../components/01 Interaction components/View_Information_Button';
+import AI_veto_request from '../components/AI_action/AI_veto_request';
+import Allow_Button from '../components/01 Interaction components/Allow_Button';
+import Block_Button from '../components/01 Interaction components/Block_Button';
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 
@@ -114,7 +114,7 @@ function Veto() {
         
         {/* Loading/Completion Status */}
         <div className="flex flex-col items-center space-y-4">
-          <AI_Action_info_box />
+          <AI_Completed_Actions_Display />
           
           {/* Pause/Resume Instructions */}
           {isLoading && (
@@ -140,7 +140,7 @@ function Veto() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <Info_Display isAnalysisDisplayed={true} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
                 )}
         
         {/* Success Message - Shows when override action is completed */}

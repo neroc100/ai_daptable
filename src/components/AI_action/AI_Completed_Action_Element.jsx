@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Loader2, Check, Square } from 'lucide-react';
 
 /**
- * AI Action Info Component
+ * AI Completed Action Element Component
  * 
  * This component displays a loading icon that transitions to a checkmark with square outline
  * after the loading period. It includes customizable text passed as a parameter.
@@ -10,9 +10,9 @@ import { Loader2, Check, Square } from 'lucide-react';
  * @param {Object} props - Component props
  * @param {number} props.loadingTime - Time in milliseconds to show loading state
  * @param {string} props.text - The text to display next to the icon
- * @returns {JSX.Element} AI action info component
+ * @returns {JSX.Element} AI completed action element component
  */
-function AI_Action_Info({ loadingTime = 3000, text = "AI Action Info" }) {
+function AI_Completed_Action_Element({ loadingTime = 3000, text = "AI Action Info" }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,4 +40,4 @@ function AI_Action_Info({ loadingTime = 3000, text = "AI Action Info" }) {
   );
 }
 
-export default AI_Action_Info;
+export default AI_Completed_Action_Element;

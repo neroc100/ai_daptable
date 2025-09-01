@@ -3,10 +3,10 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
-import AI_Action_info_box from '../components/AI_Action_info_box';
-import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
-import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
+import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
+import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
+import Allow_Button from '../components/01 Interaction components/Allow_Button';
+import Block_Button from '../components/01 Interaction components/Block_Button';
 
 /**
  * Page for info analysis condition
@@ -71,7 +71,7 @@ function Info_analysis() {
         
         {/* Loading/Completion Status */}
         <div className="flex flex-col items-center space-y-4">
-          <AI_Action_info_box showAcquisition={true} showAnalysis={true} showActionSelection={false} />
+          <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={true} showActionSelection={false} />
           
           {/* Pause/Resume Instructions */}
           {isLoading && (
@@ -83,12 +83,12 @@ function Info_analysis() {
         
         {/* Info Display - Shows when AI analysis timer runs out */}
         {!isAnalysisLoading && (
-          <Info_Display isAnalysisDisplayed={true} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Info Display - Shows when acquisition is complete but hides when analysis is complete */}
         {!isLoading && isAnalysisLoading && (
-          <Info_Display isAnalysisDisplayed={false} />
+          <AI_URL_Info_Display isAnalysisDisplayed={false} />
         )}
         
         {/* Action Buttons - Allow and Block */}

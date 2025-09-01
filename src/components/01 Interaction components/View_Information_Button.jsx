@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import Info_Display from '../03 AI_Info_Acquisition/Info_Display';
+import AI_URL_Info_Display from '../AI_action/AI_URL_Info_Display';
 
 /**
- * Review Button Component
+ * View Information Button Component
  * 
  * This component provides a button that allows users to view the analyzed information.
  * When clicked, it toggles the display of the Info_Display component.
@@ -11,9 +11,9 @@ import Info_Display from '../03 AI_Info_Acquisition/Info_Display';
  * @param {Object} props - Component props
  * @param {Function} props.onClick - External click handler (optional)
  * @param {boolean} props.showAnalysis - External state for showing analysis (optional)
- * @returns {JSX.Element} Review button component with toggle functionality
+ * @returns {JSX.Element} View information button component with toggle functionality
  */
-function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
+function View_Information_Button({ onClick, showAnalysis: externalShowAnalysis }) {
   const [internalShowAnalysis, setInternalShowAnalysis] = useState(false);
   
   // Use external state if provided, otherwise use internal state
@@ -30,7 +30,7 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      {/* Review Button */}
+      {/* View Information Button */}
       <button
         onClick={handleReviewClick}
         className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
@@ -49,14 +49,14 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
         )}
       </button>
 
-      {/* Info Display - Shows when button is toggled on (only when using internal state) */}
+      {/* AI URL Info Display - Shows when button is toggled on (only when using internal state) */}
       {showAnalysis && !onClick && (
         <div className="mt-6">
-          <Info_Display isAnalysisDisplayed={true} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}
     </div>
   );
 }
 
-export default Review_Button;
+export default View_Information_Button;

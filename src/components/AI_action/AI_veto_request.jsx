@@ -1,5 +1,5 @@
 import React from 'react';
-import Next_Button from './01 Interaction components/Next_Button';
+import Next_Button from '../01 Interaction components/Next_Button';
 
 /**
  * AI Veto Request Component

@@ -4,13 +4,13 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
-import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
+import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
+import Review_Button from '../components/01 Interaction components/View_Information_Button';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 
 import Success_Message from '../components/01 Interaction components/Success_Message';
-import AI_Action_info_box from '../components/AI_Action_info_box';
-import AI_Action_request from '../components/AI_Action_request';
+import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
+import AI_Action_request from '../components/AI_action/AI_Action_request';
 
 /**
  * Allow Malicious Page
@@ -109,7 +109,7 @@ function Allow() {
         <Separator />
         
         {/* AI Action Info Box */}
-        <AI_Action_info_box />
+        <AI_Completed_Actions_Display />
         
         {/* Pause/Resume Instructions */}
         {isLoading && (
@@ -140,7 +140,7 @@ function Allow() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <Info_Display isAnalysisDisplayed={true} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Success Message - Shows when action is completed */}

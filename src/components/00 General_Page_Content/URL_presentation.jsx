@@ -1,5 +1,5 @@
 import React from 'react';
-import AI_classification from '../AI_classification';
+import AI_classification from '../AI_action/AI_classification';
 
 /**
  * URL Presentation Component
