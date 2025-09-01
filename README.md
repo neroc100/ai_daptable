@@ -19,15 +19,12 @@ src/
 │   │   └── Success_Message_*.jsx         # Success feedback
 │   │
 │   ├── 03 AI_Info_Acquisition/           # AI data collection
-│   │   ├── AI_info_Acq_box.jsx           # AI acquisition status
 │   │   ├── Info_Display.jsx              # Feature information display
 │   │   └── Feature_boxes/                # Individual feature components
 │   │
 │   ├── 04 AI_Info_Analysis/              # AI analysis components
-│   │   └── AI_info_ana_box.jsx           # AI analysis status
 │   │
 │   ├── 05 AI_Action_Selection/           # AI recommendation components
-│   │   ├── AI_Action_Selection_box.jsx   # AI decision status
 │   │   ├── Review_Button.jsx             # Information review button
 │   │   └── ALLOW/VETO/AUTO/              # Decision-specific messages
 │   │
@@ -35,7 +32,6 @@ src/
 │   │   └── AI_progress_bar.jsx           # AI action progress
 │   │
 │   └── AI information/                   # AI information popup
-│       └── ai_info_message.jsx           # Combined AI info display
 │
 ├── pages/                                # Main application pages
 │   ├── 01_manual.jsx                     # Manual URL evaluation

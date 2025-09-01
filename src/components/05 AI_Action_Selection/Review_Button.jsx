@@ -5,7 +5,7 @@ import Info_Display from '../03 AI_Info_Acquisition/Info_Display';
 /**
  * Review Button Component
  * 
- * This component provides a button that allows users to review the analyzed information.
+ * This component provides a button that allows users to view the analyzed information.
  * When clicked, it toggles the display of the Info_Display component.
  * 
  * @param {Object} props - Component props
@@ -44,7 +44,7 @@ function Review_Button({ onClick, showAnalysis: externalShowAnalysis }) {
         ) : (
           <>
             <Eye size={20} style={{ color: 'black' }} />
-            <span style={{ color: 'black' }}>Review Information</span>
+            <span style={{ color: 'black' }}>View Information</span>
           </>
         )}
       </button>

@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Loader2, Check, Square } from 'lucide-react';
 
 /**
- * AI Information Acquisition Box Component
+ * AI Action Info Component
  * 
  * This component displays a loading icon that transitions to a checkmark with square outline
- * after the loading period. It includes the "AI Information Acquisition" label.
+ * after the loading period. It includes customizable text passed as a parameter.
  * 
  * @param {Object} props - Component props
- * @param {boolean} props.isLoading - Whether the component is in loading state
- * @returns {JSX.Element} AI information acquisition box component
+ * @param {number} props.loadingTime - Time in milliseconds to show loading state
+ * @param {string} props.text - The text to display next to the icon
+ * @returns {JSX.Element} AI action info component
  */
-function AI_info_Acq_box({ isLoading }) {
+function AI_Action_Info({ loadingTime = 3000, text = "AI Action Info" }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, loadingTime);
+
+    return () => clearTimeout(timer);
+  }, [loadingTime]);
+
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="flex items-center space-x-3 text-black">
@@ -23,10 +34,10 @@ function AI_info_Acq_box({ isLoading }) {
             <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
           </div>
         )}
-        <span className="text-xl font-semibold">AI Information Acquisition</span>
+        <span className="text-xl font-semibold">{text}</span>
       </div>
     </div>
   );
 }
 
-export default AI_info_Acq_box;
+export default AI_Action_Info;

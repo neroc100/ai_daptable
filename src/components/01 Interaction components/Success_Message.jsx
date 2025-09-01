@@ -71,7 +71,8 @@ function Success_Message({ onClose, decisionType = 'allow', actor = 'human' }) {
           <div className="flex justify-center mb-4">
             <button
               onClick={handleButtonClick}
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               {content.buttonText}
             </button>

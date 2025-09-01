@@ -4,8 +4,7 @@ import URL_presentation from '../components/00 General_Page_Content/URL_presenta
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
-import AI_info_Acq_box from '../components/03 AI_Info_Acquisition/AI_info_Acq_box';
-import AI_info_ana_box from '../components/04 AI_Info_Analysis/AI_info_ana_box';
+import AI_Action_info_box from '../components/AI_Action_info_box';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 
@@ -72,8 +71,7 @@ function Info_analysis() {
         
         {/* Loading/Completion Status */}
         <div className="flex flex-col items-center space-y-4">
-          <AI_info_Acq_box isLoading={isLoading} />
-          <AI_info_ana_box isLoading={isAnalysisLoading} showDisplay={false} />
+          <AI_Action_info_box showAcquisition={true} showAnalysis={true} showActionSelection={false} />
           
           {/* Pause/Resume Instructions */}
           {isLoading && (
