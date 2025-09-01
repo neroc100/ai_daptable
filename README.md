@@ -32,8 +32,6 @@ src/
 │   │   └── ALLOW/VETO/AUTO/              # Decision-specific messages
 │   │
 │   ├── 06 AI Action Implementation/      # AI action execution
-│   │   ├── AI_allowed_message.jsx        # AI allow success
-│   │   ├── AI_blocked_message.jsx        # AI block success
 │   │   └── AI_progress_bar.jsx           # AI action progress
 │   │
 │   └── AI information/                   # AI information popup

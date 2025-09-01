@@ -12,6 +12,7 @@ import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
 import Veto_non_malicious_message from '../components/05 AI_Action_Selection/VETO/Veto_non_malicious_message';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
+import Success_Message from '../components/01 Interaction components/Success_Message';
 
 /**
  * Veto Non Malicious A Page
@@ -131,26 +132,11 @@ function Veto_non_malicious() {
         
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
-          <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
-            
-            <div className="flex flex-col items-center justify-center h-full space-y-6 relative z-10">
-              <div className="flex items-center space-x-3 text-stone-900">
-                <Check className="w-8 h-8 text-green-400" />
-                <span className="text-2xl font-semibold">Success</span>
-              </div>
-              <button
-                onClick={() => {
-                  // Navigate to main page
-                  window.location.href = '/';
-                }}
-                className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: 'var(--eth-blue-100)' }}
-              >
-                Next
-              </button>
-            </div>
-          </div>
+          <Success_Message 
+            onClose={() => setShowSuccess(false)}
+            decisionType="block"
+            actor="ai"
+          />
         )}
         
 

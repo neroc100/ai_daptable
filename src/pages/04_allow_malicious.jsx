@@ -8,6 +8,7 @@ import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
 import Malicious_Message from '../components/05 AI_Action_Selection/ALLOW/malicious_message';
 import AI_info_message from '../components/AI information/ai_info_message';
+import Success_Message from '../components/01 Interaction components/Success_Message';
 
 /**
  * Allow Malicious Page
@@ -117,26 +118,11 @@ function Allow_malicious() {
         
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
-          <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-green-100)' }} />
-            
-            <div className="flex flex-col items-center justify-center h-full space-y-6 relative z-10">
-              <div className="flex items-center space-x-3 text-stone-900">
-                <Check className="w-8 h-8" style={{ color: 'var(--eth-green-100)' }} />
-                <span className="text-2xl font-semibold">Success</span>
-              </div>
-              <button
-                onClick={() => {
-                  // Navigate to main page
-                  window.location.href = '/';
-                }}
-                className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: 'var(--eth-blue-100)' }}
-              >
-                Next
-              </button>
-            </div>
-          </div>
+          <Success_Message 
+            onClose={() => setShowSuccess(false)}
+            decisionType="allow"
+            actor="ai"
+          />
         )}
         
 

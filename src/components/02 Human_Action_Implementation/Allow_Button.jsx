@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Success_Message_URL_Allowed from './Success_Message_URL_Allowed';
+import Success_Message from '../01 Interaction components/Success_Message';
 
 /**
  * Allow Button Component
  * 
- * This component renders a button that allows URLs. When clicked, it shows a success modal
- * with a white overlay background. The button has a green outline to indicate allowing action.
+ * Renders the primary action button for allowing URLs.
+ * Uses ETH green-100 outline to indicate positive action. Shows success modal with overlay
+ * when clicked, providing feedback for the expert's decision.
  * 
- * @returns {JSX.Element} Allow button with modal functionality
+ * @returns {JSX.Element} Allow button with success modal functionality
  */
 function Allow_Button() {
   // State to control modal visibility
@@ -48,12 +49,13 @@ function Allow_Button() {
         </div>
       </div>
 
-      {/* Modal Overlay - appears when button is clicked */}
+      {/* Success message modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
-          {/* Success message modal component */}
-          <Success_Message_URL_Allowed onOKClick={handleOKClick} />
-        </div>
+        <Success_Message 
+          onClose={handleOKClick}
+          decisionType="allow"
+          actor="human"
+        />
       )}
     </>
   );

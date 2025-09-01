@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import Success_Message_URL_Blocked from './Success_Message_URL_Blocked';
+import Success_Message from '../01 Interaction components/Success_Message';
 
 /**
  * Block Button Component
  * 
- * This component renders a button that blocks URLs. When clicked, it shows a success modal
- * with a white overlay background. The button has a red outline to indicate blocking action.
+ * Renders the primary action button for blocking URLs.
+ * Uses ETH red-100 outline to indicate negative action. Shows success modal with overlay
+ * when clicked, providing feedback for the expert's decision.
  * 
- * @returns {JSX.Element} Block button with modal functionality
+ * @returns {JSX.Element} Block button with success modal functionality
  */
 function Block_Button() {
   // State to control modal visibility
@@ -48,12 +49,13 @@ function Block_Button() {
         </div>
       </div>
 
-      {/* Modal Overlay - appears when button is clicked */}
+      {/* Success message modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}>
-          {/* Success message modal component */}
-          <Success_Message_URL_Blocked onOKClick={handleOKClick} />
-        </div>
+        <Success_Message 
+          onClose={handleOKClick}
+          decisionType="block"
+          actor="human"
+        />
       )}
     </>
   );
