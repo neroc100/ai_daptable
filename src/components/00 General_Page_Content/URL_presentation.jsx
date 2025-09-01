@@ -10,9 +10,10 @@ import AI_classification from '../AI_classification';
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.showAIClassification - Whether to show the AI classification box
+ * @param {string} props.classification - The AI classification to display
  * @returns {JSX.Element} URL presentation component with input field
  */
-function URL_presentation({ showAIClassification = false }) {
+function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   return (
     // Main URL container with white background and light border
     <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
@@ -34,7 +35,7 @@ function URL_presentation({ showAIClassification = false }) {
       </div>
       
       {/* AI Classification - Only shown when showAIClassification is true */}
-      {showAIClassification && <AI_classification />}
+      {showAIClassification && <AI_classification classification={classification} />}
     </div>
   );
 }

@@ -12,12 +12,14 @@ import { useNavigate } from 'react-router-dom';
  * @param {Function} props.onClose - Callback function to handle modal close
  * @param {string} props.decisionType - Type of decision: 'allow' or 'block'
  * @param {string} props.actor - Who made the decision: 'human' or 'ai'
+ * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
+ * @param {string} props.actionType - Type of action taken ('confirm' or 'override')
  * @returns {JSX.Element} Success message modal component
  */
-function Success_Message({ onClose, decisionType = 'allow', actor = 'human' }) {
+function Success_Message({ onClose, decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm' }) {
   const navigate = useNavigate();
 
-  // Determine content based on decision type and actor
+  // Determine content based on decision type, actor, classification, and action type
   const getContent = () => {
     const isAllow = decisionType === 'allow';
     const isHuman = actor === 'human';

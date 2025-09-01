@@ -6,10 +6,11 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
-import Malicious_Message from '../components/05 AI_Action_Selection/ALLOW/malicious_message';
+
 
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import AI_Action_info_box from '../components/AI_Action_info_box';
+import AI_Action_request from '../components/AI_Action_request';
 
 /**
  * Allow Malicious Page
@@ -25,6 +26,14 @@ function Allow() {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [classification, setClassification] = useState('Malicious');
+  const [actionType, setActionType] = useState('confirm');
+
+  // Generate random classification on component mount
+  useEffect(() => {
+    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
+    setClassification(randomClassification);
+  }, []);
 
 
   useEffect(() => {
@@ -82,7 +91,7 @@ function Allow() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={true} />
+        <URL_presentation showAIClassification={true} classification={classification} />
         
         {/* Separator */}
         <Separator />
@@ -97,21 +106,23 @@ function Allow() {
           </div>
         )}
         
-        {/* Malicious Message - Shows only when AI Action Selection is complete */}
+        {/* AI Action Request - Shows only when AI Action Selection is complete */}
         {!isActionSelectionLoading && !showSuccess && (
-          <Malicious_Message 
+          <AI_Action_request 
             onConfirm={() => {
-              // Handle confirm action - AI will block the URL
-              console.log('AI will block the URL');
+              // Handle confirm action - follow AI recommendation
+              console.log('Confirm AI action');
+              setActionType('confirm');
               setShowSuccess(true);
             }}
-            onCancel={() => {
-              // Handle cancel action - Override: AI will allow the URL instead
-              console.log('Override: AI will allow the URL instead');
+            onOverride={() => {
+              // Handle override action - go against AI recommendation
+              console.log('Override AI action');
+              setActionType('override');
               setShowSuccess(true);
             }}
-            showReview={showReview}
-            onReviewClick={() => setShowReview(!showReview)}
+            onViewInfo={() => setShowReview(!showReview)}
+            classification={classification}
           />
         )}
         
@@ -124,7 +135,7 @@ function Allow() {
         {showSuccess && (
           <Success_Message 
             onClose={() => setShowSuccess(false)}
-            decisionType="allow"
+            decisionType={actionType === 'confirm' ? (classification === 'Malicious' ? 'block' : 'allow') : (classification === 'Malicious' ? 'allow' : 'block')}
             actor="ai"
           />
         )}
