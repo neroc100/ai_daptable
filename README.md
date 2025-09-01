@@ -37,9 +37,9 @@ src/
 │   ├── 01_manual.jsx                     # Manual URL evaluation
 │   ├── 02_info_acquisition.jsx           # AI data collection view
 │   ├── 03_info_analysis.jsx              # AI analysis view
-│   ├── 04_allow_malicious.jsx            # Allow malicious URL
-│   ├── 05_veto_non_malicious.jsx         # Veto non-malicious URL
-│   └── 06_auto_malicious.jsx             # Auto-block malicious URL
+│   ├── 04_allow.jsx                      # Allow malicious URL
+│   ├── 05_veto.jsx                       # Veto non-malicious URL
+│   └── 06_auto.jsx                       # Auto-block malicious URL
 │
 └── context/                              # React context
     └── ConditionContext.jsx              # Experiment condition management

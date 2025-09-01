@@ -17,7 +17,7 @@ import AI_Action_info_box from '../components/AI_Action_info_box';
  *
  * @returns {JSX.Element} Allow malicious page component with Allow/Block buttons
  */
-function Allow_malicious() {
+function Allow() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
@@ -144,5 +144,5 @@ function Allow_malicious() {
   );
 }
 
-export default Allow_malicious;
+export default Allow;
 
