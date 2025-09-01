@@ -82,7 +82,7 @@ function Allow() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation />
+        <URL_presentation showAIClassification={true} />
         
         {/* Separator */}
         <Separator />
