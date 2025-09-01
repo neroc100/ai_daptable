@@ -5,6 +5,6 @@
  * in milliseconds.
  */
 
-export const LOAD_TIME_AI_INFO_ACQ = 100;  // 1 second
-export const LOAD_TIME_AI_INFO_ANA = 1000;  // 2 seconds  
-export const LOAD_TIME_AI_ACTION_SELECTION = 1100;  // 3 seconds
+export const LOAD_TIME_AI_INFO_ACQ = 0;  // 1 second
+export const LOAD_TIME_AI_INFO_ANA = 0;  // 2 seconds  
+export const LOAD_TIME_AI_ACTION_SELECTION = 0;  // 3 seconds

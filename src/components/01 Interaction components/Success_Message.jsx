@@ -1,6 +1,7 @@
 import React from 'react';
 import { Rss, ShieldCheck, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Next_Button from './Next_Button';
 
 /**
  * Success Message Component
@@ -43,11 +44,6 @@ function Success_Message({ onClose, decisionType = 'allow', actor = 'human', cla
 
   const content = getContent();
 
-  const handleButtonClick = () => {
-    onClose();
-    navigate('/');
-  };
-
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
@@ -71,13 +67,7 @@ function Success_Message({ onClose, decisionType = 'allow', actor = 'human', cla
           </div>
           
           <div className="flex justify-center mb-4">
-            <button
-              onClick={handleButtonClick}
-              className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: 'var(--eth-blue-100)' }}
-            >
-              {content.buttonText}
-            </button>
+            <Next_Button />
           </div>
           
           <div data-svg-wrapper className="absolute left-0 top-0">

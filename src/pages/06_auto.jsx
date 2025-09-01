@@ -7,10 +7,10 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Info_Display from '../components/03 AI_Info_Acquisition/Info_Display';
 import AI_Action_info_box from '../components/AI_Action_info_box';
 import Review_Button from '../components/05 AI_Action_Selection/Review_Button';
-import Auto_malicious_message from '../components/05 AI_Action_Selection/AUTO/auto_malicious_message';
 import Allow_Button from '../components/02 Human_Action_Implementation/Allow_Button';
 import Block_Button from '../components/02 Human_Action_Implementation/Block_Button';
 import Success_Message from '../components/01 Interaction components/Success_Message';
+import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 
 /**
  * Auto Malicious A Page
@@ -30,6 +30,7 @@ function Auto() {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [showAIClassification, setShowAIClassification] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -79,6 +80,17 @@ function Auto() {
     return () => clearTimeout(timer);
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
+  // Show AI classification after AI action selection time has passed
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setTimeout(() => {
+      setShowAIClassification(true);
+    }, LOAD_TIME_AI_ACTION_SELECTION);
+
+    return () => clearTimeout(timer);
+  }, [isPaused]);
+
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
@@ -86,7 +98,7 @@ function Auto() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={true} />
+        <URL_presentation showAIClassification={showAIClassification} />
         
         {/* Separator */}
         <Separator />
@@ -104,7 +116,7 @@ function Auto() {
         </div>
         
         {/* Auto Malicious Message A - Shows only when AI Action Selection is complete */}
-        {!isActionSelectionLoading && !showSuccess && (
+        {showAIClassification && !showSuccess && (
           <div className="w-[1250px] h-56 relative">
             <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-red-100)' }} />
             
@@ -135,7 +147,7 @@ function Auto() {
         )}
         
         {/* AI Blocked URL Text - Shows when message is displayed */}
-        {!isActionSelectionLoading && !showSuccess && (
+        {showAIClassification && !showSuccess && (
           <div className="flex flex-col items-center space-y-4">
                           <div className="flex items-center space-x-3 text-black">
               <div className="relative">
