@@ -45,10 +45,7 @@ function Auto() {
     setIsAnalysisLoading(true);
     setIsActionSelectionLoading(true);
     setTimeElapsed(0);
-    // Generate new random classification for new URL
-    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
-    setClassification(randomClassification);
-    setActionType(randomClassification === 'Malicious' ? 'block' : 'allow');
+    // Classification and action type will be updated automatically by useEffect when currentUrl changes
   };
 
   useEffect(() => {
@@ -99,11 +96,11 @@ function Auto() {
     return () => clearTimeout(timer);
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
-  // Randomly generate classification on mount
+  // Generate classification based on current URL
   useEffect(() => {
-    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
-    setClassification(randomClassification);
-    setActionType(randomClassification === 'Malicious' ? 'block' : 'allow');
+    const classification = currentUrl === 'malicious' ? 'Malicious' : 'Non-Malicious';
+    setClassification(classification);
+    setActionType(classification === 'Malicious' ? 'block' : 'allow');
   }, [currentUrl]);
 
   // Show AI classification after AI action selection time has passed

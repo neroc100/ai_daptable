@@ -47,15 +47,13 @@ function Veto() {
     setIsAnalysisLoading(true);
     setIsActionSelectionLoading(true);
     setTimeElapsed(0);
-    // Generate new random classification for new URL
-    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
-    setClassification(randomClassification);
+    // Classification will be updated automatically by useEffect when currentUrl changes
   };
 
-      // Generate random classification on component mount
+      // Generate classification based on current URL
   useEffect(() => {
-    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
-    setClassification(randomClassification);
+    const classification = currentUrl === 'malicious' ? 'Malicious' : 'Non-Malicious';
+    setClassification(classification);
   }, [currentUrl]);
 
   useEffect(() => {
