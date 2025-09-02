@@ -33,7 +33,7 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
       };
     } else {
       return {
-        title: `AI ${isAllow ? 'allowed' : 'blocked'} URL`,
+        title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
         description: `The AI successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
         icon: isAllow ? <Rss className="w-12 h-12 text-black" /> : <ShieldCheck className="w-12 h-12 text-black" />,
         buttonText: 'Next'
@@ -48,22 +48,22 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
 
         
-        <div className="w-[810px] h-44 relative flex flex-col justify-between items-center">
-          <div className="flex flex-col items-center pt-4 space-y-1">
-            <div className="w-[584.39px] h-12 center text-stone-900 text-3xl font-semibold font-['Inter'] leading-4">
+        <div className="w-full h-full relative flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center space-y-4 mb-6">
+            <div className="text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-tight">
               {content.title}
             </div>
             
-            <div className="w-[600px] h-16 center text-neutral-500 text-2xl font-normal font-['Inter'] leading-2">
+            <div className="text-center text-neutral-500 text-2xl font-normal font-['Inter'] leading-tight max-w-lg">
               {content.description}
             </div>
           </div>
           
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center">
             <Next_Button />
           </div>
           
-          <div data-svg-wrapper className="absolute left-0 top-0">
+          <div data-svg-wrapper className="absolute left-6 top-6">
             {content.icon}
           </div>
         </div>
