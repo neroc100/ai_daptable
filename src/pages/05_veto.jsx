@@ -146,7 +146,6 @@ function Veto() {
         {/* Success Message - Shows when override action is completed */}
         {showSuccess && (
           <Success_Message 
-            onClose={() => setShowSuccess(false)}
             decisionType={classification === 'Malicious' ? 'allow' : 'block'}
             actor="human"
           />

@@ -146,7 +146,6 @@ function Allow() {
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
           <Success_Message 
-            onClose={() => setShowSuccess(false)}
             decisionType={actionType === 'confirm' ? (classification === 'Malicious' ? 'block' : 'allow') : (classification === 'Malicious' ? 'allow' : 'block')}
             actor="ai"
           />

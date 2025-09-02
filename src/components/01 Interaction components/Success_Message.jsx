@@ -10,14 +10,13 @@ import Next_Button from './Next_Button';
  * Adapts content, icons, and styling based on the decision type and actor.
  * 
  * @param {Object} props - Component props
- * @param {Function} props.onClose - Callback function to handle modal close
  * @param {string} props.decisionType - Type of decision: 'allow' or 'block'
  * @param {string} props.actor - Who made the decision: 'human' or 'ai'
  * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
  * @param {string} props.actionType - Type of action taken ('confirm' or 'override')
  * @returns {JSX.Element} Success message modal component
  */
-function Success_Message({ onClose, decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm' }) {
+function Success_Message({ decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm' }) {
   const navigate = useNavigate();
 
   // Determine content based on decision type, actor, classification, and action type
@@ -47,13 +46,7 @@ function Success_Message({ onClose, decisionType = 'allow', actor = 'human', cla
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl font-bold"
-        >
-          ×
-        </button>
+
         
         <div className="w-[810px] h-44 relative flex flex-col justify-between items-center">
           <div className="flex flex-col items-center pt-4 space-y-1">

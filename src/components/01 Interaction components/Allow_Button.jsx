@@ -22,13 +22,7 @@ function Allow_Button() {
     setShowModal(true);
   };
 
-  /**
-   * Handles the OK button click in the modal
-   * Closes the success modal when OK is clicked
-   */
-  const handleOKClick = () => {
-    setShowModal(false);
-  };
+
 
   return (
     <>
@@ -52,7 +46,6 @@ function Allow_Button() {
       {/* Success message modal */}
       {showModal && (
         <Success_Message 
-          onClose={handleOKClick}
           decisionType="allow"
           actor="human"
         />

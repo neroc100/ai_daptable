@@ -6,6 +6,7 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
+import AI_auto_display from '../components/AI_action/AI_auto_display';
 import Review_Button from '../components/01 Interaction components/View_Information_Button';
 import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
@@ -31,6 +32,8 @@ function Auto() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [showAIClassification, setShowAIClassification] = useState(false);
+  const [classification, setClassification] = useState('Malicious');
+  const [actionType, setActionType] = useState('block');
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -80,6 +83,13 @@ function Auto() {
     return () => clearTimeout(timer);
   }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
 
+  // Randomly generate classification on mount
+  useEffect(() => {
+    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
+    setClassification(randomClassification);
+    setActionType(randomClassification === 'Malicious' ? 'block' : 'allow');
+  }, []);
+
   // Show AI classification after AI action selection time has passed
   useEffect(() => {
     if (isPaused) return;
@@ -98,14 +108,14 @@ function Auto() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={showAIClassification} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
         
         {/* Separator */}
         <Separator />
         
         {/* Loading/Completion Status */}
         <div className="flex flex-col items-center space-y-4">
-          <AI_Completed_Actions_Display />
+          <AI_Completed_Actions_Display showActionImplementation={true} />
           
           {/* Pause/Resume Instructions */}
           {isLoading && (
@@ -115,65 +125,28 @@ function Auto() {
           )}
         </div>
         
-        {/* Auto Malicious Message A - Shows only when AI Action Selection is complete */}
-        {showAIClassification && !showSuccess && (
-          <div className="w-[1250px] h-56 relative">
-            <div className="w-[1250px] h-56 min-w-60 px-8 py-6 left-0 top-0 absolute bg-white rounded-lg border-4" style={{ borderColor: 'var(--eth-red-100)' }} />
-            
-            {/* Content container with relative positioning */}
-            <div className="relative z-10 h-full flex flex-col justify-center items-center space-y-4">
-              {/* Info Icon */}
-              <div data-svg-wrapper data-size="32" className="absolute left-[32px] top-[25px]">
-                <Info className="w-[55px] h-[38px] text-stone-900" />
-              </div>
-              
-              {/* Main Title */}
-              <div className="w-[934.78px] h-10 ml-[95px] text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
-                URL is likely malicious
-              </div>
-              
-              {/* Review Button */}
-              <Review_Button 
-                onClick={() => setShowReview(!showReview)}
-                showAnalysis={showReview}
-              />
-            </div>
-          </div>
-        )}
+
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
-        {/* AI Blocked URL Text - Shows when message is displayed */}
+        {/* AI Auto Display - Shows when AI classification is displayed */}
         {showAIClassification && !showSuccess && (
-          <div className="flex flex-col items-center space-y-4">
-                          <div className="flex items-center space-x-3 text-black">
-              <div className="relative">
-                <Square className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
-                <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
-              </div>
-              <span className="text-xl font-semibold">AI blocked URL</span>
-            </div>
-            <button
-              onClick={() => {
-                // Show success message
-                setShowSuccess(true);
-              }}
-              className="px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: 'var(--eth-blue-100)' }}
-            >
-              Next
-            </button>
-          </div>
+          <AI_auto_display 
+            onViewInfo={() => setShowReview(!showReview)}
+            onNext={() => setShowSuccess(true)}
+            classification={classification}
+          />
         )}
+        
+
         
         {/* Success Message - Shows when action is completed */}
         {showSuccess && (
           <Success_Message 
-            onClose={() => setShowSuccess(false)}
-            decisionType="block"
+            decisionType={actionType}
             actor="ai"
           />
         )}
