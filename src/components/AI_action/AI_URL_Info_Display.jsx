@@ -19,36 +19,41 @@ import { featureConfigs } from './Feature_boxes/featureConfig';
  */
 function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
   return (
-    <div className="w-[1250px] flex flex-col space-y-6">
-      {/* Top Row - Three boxes */}
-      <div className="flex justify-between space-x-6">
+    <div className="w-[1250px] flex gap-6">
+      {/* Column 1: URL String Analysis */}
+      <div className="flex flex-col w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
           title={featureConfigs.urlStringAnalysis.title}
           features={featureConfigs.urlStringAnalysis.features}
           seed={featureConfigs.urlStringAnalysis.seed}
         />
+      </div>
+      
+      {/* Column 2: Domain Characteristics and DNS */}
+      <div className="flex flex-col gap-6 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
           title={featureConfigs.domainCharacteristics.title}
           features={featureConfigs.domainCharacteristics.features}
           seed={featureConfigs.domainCharacteristics.seed}
         />
+      
+            <Feature_Box 
+          isAnalysisDisplayed={isAnalysisDisplayed}
+          title={featureConfigs.geographicalHosting.title}
+          features={featureConfigs.geographicalHosting.features}
+          seed={featureConfigs.geographicalHosting.seed}
+        />
+      </div>
+      
+      {/* Column 3: Encryption, Webpage Content, and Geographical */}
+      <div className="flex flex-col gap-6 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
           title={featureConfigs.encryptionHttp.title}
           features={featureConfigs.encryptionHttp.features}
           seed={featureConfigs.encryptionHttp.seed}
-        />
-      </div>
-      
-      {/* Bottom Row - Three boxes */}
-      <div className="flex justify-between space-x-6">
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.dnsNetwork.title}
-          features={featureConfigs.dnsNetwork.features}
-          seed={featureConfigs.dnsNetwork.seed}
         />
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
@@ -56,11 +61,11 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
           features={featureConfigs.webpageContent.features}
           seed={featureConfigs.webpageContent.seed}
         />
-        <Feature_Box 
+      <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.geographicalHosting.title}
-          features={featureConfigs.geographicalHosting.features}
-          seed={featureConfigs.geographicalHosting.seed}
+          title={featureConfigs.dnsNetwork.title}
+          features={featureConfigs.dnsNetwork.features}
+          seed={featureConfigs.dnsNetwork.seed}
         />
       </div>
     </div>

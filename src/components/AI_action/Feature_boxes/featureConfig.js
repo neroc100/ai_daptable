@@ -9,59 +9,66 @@ export const featureConfigs = {
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "URL Length", value: "67 characters" },
-      { name: "Protocol", value: "HTTPS" },
-      { name: "Special Characters", value: "8 instances" }
+      { name: "Entropy", value: "High" },
+      { name: "Length", value: "67 characters" },
+      { name: "Letter Count", value: "47 letters" },
+      { name: "Letter Ratio", value: "70.1%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "20 characters" },
+      { name: "Special Characters Ratio", value: "29.9%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
     ],
     seed: 42
   },
   
   domainCharacteristics: {
-    title: "Domain Characteristics",
+    title: "Domain Characteristics and Structure",
     features: [
-      { name: "Domain Age", value: "2 years" },
-      { name: "Domain Reputation", value: "Suspicious" },
-      { name: "Subdomain Count", value: "3 subdomains" }
+      { name: "Active Time (Days)", value: "730 days" },
+      { name: "Host", value: "spg.ethz.ch" },
+      { name: "Lifetime (Days)", value: "730 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/group/people/doctoral-students/" },
+      { name: "Top Level Domain", value: ".ch" }
     ],
     seed: 42
   },
   
   encryptionHttp: {
-    title: "Encryption & HTTP",
+    title: "Encryption and HTTP Response",
     features: [
-      { name: "SSL Certificate", value: "Valid" },
-      { name: "HTTP Status", value: "200 OK" },
-      { name: "Security Headers", value: "Present" }
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "Yes" }
     ],
     seed: 42
   },
   
   dnsNetwork: {
-    title: "DNS & Network",
+    title: "DNS and Network Information",
     features: [
-      { name: "DNS Records", value: "Complete" },
-      { name: "IP Reputation", value: "Clean" },
-      { name: "Network Location", value: "United States" }
+      { name: "Similarity of Name Server Names", value: "High" },
+      { name: "Number of Mail Exchange Records", value: "2 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
     ],
     seed: 42
   },
   
   webpageContent: {
-    title: "Webpage Content",
+    title: "Webpage Content and Structure",
     features: [
-      { name: "Content Type", value: "HTML" },
-      { name: "JavaScript", value: "Minimal" },
-      { name: "External Links", value: "5 links" }
+      { name: "Number of HTML Elements", value: "156 elements" }
     ],
     seed: 42
   },
   
   geographicalHosting: {
-    title: "Geographical & Hosting",
+    title: "Geographical and Hosting Information",
     features: [
-      { name: "Server Location", value: "United States" },
-      { name: "Hosting Provider", value: "AWS" },
-      { name: "Geographic Risk", value: "Low" }
+      { name: "Registration Country", value: "Switzerland" },
+      { name: "Number of Countries for IP Lookup", value: "3 countries" }
     ],
     seed: 42
   }
