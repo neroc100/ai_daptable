@@ -8,9 +8,10 @@ import Success_Message from '../01 Interaction components/Success_Message';
  * Uses ETH green-100 outline to indicate positive action. Shows success modal with overlay
  * when clicked, providing feedback for the expert's decision.
  * 
+ * @param {Function} props.onNext - Callback function when Next URL is clicked
  * @returns {JSX.Element} Allow button with success modal functionality
  */
-function Allow_Button() {
+function Allow_Button({ onNext }) {
   // State to control modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -48,6 +49,7 @@ function Allow_Button() {
         <Success_Message 
           decisionType="allow"
           actor="human"
+          onNext={onNext}
         />
       )}
     </>

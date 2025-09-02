@@ -22,6 +22,14 @@ function Info_acquisition() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
+  const [currentUrl, setCurrentUrl] = useState('eth');
+
+  const handleNextUrl = () => {
+    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    // Reset loading states for new URL
+    setIsLoading(true);
+    setTimeElapsed(0);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -58,7 +66,7 @@ function Info_acquisition() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation />
+        <URL_presentation currentUrl={currentUrl} />
         
         {/* Separator */}
         <Separator />
@@ -77,14 +85,14 @@ function Info_acquisition() {
         
         {/* Information Display - Shows when acquisition is complete */}
         {!isLoading && (
-          <AI_URL_Info_Display isAnalysisDisplayed={false} />
+          <AI_URL_Info_Display isAnalysisDisplayed={false} currentUrl={currentUrl} />
         )}
         
         {/* Action Buttons - Allow and Block */}
         {!isLoading && (
           <div className="flex flex-row space-x-4 w-full max-w-2xl">
-            <Allow_Button />
-            <Block_Button />
+            <Allow_Button onNext={handleNextUrl} />
+            <Block_Button onNext={handleNextUrl} />
           </div>
         )}
         

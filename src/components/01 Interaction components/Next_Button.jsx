@@ -19,8 +19,9 @@ function Next_Button({ className = "", onClick, text = "Next URL" }) {
   const handleClick = () => {
     if (onClick) {
       onClick();
+    } else {
+      navigate('/');
     }
-    navigate('/');
   };
 
   return (

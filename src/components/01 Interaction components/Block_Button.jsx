@@ -8,9 +8,10 @@ import Success_Message from '../01 Interaction components/Success_Message';
  * Uses ETH red-100 outline to indicate negative action. Shows success modal with overlay
  * when clicked, providing feedback for the expert's decision.
  * 
+ * @param {Function} props.onNext - Callback function when Next URL is clicked
  * @returns {JSX.Element} Block button with success modal functionality
  */
-function Block_Button() {
+function Block_Button({ onNext }) {
   // State to control modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -48,6 +49,7 @@ function Block_Button() {
         <Success_Message 
           decisionType="block"
           actor="human"
+          onNext={onNext}
         />
       )}
     </>

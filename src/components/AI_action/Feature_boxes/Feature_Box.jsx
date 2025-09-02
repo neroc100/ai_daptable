@@ -16,29 +16,106 @@ import { ThumbsUp, ThumbsDown, ChevronUp, ChevronDown } from 'lucide-react';
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design
  * @param {string} props.title - The title of the feature box
  * @param {Array} props.features - Array of feature objects with name and value properties
- * @param {number} props.seed - Seed for consistent random icon generation (default: 42)
  * @returns {JSX.Element} Unified feature box component
  */
 function Feature_Box({ 
   isAnalysisDisplayed = false, 
   title, 
-  features, 
-  seed = 42 
+  features
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
-  // Generate stable random icons for each feature using a seed
+  // Evaluate features for security risk assessment
   const featureIcons = useMemo(() => {
-    return features.map((feature, index) => {
-      // Simple hash function for consistent randomness
-      const hash = feature.name.split('').reduce((a, b) => {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a;
-      }, seed + index);
+    return features.map((feature) => {
+      // Evaluate each feature based on security best practices
+      const featureName = feature.name.toLowerCase();
+      const featureValue = feature.value.toLowerCase();
       
-      return hash % 2 === 0 ? 'thumbsUp' : 'thumbsDown';
+      // URL String Analysis features
+      if (featureName.includes('entropy')) {
+        return featureValue.includes('high') ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('length')) {
+        return parseInt(featureValue) > 100 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('letter ratio')) {
+        const ratio = parseFloat(featureValue);
+        return ratio > 0.8 ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('numeric count')) {
+        return parseInt(featureValue) > 5 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('out of place http') || featureName.includes('out of place www')) {
+        return parseInt(featureValue) > 0 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('special characters count')) {
+        return parseInt(featureValue) > 15 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('special characters ratio')) {
+        const ratio = parseFloat(featureValue);
+        return ratio > 0.3 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('unusual characters')) {
+        return parseInt(featureValue) > 0 ? 'thumbsDown' : 'thumbsUp';
+      }
+      
+      // Domain Characteristics features
+      if (featureName.includes('active time') || featureName.includes('lifetime')) {
+        const days = parseInt(featureValue);
+        return days > 365 ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('host')) {
+        return featureValue.includes('ethz.ch') ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('number of directories')) {
+        const count = parseInt(featureValue);
+        return count > 3 ? 'thumbsDown' : 'thumbsUp';
+      }
+      if (featureName.includes('top level domain')) {
+        return featureValue.includes('.ch') ? 'thumbsUp' : 'thumbsDown';
+      }
+      
+      // DNS and Network features
+      if (featureName.includes('similarity of name server names')) {
+        return featureValue.includes('high') ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('number of mail exchange records')) {
+        const count = parseInt(featureValue);
+        return count >= 2 && count <= 5 ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('number of name servers')) {
+        const count = parseInt(featureValue);
+        return count >= 2 && count <= 6 ? 'thumbsUp' : 'thumbsDown';
+      }
+      
+      // Encryption and HTTP features
+      if (featureName.includes('http response')) {
+        return featureValue.includes('200') ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('ssl enabled')) {
+        return featureValue.includes('yes') || featureValue.includes('true') ? 'thumbsUp' : 'thumbsDown';
+      }
+      
+      // Webpage Content features
+      if (featureName.includes('number of html elements')) {
+        const count = parseInt(featureValue);
+        return count > 0 && count < 500 ? 'thumbsUp' : 'thumbsDown';
+      }
+      
+      // Geographical and Hosting features
+      if (featureName.includes('registration country')) {
+        return featureValue.includes('switzerland') ? 'thumbsUp' : 'thumbsDown';
+      }
+      if (featureName.includes('number of countries for ip lookup')) {
+        const count = parseInt(featureValue);
+        return count <= 3 ? 'thumbsUp' : 'thumbsDown';
+      }
+      
+      // Default to thumbs up for unknown features
+      return 'thumbsUp';
     });
-  }, [features, seed]);
+  }, [features]);
 
   // Calculate majority for outline color
   const thumbsUpCount = featureIcons.filter(icon => icon === 'thumbsUp').length;

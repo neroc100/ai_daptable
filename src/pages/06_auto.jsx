@@ -34,6 +34,23 @@ function Auto() {
   const [showAIClassification, setShowAIClassification] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('block');
+  const [currentUrl, setCurrentUrl] = useState('eth');
+
+  const handleNextUrl = () => {
+    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    // Reset success and review states for new URL
+    setShowSuccess(false);
+    setShowReview(false);
+    // Reset timers for new URL
+    setIsLoading(true);
+    setIsAnalysisLoading(true);
+    setIsActionSelectionLoading(true);
+    setTimeElapsed(0);
+    // Generate new random classification for new URL
+    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
+    setClassification(randomClassification);
+    setActionType(randomClassification === 'Malicious' ? 'block' : 'allow');
+  };
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -88,7 +105,7 @@ function Auto() {
     const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
     setClassification(randomClassification);
     setActionType(randomClassification === 'Malicious' ? 'block' : 'allow');
-  }, []);
+  }, [currentUrl]);
 
   // Show AI classification after AI action selection time has passed
   useEffect(() => {
@@ -99,7 +116,7 @@ function Auto() {
     }, LOAD_TIME_AI_ACTION_SELECTION);
 
     return () => clearTimeout(timer);
-  }, [isPaused]);
+  }, [isPaused, currentUrl]);
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -108,7 +125,7 @@ function Auto() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} currentUrl={currentUrl} />
         
         {/* Separator */}
         <Separator />
@@ -129,7 +146,7 @@ function Auto() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} currentUrl={currentUrl} />
         )}
         
         {/* AI Auto Display - Shows when AI classification is displayed */}
@@ -148,6 +165,7 @@ function Auto() {
           <Success_Message 
             decisionType={actionType}
             actor="ai"
+            onNext={handleNextUrl}
           />
         )}
         

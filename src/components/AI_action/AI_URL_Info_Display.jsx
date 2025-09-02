@@ -1,6 +1,6 @@
 import React from 'react';
 import Feature_Box from './Feature_boxes/Feature_Box';
-import { featureConfigs } from './Feature_boxes/featureConfig';
+import { ethUrlConfig, maliciousUrlConfig } from './Feature_boxes/featureConfig';
 
 /**
  * AI URL Info Display Component
@@ -15,18 +15,21 @@ import { featureConfigs } from './Feature_boxes/featureConfig';
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design (default: false)
+ * @param {string} props.currentUrl - The current URL to display ('eth' or 'malicious')
  * @returns {JSX.Element} AI URL info display component
  */
-function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
+function AI_URL_Info_Display({ isAnalysisDisplayed = false, currentUrl = 'eth' }) {
+  // Select configuration based on current URL
+  const config = currentUrl === 'malicious' ? maliciousUrlConfig : ethUrlConfig;
+  
   return (
     <div className="w-[1250px] flex gap-6">
       {/* Column 1: URL String Analysis */}
       <div className="flex flex-col w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.urlStringAnalysis.title}
-          features={featureConfigs.urlStringAnalysis.features}
-          seed={featureConfigs.urlStringAnalysis.seed}
+          title={config.urlStringAnalysis.title}
+          features={config.urlStringAnalysis.features}
         />
       </div>
       
@@ -34,16 +37,13 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
       <div className="flex flex-col gap-6 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.domainCharacteristics.title}
-          features={featureConfigs.domainCharacteristics.features}
-          seed={featureConfigs.domainCharacteristics.seed}
+          title={config.domainCharacteristics.title}
+          features={config.domainCharacteristics.features}
         />
-      
-            <Feature_Box 
+        <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.geographicalHosting.title}
-          features={featureConfigs.geographicalHosting.features}
-          seed={featureConfigs.geographicalHosting.seed}
+          title={config.dnsNetwork.title}
+          features={config.dnsNetwork.features}
         />
       </div>
       
@@ -51,21 +51,18 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
       <div className="flex flex-col gap-6 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.encryptionHttp.title}
-          features={featureConfigs.encryptionHttp.features}
-          seed={featureConfigs.encryptionHttp.seed}
+          title={config.encryptionHttp.title}
+          features={config.encryptionHttp.features}
         />
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.webpageContent.title}
-          features={featureConfigs.webpageContent.features}
-          seed={featureConfigs.webpageContent.seed}
+          title={config.webpageContent.title}
+          features={config.webpageContent.features}
         />
-      <Feature_Box 
+        <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
-          title={featureConfigs.dnsNetwork.title}
-          features={featureConfigs.dnsNetwork.features}
-          seed={featureConfigs.dnsNetwork.seed}
+          title={config.geographicalHosting.title}
+          features={config.geographicalHosting.features}
         />
       </div>
     </div>

@@ -34,12 +34,28 @@ function Veto() {
   const [classification, setClassification] = useState('Non-Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('eth');
 
-  // Generate random classification on component mount
+  const handleNextUrl = () => {
+    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    // Reset success and review states for new URL
+    setShowSuccess(false);
+    setShowReview(false);
+    // Reset timers for new URL
+    setIsLoading(true);
+    setIsAnalysisLoading(true);
+    setIsActionSelectionLoading(true);
+    setTimeElapsed(0);
+    // Generate new random classification for new URL
+    const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
+    setClassification(randomClassification);
+  };
+
+      // Generate random classification on component mount
   useEffect(() => {
     const randomClassification = Math.random() < 0.5 ? 'Malicious' : 'Non-Malicious';
     setClassification(randomClassification);
-  }, []);
+  }, [currentUrl]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -98,7 +114,7 @@ function Veto() {
     }, LOAD_TIME_AI_ACTION_SELECTION);
 
     return () => clearTimeout(timer);
-  }, [isPaused]);
+  }, [isPaused, currentUrl]);
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -107,7 +123,7 @@ function Veto() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} currentUrl={currentUrl} />
         
         {/* Separator */}
         <Separator />
@@ -140,14 +156,15 @@ function Veto() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} />
-                )}
+          <AI_URL_Info_Display isAnalysisDisplayed={true} currentUrl={currentUrl} />
+        )}
         
         {/* Success Message - Shows when override action is completed */}
         {showSuccess && (
           <Success_Message 
             decisionType={classification === 'Malicious' ? 'allow' : 'block'}
             actor="human"
+            onNext={handleNextUrl}
           />
         )}
         

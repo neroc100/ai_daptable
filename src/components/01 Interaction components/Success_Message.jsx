@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Rss, ShieldCheck, Check } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import Next_Button from './Next_Button';
 
 /**
@@ -14,10 +13,18 @@ import Next_Button from './Next_Button';
  * @param {string} props.actor - Who made the decision: 'human' or 'ai'
  * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
  * @param {string} props.actionType - Type of action taken ('confirm' or 'override')
+ * @param {Function} props.onNext - Callback function when Next URL is clicked
  * @returns {JSX.Element} Success message modal component
  */
-function Success_Message({ decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm' }) {
-  const navigate = useNavigate();
+function Success_Message({ decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm', onNext }) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleNextClick = () => {
+    if (onNext) {
+      onNext();
+    }
+    setIsVisible(false);
+  };
 
   // Determine content based on decision type, actor, classification, and action type
   const getContent = () => {
@@ -43,6 +50,10 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
 
   const content = getContent();
 
+  if (!isVisible) {
+    return null;
+  }
+
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
@@ -60,7 +71,7 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
           </div>
           
           <div className="flex justify-center">
-            <Next_Button />
+            <Next_Button onClick={handleNextClick} />
           </div>
           
           <div data-svg-wrapper className="absolute left-6 top-6">

@@ -1,5 +1,6 @@
 import React from 'react';
 import AI_classification from '../AI_action/AI_classification';
+import { ethUrlConfig, maliciousUrlConfig } from '../AI_action/Feature_boxes/featureConfig';
 
 /**
  * URL Presentation Component
@@ -11,9 +12,10 @@ import AI_classification from '../AI_action/AI_classification';
  * @param {Object} props - Component props
  * @param {boolean} props.showAIClassification - Whether to show the AI classification box
  * @param {string} props.classification - The AI classification to display
+ * @param {string} props.currentUrl - The current URL to display ('eth' or 'malicious')
  * @returns {JSX.Element} URL presentation component with input field
  */
-function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
+function URL_presentation({ showAIClassification = false, classification = 'Malicious', currentUrl = 'eth' }) {
   return (
     // Main URL container with white background and light border
     <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
@@ -24,13 +26,13 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
         
         {/* URL input field container */}
         <div className="self-stretch h-12 min-w-60 px-4 py-6 bg-white rounded-lg outline outline-1 outline-offset-[-0.50px] inline-flex justify-start items-center overflow-hidden" style={{ outlineColor: 'var(--eth-gray-100)' }}>
-          {/* URL text container */}
-          <div className="w-[1170px] h-8 relative">
-            {/* Sample URL text - positioned relatively for natural flow */}
-            <div className="w-[1170px] justify-start text-stone-900 text-2xl font-normal font-['Inter'] leading-normal">
-              https://spg.ethz.ch/group/people/doctoral-students/neele-roch.html
-            </div>
+                  {/* URL text container */}
+        <div className="w-[1170px] h-8 relative">
+          {/* Sample URL text - positioned relatively for natural flow */}
+          <div className="w-[1170px] justify-start text-stone-900 text-2xl font-normal font-['Inter'] leading-normal">
+            {currentUrl === 'malicious' ? maliciousUrlConfig.url : ethUrlConfig.url}
           </div>
+        </div>
         </div>
       </div>
       
