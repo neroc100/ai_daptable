@@ -10,10 +10,10 @@ import { useNavigate } from 'react-router-dom';
  * @param {Object} props - Component props
  * @param {string} props.className - Additional CSS classes for the button
  * @param {Function} props.onClick - Optional custom click handler (if not provided, navigates to main page)
- * @param {string} props.text - Button text (defaults to "Next")
+ * @param {string} props.text - Button text (defaults to "Next URL")
  * @returns {JSX.Element} Next button component
  */
-function Next_Button({ className = "", onClick, text = "Next" }) {
+function Next_Button({ className = "", onClick, text = "Next URL" }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
