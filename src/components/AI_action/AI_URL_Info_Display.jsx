@@ -1,6 +1,7 @@
 import React from 'react';
 import Feature_Box from './Feature_boxes/Feature_Box';
 import { ethUrlConfig, maliciousUrlConfig } from './Feature_boxes/featureConfig';
+import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
  * AI URL Info Display Component
@@ -15,10 +16,10 @@ import { ethUrlConfig, maliciousUrlConfig } from './Feature_boxes/featureConfig'
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design (default: false)
- * @param {string} props.currentUrl - The current URL to display ('eth' or 'malicious')
  * @returns {JSX.Element} AI URL info display component
  */
-function AI_URL_Info_Display({ isAnalysisDisplayed = false, currentUrl = 'eth' }) {
+function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
+  const { currentUrl } = useUrlCounter();
   // Select configuration based on current URL
   const config = currentUrl === 'malicious' ? maliciousUrlConfig : ethUrlConfig;
   

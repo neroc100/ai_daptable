@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import { useUrlCounter } from '../context/UrlCounterContext';
 
 /**
  * Manual Condition Page
@@ -12,10 +13,10 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
  * @returns {JSX.Element}
  */
 function Manual() {
-  const [currentUrl, setCurrentUrl] = useState('eth');
+  const { currentUrl, switchUrl } = useUrlCounter();
 
   const handleNextUrl = () => {
-    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    switchUrl();
     // Reset any success states if needed
   };
 
@@ -26,7 +27,7 @@ function Manual() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation currentUrl={currentUrl} />
+        <URL_presentation />
         
         {/* Separator */}
         <Separator />

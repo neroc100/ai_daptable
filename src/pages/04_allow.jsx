@@ -11,6 +11,7 @@ import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_Action_request from '../components/AI_action/AI_Action_request';
+import { useUrlCounter } from '../context/UrlCounterContext';
 
 /**
  * Allow Malicious Page
@@ -29,10 +30,10 @@ function Allow() {
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showAIClassification, setShowAIClassification] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState('eth');
+  const { currentUrl, switchUrl } = useUrlCounter();
 
   const handleNextUrl = () => {
-    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    switchUrl();
     // Reset success and review states for new URL
     setShowSuccess(false);
     setShowReview(false);
@@ -119,7 +120,7 @@ function Allow() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} currentUrl={currentUrl} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
         
         {/* Separator */}
         <Separator />
@@ -156,7 +157,7 @@ function Allow() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} currentUrl={currentUrl} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Success Message - Shows when action is completed */}

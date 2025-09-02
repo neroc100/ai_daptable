@@ -7,6 +7,7 @@ import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
+import { useUrlCounter } from '../context/UrlCounterContext';
 
 /**
  * Page for info analysis condition
@@ -18,10 +19,10 @@ function Info_analysis() {
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [currentUrl, setCurrentUrl] = useState('eth');
+  const { currentUrl, switchUrl } = useUrlCounter();
 
   const handleNextUrl = () => {
-    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    switchUrl();
     // Reset loading states for new URL
     setIsLoading(true);
     setIsAnalysisLoading(true);
@@ -73,7 +74,7 @@ function Info_analysis() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation currentUrl={currentUrl} />
+        <URL_presentation />
         
         {/* Separator */}
         <Separator />
@@ -92,12 +93,12 @@ function Info_analysis() {
         
         {/* Info Display - Shows when AI analysis timer runs out */}
         {!isAnalysisLoading && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} currentUrl={currentUrl} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Info Display - Shows when acquisition is complete but hides when analysis is complete */}
         {!isLoading && isAnalysisLoading && (
-          <AI_URL_Info_Display isAnalysisDisplayed={false} currentUrl={currentUrl} />
+          <AI_URL_Info_Display isAnalysisDisplayed={false} />
         )}
         
         {/* Action Buttons - Allow and Block */}

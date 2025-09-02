@@ -1,6 +1,7 @@
 import React from 'react';
 import AI_classification from '../AI_action/AI_classification';
 import { ethUrlConfig, maliciousUrlConfig } from '../AI_action/Feature_boxes/featureConfig';
+import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
  * URL Presentation Component
@@ -12,10 +13,10 @@ import { ethUrlConfig, maliciousUrlConfig } from '../AI_action/Feature_boxes/fea
  * @param {Object} props - Component props
  * @param {boolean} props.showAIClassification - Whether to show the AI classification box
  * @param {string} props.classification - The AI classification to display
- * @param {string} props.currentUrl - The current URL to display ('eth' or 'malicious')
  * @returns {JSX.Element} URL presentation component with input field
  */
-function URL_presentation({ showAIClassification = false, classification = 'Malicious', currentUrl = 'eth' }) {
+function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
+  const { currentUrl } = useUrlCounter();
   return (
     // Main URL container with white background and light border
     <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>

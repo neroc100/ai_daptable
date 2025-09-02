@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Manual from './pages/01_manual';
@@ -8,6 +9,7 @@ import Veto from './pages/05_veto';
 import Auto from './pages/06_auto';
 import Dummy from './pages/dummy';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
+import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
 
 
 /**
@@ -28,6 +30,13 @@ function MainPage() {
   const navigate = useNavigate();
   // Access the global button context to set the clicked button number
   const { setCondition } = useButtonContext();
+  // Access the global URL counter context to reset when returning to main page
+  const { resetForNewExperiment } = useUrlCounter();
+
+  // Reset URL counter when returning to main page
+  React.useEffect(() => {
+    resetForNewExperiment();
+  }, [resetForNewExperiment]);
 
   /**
    * Handles button clicks and sets the button number globally
@@ -138,22 +147,24 @@ function MainPage() {
 function App() {
   return (
     <ButtonProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          <main>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/manual" element={<Manual />} />
-              <Route path="/info-acquisition" element={<Info_acquisition />} />
-              <Route path="/info-analysis" element={<Info_analysis />} />
-              <Route path="/allow" element={<Allow />} />
-              <Route path="/veto" element={<Veto />} />
-              <Route path="/auto" element={<Auto/>} />
-              <Route path="/dummy" element={<Dummy />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
+      <UrlCounterProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50">
+            <main>
+              <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/manual" element={<Manual />} />
+                <Route path="/info-acquisition" element={<Info_acquisition />} />
+                <Route path="/info-analysis" element={<Info_analysis />} />
+                <Route path="/allow" element={<Allow />} />
+                <Route path="/veto" element={<Veto />} />
+                <Route path="/auto" element={<Auto/>} />
+                <Route path="/dummy" element={<Dummy />} />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </UrlCounterProvider>
     </ButtonProvider>
   );
 }

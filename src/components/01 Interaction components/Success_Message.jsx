@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Rss, ShieldCheck, Check } from 'lucide-react';
 import Next_Button from './Next_Button';
+import { useUrlCounter } from '../../context/UrlCounterContext';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Success Message Component
@@ -18,9 +20,16 @@ import Next_Button from './Next_Button';
  */
 function Success_Message({ decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm', onNext }) {
   const [isVisible, setIsVisible] = useState(true);
+  const { urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
+  const navigate = useNavigate();
 
   const handleNextClick = () => {
-    if (onNext) {
+    if (urlCount >= maxUrls) {
+      // Maximum URLs reached, navigate to main page
+      navigate('/');
+    } else if (onNext) {
+      // More URLs to go, increment counter and call onNext callback
+      incrementUrlCount();
       onNext();
     }
     setIsVisible(false);

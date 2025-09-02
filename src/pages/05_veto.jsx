@@ -12,6 +12,7 @@ import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
+import { useUrlCounter } from '../context/UrlCounterContext';
 
 /**
  * Veto Non Malicious A Page
@@ -34,10 +35,10 @@ function Veto() {
   const [classification, setClassification] = useState('Non-Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showSuccess, setShowSuccess] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState('eth');
+  const { currentUrl, switchUrl } = useUrlCounter();
 
   const handleNextUrl = () => {
-    setCurrentUrl(currentUrl === 'eth' ? 'malicious' : 'eth');
+    switchUrl();
     // Reset success and review states for new URL
     setShowSuccess(false);
     setShowReview(false);
@@ -123,7 +124,7 @@ function Veto() {
         <Dashboard_Header />
         
         {/* URL Input Section */}
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} currentUrl={currentUrl} />
+        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
         
         {/* Separator */}
         <Separator />
@@ -156,7 +157,7 @@ function Veto() {
         
         {/* Info Display - Shows when review button is clicked */}
         {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} currentUrl={currentUrl} />
+          <AI_URL_Info_Display isAnalysisDisplayed={true} />
         )}
         
         {/* Success Message - Shows when override action is completed */}
