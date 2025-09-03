@@ -28,8 +28,7 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
       // Maximum URLs reached, navigate to main page
       navigate('/');
     } else if (onNext) {
-      // More URLs to go, increment counter and call onNext callback
-      incrementUrlCount();
+      // More URLs to go, call onNext callback (which will handle incrementing)
       onNext();
     }
     setIsVisible(false);

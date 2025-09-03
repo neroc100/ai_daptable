@@ -16,8 +16,9 @@ function AI_Action_request({ onConfirm, onOverride, onViewInfo, classification =
   return (
     <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)' }}>
       {/* Title */}
-      <div className="text-2xl font-semibold text-black mb-4">
-        AI requests to {classification === 'Malicious' ? 'block' : 'allow'} the URL
+     <div className="text-3xl font-semibold text-black mb-4 animate-pulse">
+          AI requests to {classification === 'Malicious' ? 'block' : 'allow'} the URL
+
       </div>
       
       {/* Buttons */}

@@ -23,17 +23,18 @@ function AI_veto_request({ onOverride, onViewInfo, onNext, classification = 'Non
       
       {/* Buttons */}
       <div className="flex flex-row space-x-4">
-        <Next_Button 
-          className="px-12 py-4 text-lg"
-          onClick={onNext}
-        />
         <button
           onClick={onOverride}
           className="px-12 py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-lg"
           style={{ backgroundColor: 'var(--eth-blue-100)' }}
         >
-          {classification === 'Malicious' ? 'Allow URL instead' : 'Block URL instead'}
+          Override and {classification === 'Malicious' ? 'Allow' : 'Block'} URL instead
         </button>
+        <Next_Button 
+          className="px-12 py-4 text-lg"
+          onClick={onNext}
+        />
+        
       </div>
       
       {/* View Information Button */}
