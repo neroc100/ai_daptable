@@ -13,6 +13,7 @@ import Block_Button from '../components/01 Interaction components/Block_Button';
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Veto Non Malicious A Page
@@ -35,19 +36,27 @@ function Veto() {
   const [classification, setClassification] = useState('Non-Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showSuccess, setShowSuccess] = useState(false);
-  const { currentUrl, switchUrl } = useUrlCounter();
+  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
+  const navigate = useNavigate();
 
   const handleNextUrl = () => {
-    switchUrl();
-    // Reset success and review states for new URL
-    setShowSuccess(false);
-    setShowReview(false);
-    // Reset timers for new URL
-    setIsLoading(true);
-    setIsAnalysisLoading(true);
-    setIsActionSelectionLoading(true);
-    setTimeElapsed(0);
-    // Classification will be updated automatically by useEffect when currentUrl changes
+    if (urlCount >= maxUrls) {
+      // Maximum URLs reached, navigate to main page
+      navigate('/');
+    } else {
+      // More URLs to go, increment counter and switch URL
+      incrementUrlCount();
+      switchUrl();
+      // Reset success and review states for new URL
+      setShowSuccess(false);
+      setShowReview(false);
+      // Reset timers for new URL
+      setIsLoading(true);
+      setIsAnalysisLoading(true);
+      setIsActionSelectionLoading(true);
+      setTimeElapsed(0);
+      // Classification will be updated automatically by useEffect when currentUrl changes
+    }
   };
 
       // Generate classification based on current URL

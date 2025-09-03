@@ -12,6 +12,7 @@ import Success_Message from '../components/01 Interaction components/Success_Mes
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_Action_request from '../components/AI_action/AI_Action_request';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Allow Malicious Page
@@ -30,19 +31,27 @@ function Allow() {
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showAIClassification, setShowAIClassification] = useState(false);
-  const { currentUrl, switchUrl } = useUrlCounter();
+  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
+  const navigate = useNavigate();
 
   const handleNextUrl = () => {
-    switchUrl();
-    // Reset success and review states for new URL
-    setShowSuccess(false);
-    setShowReview(false);
-    // Reset timers for new URL
-    setIsLoading(true);
-    setIsAnalysisLoading(true);
-    setIsActionSelectionLoading(true);
-    setTimeElapsed(0);
-    // Classification will be updated automatically by useEffect when currentUrl changes
+    if (urlCount >= maxUrls) {
+      // Maximum URLs reached, navigate to main page
+      navigate('/');
+    } else {
+      // More URLs to go, increment counter and switch URL
+      incrementUrlCount();
+      switchUrl();
+      // Reset success and review states for new URL
+      setShowSuccess(false);
+      setShowReview(false);
+      // Reset timers for new URL
+      setIsLoading(true);
+      setIsAnalysisLoading(true);
+      setIsActionSelectionLoading(true);
+      setTimeElapsed(0);
+      // Classification will be updated automatically by useEffect when currentUrl changes
+    }
   };
 
       // Generate classification based on current URL
