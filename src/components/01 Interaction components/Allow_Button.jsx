@@ -49,7 +49,10 @@ function Allow_Button({ onNext }) {
         <Success_Message 
           decisionType="allow"
           actor="human"
-          onNext={onNext}
+          onNext={() => {
+            onNext();
+            setShowModal(false); // Reset modal state when onNext is called
+          }}
         />
       )}
     </>

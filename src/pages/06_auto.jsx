@@ -8,9 +8,9 @@ import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
 import Review_Button from '../components/01 Interaction components/View_Information_Button';
-import Success_Message from '../components/01 Interaction components/Success_Message';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Auto Malicious A Page
@@ -28,24 +28,29 @@ function Auto() {
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [showAIClassification, setShowAIClassification] = useState(false);
   const [classification, setClassification] = useState('Malicious');
-  const [actionType, setActionType] = useState('block');
-  const { currentUrl, switchUrl } = useUrlCounter();
+  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
+  const navigate = useNavigate();
 
   const handleNextUrl = () => {
-    switchUrl();
-    // Reset success and review states for new URL
-    setShowSuccess(false);
-    setShowReview(false);
-    // Reset timers for new URL
-    setIsLoading(true);
-    setIsAnalysisLoading(true);
-    setIsActionSelectionLoading(true);
-    setTimeElapsed(0);
-    // Classification and action type will be updated automatically by useEffect when currentUrl changes
+    if (urlCount >= maxUrls) {
+      // Maximum URLs reached, navigate to main page
+      navigate('/');
+    } else {
+      // More URLs to go, increment counter and switch URL
+      incrementUrlCount();
+      switchUrl();
+      // Reset review state for new URL
+      setShowReview(false);
+      // Reset timers for new URL
+      setIsLoading(true);
+      setIsAnalysisLoading(true);
+      setIsActionSelectionLoading(true);
+      setTimeElapsed(0);
+      // Classification will be updated automatically by useEffect when currentUrl changes
+    }
   };
 
   useEffect(() => {
@@ -100,7 +105,6 @@ function Auto() {
   useEffect(() => {
     const classification = currentUrl === 'malicious' ? 'Malicious' : 'Non-Malicious';
     setClassification(classification);
-    setActionType(classification === 'Malicious' ? 'block' : 'allow');
   }, [currentUrl]);
 
   // Show AI classification after AI action selection time has passed
@@ -146,22 +150,11 @@ function Auto() {
         )}
         
         {/* AI Auto Display - Shows when AI classification is displayed */}
-        {showAIClassification && !showSuccess && (
+        {showAIClassification && (
           <AI_auto_display 
             onViewInfo={() => setShowReview(!showReview)}
-            onNext={() => setShowSuccess(true)}
-            classification={classification}
-          />
-        )}
-        
-
-        
-        {/* Success Message - Shows when action is completed */}
-        {showSuccess && (
-          <Success_Message 
-            decisionType={actionType}
-            actor="ai"
             onNext={handleNextUrl}
+            classification={classification}
           />
         )}
         
