@@ -29,7 +29,7 @@ function Progress_Bar() {
         <div 
           className="h-full rounded-full transition-all duration-500 ease-in-out"
           style={{ 
-            width: urlCount === 1 ? '0%' : urlCount === 2 ? '25%' : urlCount === 3 ? '50%' : '75%',
+            width: urlCount === 1 ? '0%' : urlCount === 2 ? '33%' : urlCount === 3 ? '66%' : '100%',
             backgroundColor: 'var(--eth-blue-100)'
           }}
         />

@@ -158,6 +158,7 @@ function Veto() {
               setShowSuccess(true);
             }}
             onViewInfo={() => setShowReview(!showReview)}
+            onNext={handleNextUrl}
             classification={classification}
           />
         )}

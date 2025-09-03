@@ -132,11 +132,11 @@ export const maliciousUrlConfig = {
 
 // Ambiguous legitimate URL (e-commerce site with some suspicious features)
 export const ambiguousLegitimateUrlConfig = {
-  url: "https://discount-electronics-store.net/shop/electronics/phones/smartphones",
+  url: "https://discount-electronics-store.net/shop/electronics/phones/smartphones/prizes",
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "Entropy", value: "Medium" },
+      { name: "Entropy", value: "High" },
       { name: "Length", value: "78 characters" },
       { name: "Letter Count", value: "58 letters" },
       { name: "Letter Ratio", value: "74.4%" },
@@ -145,18 +145,18 @@ export const ambiguousLegitimateUrlConfig = {
       { name: "Out of Place WWW", value: "0 instances" },
       { name: "Special Characters Count", value: "20 characters" },
       { name: "Special Characters Ratio", value: "25.6%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
+      { name: "Unusual Characters Count", value: "2 characters" },
+      { name: "Unusual Characters Ratio", value: "2.6%" }
     ]
   },
   
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
-      { name: "Active Time (Days)", value: "180 days" },
+      { name: "Active Time (Days)", value: "200 days" },
       { name: "Host", value: "discount-electronics-store.net" },
-      { name: "Lifetime (Days)", value: "180 days" },
-      { name: "Number of Directories", value: "4 directories" },
+      { name: "Lifetime (Days)", value: "200 days" },
+      { name: "Number of Directories", value: "5 directories" },
       { name: "Path", value: "/shop/electronics/phones/" },
       { name: "Top Level Domain", value: ".net" }
     ]
@@ -173,31 +173,31 @@ export const ambiguousLegitimateUrlConfig = {
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
-      { name: "Similarity of Name Server Names", value: "Medium" },
-      { name: "Number of Mail Exchange Records", value: "1 record" },
-      { name: "Number of Name Servers", value: "2 servers" }
+      { name: "Similarity of Name Server Names", value: "Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
     ]
   },
   
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "320 elements" }
+      { name: "Number of HTML Elements", value: "420 elements" }
     ]
   },
   
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
-      { name: "Registration Country", value: "United States" },
-      { name: "Number of Countries for IP Lookup", value: "5 countries" }
+      { name: "Registration Country", value: "Panama" },
+      { name: "Number of Countries for IP Lookup", value: "7 countries" }
     ]
   }
 };
 
 // Ambiguous malicious URL (phishing site that looks legitimate)
 export const ambiguousMaliciousUrlConfig = {
-  url: "https://secure-banking-login-verification.com/account/security/update",
+  url: "https://secure-banking-login-verification.com/аccount/security/updаte",
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -210,8 +210,8 @@ export const ambiguousMaliciousUrlConfig = {
       { name: "Out of Place WWW", value: "0 instances" },
       { name: "Special Characters Count", value: "17 characters" },
       { name: "Special Characters Ratio", value: "23.6%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
+      { name: "Unusual Characters Count", value: "2 characters" },
+      { name: "Unusual Characters Ratio", value: "2.8%" }
     ]
   },
   

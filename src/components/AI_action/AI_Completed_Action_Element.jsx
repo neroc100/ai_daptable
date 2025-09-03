@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Loader2, Check, Square } from 'lucide-react';
+import { Loader2, ClipboardCheck } from 'lucide-react';
 
 /**
  * AI Completed Action Element Component
  * 
- * This component displays a loading icon that transitions to a checkmark with square outline
+ * This component displays a loading icon that transitions to a clipboard check icon
  * after the loading period. It includes customizable text passed as a parameter.
  * 
  * @param {Object} props - Component props
@@ -29,10 +29,7 @@ function AI_Completed_Action_Element({ loadingTime = 3000, text = "AI Action Inf
         {isLoading ? (
           <Loader2 className="w-6 h-6 animate-spin" style={{ color: 'var(--eth-blue-100)' }} />
         ) : (
-          <div className="relative">
-            <Square className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
-            <Check className="w-4 h-4 absolute inset-0 m-auto" strokeWidth={3} style={{ color: 'var(--eth-blue-100)' }} />
-          </div>
+          <ClipboardCheck className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
         )}
         <span className="text-xl font-semibold">{text}</span>
       </div>
