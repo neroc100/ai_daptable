@@ -130,5 +130,135 @@ export const maliciousUrlConfig = {
   }
 };
 
+// Ambiguous legitimate URL (e-commerce site with some suspicious features)
+export const ambiguousLegitimateUrlConfig = {
+  url: "https://discount-electronics-store.net/shop/electronics/phones/smartphones",
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "78 characters" },
+      { name: "Letter Count", value: "58 letters" },
+      { name: "Letter Ratio", value: "74.4%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "20 characters" },
+      { name: "Special Characters Ratio", value: "25.6%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+  
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "180 days" },
+      { name: "Host", value: "discount-electronics-store.net" },
+      { name: "Lifetime (Days)", value: "180 days" },
+      { name: "Number of Directories", value: "4 directories" },
+      { name: "Path", value: "/shop/electronics/phones/" },
+      { name: "Top Level Domain", value: ".net" }
+    ]
+  },
+  
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+  
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Medium" },
+      { name: "Number of Mail Exchange Records", value: "1 record" },
+      { name: "Number of Name Servers", value: "2 servers" }
+    ]
+  },
+  
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "320 elements" }
+    ]
+  },
+  
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "5 countries" }
+    ]
+  }
+};
+
+// Ambiguous malicious URL (phishing site that looks legitimate)
+export const ambiguousMaliciousUrlConfig = {
+  url: "https://secure-banking-login-verification.com/account/security/update",
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "72 characters" },
+      { name: "Letter Count", value: "55 letters" },
+      { name: "Letter Ratio", value: "76.4%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "17 characters" },
+      { name: "Special Characters Ratio", value: "23.6%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+  
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "120 days" },
+      { name: "Host", value: "secure-banking-login-verification.com" },
+      { name: "Lifetime (Days)", value: "120 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/account/security/" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+  
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "680 elements" }
+    ]
+  },
+  
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Costa Rica" },
+      { name: "Number of Countries for IP Lookup", value: "6 countries" }
+    ]
+  }
+};
+
 // Default to ETH URL
 export const featureConfigs = ethUrlConfig;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Feature_Box from './Feature_boxes/Feature_Box';
-import { ethUrlConfig, maliciousUrlConfig } from './Feature_boxes/featureConfig';
+import { ethUrlConfig, maliciousUrlConfig, ambiguousLegitimateUrlConfig, ambiguousMaliciousUrlConfig } from './Feature_boxes/featureConfig';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
@@ -21,7 +21,22 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
 function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
   const { currentUrl } = useUrlCounter();
   // Select configuration based on current URL
-  const config = currentUrl === 'malicious' ? maliciousUrlConfig : ethUrlConfig;
+  const getConfig = () => {
+    switch (currentUrl) {
+      case 'eth':
+        return ethUrlConfig;
+      case 'malicious':
+        return maliciousUrlConfig;
+      case 'ambiguousLegitimate':
+        return ambiguousLegitimateUrlConfig;
+      case 'ambiguousMalicious':
+        return ambiguousMaliciousUrlConfig;
+      default:
+        return ethUrlConfig;
+    }
+  };
+  
+  const config = getConfig();
   
   return (
     <div className="w-[1250px] flex gap-6">

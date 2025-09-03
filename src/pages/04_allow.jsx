@@ -56,7 +56,7 @@ function Allow() {
 
       // Generate classification based on current URL
   useEffect(() => {
-    const classification = currentUrl === 'malicious' ? 'Malicious' : 'Non-Malicious';
+    const classification = currentUrl === 'malicious' || currentUrl === 'ambiguousMalicious' ? 'Malicious' : 'Non-Malicious';
     setClassification(classification);
   }, [currentUrl]);
 

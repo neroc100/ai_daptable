@@ -1,6 +1,6 @@
 import React from 'react';
 import AI_classification from '../AI_action/AI_classification';
-import { ethUrlConfig, maliciousUrlConfig } from '../AI_action/Feature_boxes/featureConfig';
+import { ethUrlConfig, maliciousUrlConfig, ambiguousLegitimateUrlConfig, ambiguousMaliciousUrlConfig } from '../AI_action/Feature_boxes/featureConfig';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
@@ -31,7 +31,20 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
         <div className="w-[1170px] h-8 relative">
           {/* Sample URL text - positioned relatively for natural flow */}
           <div className="w-[1170px] justify-start text-stone-900 text-2xl font-normal font-['Inter'] leading-normal">
-            {currentUrl === 'malicious' ? maliciousUrlConfig.url : ethUrlConfig.url}
+            {(() => {
+              switch (currentUrl) {
+                case 'eth':
+                  return ethUrlConfig.url;
+                case 'malicious':
+                  return maliciousUrlConfig.url;
+                case 'ambiguousLegitimate':
+                  return ambiguousLegitimateUrlConfig.url;
+                case 'ambiguousMalicious':
+                  return ambiguousMaliciousUrlConfig.url;
+                default:
+                  return ethUrlConfig.url;
+              }
+            })()}
           </div>
         </div>
         </div>

@@ -13,14 +13,27 @@ export const useUrlCounter = () => {
 export const UrlCounterProvider = ({ children }) => {
   const [urlCount, setUrlCount] = useState(1);
   const [currentUrl, setCurrentUrl] = useState('eth');
-  const maxUrls = 2;
+  const maxUrls = 4;
 
   const incrementUrlCount = () => {
     setUrlCount(prev => prev + 1);
   };
 
   const switchUrl = () => {
-    setCurrentUrl(prev => prev === 'eth' ? 'malicious' : 'eth');
+    setCurrentUrl(prev => {
+      switch (prev) {
+        case 'eth':
+          return 'malicious';
+        case 'malicious':
+          return 'ambiguousLegitimate';
+        case 'ambiguousLegitimate':
+          return 'ambiguousMalicious';
+        case 'ambiguousMalicious':
+          return 'eth'; // Reset to first URL (shouldn't happen with current logic)
+        default:
+          return 'eth';
+      }
+    });
   };
 
   const resetUrlCounter = () => {

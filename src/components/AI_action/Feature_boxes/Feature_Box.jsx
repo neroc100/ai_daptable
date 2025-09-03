@@ -28,71 +28,154 @@ function Feature_Box({
   // Evaluate features for security risk assessment
   const featureIcons = useMemo(() => {
     return features.map((feature) => {
-      // Evaluate each feature based on security best practices
+      // Evaluate each feature based on security best practices and real-world indicators
       const featureName = feature.name.toLowerCase();
       const featureValue = feature.value.toLowerCase();
       
       // URL String Analysis features
       if (featureName.includes('entropy')) {
-        return featureValue.includes('high') ? 'thumbsDown' : 'thumbsUp';
+        // High entropy often indicates random/obfuscated URLs (malicious)
+        if (featureValue.includes('very high')) return 'thumbsDown';
+        if (featureValue.includes('high')) return 'thumbsDown';
+        if (featureValue.includes('medium')) return 'thumbsUp';
+        if (featureValue.includes('low')) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('length')) {
-        return parseInt(featureValue) > 100 ? 'thumbsDown' : 'thumbsUp';
+        const length = parseInt(featureValue);
+        // Very long URLs (>80 chars) often indicate malicious obfuscation
+        if (length > 80) return 'thumbsDown';
+        if (length > 60) return 'thumbsDown';
+        if (length > 40) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('letter ratio')) {
         const ratio = parseFloat(featureValue);
-        return ratio > 0.8 ? 'thumbsUp' : 'thumbsDown';
+        // Very low letter ratio (<50%) suggests excessive special characters (malicious)
+        if (ratio < 0.5) return 'thumbsDown';
+        if (ratio < 0.6) return 'thumbsDown';
+        if (ratio > 0.7) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('numeric count')) {
-        return parseInt(featureValue) > 5 ? 'thumbsDown' : 'thumbsUp';
+        const count = parseInt(featureValue);
+        // Excessive numbers often indicate malicious obfuscation
+        if (count > 8) return 'thumbsDown';
+        if (count > 5) return 'thumbsDown';
+        if (count > 2) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('out of place http') || featureName.includes('out of place www')) {
-        return parseInt(featureValue) > 0 ? 'thumbsDown' : 'thumbsUp';
+        const count = parseInt(featureValue);
+        // Any out-of-place HTTP/WWW is suspicious
+        return count > 0 ? 'thumbsDown' : 'thumbsUp';
       }
+      
       if (featureName.includes('special characters count')) {
-        return parseInt(featureValue) > 15 ? 'thumbsDown' : 'thumbsUp';
+        const count = parseInt(featureValue);
+        // Excessive special characters often indicate malicious obfuscation
+        if (count > 30) return 'thumbsDown';
+        if (count > 20) return 'thumbsDown';
+        if (count > 10) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('special characters ratio')) {
         const ratio = parseFloat(featureValue);
-        return ratio > 0.3 ? 'thumbsDown' : 'thumbsUp';
+        // High special character ratio (>40%) is suspicious
+        if (ratio > 0.4) return 'thumbsDown';
+        if (ratio > 0.3) return 'thumbsDown';
+        if (ratio > 0.2) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('unusual characters')) {
-        return parseInt(featureValue) > 0 ? 'thumbsDown' : 'thumbsUp';
+        const count = parseInt(featureValue);
+        // Any unusual characters are suspicious
+        return count > 0 ? 'thumbsDown' : 'thumbsUp';
       }
       
       // Domain Characteristics features
       if (featureName.includes('active time') || featureName.includes('lifetime')) {
         const days = parseInt(featureValue);
-        return days > 365 ? 'thumbsUp' : 'thumbsDown';
+        // Very new domains (<30 days) are highly suspicious
+        if (days < 30) return 'thumbsDown';
+        if (days < 90) return 'thumbsDown';
+        if (days < 180) return 'thumbsDown';
+        if (days > 365) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('host')) {
-        return featureValue.includes('ethz.ch') ? 'thumbsUp' : 'thumbsDown';
+        // Known legitimate domains get thumbs up
+        if (featureValue.includes('ethz.ch')) return 'thumbsUp';
+        if (featureValue.includes('google.com')) return 'thumbsUp';
+        if (featureValue.includes('amazon.com')) return 'thumbsUp';
+        // Suspicious patterns get thumbs down
+        if (featureValue.includes('free-gift')) return 'thumbsDown';
+        if (featureValue.includes('secure-banking')) return 'thumbsDown';
+        if (featureValue.includes('claim-now')) return 'thumbsDown';
+        if (featureValue.includes('verification')) return 'thumbsDown';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('number of directories')) {
         const count = parseInt(featureValue);
-        return count > 3 ? 'thumbsDown' : 'thumbsUp';
+        // Excessive directories (>5) can indicate malicious obfuscation
+        if (count > 5) return 'thumbsDown';
+        if (count > 4) return 'thumbsDown';
+        if (count > 3) return 'thumbsUp';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('top level domain')) {
-        return featureValue.includes('.ch') ? 'thumbsUp' : 'thumbsDown';
+        // Trusted TLDs
+        if (featureValue.includes('.ch')) return 'thumbsUp';
+        if (featureValue.includes('.com')) return 'thumbsUp';
+        if (featureValue.includes('.org')) return 'thumbsUp';
+        if (featureValue.includes('.net')) return 'thumbsUp';
+        // Suspicious TLDs
+        if (featureValue.includes('.xyz')) return 'thumbsDown';
+        if (featureValue.includes('.top')) return 'thumbsDown';
+        if (featureValue.includes('.club')) return 'thumbsDown';
+        return 'thumbsUp';
       }
       
       // DNS and Network features
       if (featureName.includes('similarity of name server names')) {
-        return featureValue.includes('high') ? 'thumbsUp' : 'thumbsDown';
+        // High similarity indicates professional infrastructure
+        if (featureValue.includes('high')) return 'thumbsUp';
+        if (featureValue.includes('medium')) return 'thumbsUp';
+        if (featureValue.includes('low')) return 'thumbsDown';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('number of mail exchange records')) {
         const count = parseInt(featureValue);
-        return count >= 2 && count <= 5 ? 'thumbsUp' : 'thumbsDown';
+        // Professional domains have 2-5 MX records
+        if (count >= 2 && count <= 5) return 'thumbsUp';
+        if (count === 1) return 'thumbsUp';
+        if (count === 0) return 'thumbsDown';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('number of name servers')) {
         const count = parseInt(featureValue);
-        return count >= 2 && count <= 6 ? 'thumbsUp' : 'thumbsDown';
+        // Professional domains have 2-6 name servers
+        if (count >= 2 && count <= 6) return 'thumbsUp';
+        if (count === 1) return 'thumbsDown';
+        return 'thumbsUp';
       }
       
       // Encryption and HTTP features
       if (featureName.includes('http response')) {
         return featureValue.includes('200') ? 'thumbsUp' : 'thumbsDown';
       }
+      
       if (featureName.includes('ssl enabled')) {
         return featureValue.includes('yes') || featureValue.includes('true') ? 'thumbsUp' : 'thumbsDown';
       }
@@ -100,16 +183,34 @@ function Feature_Box({
       // Webpage Content features
       if (featureName.includes('number of html elements')) {
         const count = parseInt(featureValue);
-        return count > 0 && count < 500 ? 'thumbsUp' : 'thumbsDown';
+        // Very high element count (>800) can indicate malicious content
+        if (count > 800) return 'thumbsDown';
+        if (count > 500) return 'thumbsDown';
+        if (count > 200) return 'thumbsUp';
+        return 'thumbsUp';
       }
       
       // Geographical and Hosting features
       if (featureName.includes('registration country')) {
-        return featureValue.includes('switzerland') ? 'thumbsUp' : 'thumbsDown';
+        // Trusted countries
+        if (featureValue.includes('switzerland')) return 'thumbsUp';
+        if (featureValue.includes('united states')) return 'thumbsUp';
+        if (featureValue.includes('germany')) return 'thumbsUp';
+        if (featureValue.includes('united kingdom')) return 'thumbsUp';
+        // Suspicious countries (often used for malicious sites)
+        if (featureValue.includes('panama')) return 'thumbsDown';
+        if (featureValue.includes('costa rica')) return 'thumbsDown';
+        if (featureValue.includes('marshall islands')) return 'thumbsDown';
+        return 'thumbsUp';
       }
+      
       if (featureName.includes('number of countries for ip lookup')) {
         const count = parseInt(featureValue);
-        return count <= 3 ? 'thumbsUp' : 'thumbsDown';
+        // Too many countries (>5) can indicate malicious hosting
+        if (count > 5) return 'thumbsDown';
+        if (count > 3) return 'thumbsDown';
+        if (count <= 3) return 'thumbsUp';
+        return 'thumbsUp';
       }
       
       // Default to thumbs up for unknown features
@@ -154,7 +255,7 @@ function Feature_Box({
   };
 
   const expandedHeight = calculateExpandedHeight();
-  
+
   return (
     <div 
       className={`w-full relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden`} 
@@ -181,11 +282,11 @@ function Feature_Box({
         >
           {features.map((feature, index) => (
             <div key={index} className="flex items-start gap-[10px]">
-              {isAnalysisDisplayed && (
-                featureIcons[index] === 'thumbsUp' ? 
-                  <ThumbsUp className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-green-100)' }} /> :
-                  <ThumbsDown className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-red-100)' }} />
-              )}
+                          {isAnalysisDisplayed && (
+              featureIcons[index] === 'thumbsUp' ? 
+                <ThumbsUp className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-green-100)' }} /> :
+                <ThumbsDown className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-red-100)' }} />
+            )}
               <div className="flex flex-col justify-start items-start flex-1 min-w-0">
                 <div className="text-xl font-semibold font-['Inter'] leading-7 text-stone-900">
                   {feature.name}
