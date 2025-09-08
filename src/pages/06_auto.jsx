@@ -103,7 +103,8 @@ function Auto() {
 
   // Generate classification based on current URL
   useEffect(() => {
-    const classification = currentUrl === 'malicious' || currentUrl === 'ambiguousMalicious' ? 'Malicious' : 'Non-Malicious';
+    const maliciousUrls = ['malicious', 'ambiguousMalicious', 'phishing', 'cryptoScam', 'techSupportScam', 'lotteryScam', 'bankPhishing', 'socialMediaScam'];
+    const classification = maliciousUrls.includes(currentUrl) ? 'Malicious' : 'Non-Malicious';
     setClassification(classification);
   }, [currentUrl]);
 

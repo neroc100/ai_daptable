@@ -1,6 +1,22 @@
 import React from 'react';
 import AI_classification from '../AI_action/AI_classification';
-import { ethUrlConfig, maliciousUrlConfig, ambiguousLegitimateUrlConfig, ambiguousMaliciousUrlConfig } from '../AI_action/Feature_boxes/featureConfig';
+import { 
+  ethUrlConfig, 
+  maliciousUrlConfig, 
+  ambiguousLegitimateUrlConfig, 
+  ambiguousMaliciousUrlConfig,
+  newsUrlConfig,
+  shoppingUrlConfig,
+  educationUrlConfig,
+  governmentUrlConfig,
+  socialMediaUrlConfig,
+  phishingUrlConfig,
+  cryptoScamUrlConfig,
+  techSupportScamUrlConfig,
+  lotteryScamUrlConfig,
+  bankPhishingUrlConfig,
+  socialMediaScamUrlConfig
+} from '../AI_action/Feature_boxes/featureConfig';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
@@ -41,6 +57,28 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
                   return ambiguousLegitimateUrlConfig.url;
                 case 'ambiguousMalicious':
                   return ambiguousMaliciousUrlConfig.url;
+                case 'news':
+                  return newsUrlConfig.url;
+                case 'shopping':
+                  return shoppingUrlConfig.url;
+                case 'education':
+                  return educationUrlConfig.url;
+                case 'government':
+                  return governmentUrlConfig.url;
+                case 'socialMedia':
+                  return socialMediaUrlConfig.url;
+                case 'phishing':
+                  return phishingUrlConfig.url;
+                case 'cryptoScam':
+                  return cryptoScamUrlConfig.url;
+                case 'techSupportScam':
+                  return techSupportScamUrlConfig.url;
+                case 'lotteryScam':
+                  return lotteryScamUrlConfig.url;
+                case 'bankPhishing':
+                  return bankPhishingUrlConfig.url;
+                case 'socialMediaScam':
+                  return socialMediaScamUrlConfig.url;
                 default:
                   return ethUrlConfig.url;
               }

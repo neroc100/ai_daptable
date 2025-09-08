@@ -1,6 +1,22 @@
 import React from 'react';
 import Feature_Box from './Feature_boxes/Feature_Box';
-import { ethUrlConfig, maliciousUrlConfig, ambiguousLegitimateUrlConfig, ambiguousMaliciousUrlConfig } from './Feature_boxes/featureConfig';
+import { 
+  ethUrlConfig, 
+  maliciousUrlConfig, 
+  ambiguousLegitimateUrlConfig, 
+  ambiguousMaliciousUrlConfig,
+  newsUrlConfig,
+  shoppingUrlConfig,
+  educationUrlConfig,
+  governmentUrlConfig,
+  socialMediaUrlConfig,
+  phishingUrlConfig,
+  cryptoScamUrlConfig,
+  techSupportScamUrlConfig,
+  lotteryScamUrlConfig,
+  bankPhishingUrlConfig,
+  socialMediaScamUrlConfig
+} from './Feature_boxes/featureConfig';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
@@ -31,6 +47,28 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
         return ambiguousLegitimateUrlConfig;
       case 'ambiguousMalicious':
         return ambiguousMaliciousUrlConfig;
+      case 'news':
+        return newsUrlConfig;
+      case 'shopping':
+        return shoppingUrlConfig;
+      case 'education':
+        return educationUrlConfig;
+      case 'government':
+        return governmentUrlConfig;
+      case 'socialMedia':
+        return socialMediaUrlConfig;
+      case 'phishing':
+        return phishingUrlConfig;
+      case 'cryptoScam':
+        return cryptoScamUrlConfig;
+      case 'techSupportScam':
+        return techSupportScamUrlConfig;
+      case 'lotteryScam':
+        return lotteryScamUrlConfig;
+      case 'bankPhishing':
+        return bankPhishingUrlConfig;
+      case 'socialMediaScam':
+        return socialMediaScamUrlConfig;
       default:
         return ethUrlConfig;
     }

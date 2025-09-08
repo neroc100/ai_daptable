@@ -5,6 +5,7 @@ const UrlCounterContext = createContext();
 export const useUrlCounter = () => {
   const context = useContext(UrlCounterContext);
   if (!context) {
+    console.error('UrlCounterContext is not available. Make sure the component is wrapped with UrlCounterProvider.');
     throw new Error('useUrlCounter must be used within a UrlCounterProvider');
   }
   return context;
@@ -13,7 +14,29 @@ export const useUrlCounter = () => {
 export const UrlCounterProvider = ({ children }) => {
   const [urlCount, setUrlCount] = useState(1);
   const [currentUrl, setCurrentUrl] = useState('eth');
-  const maxUrls = 4;
+  const maxUrls = 15;
+
+  // Debug logging
+  console.log('UrlCounterProvider is rendering with:', { urlCount, currentUrl, maxUrls });
+
+  // Array of all 15 URL types in shuffled order
+  const urlTypes = [
+    'phishing',
+    'education',
+    'cryptoScam',
+    'eth',
+    'socialMedia',
+    'techSupportScam',
+    'ambiguousLegitimate',
+    'bankPhishing',
+    'news',
+    'malicious',
+    'lotteryScam',
+    'government',
+    'shopping',
+    'socialMediaScam',
+    'ambiguousMalicious'
+  ];
 
   const incrementUrlCount = () => {
     setUrlCount(prev => prev + 1);
@@ -21,18 +44,9 @@ export const UrlCounterProvider = ({ children }) => {
 
   const switchUrl = () => {
     setCurrentUrl(prev => {
-      switch (prev) {
-        case 'eth':
-          return 'malicious';
-        case 'malicious':
-          return 'ambiguousLegitimate';
-        case 'ambiguousLegitimate':
-          return 'ambiguousMalicious';
-        case 'ambiguousMalicious':
-          return 'eth'; // Reset to first URL (shouldn't happen with current logic)
-        default:
-          return 'eth';
-      }
+      const currentIndex = urlTypes.indexOf(prev);
+      const nextIndex = (currentIndex + 1) % urlTypes.length;
+      return urlTypes[nextIndex];
     });
   };
 
