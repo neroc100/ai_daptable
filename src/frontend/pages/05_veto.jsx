@@ -21,7 +21,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
 function Veto() {
   // UI interaction states
   const [showReview, setShowReview] = useState(false);
-  const [showAIClassification, setShowAIClassification] = useState(true);
   const [classification, setClassification] = useState('Non-Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showSuccess, setShowSuccess] = useState(false);
@@ -33,7 +32,7 @@ function Veto() {
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess, setShowReview, setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    setShowSuccess, setShowReview
   });
 
   // Update URL classification
@@ -45,12 +44,12 @@ function Veto() {
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
+        <URL_presentation showAIClassification={true} classification={classification} />
         <Separator />
         <AI_Completed_Actions_Display />
         
         {/* AI veto interface */}
-        {showAIClassification && !showSuccess && (
+        {!showSuccess && (
           <AI_veto_request 
             onOverride={() => { setActionType('override'); setShowSuccess(true); }}
             onViewInfo={() => setShowReview(!showReview)}

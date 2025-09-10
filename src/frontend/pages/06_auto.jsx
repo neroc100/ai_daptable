@@ -20,7 +20,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
 function Auto() {
   // UI interaction states
   const [showReview, setShowReview] = useState(false);
-  const [showAIClassification, setShowAIClassification] = useState(true);
   const [classification, setClassification] = useState('Malicious');
   
   // URL progression and navigation
@@ -30,7 +29,7 @@ function Auto() {
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess: () => {}, setShowReview, setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    setShowReview
   });
 
   // Update URL classification
@@ -42,7 +41,7 @@ function Auto() {
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
+        <URL_presentation showAIClassification={true} classification={classification} />
         <Separator />
         
         {/* AI action implementation status */}
@@ -52,13 +51,11 @@ function Auto() {
         {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
         
         {/* AI automatic action interface */}
-        {showAIClassification && (
-          <AI_auto_display 
-            onViewInfo={() => setShowReview(!showReview)}
-            onNext={handleNextUrl}
-            classification={classification}
-          />
-        )}
+        <AI_auto_display 
+          onViewInfo={() => setShowReview(!showReview)}
+          onNext={handleNextUrl}
+          classification={classification}
+        />
         
         <Progress_Bar />
       </div>

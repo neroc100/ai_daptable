@@ -19,11 +19,8 @@
  * @param {Function} params.incrementUrlCount - Function to increment URL counter
  * @param {Function} params.switchUrl - Function to switch to next URL type
  * @param {Function} params.navigate - React Router navigate function
- * @param {Function} params.setShowSuccess - Function to set success state
- * @param {Function} params.setShowReview - Function to set review state
- * @param {Function} params.setIsLoading - Function to set loading state
- * @param {Function} params.setIsAnalysisLoading - Function to set analysis loading state
- * @param {Function} params.setIsActionSelectionLoading - Function to set action selection loading state
+ * @param {Function} [params.setShowSuccess] - Optional function to set success state
+ * @param {Function} [params.setShowReview] - Optional function to set review state
  * 
  * @returns {Function} handleNextUrl function
  * 
@@ -34,11 +31,8 @@
  *   incrementUrlCount,
  *   switchUrl,
  *   navigate,
- *   setShowSuccess,
- *   setShowReview,
- *   setIsLoading,
- *   setIsAnalysisLoading,
- *   setIsActionSelectionLoading
+ *   setShowSuccess, // optional
+ *   setShowReview   // optional
  * });
  */
 export const useHandleNextUrl = ({
@@ -47,11 +41,8 @@ export const useHandleNextUrl = ({
   incrementUrlCount,
   switchUrl,
   navigate,
-  setShowSuccess,
-  setShowReview,
-  setIsLoading,
-  setIsAnalysisLoading,
-  setIsActionSelectionLoading
+  setShowSuccess = () => {},
+  setShowReview = () => {}
 }) => {
   /**
    * Handles progression to the next URL in the experiment
@@ -73,10 +64,6 @@ export const useHandleNextUrl = ({
       // Reset success and review states for new URL
       setShowSuccess(false);
       setShowReview(false);
-      // Reset timers for new URL
-      setIsLoading(true);
-      setIsAnalysisLoading(true);
-      setIsActionSelectionLoading(true);
       // Classification will be updated automatically by useEffect when currentUrl changes
     }
   };

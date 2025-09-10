@@ -22,9 +22,7 @@ function Info_analysis() {
 
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
-    setShowSuccess: () => {}, setShowReview: () => {},
-    setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {}
   });
 
   return (
@@ -35,7 +33,7 @@ function Info_analysis() {
         <Separator />
         
         {/* AI analysis status */}
-        <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={true} showActionSelection={false} />
+        <AI_Completed_Actions_Display showActionSelection={false} />
         
         {/* URL analysis display */}
         <AI_URL_Info_Display isAnalysisDisplayed={true} />

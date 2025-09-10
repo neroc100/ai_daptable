@@ -26,7 +26,7 @@ function Allow() {
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
-  const [showAIClassification, setShowAIClassification] = useState(true);
+ 
   
   // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
@@ -35,7 +35,7 @@ function Allow() {
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess, setShowReview, setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    setShowSuccess, setShowReview
   });
 
   // Update URL classification
@@ -47,12 +47,12 @@ function Allow() {
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
-        <URL_presentation showAIClassification={showAIClassification} classification={classification} />
+        <URL_presentation showAIClassification={true} classification={classification} />
         <Separator />
         <AI_Completed_Actions_Display />
         
         {/* AI decision interface */}
-        {showAIClassification && !showSuccess && (
+        {!showSuccess && (
           <AI_Action_request 
             onConfirm={() => { setActionType('confirm'); setShowSuccess(true); }}
             onOverride={() => { setActionType('override'); setShowSuccess(true); }}

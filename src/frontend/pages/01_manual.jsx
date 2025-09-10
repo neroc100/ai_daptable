@@ -20,9 +20,7 @@ function Manual() {
 
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
-    setShowSuccess: () => {}, setShowReview: () => {},
-    setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {}
   });
 
   return (

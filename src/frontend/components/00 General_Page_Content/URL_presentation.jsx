@@ -1,23 +1,7 @@
 import React from 'react';
 import AI_classification from '../AI_action/AI_classification';
-import { 
-  ethUrlConfig, 
-  maliciousUrlConfig, 
-  ambiguousLegitimateUrlConfig, 
-  ambiguousMaliciousUrlConfig,
-  newsUrlConfig,
-  shoppingUrlConfig,
-  educationUrlConfig,
-  governmentUrlConfig,
-  socialMediaUrlConfig,
-  phishingUrlConfig,
-  cryptoScamUrlConfig,
-  techSupportScamUrlConfig,
-  lotteryScamUrlConfig,
-  bankPhishingUrlConfig,
-  socialMediaScamUrlConfig
-} from '../../constants/URL_config';
 import { useUrlCounter } from '../../context/UrlCounterContext';
+import { getUrlConfig } from '../../composables/getURLconfig';
 
 /**
  * URL Presentation Component
@@ -33,6 +17,10 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
  */
 function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   const { currentUrl } = useUrlCounter();
+  
+  // Get current URL configuration
+  const urlConfig = getUrlConfig(currentUrl);
+  
   return (
     // Main URL container with white background and light border
     <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
@@ -47,42 +35,7 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
         <div className="w-[1170px] h-8 relative">
           {/* Sample URL text - positioned relatively for natural flow */}
           <div className="w-[1170px] justify-start text-stone-900 text-2xl font-normal font-['Inter'] leading-normal">
-            {(() => {
-              switch (currentUrl) {
-                case 'eth':
-                  return ethUrlConfig.url;
-                case 'malicious':
-                  return maliciousUrlConfig.url;
-                case 'ambiguousLegitimate':
-                  return ambiguousLegitimateUrlConfig.url;
-                case 'ambiguousMalicious':
-                  return ambiguousMaliciousUrlConfig.url;
-                case 'news':
-                  return newsUrlConfig.url;
-                case 'shopping':
-                  return shoppingUrlConfig.url;
-                case 'education':
-                  return educationUrlConfig.url;
-                case 'government':
-                  return governmentUrlConfig.url;
-                case 'socialMedia':
-                  return socialMediaUrlConfig.url;
-                case 'phishing':
-                  return phishingUrlConfig.url;
-                case 'cryptoScam':
-                  return cryptoScamUrlConfig.url;
-                case 'techSupportScam':
-                  return techSupportScamUrlConfig.url;
-                case 'lotteryScam':
-                  return lotteryScamUrlConfig.url;
-                case 'bankPhishing':
-                  return bankPhishingUrlConfig.url;
-                case 'socialMediaScam':
-                  return socialMediaScamUrlConfig.url;
-                default:
-                  return ethUrlConfig.url;
-              }
-            })()}
+            {urlConfig.url}
           </div>
         </div>
         </div>
