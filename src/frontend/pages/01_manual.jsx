@@ -2,8 +2,7 @@ import React from 'react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
-import Allow_Button from '../components/01 Interaction components/Allow_Button';
-import Block_Button from '../components/01 Interaction components/Block_Button';
+import Decision_Button from '../components/01 Interaction components/Decision_Button';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
 
@@ -26,8 +25,8 @@ function Manual() {
         
         {/* Decision buttons */}
         <div className="flex flex-row space-x-4 w-full max-w-2xl">
-          <Allow_Button />
-          <Block_Button />
+          <Decision_Button type="allow" />
+          <Decision_Button type="block" />
         </div>
         
         <Progress_Bar />

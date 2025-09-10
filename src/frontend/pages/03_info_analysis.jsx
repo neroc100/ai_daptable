@@ -5,8 +5,7 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
-import Allow_Button from '../components/01 Interaction components/Allow_Button';
-import Block_Button from '../components/01 Interaction components/Block_Button';
+import Decision_Button from '../components/01 Interaction components/Decision_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
 
 /**
@@ -34,8 +33,8 @@ function Info_analysis() {
         
         {/* Decision buttons */}
         <div className="flex flex-row space-x-4 w-full max-w-2xl">
-          <Allow_Button />
-          <Block_Button />
+          <Decision_Button type="allow" />
+          <Decision_Button type="block" />
         </div>
         
         <Progress_Bar />
