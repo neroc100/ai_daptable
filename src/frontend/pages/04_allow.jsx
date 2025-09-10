@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, Check } from 'lucide-react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
@@ -17,173 +16,96 @@ import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Allow Malicious Page
- * For the malicious message display in condition 4
+ * Allow Page - Condition 4
+ * AI-assisted URL analysis with confirm/override decision interface
  *
- * @returns {JSX.Element} Allow malicious page component with Allow/Block buttons
+ * @returns {JSX.Element} Page with AI classification and user decision options
  */
 function Allow() {
+  // Experiment flow states
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [timeElapsed, setTimeElapsed] = useState(0);
+  
+  // UI interaction states
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
   const [showAIClassification, setShowAIClassification] = useState(false);
+  
+  // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
   const navigate = useNavigate();
 
-  // Use the composable for handling next URL navigation
+  // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount,
-    maxUrls,
-    incrementUrlCount,
-    switchUrl,
-    navigate,
-    setShowSuccess,
-    setShowReview,
-    setIsLoading,
-    setIsAnalysisLoading,
-    setIsActionSelectionLoading,
-    setTimeElapsed
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
+    setShowSuccess, setShowReview, setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading
   });
 
-  // Get classification based on current URL using the composable function
+  // Update URL classification
   useEffect(() => {
-    const classification = getUrlClassification(currentUrl);
-    setClassification(classification);
+    setClassification(getUrlClassification(currentUrl));
   }, [currentUrl]);
 
+  // Simulate analysis stages
+  useEffect(() => {
+    if (!isLoading) return;
+    setTimeout(() => setIsLoading(false), 0);
+  }, [isLoading]);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        setIsPaused(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+    if (isAnalysisLoading === false) return;
+    setTimeout(() => setIsAnalysisLoading(false), 0);
+  }, [isAnalysisLoading]);
 
   useEffect(() => {
-    if (isPaused || !isLoading) return;
+    if (isActionSelectionLoading === false || isAnalysisLoading) return;
+    setTimeout(() => setIsActionSelectionLoading(false), 0);
+  }, [isActionSelectionLoading, isAnalysisLoading]);
 
-    const timer = setInterval(() => {
-      setTimeElapsed(prev => {
-        if (prev >= 0) {
-          setIsLoading(false);
-          return prev;
-        }
-        return prev + 100;
-      });
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, [isPaused, isLoading]);
-
+  // Show AI decision interface
   useEffect(() => {
-    if (isPaused || isAnalysisLoading === false) return;
-
-    const timer = setTimeout(() => {
-      setIsAnalysisLoading(false);
-    }, 0);
-
+    const timer = setTimeout(() => setShowAIClassification(true), LOAD_TIME_AI_ACTION_SELECTION);
     return () => clearTimeout(timer);
-  }, [isPaused, isAnalysisLoading]);
-
-  useEffect(() => {
-    if (isPaused || isActionSelectionLoading === false || isAnalysisLoading) return;
-
-    const timer = setTimeout(() => {
-      setIsActionSelectionLoading(false);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
-
-  // Show AI classification after AI action selection time has passed
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timer = setTimeout(() => {
-      setShowAIClassification(true);
-    }, LOAD_TIME_AI_ACTION_SELECTION);
-
-    return () => clearTimeout(timer);
-  }, [isPaused, currentUrl]);
+  }, [currentUrl]);
 
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
-        {/* Header */}
         <Dashboard_Header />
-        
-        {/* URL Input Section */}
         <URL_presentation showAIClassification={showAIClassification} classification={classification} />
-        
-        {/* Separator */}
         <Separator />
-        
-        {/* AI Action Info Box */}
         <AI_Completed_Actions_Display />
         
-        {/* Pause/Resume Instructions */}
-        {isLoading && (
-          <div className="flex items-center space-x-2 text-gray-400 text-sm">
-            
-          </div>
-        )}
-        
-        {/* AI Action Request - Shows only when AI Action Selection is complete */}
+        {/* AI decision interface */}
         {showAIClassification && !showSuccess && (
           <AI_Action_request 
-            onConfirm={() => {
-              // Handle confirm action - follow AI recommendation
-              console.log('Confirm AI action');
-              setActionType('confirm');
-              setShowSuccess(true);
-            }}
-            onOverride={() => {
-              // Handle override action - go against AI recommendation
-              console.log('Override AI action');
-              setActionType('override');
-              setShowSuccess(true);
-            }}
+            onConfirm={() => { setActionType('confirm'); setShowSuccess(true); }}
+            onOverride={() => { setActionType('override'); setShowSuccess(true); }}
             onViewInfo={() => setShowReview(!showReview)}
             classification={classification}
           />
         )}
         
-        {/* Info Display - Shows when review button is clicked */}
-        {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} />
-        )}
+        {/* URL analysis details */}
+        {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
         
-        {/* Success Message - Shows when action is completed */}
+        {/* Decision confirmation */}
         {showSuccess && (
           <Success_Message 
-            decisionType={actionType === 'confirm' ? (classification === 'Malicious' ? 'block' : 'allow') : (classification === 'Malicious' ? 'allow' : 'block')}
+            decisionType={actionType === 'confirm' 
+              ? (classification === 'Malicious' ? 'block' : 'allow') 
+              : (classification === 'Malicious' ? 'allow' : 'block')
+            }
             actor="ai"
             onNext={handleNextUrl}
           />
         )}
         
-
-        
-
-        
-
-        
-        {/* Progress Bar */}
         <Progress_Bar />
       </div>
-      
-
     </div>
   );
 }

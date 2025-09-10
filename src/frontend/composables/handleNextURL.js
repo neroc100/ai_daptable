@@ -24,7 +24,6 @@
  * @param {Function} params.setIsLoading - Function to set loading state
  * @param {Function} params.setIsAnalysisLoading - Function to set analysis loading state
  * @param {Function} params.setIsActionSelectionLoading - Function to set action selection loading state
- * @param {Function} params.setTimeElapsed - Function to set time elapsed
  * 
  * @returns {Function} handleNextUrl function
  * 
@@ -39,8 +38,7 @@
  *   setShowReview,
  *   setIsLoading,
  *   setIsAnalysisLoading,
- *   setIsActionSelectionLoading,
- *   setTimeElapsed
+ *   setIsActionSelectionLoading
  * });
  */
 export const useHandleNextUrl = ({
@@ -53,8 +51,7 @@ export const useHandleNextUrl = ({
   setShowReview,
   setIsLoading,
   setIsAnalysisLoading,
-  setIsActionSelectionLoading,
-  setTimeElapsed
+  setIsActionSelectionLoading
 }) => {
   /**
    * Handles progression to the next URL in the experiment
@@ -80,7 +77,6 @@ export const useHandleNextUrl = ({
       setIsLoading(true);
       setIsAnalysisLoading(true);
       setIsActionSelectionLoading(true);
-      setTimeElapsed(0);
       // Classification will be updated automatically by useEffect when currentUrl changes
     }
   };
