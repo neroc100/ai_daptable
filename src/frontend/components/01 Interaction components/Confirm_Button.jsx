@@ -36,7 +36,7 @@ function Confirm_Button({ classification = 'Malicious', tooltipText = "Confirm t
           className="w-96 h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-2 overflow-hidden transition-colors duration-200"
           style={{ backgroundColor: 'var(--eth-blue-100)', outlineColor: 'var(--eth-blue-100)' }}
         >
-          <div data-svg-wrapper data-size="16" className="relative">
+          <div className="relative">
             <ChevronsRight className="w-4 h-4 text-white" />
           </div>
           <div className="justify-start text-white text-2xl font-semibold font-['Inter'] leading-normal">

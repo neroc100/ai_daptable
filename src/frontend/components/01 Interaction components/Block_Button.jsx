@@ -20,11 +20,6 @@ function Block_Button() {
     <>
       {/* Main Block Button - ETH blue outline for negative action */}
       <div 
-        data-has-icon-end="false" 
-        data-has-icon-start="false" 
-        data-size="Medium" 
-        data-state="Default" 
-        data-variant="Subtle" 
         className="w-96 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
         style={{ outlineColor: 'var(--eth-blue-100)' }}
         onClick={() => showSuccessMessage({

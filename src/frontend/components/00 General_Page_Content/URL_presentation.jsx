@@ -10,10 +10,6 @@ import { getUrlConfig } from '../../composables/getURLconfig';
  * Shows a sample URL with proper formatting and ETH gray outline styling.
  * Used across all experiment conditions to present the target URL.
  * 
- * @param {Object} props - Component props
- * @param {boolean} props.showAIClassification - Whether to show the AI classification box
- * @param {string} props.classification - The AI classification to display
- * @returns {JSX.Element} URL presentation component with input field
  */
 function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   const { currentUrl } = useUrlCounter();
