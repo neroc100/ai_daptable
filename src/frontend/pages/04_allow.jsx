@@ -7,6 +7,8 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import Review_Button from '../components/01 Interaction components/View_Information_Button';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
+import { getUrlClassification } from '../composables/getURLconfig';
+import { useHandleNextUrl } from '../composables/handleNextURL';
 
 import Success_Message from '../components/01 Interaction components/Success_Message';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
@@ -34,30 +36,24 @@ function Allow() {
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
   const navigate = useNavigate();
 
-  const handleNextUrl = () => {
-    if (urlCount >= maxUrls) {
-      // Maximum URLs reached, navigate to main page
-      navigate('/');
-    } else {
-      // More URLs to go, increment counter and switch URL
-      incrementUrlCount();
-      switchUrl();
-      // Reset success and review states for new URL
-      setShowSuccess(false);
-      setShowReview(false);
-      // Reset timers for new URL
-      setIsLoading(true);
-      setIsAnalysisLoading(true);
-      setIsActionSelectionLoading(true);
-      setTimeElapsed(0);
-      // Classification will be updated automatically by useEffect when currentUrl changes
-    }
-  };
+  // Use the composable for handling next URL navigation
+  const handleNextUrl = useHandleNextUrl({
+    urlCount,
+    maxUrls,
+    incrementUrlCount,
+    switchUrl,
+    navigate,
+    setShowSuccess,
+    setShowReview,
+    setIsLoading,
+    setIsAnalysisLoading,
+    setIsActionSelectionLoading,
+    setTimeElapsed
+  });
 
-      // Generate classification based on current URL
+  // Get classification based on current URL using the composable function
   useEffect(() => {
-    const maliciousUrls = ['malicious', 'ambiguousMalicious', 'phishing', 'cryptoScam', 'techSupportScam', 'lotteryScam', 'bankPhishing', 'socialMediaScam'];
-    const classification = maliciousUrls.includes(currentUrl) ? 'Malicious' : 'Non-Malicious';
+    const classification = getUrlClassification(currentUrl);
     setClassification(classification);
   }, [currentUrl]);
 
