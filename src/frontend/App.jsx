@@ -35,14 +35,14 @@ function MainPage() {
   // Access the global button context to set the clicked button number
   const { setCondition } = useButtonContext();
   // Access the global URL counter context to reset when returning to main page
-  const { resetForNewExperiment } = useUrlCounter();
+  const { resetUrlCounter } = useUrlCounter();
   
-  console.log('MainPage context values:', { setCondition, resetForNewExperiment });
+  console.log('MainPage context values:', { setCondition, resetUrlCounter });
 
   // Reset URL counter when returning to main page
   React.useEffect(() => {
-    resetForNewExperiment();
-  }, [resetForNewExperiment]);
+    resetUrlCounter();
+  }, [resetUrlCounter]);
 
   /**
    * Handles button clicks and sets the button number globally
