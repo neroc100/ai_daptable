@@ -6,7 +6,6 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_veto_request from '../components/AI_action/AI_veto_request';
-import Success_Message from '../components/01 Interaction components/Success_Message';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
 import { getUrlClassification } from '../composables/getURLconfig';
@@ -22,8 +21,6 @@ function Veto() {
   // UI interaction states
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Non-Malicious');
-  const [actionType, setActionType] = useState('confirm');
-  const [showSuccess, setShowSuccess] = useState(false);
   
   // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
@@ -31,9 +28,9 @@ function Veto() {
 
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess, setShowReview
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate
   });
+
 
   // Update URL classification
   useEffect(() => {
@@ -49,26 +46,14 @@ function Veto() {
         <AI_Completed_Actions_Display />
         
         {/* AI veto interface */}
-        {!showSuccess && (
-          <AI_veto_request 
-            onOverride={() => { setActionType('override'); setShowSuccess(true); }}
-            onViewInfo={() => setShowReview(!showReview)}
-            onNext={handleNextUrl}
-            classification={classification}
-          />
-        )}
+        <AI_veto_request 
+          onViewInfo={() => setShowReview(!showReview)}
+          onNext={handleNextUrl}
+          classification={classification}
+        />
         
         {/* URL analysis details */}
         {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
-        
-        {/* Veto confirmation */}
-        {showSuccess && (
-          <Success_Message 
-            decisionType={classification === 'Malicious' ? 'allow' : 'block'}
-            actor="human"
-            onNext={handleNextUrl}
-          />
-        )}
         
         <Progress_Bar />
       </div>

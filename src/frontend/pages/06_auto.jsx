@@ -28,9 +28,9 @@ function Auto() {
 
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowReview
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate
   });
+
 
   // Update URL classification
   useEffect(() => {

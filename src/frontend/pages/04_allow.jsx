@@ -8,7 +8,6 @@ import Review_Button from '../components/01 Interaction components/View_Informat
 import { getUrlClassification } from '../composables/getURLconfig';
 import { useHandleNextUrl } from '../composables/handleNextURL';
 
-import Success_Message from '../components/01 Interaction components/Success_Message';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_Action_request from '../components/AI_action/AI_Action_request';
 import { useUrlCounter } from '../context/UrlCounterContext';
@@ -22,7 +21,6 @@ import { useNavigate } from 'react-router-dom';
  */
 function Allow() {
   // UI interaction states
-  const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
@@ -34,9 +32,9 @@ function Allow() {
 
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess, setShowReview
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate
   });
+
 
   // Update URL classification
   useEffect(() => {
@@ -52,29 +50,16 @@ function Allow() {
         <AI_Completed_Actions_Display />
         
         {/* AI decision interface */}
-        {!showSuccess && (
-          <AI_Action_request 
-            onConfirm={() => { setActionType('confirm'); setShowSuccess(true); }}
-            onOverride={() => { setActionType('override'); setShowSuccess(true); }}
-            onViewInfo={() => setShowReview(!showReview)}
-            classification={classification}
-          />
-        )}
+        <AI_Action_request 
+          onConfirm={() => { setActionType('confirm'); }}
+          onOverride={() => { setActionType('override'); }}
+          onViewInfo={() => setShowReview(!showReview)}
+          classification={classification}
+          onNext={handleNextUrl}
+        />
         
         {/* URL analysis details */}
         {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
-        
-        {/* Decision confirmation */}
-        {showSuccess && (
-          <Success_Message 
-            decisionType={actionType === 'confirm' 
-              ? (classification === 'Malicious' ? 'block' : 'allow') 
-              : (classification === 'Malicious' ? 'allow' : 'block')
-            }
-            actor="ai"
-            onNext={handleNextUrl}
-          />
-        )}
         
         <Progress_Bar />
       </div>

@@ -11,7 +11,7 @@
  * 
  * This function handles the logic for moving to the next URL in the experiment.
  * It checks if the maximum number of URLs has been reached, and either navigates
- * to the main page or progresses to the next URL while resetting component states.
+ * to the main page or progresses to the next URL.
  * 
  * @param {Object} params - Parameters object
  * @param {number} params.urlCount - Current URL count
@@ -19,8 +19,6 @@
  * @param {Function} params.incrementUrlCount - Function to increment URL counter
  * @param {Function} params.switchUrl - Function to switch to next URL type
  * @param {Function} params.navigate - React Router navigate function
- * @param {Function} [params.setShowSuccess] - Optional function to set success state
- * @param {Function} [params.setShowReview] - Optional function to set review state
  * 
  * @returns {Function} handleNextUrl function
  * 
@@ -30,9 +28,7 @@
  *   maxUrls,
  *   incrementUrlCount,
  *   switchUrl,
- *   navigate,
- *   setShowSuccess, // optional
- *   setShowReview   // optional
+ *   navigate
  * });
  */
 export const useHandleNextUrl = ({
@@ -40,9 +36,7 @@ export const useHandleNextUrl = ({
   maxUrls,
   incrementUrlCount,
   switchUrl,
-  navigate,
-  setShowSuccess = () => {},
-  setShowReview = () => {}
+  navigate
 }) => {
   /**
    * Handles progression to the next URL in the experiment
@@ -50,8 +44,6 @@ export const useHandleNextUrl = ({
    * This function is called when the user completes an action on the current URL.
    * It either moves to the next URL (if more URLs remain) or navigates back to
    * the main page (if all URLs have been completed).
-   * 
-   * The function also resets all component states to prepare for the next URL.
    */
   const handleNextUrl = () => {
     if (urlCount >= maxUrls) {
@@ -61,9 +53,6 @@ export const useHandleNextUrl = ({
       // More URLs to go, increment counter and switch URL
       incrementUrlCount();
       switchUrl();
-      // Reset success and review states for new URL
-      setShowSuccess(false);
-      setShowReview(false);
       // Classification will be updated automatically by useEffect when currentUrl changes
     }
   };
