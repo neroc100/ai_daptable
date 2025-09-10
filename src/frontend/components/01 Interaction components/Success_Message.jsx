@@ -60,9 +60,9 @@ function Success_Message() {
             </div>
           </div>
           
-          {/* Next button with modal hide handler */}
+          {/* Next button */}
           <div className="flex justify-center">
-            <Next_Button onClick={hideSuccessMessage} />
+            <Next_Button />
           </div>
           
           {/* Status icon */}

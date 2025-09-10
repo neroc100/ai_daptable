@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUrlCounter } from '../../context/UrlCounterContext';
+import { useSuccessModal } from '../../context/SuccessModalContext';
 
 /**
  * Next Button Component
@@ -9,28 +10,20 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
  * Automatically navigates to next URL or main page when max URLs reached.
  * Uses ETH blue styling consistent with application theme.
  * 
- * @param {Object} props - Component props
- * @param {string} props.className - Additional CSS classes for the button
- * @param {string} props.text - Button text (defaults to "Next URL")
- * @param {Function} props.onClick - Optional custom click handler (executes before navigation)
- * @returns {JSX.Element} Next button component
  */
-function Next_Button({ className = "", text = "Next URL", onClick }) {
+function Next_Button({ className = "", text = "Next URL" }) {
   const navigate = useNavigate();
   const { urlCount, maxUrls, incrementUrlCount, switchUrl } = useUrlCounter();
+  const { hideSuccessMessage } = useSuccessModal();
 
   const handleClick = () => {
-    // Execute custom click handler first (e.g., hide modal)
-    if (onClick) {
-      onClick();
-    }
+    hideSuccessMessage();
     
-    // Handle navigation logic
     if (urlCount >= maxUrls) {
-      navigate('/'); // Return to main page
+      navigate('/');
     } else {
-      incrementUrlCount(); // Increment URL counter
-      switchUrl(); // Switch to next URL
+      incrementUrlCount();
+      switchUrl();
     }
   };
 
