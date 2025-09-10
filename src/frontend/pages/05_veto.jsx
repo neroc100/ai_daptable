@@ -5,7 +5,7 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
-import AI_veto_request from '../components/AI_action/AI_veto_request';
+import AI_veto_display from '../components/AI_action/AI_veto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
 import { getUrlClassification } from '../composables/getURLconfig';
@@ -46,7 +46,7 @@ function Veto() {
         <AI_Completed_Actions_Display />
         
         {/* AI veto interface */}
-        <AI_veto_request 
+        <AI_veto_display
           onViewInfo={() => setShowReview(!showReview)}
           onNext={handleNextUrl}
           classification={classification}

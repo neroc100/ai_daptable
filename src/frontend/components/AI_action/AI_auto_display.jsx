@@ -1,6 +1,7 @@
 import React from 'react';
 import { Info } from 'lucide-react';
 import Next_Button from '../01 Interaction components/Next_Button';
+import View_Information_Button from '../01 Interaction components/View_Information_Button';
 
 /**
  * AI Auto Display Component
@@ -35,13 +36,9 @@ function AI_auto_display({ onViewInfo, onNext, classification = 'Non-Malicious' 
       </div>
       
       {/* View Information Button */}
-      <button
+      <View_Information_Button 
         onClick={onViewInfo}
-        className="px-6 py-2 text-black font-semibold rounded-lg transition-colors duration-200"
-        style={{ backgroundColor: 'var(--eth-blue-20)' }}
-      >
-        View Information
-      </button>
+      />
     </div>
   );
 }

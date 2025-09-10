@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { Info } from 'lucide-react';
 import Next_Button from '../01 Interaction components/Next_Button';
 import Success_Message from '../01 Interaction components/Success_Message';
+import View_Information_Button from '../01 Interaction components/View_Information_Button';
 
 /**
- * AI Veto Request Component
+ * AI Veto Display Component
+ * Displays override button for AI veto scenarios with ETH blue styling.
  * 
- * Displays a box with ETH blue outline containing confirm and override AI action buttons for veto scenarios.
- * Handles success states internally like button components.
- * 
- * @param {Object} props - Component props
- * @param {Function} props.onViewInfo - Callback function for view information button
- * @param {Function} props.onNext - Callback function for next URL button
- * @param {string} props.classification - The AI classification ('Malicious' or 'Non-Malicious')
- * @returns {JSX.Element} AI veto request component
+ * @param {Function} onViewInfo - Toggle information display
+ * @param {Function} onNext - Navigate to next URL
+ * @param {string} classification - AI classification ('Malicious' or 'Non-Malicious')
+ * @returns {JSX.Element} AI veto display component
  */
-function AI_veto_request({ onViewInfo, onNext, classification = 'Non-Malicious' }) {
+function AI_veto_display({ onViewInfo, onNext, classification = 'Non-Malicious' }) {
   // State to control success modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -55,13 +53,9 @@ function AI_veto_request({ onViewInfo, onNext, classification = 'Non-Malicious' 
         </div>
         
         {/* View Information Button */}
-        <button
+        <View_Information_Button 
           onClick={onViewInfo}
-          className="px-6 py-2 text-black font-semibold rounded-lg transition-colors duration-200"
-          style={{ backgroundColor: 'var(--eth-blue-20)' }}
-        >
-          View Information
-        </button>
+        />
       </div>
 
       {/* Success message modal */}
@@ -79,4 +73,4 @@ function AI_veto_request({ onViewInfo, onNext, classification = 'Non-Malicious' 
   );
 }
 
-export default AI_veto_request;
+export default AI_veto_display;

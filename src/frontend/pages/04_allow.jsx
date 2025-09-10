@@ -9,7 +9,7 @@ import { getUrlClassification } from '../composables/getURLconfig';
 import { useHandleNextUrl } from '../composables/handleNextURL';
 
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
-import AI_Action_request from '../components/AI_action/AI_Action_request';
+import AI_allow_display from '../components/AI_action/AI_allow_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,12 +50,10 @@ function Allow() {
         <AI_Completed_Actions_Display />
         
         {/* AI decision interface */}
-        <AI_Action_request 
-          onConfirm={() => { setActionType('confirm'); }}
-          onOverride={() => { setActionType('override'); }}
+        <AI_allow_display
           onViewInfo={() => setShowReview(!showReview)}
-          classification={classification}
           onNext={handleNextUrl}
+          classification={classification}
         />
         
         {/* URL analysis details */}
