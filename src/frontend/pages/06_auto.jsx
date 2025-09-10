@@ -6,7 +6,6 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
-import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
 import { getUrlClassification } from '../composables/getURLconfig';
@@ -19,14 +18,9 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  * @returns {JSX.Element} Page with AI automatic actions and review options
  */
 function Auto() {
-  // Experiment flow states
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
-  const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
-  
   // UI interaction states
   const [showReview, setShowReview] = useState(false);
-  const [showAIClassification, setShowAIClassification] = useState(false);
+  const [showAIClassification, setShowAIClassification] = useState(true);
   const [classification, setClassification] = useState('Malicious');
   
   // URL progression and navigation
@@ -36,34 +30,12 @@ function Auto() {
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess: () => {}, setShowReview, setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading
+    setShowSuccess: () => {}, setShowReview, setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
   });
 
   // Update URL classification
   useEffect(() => {
     setClassification(getUrlClassification(currentUrl));
-  }, [currentUrl]);
-
-  // Simulate analysis stages
-  useEffect(() => {
-    if (!isLoading) return;
-    setTimeout(() => setIsLoading(false), 0);
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (isAnalysisLoading === false) return;
-    setTimeout(() => setIsAnalysisLoading(false), 0);
-  }, [isAnalysisLoading]);
-
-  useEffect(() => {
-    if (isActionSelectionLoading === false || isAnalysisLoading) return;
-    setTimeout(() => setIsActionSelectionLoading(false), 0);
-  }, [isActionSelectionLoading, isAnalysisLoading]);
-
-  // Show AI automatic action interface
-  useEffect(() => {
-    const timer = setTimeout(() => setShowAIClassification(true), LOAD_TIME_AI_ACTION_SELECTION);
-    return () => clearTimeout(timer);
   }, [currentUrl]);
 
   return (

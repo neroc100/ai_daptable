@@ -17,9 +17,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  * @returns {JSX.Element} Page with AI acquisition results and decision buttons
  */
 function Info_acquisition() {
-  // Experiment flow states
-  const [isLoading, setIsLoading] = useState(true);
-  
   // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
 
@@ -27,14 +24,8 @@ function Info_acquisition() {
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
     setShowSuccess: () => {}, setShowReview: () => {},
-    setIsLoading, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+    setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
   });
-
-  // Simulate acquisition stage
-  useEffect(() => {
-    if (!isLoading) return;
-    setTimeout(() => setIsLoading(false), 0);
-  }, [isLoading]);
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -47,15 +38,13 @@ function Info_acquisition() {
         <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={false} showActionSelection={false} />
         
         {/* URL information display */}
-        {!isLoading && <AI_URL_Info_Display isAnalysisDisplayed={false} />}
+        <AI_URL_Info_Display isAnalysisDisplayed={false} />
         
         {/* Decision buttons */}
-        {!isLoading && (
-          <div className="flex flex-row space-x-4 w-full max-w-2xl">
-            <Allow_Button onNext={handleNextUrl} />
-            <Block_Button onNext={handleNextUrl} />
-          </div>
-        )}
+        <div className="flex flex-row space-x-4 w-full max-w-2xl">
+          <Allow_Button onNext={handleNextUrl} />
+          <Block_Button onNext={handleNextUrl} />
+        </div>
         
         <Progress_Bar />
       </div>

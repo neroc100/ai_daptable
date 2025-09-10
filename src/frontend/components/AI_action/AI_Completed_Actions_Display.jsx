@@ -1,16 +1,16 @@
 import React from 'react';
 import AI_Completed_Action_Element from './AI_Completed_Action_Element';
-import { LOAD_TIME_AI_INFO_ACQ, LOAD_TIME_AI_INFO_ANA, LOAD_TIME_AI_ACTION_SELECTION, LOAD_TIME_AI_ACTION_IMPLEMENTATION } from '../../constants/aiLoadingTimes';
 
 /**
  * AI Completed Actions Display Component
  * 
  * This component displays stages of AI processing based on props:
- * 1. AI Information Acquisition (uses LOAD_TIME_AI_INFO_ACQ global constant)
- * 2. AI Information Analysis (uses LOAD_TIME_AI_INFO_ANA global constant)
- * 3. AI Action Selection (uses LOAD_TIME_AI_ACTION_SELECTION global constant)
+ * 1. AI Information Acquisition
+ * 2. AI Information Analysis
+ * 3. AI Action Selection
+ * 4. AI Action Implementation (auto page only)
  * 
- * Each stage shows a loading icon that transitions to a checkmark after completion.
+ * Each stage shows a completed checkmark icon.
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.showAcquisition - Whether to show the acquisition stage
@@ -28,10 +28,10 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   
   return (
     <div className={`w-[1250px] ${dynamicHeight} px-6 py-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
-      {showAcquisition && <AI_Completed_Action_Element loadingTime={LOAD_TIME_AI_INFO_ACQ} text="AI gathered information about the URL" />}
-      {showAnalysis && <AI_Completed_Action_Element loadingTime={LOAD_TIME_AI_INFO_ANA} text="AI analysed the URL" />}
-      {showActionSelection && <AI_Completed_Action_Element loadingTime={LOAD_TIME_AI_ACTION_SELECTION} text="AI found an appropriate action" />}
-      {showActionImplementation && <AI_Completed_Action_Element loadingTime={LOAD_TIME_AI_ACTION_IMPLEMENTATION} text="AI allowed the URL" />}
+      {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
+      {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
+      {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
+      {showActionImplementation && <AI_Completed_Action_Element text="AI allowed the URL" />}
     </div>
   );
 }

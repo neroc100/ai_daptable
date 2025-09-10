@@ -5,7 +5,6 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import Review_Button from '../components/01 Interaction components/View_Information_Button';
-import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import { getUrlClassification } from '../composables/getURLconfig';
 import { useHandleNextUrl } from '../composables/handleNextURL';
 
@@ -22,17 +21,12 @@ import { useNavigate } from 'react-router-dom';
  * @returns {JSX.Element} Page with AI classification and user decision options
  */
 function Allow() {
-  // Experiment flow states
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
-  const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
-  
   // UI interaction states
   const [showSuccess, setShowSuccess] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   const [actionType, setActionType] = useState('confirm');
-  const [showAIClassification, setShowAIClassification] = useState(false);
+  const [showAIClassification, setShowAIClassification] = useState(true);
   
   // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
@@ -41,34 +35,12 @@ function Allow() {
   // URL navigation handler
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
-    setShowSuccess, setShowReview, setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading
+    setShowSuccess, setShowReview, setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
   });
 
   // Update URL classification
   useEffect(() => {
     setClassification(getUrlClassification(currentUrl));
-  }, [currentUrl]);
-
-  // Simulate analysis stages
-  useEffect(() => {
-    if (!isLoading) return;
-    setTimeout(() => setIsLoading(false), 0);
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (isAnalysisLoading === false) return;
-    setTimeout(() => setIsAnalysisLoading(false), 0);
-  }, [isAnalysisLoading]);
-
-  useEffect(() => {
-    if (isActionSelectionLoading === false || isAnalysisLoading) return;
-    setTimeout(() => setIsActionSelectionLoading(false), 0);
-  }, [isActionSelectionLoading, isAnalysisLoading]);
-
-  // Show AI decision interface
-  useEffect(() => {
-    const timer = setTimeout(() => setShowAIClassification(true), LOAD_TIME_AI_ACTION_SELECTION);
-    return () => clearTimeout(timer);
   }, [currentUrl]);
 
   return (

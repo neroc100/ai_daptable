@@ -17,10 +17,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  * @returns {JSX.Element} Page with AI analysis results and decision buttons
  */
 function Info_analysis() {
-  // Experiment flow states
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
-  
   // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
 
@@ -28,19 +24,8 @@ function Info_analysis() {
   const handleNextUrl = useHandleNextUrl({
     urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
     setShowSuccess: () => {}, setShowReview: () => {},
-    setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading: () => {}
+    setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
   });
-
-  // Simulate analysis stages
-  useEffect(() => {
-    if (!isLoading) return;
-    setTimeout(() => setIsLoading(false), 0);
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (isAnalysisLoading === false) return;
-    setTimeout(() => setIsAnalysisLoading(false), 0);
-  }, [isAnalysisLoading]);
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -53,18 +38,13 @@ function Info_analysis() {
         <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={true} showActionSelection={false} />
         
         {/* URL analysis display */}
-        {!isAnalysisLoading && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
-        
-        {/* URL information display (during analysis) */}
-        {!isLoading && isAnalysisLoading && <AI_URL_Info_Display isAnalysisDisplayed={false} />}
+        <AI_URL_Info_Display isAnalysisDisplayed={true} />
         
         {/* Decision buttons */}
-        {!isAnalysisLoading && (
-          <div className="flex flex-row space-x-4 w-full max-w-2xl">
-            <Allow_Button onNext={handleNextUrl} />
-            <Block_Button onNext={handleNextUrl} />
-          </div>
-        )}
+        <div className="flex flex-row space-x-4 w-full max-w-2xl">
+          <Allow_Button onNext={handleNextUrl} />
+          <Block_Button onNext={handleNextUrl} />
+        </div>
         
         <Progress_Bar />
       </div>
