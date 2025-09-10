@@ -8,12 +8,11 @@ import View_Information_Button from '../01 Interaction components/View_Informati
  * AI Veto Display Component
  * Displays override button for AI veto scenarios with ETH blue styling.
  * 
- * @param {Function} onViewInfo - Toggle information display
  * @param {Function} onNext - Navigate to next URL
  * @param {string} classification - AI classification ('Malicious' or 'Non-Malicious')
  * @returns {JSX.Element} AI veto display component
  */
-function AI_veto_display({ onViewInfo, onNext, classification = 'Non-Malicious' }) {
+function AI_veto_display({ onNext, classification = 'Non-Malicious' }) {
   // State to control success modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -53,9 +52,7 @@ function AI_veto_display({ onViewInfo, onNext, classification = 'Non-Malicious' 
         </div>
         
         {/* View Information Button */}
-        <View_Information_Button 
-          onClick={onViewInfo}
-        />
+        <View_Information_Button />
       </div>
 
       {/* Success message modal */}

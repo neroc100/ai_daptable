@@ -8,7 +8,7 @@ import Cancel_Button from '../01 Interaction components/Cancel_Button';
  * AI Allow Display Component
  * Displays confirm/override buttons for AI recommendations with ETH blue styling.
  */
-function AI_allow_display({ onViewInfo, onNext, classification = 'Malicious' }) {
+function AI_allow_display({ onNext, classification = 'Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline */}
@@ -41,9 +41,7 @@ function AI_allow_display({ onViewInfo, onNext, classification = 'Malicious' }) 
         </div>
         
         {/* Information toggle button */}
-        <View_Information_Button 
-          onClick={onViewInfo}
-        />
+        <View_Information_Button />
       </div>
     </>
   );

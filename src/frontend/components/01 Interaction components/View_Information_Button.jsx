@@ -6,25 +6,20 @@ import AI_URL_Info_Display from '../AI_action/AI_URL_Info_Display';
  * View Information Button Component
  * 
  * This component provides a button that allows users to view the analyzed information.
- * When clicked, it toggles the display of the Info_Display component.
+ * When clicked, it shows the analysis and can be clicked again to hide it.
  * 
  * @param {Object} props - Component props
  * @param {Function} props.onClick - External click handler (optional)
- * @param {boolean} props.showAnalysis - External state for showing analysis (optional)
  * @returns {JSX.Element} View information button component with toggle functionality
  */
-function View_Information_Button({ onClick, showAnalysis: externalShowAnalysis }) {
-  const [internalShowAnalysis, setInternalShowAnalysis] = useState(false);
-  
-  // Use external state if provided, otherwise use internal state
-  const showAnalysis = externalShowAnalysis !== undefined ? externalShowAnalysis : internalShowAnalysis;
-  const setShowAnalysis = externalShowAnalysis !== undefined ? onClick : setInternalShowAnalysis;
+function View_Information_Button({ onClick }) {
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
   const handleReviewClick = () => {
     if (onClick) {
       onClick();
     } else {
-      setInternalShowAnalysis(!internalShowAnalysis);
+      setShowAnalysis(!showAnalysis);
     }
   };
 

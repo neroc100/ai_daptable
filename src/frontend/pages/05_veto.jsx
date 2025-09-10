@@ -3,7 +3,6 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_veto_display from '../components/AI_action/AI_veto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
@@ -19,7 +18,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  */
 function Veto() {
   // UI interaction states
-  const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Non-Malicious');
   
   // URL progression and navigation
@@ -47,13 +45,9 @@ function Veto() {
         
         {/* AI veto interface */}
         <AI_veto_display
-          onViewInfo={() => setShowReview(!showReview)}
           onNext={handleNextUrl}
           classification={classification}
         />
-        
-        {/* URL analysis details */}
-        {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
         
         <Progress_Bar />
       </div>

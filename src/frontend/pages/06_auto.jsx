@@ -3,7 +3,6 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
@@ -19,7 +18,6 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  */
 function Auto() {
   // UI interaction states
-  const [showReview, setShowReview] = useState(false);
   const [classification, setClassification] = useState('Malicious');
   
   // URL progression and navigation
@@ -47,12 +45,8 @@ function Auto() {
         {/* AI action implementation status */}
         <AI_Completed_Actions_Display showActionImplementation={true} />
         
-        {/* URL analysis details */}
-        {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
-        
         {/* AI automatic action interface */}
         <AI_auto_display 
-          onViewInfo={() => setShowReview(!showReview)}
           onNext={handleNextUrl}
           classification={classification}
         />
