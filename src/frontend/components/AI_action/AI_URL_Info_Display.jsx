@@ -1,80 +1,20 @@
 import React from 'react';
 import Feature_Box from './Feature_boxes/Feature_Box';
-import { 
-  ethUrlConfig, 
-  maliciousUrlConfig, 
-  ambiguousLegitimateUrlConfig, 
-  ambiguousMaliciousUrlConfig,
-  newsUrlConfig,
-  shoppingUrlConfig,
-  educationUrlConfig,
-  governmentUrlConfig,
-  socialMediaUrlConfig,
-  phishingUrlConfig,
-  cryptoScamUrlConfig,
-  techSupportScamUrlConfig,
-  lotteryScamUrlConfig,
-  bankPhishingUrlConfig,
-  socialMediaScamUrlConfig
-} from '../../constants/URL_config';
 import { useUrlCounter } from '../../context/UrlCounterContext';
+import { getUrlConfig } from '../../composables/getURLconfig';
 
 /**
- * AI URL Info Display Component
- * 
- * This component displays the grid of six analysis boxes that show the results
- * of AI information processing. It contains all the feature display boxes in a
- * 3x2 grid layout with proper spacing and styling.
- * 
- * The component can render in two different styles:
- * - Acquisition style: White background with gray outline (isAnalysisDisplayed = false)
- * - Analysis style: White background with outline color based on majority of features (isAnalysisDisplayed = true)
- * 
- * @param {Object} props - Component props
- * @param {boolean} props.isAnalysisDisplayed - Whether to use the analysis page design (default: false)
- * @returns {JSX.Element} AI URL info display component
+ * AI URL Info Display
+ * Renders a 3x2 grid of feature boxes for the current URL.
+ *
+ * @param {boolean} isAnalysisDisplayed - Use analysis styling (default: false)
+ * @returns {JSX.Element}
  */
 function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
   const { currentUrl } = useUrlCounter();
-  // Select configuration based on current URL
-  const getConfig = () => {
-    switch (currentUrl) {
-      case 'eth':
-        return ethUrlConfig;
-      case 'malicious':
-        return maliciousUrlConfig;
-      case 'ambiguousLegitimate':
-        return ambiguousLegitimateUrlConfig;
-      case 'ambiguousMalicious':
-        return ambiguousMaliciousUrlConfig;
-      case 'news':
-        return newsUrlConfig;
-      case 'shopping':
-        return shoppingUrlConfig;
-      case 'education':
-        return educationUrlConfig;
-      case 'government':
-        return governmentUrlConfig;
-      case 'socialMedia':
-        return socialMediaUrlConfig;
-      case 'phishing':
-        return phishingUrlConfig;
-      case 'cryptoScam':
-        return cryptoScamUrlConfig;
-      case 'techSupportScam':
-        return techSupportScamUrlConfig;
-      case 'lotteryScam':
-        return lotteryScamUrlConfig;
-      case 'bankPhishing':
-        return bankPhishingUrlConfig;
-      case 'socialMediaScam':
-        return socialMediaScamUrlConfig;
-      default:
-        return ethUrlConfig;
-    }
-  };
-  
-  const config = getConfig();
+
+  // Get current URL configuration
+  const config = getUrlConfig(currentUrl);
   
   return (
     <div className="w-[1250px] flex gap-6">
