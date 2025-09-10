@@ -13,14 +13,16 @@ import { useSuccessModal } from '../../context/SuccessModalContext';
  * @returns {JSX.Element} Success message modal component
  */
 function Success_Message() {
+  // Get modal state and control functions from global context
   const { isVisible, modalContent, hideSuccessMessage } = useSuccessModal();
 
-  // Generate dynamic content based on modal content from context
+  // Generate dynamic content based on decision type and actor
   const getContent = () => {
     const { decisionType, actor } = modalContent;
     const isAllow = decisionType === 'allow';
     const isHuman = actor === 'human';
     
+    // Return content for human decisions
     if (isHuman) {
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
@@ -29,6 +31,7 @@ function Success_Message() {
         buttonText: 'Next'
       };
     } else {
+      // Return content for AI decisions
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
         description: `The AI successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
@@ -40,13 +43,15 @@ function Success_Message() {
 
   const content = getContent();
 
-  // Don't render if modal is hidden
+  // Don't render modal if not visible
   if (!isVisible) {
     return null;
   }
 
   return (
+    // Modal overlay with dark background
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
+      {/* Modal container */}
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
         <div className="w-full h-full relative flex flex-col justify-center items-center">
           {/* Success message content */}
@@ -60,12 +65,12 @@ function Success_Message() {
             </div>
           </div>
           
-          {/* Next button */}
+          {/* Next button - automatically hides modal and navigates */}
           <div className="flex justify-center">
             <Next_Button />
           </div>
           
-          {/* Status icon */}
+          {/* Status icon - positioned absolutely */}
           <div data-svg-wrapper className="absolute left-6 top-6">
             {content.icon}
           </div>

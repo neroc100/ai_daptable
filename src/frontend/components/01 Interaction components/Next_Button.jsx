@@ -12,22 +12,28 @@ import { useSuccessModal } from '../../context/SuccessModalContext';
  * 
  */
 function Next_Button({ className = "", text = "Next URL" }) {
+  // Navigation and URL counter hooks
   const navigate = useNavigate();
   const { urlCount, maxUrls, incrementUrlCount, switchUrl } = useUrlCounter();
+  // Modal control hook
   const { hideSuccessMessage } = useSuccessModal();
 
   const handleClick = () => {
+    // Always hide success modal first
     hideSuccessMessage();
     
+    // Navigate to main page if max URLs reached
     if (urlCount >= maxUrls) {
       navigate('/');
     } else {
+      // Otherwise, progress to next URL
       incrementUrlCount();
       switchUrl();
     }
   };
 
   return (
+    // ETH blue styled button with navigation logic
     <button
       onClick={handleClick}
       className={`px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl ${className}`}

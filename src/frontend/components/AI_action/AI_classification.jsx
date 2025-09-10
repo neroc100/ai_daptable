@@ -24,15 +24,15 @@ function AI_classification({ classification = 'Malicious' }) {
   };
 
   return (
-    <div className="w-full p-4 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col justify-start items-start" style={containerStyle}>
+    <div className="w-full p-4 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col text-center items-center" style={containerStyle}>
       {/* AI Classification label */}
-      <div className="self-stretch justify-start text-stone-900 text-2xl font-semibold font-['Inter'] leading-loose mb-2">AI Classification:</div>
+      <div className="self-stretch text-stone-900 text-2xl font-semibold font-['Inter'] leading-loose mb-2">AI Classification:</div>
       
       {/* Separator line */}
       <div className="w-full h-px bg-gray-300 mb-2"></div>
       
       {/* Classification result */}
-      <div className="text-xl font-semibold" style={textStyle}>{classification}</div>
+      <div className="text-xl font-semibold " style={textStyle}>{classification}</div>
     </div>
   );
 }
