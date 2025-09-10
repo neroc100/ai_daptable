@@ -11,9 +11,10 @@ import { useSuccessModal } from '../../context/SuccessModalContext';
  * 
  * @param {Object} props - Component props
  * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
+ * @param {string} props.className - Additional CSS classes (optional)
  * @returns {JSX.Element} Cancel button component
  */
-function Cancel_Button({ classification = 'Malicious' }) {
+function Cancel_Button({ classification = 'Malicious', className = "" }) {
   const { showSuccessMessage } = useSuccessModal();
 
 
@@ -27,7 +28,7 @@ function Cancel_Button({ classification = 'Malicious' }) {
           classification: classification,
           actionType: 'override'
         })}
-        className="w-96 h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-2 overflow-hidden transition-colors duration-200"
+        className={`w-96 h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-2 overflow-hidden transition-colors duration-200 ${className}`}
         style={{ backgroundColor: 'var(--eth-blue-100)', outlineColor: 'var(--eth-blue-100)' }}
       >
         <div className="relative">

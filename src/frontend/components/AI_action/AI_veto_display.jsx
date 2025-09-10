@@ -1,8 +1,8 @@
 import React from 'react';
 import Next_Button from '../01 Interaction components/Next_Button';
 import View_Information_Button from '../01 Interaction components/View_Information_Button';
+import Cancel_Button from '../01 Interaction components/Cancel_Button';
 import AI_Action_Message_Box from './AI_Action_Message_Box';
-import { useSuccessModal } from '../../context/SuccessModalContext';
 
 /**
  * AI Veto Display Component
@@ -12,19 +12,6 @@ import { useSuccessModal } from '../../context/SuccessModalContext';
  * @returns {JSX.Element} AI veto display component
  */
 function AI_veto_display({ classification = 'Non-Malicious' }) {
-  const { showSuccessMessage } = useSuccessModal();
-
-  /**
-   * Handles override action - triggers global success modal
-   */
-  const handleOverride = () => {
-    showSuccessMessage({
-      decisionType: classification === 'Malicious' ? 'allow' : 'block',
-      actor: 'human',
-      classification: classification,
-      actionType: 'override'
-    });
-  };
   return (
     <>
       <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)' }}>
@@ -35,17 +22,13 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
         
         {/* Buttons */}
         <div className="flex flex-row space-x-4">
-          <button
-            onClick={handleOverride}
-            className="px-12 py-4 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-lg"
-            style={{ backgroundColor: 'var(--eth-blue-100)' }}
-          >
-            Override and {classification === 'Malicious' ? 'Allow' : 'Block'} URL instead
-          </button>
+          <Cancel_Button 
+            classification={classification}
+            className="px-12 py-4 text-lg"
+          />
           <Next_Button 
             className="px-12 py-4 text-lg"
           />
-          
         </div>
         
         {/* View Information Button */}
