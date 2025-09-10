@@ -8,100 +8,57 @@ import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_A
 import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
- * Page for info analysis condition
- * 
- * @returns {JSX.Element} 
+ * Info Analysis Page - Condition 3
+ * AI information analysis with user decision interface
+ *
+ * @returns {JSX.Element} Page with AI analysis results and decision buttons
  */
 function Info_analysis() {
+  // Experiment flow states
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [timeElapsed, setTimeElapsed] = useState(0);
-  const { currentUrl, switchUrl } = useUrlCounter();
+  
+  // URL progression and navigation
+  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
 
-  const handleNextUrl = () => {
-    switchUrl();
-    // Reset loading states for new URL
-    setIsLoading(true);
-    setIsAnalysisLoading(true);
-    setTimeElapsed(0);
-  };
+  // URL navigation handler
+  const handleNextUrl = useHandleNextUrl({
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
+    setShowSuccess: () => {}, setShowReview: () => {},
+    setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading: () => {}
+  });
+
+  // Simulate analysis stages
+  useEffect(() => {
+    if (!isLoading) return;
+    setTimeout(() => setIsLoading(false), 0);
+  }, [isLoading]);
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        setIsPaused(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  useEffect(() => {
-    if (isPaused || !isLoading) return;
-
-    const timer = setInterval(() => {
-      setTimeElapsed(prev => {
-        if (prev >= 0) {
-          setIsLoading(false);
-          return prev;
-        }
-        return prev + 100;
-      });
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, [isPaused, isLoading]);
-
-  useEffect(() => {
-    if (isPaused || isAnalysisLoading === false) return;
-
-    const timer = setTimeout(() => {
-      setIsAnalysisLoading(false);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [isPaused, isAnalysisLoading]);
+    if (isAnalysisLoading === false) return;
+    setTimeout(() => setIsAnalysisLoading(false), 0);
+  }, [isAnalysisLoading]);
 
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
-        {/* Header */}
         <Dashboard_Header />
-        
-        {/* URL Input Section */}
         <URL_presentation />
-        
-        {/* Separator */}
         <Separator />
         
-        {/* Loading/Completion Status */}
-        <div className="flex flex-col items-center space-y-4">
-          <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={true} showActionSelection={false} />
-          
-          {/* Pause/Resume Instructions */}
-          {isLoading && (
-            <div className="flex items-center space-x-2 text-gray-400 text-sm">
-              
-            </div>
-          )}
-        </div>
+        {/* AI analysis status */}
+        <AI_Completed_Actions_Display showAcquisition={true} showAnalysis={true} showActionSelection={false} />
         
-        {/* Info Display - Shows when AI analysis timer runs out */}
-        {!isAnalysisLoading && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} />
-        )}
+        {/* URL analysis display */}
+        {!isAnalysisLoading && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
         
-        {/* Info Display - Shows when acquisition is complete but hides when analysis is complete */}
-        {!isLoading && isAnalysisLoading && (
-          <AI_URL_Info_Display isAnalysisDisplayed={false} />
-        )}
+        {/* URL information display (during analysis) */}
+        {!isLoading && isAnalysisLoading && <AI_URL_Info_Display isAnalysisDisplayed={false} />}
         
-        {/* Action Buttons - Allow and Block */}
+        {/* Decision buttons */}
         {!isAnalysisLoading && (
           <div className="flex flex-row space-x-4 w-full max-w-2xl">
             <Allow_Button onNext={handleNextUrl} />
@@ -109,7 +66,6 @@ function Info_analysis() {
           </div>
         )}
         
-        {/* Progress Bar */}
         <Progress_Bar />
       </div>
     </div>

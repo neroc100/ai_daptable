@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, Check, Square, Info } from 'lucide-react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
@@ -7,150 +6,80 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
-import Review_Button from '../components/01 Interaction components/View_Information_Button';
 import { LOAD_TIME_AI_ACTION_SELECTION } from '../constants/aiLoadingTimes';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useNavigate } from 'react-router-dom';
+import { getUrlClassification } from '../composables/getURLconfig';
+import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
- * Auto Malicious A Page
- * 
- * This page displays the results of AI information analysis for condition 6a.
- * It shows the analyzed information after the AI processing is complete.
- * Instead of a "Make Decision" button, it provides "Allow" and "Block" buttons.
- * This page looks the same as veto_non_malicious_a but is placed in the AUTO folder.
- * 
- * @returns {JSX.Element} Auto malicious A page component with Allow/Block buttons
+ * Auto Page - Condition 6
+ * AI automatic decision implementation with review interface
+ *
+ * @returns {JSX.Element} Page with AI automatic actions and review options
  */
 function Auto() {
+  // Experiment flow states
   const [isLoading, setIsLoading] = useState(true);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(true);
   const [isActionSelectionLoading, setIsActionSelectionLoading] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const [timeElapsed, setTimeElapsed] = useState(0);
+  
+  // UI interaction states
   const [showReview, setShowReview] = useState(false);
   const [showAIClassification, setShowAIClassification] = useState(false);
   const [classification, setClassification] = useState('Malicious');
+  
+  // URL progression and navigation
   const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
   const navigate = useNavigate();
 
-  const handleNextUrl = () => {
-    if (urlCount >= maxUrls) {
-      // Maximum URLs reached, navigate to main page
-      navigate('/');
-    } else {
-      // More URLs to go, increment counter and switch URL
-      incrementUrlCount();
-      switchUrl();
-      // Reset review state for new URL
-      setShowReview(false);
-      // Reset timers for new URL
-      setIsLoading(true);
-      setIsAnalysisLoading(true);
-      setIsActionSelectionLoading(true);
-      setTimeElapsed(0);
-      // Classification will be updated automatically by useEffect when currentUrl changes
-    }
-  };
+  // URL navigation handler
+  const handleNextUrl = useHandleNextUrl({
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate,
+    setShowSuccess: () => {}, setShowReview, setIsLoading, setIsAnalysisLoading, setIsActionSelectionLoading
+  });
 
+  // Update URL classification
   useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        setIsPaused(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  useEffect(() => {
-    if (isPaused || !isLoading) return;
-
-    const timer = setInterval(() => {
-      setTimeElapsed(prev => {
-        if (prev >= 0) {
-          setIsLoading(false);
-          return prev;
-        }
-        return prev + 100;
-      });
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, [isPaused, isLoading]);
-
-  useEffect(() => {
-    if (isPaused || isAnalysisLoading === false) return;
-
-    const timer = setTimeout(() => {
-      setIsAnalysisLoading(false);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [isPaused, isAnalysisLoading]);
-
-  useEffect(() => {
-    if (isPaused || isActionSelectionLoading === false || isAnalysisLoading) return;
-
-    const timer = setTimeout(() => {
-      setIsActionSelectionLoading(false);
-    }, 0);
-
-    return () => clearTimeout(timer);
-  }, [isPaused, isActionSelectionLoading, isAnalysisLoading]);
-
-  // Generate classification based on current URL
-  useEffect(() => {
-    const maliciousUrls = ['malicious', 'ambiguousMalicious', 'phishing', 'cryptoScam', 'techSupportScam', 'lotteryScam', 'bankPhishing', 'socialMediaScam'];
-    const classification = maliciousUrls.includes(currentUrl) ? 'Malicious' : 'Non-Malicious';
-    setClassification(classification);
+    setClassification(getUrlClassification(currentUrl));
   }, [currentUrl]);
 
-  // Show AI classification after AI action selection time has passed
+  // Simulate analysis stages
   useEffect(() => {
-    if (isPaused) return;
+    if (!isLoading) return;
+    setTimeout(() => setIsLoading(false), 0);
+  }, [isLoading]);
 
-    const timer = setTimeout(() => {
-      setShowAIClassification(true);
-    }, LOAD_TIME_AI_ACTION_SELECTION);
+  useEffect(() => {
+    if (isAnalysisLoading === false) return;
+    setTimeout(() => setIsAnalysisLoading(false), 0);
+  }, [isAnalysisLoading]);
 
+  useEffect(() => {
+    if (isActionSelectionLoading === false || isAnalysisLoading) return;
+    setTimeout(() => setIsActionSelectionLoading(false), 0);
+  }, [isActionSelectionLoading, isAnalysisLoading]);
+
+  // Show AI automatic action interface
+  useEffect(() => {
+    const timer = setTimeout(() => setShowAIClassification(true), LOAD_TIME_AI_ACTION_SELECTION);
     return () => clearTimeout(timer);
-  }, [isPaused, currentUrl]);
+  }, [currentUrl]);
 
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
-        {/* Header */}
         <Dashboard_Header />
-        
-        {/* URL Input Section */}
         <URL_presentation showAIClassification={showAIClassification} classification={classification} />
-        
-        {/* Separator */}
         <Separator />
         
-        {/* Loading/Completion Status */}
-        <div className="flex flex-col items-center space-y-4">
-          <AI_Completed_Actions_Display showActionImplementation={true} />
-          
-          {/* Pause/Resume Instructions */}
-          {isLoading && (
-            <div className="flex items-center space-x-2 text-gray-400 text-sm">
-              
-            </div>
-          )}
-        </div>
+        {/* AI action implementation status */}
+        <AI_Completed_Actions_Display showActionImplementation={true} />
         
-
+        {/* URL analysis details */}
+        {showReview && <AI_URL_Info_Display isAnalysisDisplayed={true} />}
         
-        {/* Info Display - Shows when review button is clicked */}
-        {showReview && (
-          <AI_URL_Info_Display isAnalysisDisplayed={true} />
-        )}
-        
-        {/* AI Auto Display - Shows when AI classification is displayed */}
+        {/* AI automatic action interface */}
         {showAIClassification && (
           <AI_auto_display 
             onViewInfo={() => setShowReview(!showReview)}
@@ -159,9 +88,6 @@ function Auto() {
           />
         )}
         
-
-        
-        {/* Progress Bar */}
         <Progress_Bar />
       </div>
     </div>

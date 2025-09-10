@@ -6,42 +6,39 @@ import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
- * Manual Condition Page
- * 
- * @returns {JSX.Element}
+ * Manual Page - Condition 1
+ * Direct user decision interface without AI assistance
+ *
+ * @returns {JSX.Element} Page with allow/block decision buttons
  */
 function Manual() {
-  const { currentUrl, switchUrl } = useUrlCounter();
+  // URL progression and navigation
+  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
 
-  const handleNextUrl = () => {
-    switchUrl();
-    // Reset any success states if needed
-  };
+  // URL navigation handler
+  const handleNextUrl = useHandleNextUrl({
+    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {},
+    setShowSuccess: () => {}, setShowReview: () => {},
+    setIsLoading: () => {}, setIsAnalysisLoading: () => {}, setIsActionSelectionLoading: () => {}
+  });
 
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
-        {/* Header */}
         <Dashboard_Header />
-        
-        {/* URL Input Section */}
         <URL_presentation />
-        
-        {/* Separator */}
         <Separator />
         
-        {/* Action Buttons - Allow and Block */}
+        {/* Decision buttons */}
         <div className="flex flex-row space-x-4 w-full max-w-2xl">
           <Allow_Button onNext={handleNextUrl} />
           <Block_Button onNext={handleNextUrl} />
         </div>
         
-        {/* Progress Bar */}
-        <div className="flex flex-col items-center space-y-4">
-          <Progress_Bar />
-        </div>
+        <Progress_Bar />
       </div>
     </div>
   );
