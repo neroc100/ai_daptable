@@ -1,5 +1,7 @@
 import React from 'react';
 import AI_Completed_Action_Element from './AI_Completed_Action_Element';
+import { useUrlCounter } from '../../context/UrlCounterContext';
+import { getUrlClassification } from '../../composables/getURLconfig';
 
 /**
  * AI Completed Actions Display
@@ -12,6 +14,12 @@ import AI_Completed_Action_Element from './AI_Completed_Action_Element';
  * @returns {JSX.Element} AI stages display component
  */
 function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = true, showActionSelection = true, showActionImplementation = false }) {
+  const { currentUrl } = useUrlCounter();
+  
+  // Get URL classification to determine action text
+  const classification = getUrlClassification(currentUrl);
+  const actionText = classification === 'Malicious' ? 'AI blocked the URL' : 'AI allowed the URL';
+  
   // Dynamic height based on stage count
   const stageCount = [showAcquisition, showAnalysis, showActionSelection, showActionImplementation].filter(Boolean).length;
   const dynamicHeight = stageCount === 1 ? 'h-20' : stageCount === 2 ? 'h-32' : stageCount === 3 ? 'h-42' : 'h-52';
@@ -21,7 +29,7 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
       {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
       {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
       {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
-      {showActionImplementation && <AI_Completed_Action_Element text="AI allowed the URL" />}
+      {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
     </div>
   );
 }
