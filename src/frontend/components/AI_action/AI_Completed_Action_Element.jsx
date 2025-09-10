@@ -2,13 +2,11 @@ import React from 'react';
 import { ClipboardCheck } from 'lucide-react';
 
 /**
- * AI Completed Action Element Component
- * 
- * This component displays a completed checkmark icon with customizable text.
- * 
- * @param {Object} props - Component props
- * @param {string} props.text - The text to display next to the icon
- * @returns {JSX.Element} AI completed action element component
+ * AI Completed Action Element
+ * Displays completed checkmark with text
+ *
+ * @param {string} text - Text to display next to checkmark
+ * @returns {JSX.Element} Completed action element
  */
 function AI_Completed_Action_Element({ text = "AI Action Info" }) {
   return (
