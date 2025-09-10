@@ -23,9 +23,10 @@ function Manual() {
         <URL_presentation />
         <Separator />
         
-        {/* Decision buttons */}
-        <div className="flex flex-row space-x-4 w-full max-w-2xl">
+        {/* Decision buttons - centered with one on each side */}
+        <div className="flex flex-row justify-center items-center w-full max-w-4xl">
           <Decision_Button type="allow" />
+          <div className="w-4"></div> {/* Spacer between buttons */}
           <Decision_Button type="block" />
         </div>
         

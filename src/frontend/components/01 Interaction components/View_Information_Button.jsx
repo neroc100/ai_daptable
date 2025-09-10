@@ -15,16 +15,11 @@ function View_Information_Button() {
   // Internal state for analysis visibility
   const [showAnalysis, setShowAnalysis] = useState(false);
 
-  const handleReviewClick = () => {
-    // Toggle internal state
-    setShowAnalysis(!showAnalysis);
-  };
-
   return (
     <div className="flex flex-col items-center space-y-4">
       {/* Toggle button with eye/eye-off icons */}
       <button
-        onClick={handleReviewClick}
+        onClick={() => setShowAnalysis(!showAnalysis)}
         className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
         style={{ backgroundColor: 'var(--eth-blue-20)' }}
       >

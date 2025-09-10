@@ -3,10 +3,11 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import { getUrlClassification } from '../composables/getURLconfig';
+
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_veto_display from '../components/AI_action/AI_veto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { getUrlClassification } from '../composables/getURLconfig';
 
 /**
  * Veto Page - Condition 5

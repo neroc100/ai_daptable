@@ -25,19 +25,23 @@ function AI_allow_display({ classification = 'Malicious' }) {
           text={`AI requests to ${classification === 'Malicious' ? 'block' : 'allow'} the URL`}
         />
         
-        {/* Action buttons container */}
-        <div className="flex flex-row space-x-4">
-          {/* Confirm AI recommendation button */}
-          <Decision_Button 
-            type="confirm"
-            classification={classification}
-          />
-          {/* Deny AI recommendation button with custom text */}
-          <Decision_Button 
-            type="override"
-            classification={classification}
-            text={`Deny and ${classification === 'Malicious' ? 'allow' : 'block'} instead`}
-          />
+        {/* Action buttons container - equally distant from center */}
+        <div className="flex justify-center items-center w-full relative py-8">
+          {/* Confirm AI recommendation button - positioned left of center */}
+          <div className="absolute left-1/2 transform -translate-x-full -translate-x-4">
+            <Decision_Button 
+              type="confirm"
+              classification={classification}
+            />
+          </div>
+          {/* Deny AI recommendation button - positioned right of center */}
+          <div className="absolute left-1/2 transform translate-x-4">
+            <Decision_Button 
+              type="override"
+              classification={classification}
+              text={`Deny and ${classification === 'Malicious' ? 'allow' : 'block'} URL instead`}
+            />
+          </div>
         </div>
         
         {/* Toggle button for viewing AI analysis information */}

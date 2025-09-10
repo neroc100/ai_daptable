@@ -25,18 +25,22 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
           text={`AI successfully ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
         />
         
-        {/* Action buttons - override and next */}
-        <div className="flex flex-row space-x-4">
-          {/* Override button to change AI's decision */}
-          <Decision_Button 
-            type="override"
-            classification={classification}
-            className="px-12 py-4 text-lg"
-          />
-          {/* Navigation button to proceed to next URL */}
-          <Next_Button 
-            className="px-12 py-4 text-lg"
-          />
+        {/* Action buttons - equally distant from center */}
+        <div className="flex justify-center items-center w-full relative py-8">
+          {/* Override button to change AI's decision - positioned left of center */}
+          <div className="absolute left-1/2 transform -translate-x-full -translate-x-4">
+            <Decision_Button 
+              type="override"
+              classification={classification}
+              className="px-12 py-4 text-lg"
+            />
+          </div>
+          {/* Navigation button to proceed to next URL - positioned right of center */}
+          <div className="absolute left-1/2 transform translate-x-4">
+            <Next_Button 
+              className="px-12 py-4 text-lg"
+            />
+          </div>
         </div>
         
         {/* Toggle button for viewing AI analysis information */}
