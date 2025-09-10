@@ -8,6 +8,7 @@
 // ETH Zurich URL (legitimate)
 export const ethUrlConfig = {
   url: "https://spg.ethz.ch/group/people/doctoral-students/neele-roch.html",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -73,6 +74,7 @@ export const ethUrlConfig = {
 // Malicious URL example
 export const maliciousUrlConfig = {
   url: "https://free-gift-card-claim-now.xyz/secure-verification/account-update",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -133,6 +135,7 @@ export const maliciousUrlConfig = {
 // Ambiguous legitimate URL (e-commerce site with some suspicious features)
 export const ambiguousLegitimateUrlConfig = {
   url: "https://discount-electronics-store.net/shop/electronics/phones/smartphones/prizes",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -198,6 +201,7 @@ export const ambiguousLegitimateUrlConfig = {
 // Ambiguous malicious URL (phishing site that looks legitimate)
 export const ambiguousMaliciousUrlConfig = {
   url: "https://secure-banking-login-verification.com/аccount/security/updаte",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -265,6 +269,7 @@ export const ambiguousMaliciousUrlConfig = {
 // Legitimate news website
 export const newsUrlConfig = {
   url: "https://www.bbc.com/news/technology/2024/01/15/artificial-intelligence-breakthrough",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -325,6 +330,7 @@ export const newsUrlConfig = {
 // E-commerce shopping site
 export const shoppingUrlConfig = {
   url: "https://shop.amazon.com/dp/B08N5WRWNW/ref=sr_1_1",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -385,6 +391,7 @@ export const shoppingUrlConfig = {
 // Educational institution
 export const educationUrlConfig = {
   url: "https://web.mit.edu/18.06/www/Spring17/Spring17.html",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -445,6 +452,7 @@ export const educationUrlConfig = {
 // Government website
 export const governmentUrlConfig = {
   url: "https://www.usa.gov/visas-and-immigration",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -505,6 +513,7 @@ export const governmentUrlConfig = {
 // Social media platform
 export const socialMediaUrlConfig = {
   url: "https://www.linkedin.com/in/johndoe123/recent-activity/",
+  malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -565,6 +574,7 @@ export const socialMediaUrlConfig = {
 // Suspicious phishing attempt
 export const phishingUrlConfig = {
   url: "https://secure-paypal-verification-urgent.tk/account/security/update-now",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -625,6 +635,7 @@ export const phishingUrlConfig = {
 // Cryptocurrency scam
 export const cryptoScamUrlConfig = {
   url: "https://bitcoin-double-investment-now.cf/secure-wallet/claim-rewards",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -685,6 +696,7 @@ export const cryptoScamUrlConfig = {
 // Fake tech support
 export const techSupportScamUrlConfig = {
   url: "https://microsoft-security-alert-urgent.ml/support/remote-access/fix-now",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -745,6 +757,7 @@ export const techSupportScamUrlConfig = {
 // Fake lottery winner
 export const lotteryScamUrlConfig = {
   url: "https://euro-millions-winner-claim-prize.gq/verify-identity/collect-now",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -805,6 +818,7 @@ export const lotteryScamUrlConfig = {
 // Fake bank phishing
 export const bankPhishingUrlConfig = {
   url: "https://chase-bank-security-update-required.ga/online-banking/login/verify",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -865,6 +879,7 @@ export const bankPhishingUrlConfig = {
 // Fake social media verification
 export const socialMediaScamUrlConfig = {
   url: "https://instagram-account-verification-urgent.tk/verify/identity/restore-access",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
@@ -923,4 +938,4 @@ export const socialMediaScamUrlConfig = {
 };
 
 // Default to ETH URL
-export const featureConfigs = ethUrlConfig;
+export const urlConfigs = ethUrlConfig;

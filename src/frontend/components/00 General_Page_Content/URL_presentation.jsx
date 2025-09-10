@@ -16,7 +16,7 @@ import {
   lotteryScamUrlConfig,
   bankPhishingUrlConfig,
   socialMediaScamUrlConfig
-} from '../AI_action/Feature_boxes/featureConfig';
+} from '../../constants/URL_config';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
