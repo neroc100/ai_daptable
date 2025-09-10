@@ -4,12 +4,10 @@ import URL_presentation from '../components/00 General_Page_Content/URL_presenta
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { getUrlClassification } from '../composables/getURLconfig';
-import { useHandleNextUrl } from '../composables/handleNextURL';
 
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_allow_display from '../components/AI_action/AI_allow_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { useNavigate } from 'react-router-dom';
 
 /**
  * Allow Page - Condition 4
@@ -23,13 +21,7 @@ function Allow() {
  
   
   // URL progression and navigation
-  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
-  const navigate = useNavigate();
-
-  // URL navigation handler
-  const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate
-  });
+  const { currentUrl } = useUrlCounter();
 
 
   // Update URL classification
@@ -47,7 +39,6 @@ function Allow() {
         
         {/* AI decision interface */}
         <AI_allow_display
-          onNext={handleNextUrl}
           classification={classification}
         />
         

@@ -1,26 +1,36 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUrlCounter } from '../../context/UrlCounterContext';
 
 /**
  * Next Button Component
  * 
- * A reusable button component that navigates to the main page when clicked.
- * Uses ETH blue styling consistent with the application theme.
+ * Universal navigation button for URL progression in the experiment.
+ * Automatically navigates to next URL or main page when max URLs reached.
+ * Uses ETH blue styling consistent with application theme.
  * 
  * @param {Object} props - Component props
  * @param {string} props.className - Additional CSS classes for the button
- * @param {Function} props.onClick - Optional custom click handler (if not provided, navigates to main page)
  * @param {string} props.text - Button text (defaults to "Next URL")
+ * @param {Function} props.onClick - Optional custom click handler (executes before navigation)
  * @returns {JSX.Element} Next button component
  */
-function Next_Button({ className = "", onClick, text = "Next URL" }) {
+function Next_Button({ className = "", text = "Next URL", onClick }) {
   const navigate = useNavigate();
+  const { urlCount, maxUrls, incrementUrlCount, switchUrl } = useUrlCounter();
 
   const handleClick = () => {
+    // Execute custom click handler first (e.g., hide modal)
     if (onClick) {
       onClick();
+    }
+    
+    // Handle navigation logic
+    if (urlCount >= maxUrls) {
+      navigate('/'); // Return to main page
     } else {
-      navigate('/');
+      incrementUrlCount(); // Increment URL counter
+      switchUrl(); // Switch to next URL
     }
   };
 

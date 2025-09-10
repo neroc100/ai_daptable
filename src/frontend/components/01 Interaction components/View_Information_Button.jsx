@@ -5,27 +5,29 @@ import AI_URL_Info_Display from '../AI_action/AI_URL_Info_Display';
 /**
  * View Information Button Component
  * 
- * This component provides a button that allows users to view the analyzed information.
- * When clicked, it shows the analysis and can be clicked again to hide it.
+ * Toggle button for showing/hiding AI analysis information.
+ * Can use external click handler or manage internal state for analysis visibility.
+ * Displays eye/eye-off icons and appropriate text based on current state.
  * 
  * @param {Object} props - Component props
  * @param {Function} props.onClick - External click handler (optional)
- * @returns {JSX.Element} View information button component with toggle functionality
+ * @returns {JSX.Element} View information button with toggle functionality
  */
 function View_Information_Button({ onClick }) {
+  // Internal state for analysis visibility when no external handler provided
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   const handleReviewClick = () => {
     if (onClick) {
-      onClick();
+      onClick(); // Use external handler if provided
     } else {
-      setShowAnalysis(!showAnalysis);
+      setShowAnalysis(!showAnalysis); // Toggle internal state
     }
   };
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      {/* View Information Button */}
+      {/* Toggle button with eye/eye-off icons */}
       <button
         onClick={handleReviewClick}
         className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
@@ -44,7 +46,7 @@ function View_Information_Button({ onClick }) {
         )}
       </button>
 
-      {/* AI URL Info Display - Shows when button is toggled on (only when using internal state) */}
+      {/* AI analysis display - only shown when using internal state */}
       {showAnalysis && !onClick && (
         <div className="mt-6">
           <AI_URL_Info_Display isAnalysisDisplayed={true} />

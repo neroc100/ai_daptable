@@ -6,9 +6,7 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { useNavigate } from 'react-router-dom';
 import { getUrlClassification } from '../composables/getURLconfig';
-import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
  * Auto Page - Condition 6
@@ -21,13 +19,7 @@ function Auto() {
   const [classification, setClassification] = useState('Malicious');
   
   // URL progression and navigation
-  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
-  const navigate = useNavigate();
-
-  // URL navigation handler
-  const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate
-  });
+  const { currentUrl } = useUrlCounter();
 
 
   // Update URL classification
@@ -47,7 +39,6 @@ function Auto() {
         
         {/* AI automatic action interface */}
         <AI_auto_display 
-          onNext={handleNextUrl}
           classification={classification}
         />
         

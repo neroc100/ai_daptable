@@ -11,6 +11,8 @@ import Dummy from './pages/dummy';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
+import { SuccessModalProvider } from './context/SuccessModalContext';
+import Success_Message from './components/01 Interaction components/Success_Message';
 
 
 /**
@@ -155,22 +157,26 @@ function App() {
     <ErrorBoundary>
       <ButtonProvider>
         <UrlCounterProvider>
-          <Router>
-            <div className="min-h-screen bg-gray-50">
-              <main>
-                <Routes>
-                  <Route path="/" element={<MainPage />} />
-                  <Route path="/manual" element={<Manual />} />
-                  <Route path="/info-acquisition" element={<Info_acquisition />} />
-                  <Route path="/info-analysis" element={<Info_analysis />} />
-                  <Route path="/allow" element={<Allow />} />
-                  <Route path="/veto" element={<Veto />} />
-                  <Route path="/auto" element={<Auto/>} />
-                  <Route path="/dummy" element={<Dummy />} />
-                </Routes>
-              </main>
-            </div>
-          </Router>
+          <SuccessModalProvider>
+            <Router>
+              <div className="min-h-screen bg-gray-50">
+                <main>
+                  <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/manual" element={<Manual />} />
+                    <Route path="/info-acquisition" element={<Info_acquisition />} />
+                    <Route path="/info-analysis" element={<Info_analysis />} />
+                    <Route path="/allow" element={<Allow />} />
+                    <Route path="/veto" element={<Veto />} />
+                    <Route path="/auto" element={<Auto/>} />
+                    <Route path="/dummy" element={<Dummy />} />
+                  </Routes>
+                </main>
+                {/* Global Success Message Modal */}
+                <Success_Message />
+              </div>
+            </Router>
+          </SuccessModalProvider>
         </UrlCounterProvider>
       </ButtonProvider>
     </ErrorBoundary>

@@ -1,37 +1,36 @@
 import React, { useState } from 'react';
 import { ChevronsRight } from 'lucide-react';
-import Success_Message from './Success_Message';
+import { useSuccessModal } from '../../context/SuccessModalContext';
 
 /**
  * Confirm Button Component
  * 
- * This component displays a confirm button with the specified design.
- * It includes a chevrons right icon and "Confirm" text.
- * Handles success states internally like other button components.
+ * Button for confirming AI recommendations in AI-assisted decision scenarios.
+ * Triggers global success modal when clicked.
+ * Includes tooltip and ETH blue styling with chevron icon.
  * 
  * @param {Object} props - Component props
- * @param {Function} props.onNext - Callback function when Next URL is clicked
- * @param {string} props.classification - The AI classification ('Malicious' or 'Non-Malicious')
- * @param {string} props.tooltipText - Tooltip text to show on hover (optional)
+ * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
+ * @param {string} props.tooltipText - Tooltip text on hover (optional)
  * @returns {JSX.Element} Confirm button component
  */
-function Confirm_Button({ onNext, classification = 'Malicious', tooltipText = "Confirm the AI's recommendation" }) {
+function Confirm_Button({ classification = 'Malicious', tooltipText = "Confirm the AI's recommendation" }) {
+  // Tooltip visibility state
   const [showTooltip, setShowTooltip] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const { showSuccessMessage } = useSuccessModal();
 
-  /**
-   * Handles the button click event
-   * Shows the success modal when the confirm button is clicked
-   */
-  const handleClick = () => {
-    setShowModal(true);
-  };
 
   return (
     <>
       <div className="relative">
+        {/* Main Confirm Button - ETH blue with chevron icon */}
         <button 
-          onClick={handleClick}
+          onClick={() => showSuccessMessage({
+            decisionType: classification === 'Malicious' ? 'block' : 'allow',
+            actor: 'ai',
+            classification: classification,
+            actionType: 'confirm'
+          })}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
           className="w-96 h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] inline-flex justify-center items-center gap-2 overflow-hidden transition-colors duration-200"
@@ -45,7 +44,7 @@ function Confirm_Button({ onNext, classification = 'Malicious', tooltipText = "C
           </div>
         </button>
         
-        {/* Tooltip */}
+        {/* Hover tooltip */}
         {showTooltip && (
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg z-50 whitespace-nowrap">
             {tooltipText}
@@ -55,17 +54,6 @@ function Confirm_Button({ onNext, classification = 'Malicious', tooltipText = "C
         )}
       </div>
 
-      {/* Success message modal */}
-      {showModal && (
-        <Success_Message 
-          decisionType={classification === 'Malicious' ? 'block' : 'allow'}
-          actor="ai"
-          onNext={() => {
-            onNext();
-            setShowModal(false); // Reset modal state when onNext is called
-          }}
-        />
-      )}
     </>
   );
 }

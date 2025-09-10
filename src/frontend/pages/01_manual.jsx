@@ -6,7 +6,6 @@ import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
  * Manual Page - Condition 1
@@ -16,12 +15,7 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  */
 function Manual() {
   // URL progression and navigation
-  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
-
-  // URL navigation handler
-  const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {}
-  });
+  const { currentUrl } = useUrlCounter();
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -32,8 +26,8 @@ function Manual() {
         
         {/* Decision buttons */}
         <div className="flex flex-row space-x-4 w-full max-w-2xl">
-          <Allow_Button onNext={handleNextUrl} />
-          <Block_Button onNext={handleNextUrl} />
+          <Allow_Button />
+          <Block_Button />
         </div>
         
         <Progress_Bar />

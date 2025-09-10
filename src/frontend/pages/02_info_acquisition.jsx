@@ -8,7 +8,6 @@ import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_A
 import Allow_Button from '../components/01 Interaction components/Allow_Button';
 import Block_Button from '../components/01 Interaction components/Block_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
  * Info Acquisition Page - Condition 2
@@ -18,12 +17,7 @@ import { useHandleNextUrl } from '../composables/handleNextURL';
  */
 function Info_acquisition() {
   // URL progression and navigation
-  const { currentUrl, switchUrl, urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
-
-  // URL navigation handler
-  const handleNextUrl = useHandleNextUrl({
-    urlCount, maxUrls, incrementUrlCount, switchUrl, navigate: () => {}
-  });
+  const { currentUrl } = useUrlCounter();
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -40,8 +34,8 @@ function Info_acquisition() {
         
         {/* Decision buttons */}
         <div className="flex flex-row space-x-4 w-full max-w-2xl">
-          <Allow_Button onNext={handleNextUrl} />
-          <Block_Button onNext={handleNextUrl} />
+          <Allow_Button />
+          <Block_Button />
         </div>
         
         <Progress_Bar />

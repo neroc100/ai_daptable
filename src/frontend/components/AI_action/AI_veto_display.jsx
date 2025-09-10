@@ -1,39 +1,37 @@
-import React, { useState } from 'react';
-import { Info } from 'lucide-react';
+import React from 'react';
 import Next_Button from '../01 Interaction components/Next_Button';
-import Success_Message from '../01 Interaction components/Success_Message';
 import View_Information_Button from '../01 Interaction components/View_Information_Button';
+import AI_Action_Message_Box from './AI_Action_Message_Box';
+import { useSuccessModal } from '../../context/SuccessModalContext';
 
 /**
  * AI Veto Display Component
  * Displays override button for AI veto scenarios with ETH blue styling.
  * 
- * @param {Function} onNext - Navigate to next URL
  * @param {string} classification - AI classification ('Malicious' or 'Non-Malicious')
  * @returns {JSX.Element} AI veto display component
  */
-function AI_veto_display({ onNext, classification = 'Non-Malicious' }) {
-  // State to control success modal visibility
-  const [showModal, setShowModal] = useState(false);
+function AI_veto_display({ classification = 'Non-Malicious' }) {
+  const { showSuccessMessage } = useSuccessModal();
 
   /**
-   * Handles override action
+   * Handles override action - triggers global success modal
    */
   const handleOverride = () => {
-    setShowModal(true);
+    showSuccessMessage({
+      decisionType: classification === 'Malicious' ? 'allow' : 'block',
+      actor: 'human',
+      classification: classification,
+      actionType: 'override'
+    });
   };
   return (
     <>
       <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)' }}>
         {/* Title */}
-        <div className="flex items-center text-3xl font-semibold text-black mb-8 w-full justify-center rounded-lg p-6 outline"
-        style={{ backgroundColor: 'var(--eth-blue-20)',
-         outlineColor: 'var(--eth-blue-100)'
-         }}
-        >
-          <Info className="w-8 h-8 mr-3" />
-          AI successfully {classification === 'Malicious' ? 'blocked' : 'allowed'} the URL
-        </div>
+        <AI_Action_Message_Box 
+          text={`AI successfully ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
+        />
         
         {/* Buttons */}
         <div className="flex flex-row space-x-4">
@@ -46,7 +44,6 @@ function AI_veto_display({ onNext, classification = 'Non-Malicious' }) {
           </button>
           <Next_Button 
             className="px-12 py-4 text-lg"
-            onClick={onNext}
           />
           
         </div>
@@ -55,17 +52,6 @@ function AI_veto_display({ onNext, classification = 'Non-Malicious' }) {
         <View_Information_Button />
       </div>
 
-      {/* Success message modal */}
-      {showModal && (
-        <Success_Message 
-          decisionType={classification === 'Malicious' ? 'allow' : 'block'}
-          actor="human"
-          onNext={() => {
-            onNext();
-            setShowModal(false); // Reset modal state when onNext is called
-          }}
-        />
-      )}
     </>
   );
 }

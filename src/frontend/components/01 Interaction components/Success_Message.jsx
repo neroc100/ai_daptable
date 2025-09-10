@@ -1,41 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Rss, ShieldCheck, Check } from 'lucide-react';
 import Next_Button from './Next_Button';
-import { useUrlCounter } from '../../context/UrlCounterContext';
-import { useNavigate } from 'react-router-dom';
+import { useSuccessModal } from '../../context/SuccessModalContext';
 
 /**
  * Success Message Component
  * 
- * Displays success modal for different URL safety decisions (allow/block) and contexts (human/AI).
- * Adapts content, icons, and styling based on the decision type and actor.
+ * Global success modal that displays feedback for URL safety decisions.
+ * Manages its own visibility through global state context.
+ * Automatically hides when Next button is clicked and navigates to next URL.
  * 
- * @param {Object} props - Component props
- * @param {string} props.decisionType - Type of decision: 'allow' or 'block'
- * @param {string} props.actor - Who made the decision: 'human' or 'ai'
- * @param {string} props.classification - AI classification ('Malicious' or 'Non-Malicious')
- * @param {string} props.actionType - Type of action taken ('confirm' or 'override')
- * @param {Function} props.onNext - Callback function when Next URL is clicked
  * @returns {JSX.Element} Success message modal component
  */
-function Success_Message({ decisionType = 'allow', actor = 'human', classification = 'Malicious', actionType = 'confirm', onNext }) {
-  const [isVisible, setIsVisible] = useState(true);
-  const { urlCount, maxUrls, incrementUrlCount } = useUrlCounter();
-  const navigate = useNavigate();
+function Success_Message() {
+  const { isVisible, modalContent, hideSuccessMessage } = useSuccessModal();
 
-  const handleNextClick = () => {
-    if (urlCount >= maxUrls) {
-      // Maximum URLs reached, navigate to main page
-      navigate('/');
-    } else if (onNext) {
-      // More URLs to go, call onNext callback (which will handle incrementing)
-      onNext();
-    }
-    setIsVisible(false);
-  };
-
-  // Determine content based on decision type, actor, classification, and action type
+  // Generate dynamic content based on modal content from context
   const getContent = () => {
+    const { decisionType, actor } = modalContent;
     const isAllow = decisionType === 'allow';
     const isHuman = actor === 'human';
     
@@ -58,6 +40,7 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
 
   const content = getContent();
 
+  // Don't render if modal is hidden
   if (!isVisible) {
     return null;
   }
@@ -65,9 +48,8 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
-
-        
         <div className="w-full h-full relative flex flex-col justify-center items-center">
+          {/* Success message content */}
           <div className="flex flex-col items-center space-y-4 mb-6">
             <div className="text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-tight">
               {content.title}
@@ -78,10 +60,12 @@ function Success_Message({ decisionType = 'allow', actor = 'human', classificati
             </div>
           </div>
           
+          {/* Next button with modal hide handler */}
           <div className="flex justify-center">
-            <Next_Button onClick={handleNextClick} />
+            <Next_Button onClick={hideSuccessMessage} />
           </div>
           
+          {/* Status icon */}
           <div data-svg-wrapper className="absolute left-6 top-6">
             {content.icon}
           </div>
