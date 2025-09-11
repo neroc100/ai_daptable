@@ -1,112 +1,98 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useParticipant } from '../context/ParticipantContext';
+import { useParticipantId } from '../context/ParticipantIdContext';
+import { useButtonContext } from '../context/ConditionContext';
 
 /**
  * Participant ID Page
  * 
- * Page for collecting and setting the participant ID at the start of the experiment.
- * Contains a text input form to submit participant ID and save it to global context.
- * Navigates to the main experiment flow after successful submission.
+ * Page for collecting and storing participant ID before proceeding to experiment conditions.
+ * Allows users to enter their participant ID which is saved to global context.
+ * After submission, navigates to the appropriate experiment page based on the selected condition.
  */
 function ParticipantIdPage() {
-  const [inputId, setInputId] = useState('');
+  const [participantId, setParticipantId] = useState('');
   const [error, setError] = useState('');
-  const { updateParticipantId } = useParticipant();
+  const { setParticipantId: setGlobalParticipantId } = useParticipantId();
+  const { Condition } = useButtonContext();
   const navigate = useNavigate();
 
-  /**
-   * Handles form submission
-   * 
-   * Validates the participant ID input and saves it to global context.
-   * Navigates to the main page after successful submission.
-   */
+  // Handle form submission with conditional routing
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validate input
-    if (!inputId.trim()) {
+    // Basic validation
+    if (!participantId.trim()) {
       setError('Please enter a participant ID');
       return;
     }
 
-    if (inputId.trim().length < 3) {
-      setError('Participant ID must be at least 3 characters long');
-      return;
-    }
-
-    // Clear any previous errors
-    setError('');
-    
     // Save to global context
-    updateParticipantId(inputId.trim());
+    setGlobalParticipantId(participantId.trim());
     
-    // Navigate to main page
-    navigate('/');
-  };
-
-  /**
-   * Handles input change
-   * 
-   * Updates the input state and clears any error messages.
-   */
-  const handleInputChange = (e) => {
-    setInputId(e.target.value);
-    if (error) {
-      setError('');
+    // Navigate based on the condition set by the button click
+    if (Condition === 1) {
+      navigate('/manual');
+    } else if (Condition === 2) {
+      navigate('/info-acquisition');
+    } else if (Condition === 3) {
+      navigate('/info-analysis');
+    } else if (Condition === 4) {
+      navigate('/allow');
+    } else if (Condition === 5) {
+      navigate('/veto');
+    } else if (Condition === 6) {
+      navigate('/auto');
+    } else {
+      // Fallback to main page if no condition is set
+      navigate('/');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Participant ID
-          </h1>
-          <p className="text-gray-600">
-            Please enter your participant ID to begin the experiment
-          </p>
-        </div>
-
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
+        {/* Page title */}
+        <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          Participant ID
+        </h1>
+        
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Input field */}
           <div>
             <label htmlFor="participantId" className="block text-sm font-medium text-gray-700 mb-2">
-              Participant ID
+              Enter your Participant ID:
             </label>
             <input
-              id="participantId"
               type="text"
-              value={inputId}
-              onChange={handleInputChange}
-              placeholder="Enter your participant ID"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              id="participantId"
+              value={participantId}
+              onChange={(e) => {
+                setParticipantId(e.target.value);
+                setError(''); // Clear error when user types
+              }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder=" current time + first letter of your name"
               autoFocus
             />
-            {error && (
-              <p className="mt-2 text-sm text-red-600">
-                {error}
-              </p>
-            )}
           </div>
 
-          {/* Submit Button */}
+          {/* Error message */}
+          {error && (
+            <div className="text-red-600 text-sm">
+              {error}
+            </div>
+          )}
+
+          {/* Submit button */}
           <button
             type="submit"
-            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           >
-            Start Experiment
+            Continue
           </button>
         </form>
-
-        {/* Instructions */}
-        <div className="text-center">
-          <p className="text-sm text-gray-500">
-            Your participant ID will be used to track your responses throughout the experiment.
-          </p>
-        </div>
       </div>
     </div>
   );

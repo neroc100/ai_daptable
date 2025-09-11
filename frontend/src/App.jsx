@@ -8,13 +8,13 @@ import Allow from './pages/04_allow';
 import Veto from './pages/05_veto';
 import Auto from './pages/06_auto';
 import Dummy from './pages/dummy';
+import ParticipantIdPage from './pages/participant_id';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
 import { SuccessModalProvider } from './context/SuccessModalContext';
-import { ParticipantProvider } from './context/ParticipantContext';
+import { ParticipantIdProvider } from './context/ParticipantIdContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
-import ParticipantIdPage from './pages/participant_id';
 
 
 /**
@@ -53,7 +53,7 @@ function MainPage() {
    * 
    * This function is called when any of the 6 buttons is clicked.
    * It sets the button number in the global ButtonContext and then
-   * navigates to the appropriate page.
+   * navigates to the participant ID page first.
    * 
    * @param {number} buttonNumber - The number of the button that was clicked (1-6)
    */
@@ -61,19 +61,8 @@ function MainPage() {
     // Set the button number globally using ButtonContext
     setCondition(buttonNumber);
     
-    if (buttonNumber === 1) {
-      navigate('/manual');
-    } else if (buttonNumber === 2) {
-      navigate('/info-acquisition');
-    } else if (buttonNumber === 3) {
-      navigate('/info-analysis');
-    } else if (buttonNumber === 4) {
-      navigate('/allow');
-    } else if (buttonNumber === 5) {
-      navigate('/veto');
-    } else if (buttonNumber === 6) {
-      navigate('/auto');
-    }
+    // Navigate to participant ID page first
+    navigate('/participant-id');
   };
 
   return (
@@ -157,30 +146,33 @@ function MainPage() {
 function App() {
   return (
     <ErrorBoundary>
-      <ButtonProvider>
-        <UrlCounterProvider>
-          <SuccessModalProvider>
-            <Router>
-              <div className="min-h-screen bg-gray-50">
-                <main>
-                  <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/manual" element={<Manual />} />
-                    <Route path="/info-acquisition" element={<Info_acquisition />} />
-                    <Route path="/info-analysis" element={<Info_analysis />} />
-                    <Route path="/allow" element={<Allow />} />
-                    <Route path="/veto" element={<Veto />} />
-                    <Route path="/auto" element={<Auto/>} />
-                    <Route path="/dummy" element={<Dummy />} />
-                  </Routes>
-                </main>
-                {/* Global Success Message Modal */}
-                <Success_Message />
-              </div>
-            </Router>
-          </SuccessModalProvider>
-        </UrlCounterProvider>
-      </ButtonProvider>
+      <ParticipantIdProvider>
+        <ButtonProvider>
+          <UrlCounterProvider>
+            <SuccessModalProvider>
+              <Router>
+                <div className="min-h-screen bg-gray-50">
+                  <main>
+                    <Routes>
+                      <Route path="/" element={<MainPage />} />
+                      <Route path="/participant-id" element={<ParticipantIdPage />} />
+                      <Route path="/manual" element={<Manual />} />
+                      <Route path="/info-acquisition" element={<Info_acquisition />} />
+                      <Route path="/info-analysis" element={<Info_analysis />} />
+                      <Route path="/allow" element={<Allow />} />
+                      <Route path="/veto" element={<Veto />} />
+                      <Route path="/auto" element={<Auto/>} />
+                      <Route path="/dummy" element={<Dummy />} />
+                    </Routes>
+                  </main>
+                  {/* Global Success Message Modal */}
+                  <Success_Message />
+                </div>
+              </Router>
+            </SuccessModalProvider>
+          </UrlCounterProvider>
+        </ButtonProvider>
+      </ParticipantIdProvider>
     </ErrorBoundary>
   );
 }

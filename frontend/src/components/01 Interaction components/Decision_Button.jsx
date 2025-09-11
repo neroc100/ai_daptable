@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSuccessModal } from '../../context/SuccessModalContext';
-import { useLogDecision } from '../../composables/logDecision';
-import { useUrlCounter } from '../../context/UrlCounterContext';
-import { useCondition } from '../../context/ConditionContext';
+// import { useLogDecision } from '../../composables/logDecision';
+// import { useUrlCounter } from '../../context/UrlCounterContext';
+// import { useCondition } from '../../context/ConditionContext';
 
 /**
  * Decision Button Component
@@ -27,17 +27,17 @@ function Decision_Button({
   // Get success modal control function from global context
   const { showSuccessMessage } = useSuccessModal();
   
-  // Get current context for logging
-  const { currentUrl } = useUrlCounter();
-  const { classification } = useCondition();
+  // Get current context for logging (commented out for now)
+  // const { currentUrl } = useUrlCounter();
+  // const { classification } = useCondition();
   
-  // Get decision logging function with current context
-  const logDecision = useLogDecision({
-    currentUrl,
-    classification,
-    sessionId: 'session_001',
-    userId: 'user_001'
-  });
+  // Get decision logging function with current context (commented out for now)
+  // const logDecision = useLogDecision({
+  //   currentUrl,
+  //   classification,
+  //   sessionId: 'session_001',
+  //   userId: 'user_001'
+  // });
 
   // Generate button configuration based on type and classification
   const getButtonConfig = () => {
@@ -78,14 +78,14 @@ function Decision_Button({
   // Get button configuration for current type
   const config = getButtonConfig();
 
-  // Handle button click - log decision and trigger success modal
+  // Handle button click - trigger success modal (logging commented out for now)
   const handleClick = async () => {
-    // Log the decision to the backend
-    await logDecision(config.decisionType, {
-      button_type: type,
-      actor: config.actor,
-      classification: classification
-    });
+    // Log the decision to the backend (commented out for now)
+    // await logDecision(config.decisionType, {
+    //   button_type: type,
+    //   actor: config.actor,
+    //   classification: classification
+    // });
     
     // Show success modal with decision data
     showSuccessMessage({
