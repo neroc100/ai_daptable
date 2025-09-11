@@ -7,5 +7,5 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
-  root: 'src/frontend',
+  root: 'src',
 })

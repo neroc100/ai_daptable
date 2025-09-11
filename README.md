@@ -1,71 +1,63 @@
 # URL Analysis Dashboard
 
-A React-based web application for conducting security experiments where experts evaluate URL safety with and without AI assistance.
+A full-stack web application for conducting security experiments where experts evaluate URL safety with and without AI assistance. Features a React frontend for user interaction and a FastAPI backend for API services.
 
 ## Project Structure
 
 ```
-src/
-├── components/
-│   ├── 00 General_Page_Content/          # Shared UI components
-│   │   ├── Dashboard_Header.jsx          # Main title
-│   │   ├── URL_presentation.jsx          # URL display
-│   │   ├── Progress_Bar.jsx              # Progress indicator
-│   │   └── Separator.jsx                 # Visual divider
-│   │
-│   ├── 02 Human_Action_Implementation/   # Manual decision components
-│   │   ├── Allow_Button.jsx              # Allow URL button
-│   │   ├── Block_Button.jsx              # Block URL button
-│   │   └── Success_Message_*.jsx         # Success feedback
-│   │
-│   ├── 03 AI_Info_Acquisition/           # AI data collection
-│   │   ├── Info_Display.jsx              # Feature information display
-│   │   └── Feature_boxes/                # Individual feature components
-│   │
-│   ├── 04 AI_Info_Analysis/              # AI analysis components
-│   │
-│   ├── 05 AI_Action_Selection/           # AI recommendation components
-│   │   ├── Review_Button.jsx             # Information review button
-│   │   └── ALLOW/VETO/AUTO/              # Decision-specific messages
-│   │
-│   ├── 06 AI Action Implementation/      # AI action execution
-│   │   └── AI_progress_bar.jsx           # AI action progress
-│   │
-│   └── AI information/                   # AI information popup
-│
-├── pages/                                # Main application pages
-│   ├── 01_manual.jsx                     # Manual URL evaluation
-│   ├── 02_info_acquisition.jsx           # AI data collection view
-│   ├── 03_info_analysis.jsx              # AI analysis view
-│   ├── 04_allow.jsx                      # Allow malicious URL
-│   ├── 05_veto.jsx                       # Veto non-malicious URL
-│   └── 06_auto.jsx                       # Auto-block malicious URL
-│
-└── context/                              # React context
-    └── ConditionContext.jsx              # Experiment condition management
+automation/
+├── frontend/                             # React frontend application
+│   ├── src/                             # React source code
+│   │   ├── components/                  # UI components
+│   │   ├── pages/                       # Application pages
+│   │   ├── composables/                 # Custom hooks
+│   │   └── context/                     # React context
+│   ├── package.json                     # Frontend dependencies
+│   └── vite.config.js                   # Vite configuration
+├── backend/                             # FastAPI backend
+│   ├── main.py                          # FastAPI application
+│   ├── pyproject.toml                   # Python dependencies
+│   └── uv.lock                          # Dependency lock file
+└── README.md                            # Project documentation
 ```
-
-
 
 ## Tech Stack
 
-- **React 18** - Frontend framework with hooks and functional components
-- **Vite** - Build tool and development server for fast development
-- **Tailwind CSS** - Utility-first CSS framework for styling
-- **Lucide React** - Icon library for UI elements
-- **React Router** - Client-side routing for navigation between pages
+### Frontend
+- **React 19** - Frontend framework with hooks and functional components
+- **Vite** - Build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Lucide React** - Icon library
+- **React Router** - Client-side routing
 
-## Installation
+### Backend
+- **FastAPI** - Modern Python web framework
+- **Uvicorn** - ASGI server
+- **uv** - Fast Python package manager
 
+## Installation & Setup
+
+### Frontend
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd automation
+# Navigate to frontend directory
+cd frontend
 
 # Install dependencies
 bun install
 
 # Start development server
 bun run dev
+```
+
+### Backend
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install dependencies
+uv sync
+
+# Start development server
+uv run uvicorn main:app --reload
 ```
 
