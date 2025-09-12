@@ -9,6 +9,7 @@ import Veto from './pages/05_veto';
 import Auto from './pages/06_auto';
 import Dummy from './pages/dummy';
 import ParticipantIdPage from './pages/participant_id';
+import MentalEffortRatingPage from './pages/mental_effort_rating';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
@@ -156,6 +157,7 @@ function App() {
                     <Routes>
                       <Route path="/" element={<MainPage />} />
                       <Route path="/participant-id" element={<ParticipantIdPage />} />
+                      <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
                       <Route path="/manual" element={<Manual />} />
                       <Route path="/info-acquisition" element={<Info_acquisition />} />
                       <Route path="/info-analysis" element={<Info_analysis />} />
