@@ -61,3 +61,10 @@ uv sync
 uv run uvicorn main:app --reload
 ```
 
+### Database
+
+To run the database use
+```bash
+cd backend
+docker compose up -d 
+```
