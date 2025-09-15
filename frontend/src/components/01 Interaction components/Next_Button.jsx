@@ -22,14 +22,8 @@ function Next_Button({ className = "", text = "Next URL" }) {
     // Always hide success modal first
     hideSuccessMessage();
     
-    // Navigate to main page if max URLs reached
-    if (urlCount >= maxUrls) {
-      navigate('/');
-    } else {
-      // Otherwise, progress to next URL
-      incrementUrlCount();
-      switchUrl();
-    }
+    // Navigate to mental effort rating page
+    navigate('/mental-effort-rating');
   };
 
   return (

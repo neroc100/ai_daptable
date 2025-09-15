@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
+import { useHandleNextUrl } from '../composables/handleNextURL';
 
 /**
  * Mental Effort Rating Page
@@ -14,23 +14,20 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 function MentalEffortRatingPage() {
   const [rating, setRating] = useState(75); // Default to middle value (0-150 scale)
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  
+  // Use the handleNextUrl composable for navigation
+  const handleNextUrl = useHandleNextUrl();
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Basic validation
-    if (rating < 0 || rating > 150) {
-      setError('Please select a valid rating');
-      return;
-    }
+
 
     // TODO: Save rating to backend or context
     console.log('Mental effort rating:', rating);
     
-    // Navigate back to main page or next step
-    navigate('/');
+    // Use the handleNextUrl composable for navigation
+    handleNextUrl();
   };
 
   // Handle slider change
@@ -48,13 +45,13 @@ function MentalEffortRatingPage() {
 
   // Get effort level text based on rating (0-150 scale from image)
   const getEffortLevel = () => {
-    if (rating <= 0) return 'No effort at all';
-    if (rating <= 20) return 'Almost no effort';
-    if (rating <= 30) return 'Very little effort';
-    if (rating <= 50) return 'Small effort';
-    if (rating <= 90) return 'Considerable effort';
+    if (rating <= 2) return 'No effort at all';
+    if (rating <= 16) return 'Almost no effort';
+    if (rating <= 35) return 'Very little effort';
+    if (rating <= 52) return 'Small effort';
+    if (rating <= 89) return 'Considerable effort';
     if (rating <= 115) return 'Very large effort';
-    if (rating <= 138) return 'Extremely large effort';
+    if (rating <= 137) return 'Extremely large effort';
     return 'Extremely large effort';
   };
 
@@ -65,7 +62,7 @@ function MentalEffortRatingPage() {
         
         {/* Page title */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 m-4">
+          <h1 className="text-5xl font-bold text-gray-900 m-4">
             Mental Effort Rating
           </h1>
         </div>
