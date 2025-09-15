@@ -65,91 +65,98 @@ function MentalEffortRatingPage() {
         
         {/* Page title */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 m-4">
             Mental Effort Rating
           </h1>
-          <p style={{ color: 'var(--eth-gray-100)' }}>
-            Please rate the mental effort required for the task you just completed.
-          </p>
         </div>
         
         <Separator />
         
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Slider container */}
-          <div className="space-y-4">
-            {/* Current rating display */}
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2" style={{ color: getSliderColor() }}>
-                {rating}
-              </div>
-              <div className="text-lg font-medium" style={{ color: 'var(--eth-gray-100)' }}>
-                {getEffortLevel()}
-              </div>
-            </div>
-
-            {/* Slider */}
-            <div className="flex justify-center">
-              <div style={{ width: '300%', maxWidth: '1200px' }}>
-                <input
-                  type="range"
-                  min="0"
-                  max="150"
-                  value={rating}
-                  onChange={handleSliderChange}
-                  className="w-full h-3 rounded-lg appearance-none cursor-pointer slider"
-                  style={{
-                    backgroundColor: 'var(--eth-gray-40)',
-                    background: `linear-gradient(to right, 
-                      rgba(33, 92, 175, 0.3) 0%, 
-                      rgba(33, 92, 175, 0.6) 50%, 
-                      rgba(33, 92, 175, 1) 100%)`
-                  }}
-                />
-                
-                {/* Slider labels */}
-                <div className="flex justify-between text-sm mt-2" style={{ color: 'var(--eth-gray-100)' }}>
-                  <span>0</span>
-                  <span>30</span>
-                  <span>60</span>
-                  <span>90</span>
-                  <span>120</span>
-                  <span>150</span>
+        {/* Main content box with ETH blue outline styling */}
+        <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-8" style={{ outlineColor: 'var(--eth-gray-100)' }}>
+          <div className="flex items-center text-2xl font-medium text-black mb-6 w-full justify-center rounded-lg p-6 outline"
+            style={{ backgroundColor: 'var(--eth-blue-20)',
+             outlineColor: 'var(--eth-blue-100)'
+             }}
+          >
+            Please rate the mental effort required for the task you just completed
+          </div>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-8 w-full">
+            {/* Slider container */}
+            <div className="space-y-4">
+              {/* Current rating display */}
+              <div className="text-center">
+                <div className="text-4xl font-bold mb-2" style={{ color: getSliderColor() }}>
+                  {rating}
+                </div>
+                <div className="text-lg font-medium" style={{ color: 'var(--eth-gray-100)' }}>
+                  {getEffortLevel()}
                 </div>
               </div>
+
+              {/* Slider */}
+              <div className="flex justify-center">
+                <div style={{ width: '300%', maxWidth: '1200px' }}>
+                  <input
+                    type="range"
+                    min="0"
+                    max="150"
+                    value={rating}
+                    onChange={handleSliderChange}
+                    className="w-full h-3 rounded-lg appearance-none cursor-pointer slider"
+                    style={{
+                      backgroundColor: 'var(--eth-gray-40)',
+                      background: `linear-gradient(to right, 
+                        rgba(33, 92, 175, 0.3) 0%, 
+                        rgba(33, 92, 175, 0.6) 50%, 
+                        rgba(33, 92, 175, 1) 100%)`
+                    }}
+                  />
+                  
+                  {/* Slider labels */}
+                  <div className="flex justify-between text-sm mt-2" style={{ color: 'var(--eth-gray-100)' }}>
+                    <span>0</span>
+                    <span>30</span>
+                    <span>60</span>
+                    <span>90</span>
+                    <span>120</span>
+                    <span>150</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Effort scale labels */}
+              <div className="flex justify-between text-sm mt-4" style={{ color: 'var(--eth-gray-100)' }}>
+                <span className="text-left">No effort at all</span>
+                <span className="text-right">Extremely large effort</span>
+              </div>
             </div>
 
-            {/* Effort scale labels */}
-            <div className="flex justify-between text-sm mt-4" style={{ color: 'var(--eth-gray-100)' }}>
-              <span className="text-left">No effort at all</span>
-              <span className="text-right">Extremely large effort</span>
-            </div>
-          </div>
+            {/* Error message */}
+            {error && (
+              <div className="text-red-600 text-sm text-center">
+                {error}
+              </div>
+            )}
 
-          {/* Error message */}
-          {error && (
-            <div className="text-red-600 text-sm text-center">
-              {error}
+            {/* Submit button */}
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="px-8 py-3 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
+                style={{ 
+                  backgroundColor: 'var(--eth-blue-100)',
+                  ':hover': { backgroundColor: 'var(--eth-blue-80)' }
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = 'var(--eth-blue-80)'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = 'var(--eth-blue-100)'}
+              >
+                Submit Rating
+              </button>
             </div>
-          )}
-
-          {/* Submit button */}
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="px-8 py-3 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
-              style={{ 
-                backgroundColor: 'var(--eth-blue-100)',
-                ':hover': { backgroundColor: 'var(--eth-blue-80)' }
-              }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = 'var(--eth-blue-80)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'var(--eth-blue-100)'}
-            >
-              Submit Rating
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
         
         <Progress_Bar />
       </div>
