@@ -56,7 +56,7 @@ function MentalEffortRatingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white flex items-center justify-center p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         
         
@@ -70,7 +70,7 @@ function MentalEffortRatingPage() {
         <Separator />
         
         {/* Main content box with ETH blue outline styling */}
-        <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-8" style={{ outlineColor: 'var(--eth-gray-100)' }}>
+        <div className="w-[1250px] p-6 mb-40 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-8" style={{ outlineColor: 'var(--eth-gray-100)' }}>
           <div className="flex items-center text-2xl font-medium text-black mb-6 w-full justify-center rounded-lg p-6 outline"
             style={{ backgroundColor: 'var(--eth-blue-20)',
              outlineColor: 'var(--eth-blue-100)'
@@ -84,10 +84,10 @@ function MentalEffortRatingPage() {
             <div className="space-y-4">
               {/* Current rating display */}
               <div className="text-center">
-                <div className="text-4xl font-bold mb-2" style={{ color: getSliderColor() }}>
+                <div className="text-5xl font-bold mb-2" style={{ color: getSliderColor() }}>
                   {rating}
                 </div>
-                <div className="text-lg font-medium" style={{ color: 'var(--eth-gray-100)' }}>
+                <div className="text-lg text-xl" style={{ color: 'var(--eth-gray-100)' }}>
                   {getEffortLevel()}
                 </div>
               </div>
@@ -124,7 +124,7 @@ function MentalEffortRatingPage() {
               </div>
 
               {/* Effort scale labels */}
-              <div className="flex justify-between text-sm mt-4" style={{ color: 'var(--eth-gray-100)' }}>
+              <div className="flex justify-between text-lg mt-4" style={{ color: 'var(--eth-gray-100)' }}>
                 <span className="text-left">No effort at all</span>
                 <span className="text-right">Extremely large effort</span>
               </div>
