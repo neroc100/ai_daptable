@@ -63,8 +63,4 @@ uv run uvicorn main:app --reload
 
 ### Database
 
-To run the database use
-```bash
-cd backend
-docker compose up -d 
-```
+The application uses SQLite database which is automatically created when you run the backend server. No additional setup is required.

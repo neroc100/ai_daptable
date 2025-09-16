@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import SQLModel, Field, Session, select, delete
-from database import engine, Trial
+from database import engine, Trial, SQLModel
 from typing import List
 import datetime
 
@@ -16,12 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Use SQLModel Trial class directly from database.py
-
-class Potato(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    name: str
-    email: str
+# Create database tables on startup
+@app.on_event("startup")
+async def create_tables():
+    """Create database tables on application startup"""
+    SQLModel.metadata.create_all(engine)
 
 
 @app.get("/")
@@ -48,6 +47,7 @@ async def create_trial(trial_data: Trial):
             mental_effort_rating=trial_data.mental_effort_rating,
             url=trial_data.url,
             true_classification=trial_data.true_classification,
+            reaction_time_ms=trial_data.reaction_time_ms,
             created_at=datetime.datetime.now()
         )
         
@@ -62,6 +62,7 @@ async def create_trial(trial_data: Trial):
             "condition": new_trial.condition,
             "mental_effort_rating": new_trial.mental_effort_rating,
             "url": new_trial.url,
+            "reaction_time_ms": new_trial.reaction_time_ms,
             "created_at": new_trial.created_at.isoformat()
         }
 
@@ -83,11 +84,9 @@ async def clear_all_trials():
         "deleted_count": deleted_count
     }
 
-@app.delete("/database/reset")
+@app.post("/database/reset")
 async def reset_database():
     """Reset the entire database by dropping and recreating all tables"""
-    from database import SQLModel
-    
     # Drop all tables
     SQLModel.metadata.drop_all(engine)
     
@@ -98,5 +97,7 @@ async def reset_database():
         "message": "Database reset successfully - all tables dropped and recreated",
         "status": "reset_complete"
     }
+
+
 
 

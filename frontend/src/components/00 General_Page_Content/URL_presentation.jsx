@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AI_classification from '../AI_action/AI_classification';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
@@ -16,6 +16,12 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   
   // Get current URL configuration
   const urlConfig = getUrlConfig(currentUrl);
+
+  // Log URL presentation load timestamp to localStorage and console
+  useEffect(() => {
+    const pageLoadTime = Date.now();
+    localStorage.setItem('url_page_load_time', pageLoadTime.toString());
+  }, [currentUrl]); // Re-run when URL changes
   
   return (
     // Main URL container with white background and light border

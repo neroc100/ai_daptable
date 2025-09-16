@@ -5,6 +5,7 @@ from sqlmodel import create_engine, SQLModel, Field, Session
 
 load_dotenv()
 
+
 def get_database_url():
     # Use SQLite database file in the backend directory
     return "sqlite:///./automation.db"
@@ -18,6 +19,7 @@ class Trial(SQLModel, table=True):
     mental_effort_rating: int
     url: str
     true_classification: str
+    reaction_time_ms: int = Field(default=None, nullable=True)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 

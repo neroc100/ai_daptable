@@ -87,6 +87,11 @@ function Decision_Button({
     //   classification: classification
     // });
     
+    // Save button click timestamp to localStorage and log to console
+    const buttonClickTime = Date.now();
+    localStorage.setItem('decision_button_click_time', buttonClickTime.toString());
+    console.log('Decision button clicked at:', buttonClickTime);
+    
     // Show success modal with decision data
     showSuccessMessage({
       decisionType: config.decisionType,

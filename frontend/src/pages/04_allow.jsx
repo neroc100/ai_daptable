@@ -23,7 +23,6 @@ function Allow() {
   // URL progression and navigation
   const { currentUrl } = useUrlCounter();
 
-
   // Update URL classification
   useEffect(() => {
     setClassification(getUrlClassification(currentUrl));

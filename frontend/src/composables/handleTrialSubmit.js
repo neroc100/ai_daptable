@@ -25,13 +25,30 @@ export const useHandleTrialSubmit = () => {
       const actualUrl = urlConfig.url;
       const trueClassification = urlConfig.malicious ? 'Malicious' : 'Non-Malicious';
       
+      // Calculate reaction time from localStorage timestamps
+      const pageLoadTime = localStorage.getItem('url_page_load_time');
+      const buttonClickTime = localStorage.getItem('decision_button_click_time');
+      let reactionTimeMs = null;
+      
+      if (pageLoadTime && buttonClickTime) {
+        reactionTimeMs = parseInt(buttonClickTime) - parseInt(pageLoadTime);
+        console.log('Reaction time calculated:', reactionTimeMs, 'ms');
+        console.log('Page load time:', pageLoadTime);
+        console.log('Button click time:', buttonClickTime);
+      } else {
+        console.warn('Missing timestamps for reaction time calculation');
+        console.log('Page load time available:', !!pageLoadTime);
+        console.log('Button click time available:', !!buttonClickTime);
+      }
+      
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
         condition: Condition,
         mental_effort_rating: rating,
         url: actualUrl,
-        true_classification: trueClassification
+        true_classification: trueClassification,
+        reaction_time_ms: reactionTimeMs
       };
 
       // Send POST request to backend API
