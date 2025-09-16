@@ -2,6 +2,7 @@ import { useUrlCounter } from '../context/UrlCounterContext';
 import { useButtonContext } from '../context/ConditionContext';
 import { useParticipantId } from '../context/ParticipantIdContext';
 import { useHandleNextUrl } from './handleNextURL';
+import { getUrlConfig } from './getURLconfig';
 
 /**
  * Handle Trial Submit Composable
@@ -19,12 +20,16 @@ export const useHandleTrialSubmit = () => {
   // Submit trial data and navigate to next URL
   const handleTrialSubmit = async (rating) => {
     try {
+      // Get actual URL from URL config
+      const urlConfig = getUrlConfig(currentUrl);
+      const actualUrl = urlConfig.url;
+      
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
         condition: Condition,
         mental_effort_rating: rating,
-        url: currentUrl
+        url: actualUrl
       };
 
       // Send POST request to backend API
