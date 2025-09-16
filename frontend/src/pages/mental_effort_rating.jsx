@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import { useHandleNextUrl } from '../composables/handleNextURL';
-import { useUrlCounter } from '../context/UrlCounterContext';
-import { useButtonContext } from '../context/ConditionContext';
-import { useParticipantId } from '../context/ParticipantIdContext';
+import { useHandleTrialSubmit } from '../composables/handleTrialSubmit';
 
 /**
  * Mental Effort Rating Page
@@ -18,49 +15,18 @@ function MentalEffortRatingPage() {
   const [rating, setRating] = useState(75); // Default to middle value (0-150 scale)
   const [error, setError] = useState('');
   
-  // Get data from global context
-  const { currentUrl } = useUrlCounter();
-  const { Condition } = useButtonContext();
-  const { participantId } = useParticipantId();
-  
-  // Use the handleNextUrl composable for navigation
-  const handleNextUrl = useHandleNextUrl();
+  // Use the handleTrialSubmit composable for submission and navigation
+  const handleTrialSubmit = useHandleTrialSubmit();
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // Prepare trial data from global context
-      const trialData = {
-        participant_id: participantId,
-        condition: Condition,
-        mental_effort_rating: rating,
-        url: currentUrl
-      };
-
-      // Send trial data to backend
-      const response = await fetch('http://localhost:8000/trials', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(trialData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log('Trial saved successfully:', result);
-      
-      // Use the handleNextUrl composable for navigation
-      handleNextUrl();
-      
-    } catch (error) {
-      console.error('Error saving trial:', error);
-      setError('Failed to save rating. Please try again.');
+    // Use the handleTrialSubmit composable
+    const result = await handleTrialSubmit(rating);
+    
+    if (!result.success) {
+      setError(result.error);
     }
   };
 
