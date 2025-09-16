@@ -43,6 +43,34 @@ export const useHandleTrialSubmit = () => {
         console.log('Button click time available:', !!buttonClickTime);
         console.log('Human action available:', !!humanAction);
       }
+
+      // Determine human action result based on action and true classification
+      let humanActionResult = null;
+      if (humanAction) {
+        switch (humanAction) {
+          case 'allow':
+            humanActionResult = 'URL allowed';
+            break;
+          case 'block':
+            humanActionResult = 'URL blocked';
+            break;
+          case 'confirm':
+            // Confirm means accepting AI's decision
+            humanActionResult = trueClassification === 'Malicious' ? 'URL blocked' : 'URL allowed';
+            break;
+          case 'override':
+            // Override means going against AI's decision
+            humanActionResult = trueClassification === 'Malicious' ? 'URL allowed' : 'URL blocked';
+            break;
+          case 'none':
+            // No human action means AI's decision stands
+            humanActionResult = trueClassification === 'Malicious' ? 'URL blocked' : 'URL allowed';
+            break;
+          default:
+            humanActionResult = 'error';
+        }
+        console.log('Human action result:', humanActionResult);
+      }
       
       // Collect trial data from global contexts
       const trialData = {
@@ -52,7 +80,8 @@ export const useHandleTrialSubmit = () => {
         url: actualUrl,
         true_classification: trueClassification,
         reaction_time_ms: reactionTimeMs,
-        human_action: humanAction
+        human_action: humanAction,
+        human_action_result: humanActionResult
       };
 
       // Send POST request to backend API

@@ -67,7 +67,7 @@ function Success_Message() {
           
           {/* Next button - automatically hides modal and navigates */}
           <div className="flex justify-center">
-            <Next_Button />
+            <Next_Button isInSuccessModal={true} />
           </div>
           
           {/* Status icon - positioned absolutely */}

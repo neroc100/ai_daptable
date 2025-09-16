@@ -12,7 +12,7 @@ import { useButtonContext } from '../../context/ConditionContext';
  * Uses ETH blue styling consistent with application theme.
  * 
  */
-function Next_Button({ className = "", text = "Next URL" }) {
+function Next_Button({ className = "", text = "Next URL", isInSuccessModal = false }) {
   // Navigation and URL counter hooks
   const navigate = useNavigate();
   const { urlCount, maxUrls, incrementUrlCount, switchUrl } = useUrlCounter();
@@ -23,8 +23,8 @@ function Next_Button({ className = "", text = "Next URL" }) {
 
   const handleClick = () => {
     // Only log timestamp and human action for conditions 5 (veto) and 6 (auto) where Next_Button is the primary interaction
-    // On other conditions, Next_Button appears after Decision_Button and would overwrite the decision timestamp
-    if (Condition === 5 || Condition === 6) {
+    // AND only when NOT in success modal (to avoid overriding Decision_Button actions)
+    if ((Condition === 5 || Condition === 6) && !isInSuccessModal) {
       const buttonClickTime = Date.now();
       localStorage.setItem('decision_button_click_time', buttonClickTime.toString());
       localStorage.setItem('human_action', 'none');
