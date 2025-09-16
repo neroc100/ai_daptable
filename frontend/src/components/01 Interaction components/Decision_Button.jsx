@@ -78,19 +78,33 @@ function Decision_Button({
   // Get button configuration for current type
   const config = getButtonConfig();
 
-  // Handle button click - trigger success modal (logging commented out for now)
+  // Handle button click - trigger success modal and log human action
   const handleClick = async () => {
-    // Log the decision to the backend (commented out for now)
-    // await logDecision(config.decisionType, {
-    //   button_type: type,
-    //   actor: config.actor,
-    //   classification: classification
-    // });
-    
     // Save button click timestamp to localStorage and log to console
     const buttonClickTime = Date.now();
     localStorage.setItem('decision_button_click_time', buttonClickTime.toString());
     console.log('Decision button clicked at:', buttonClickTime);
+    
+    // Log human action type to localStorage based on button type
+    let humanAction = '';
+    switch (type) {
+      case 'allow':
+        humanAction = 'allow';
+        break;
+      case 'block':
+        humanAction = 'block';
+        break;
+      case 'confirm':
+        humanAction = 'confirm';
+        break;
+      case 'override':
+        humanAction = 'override';
+        break;
+      default:
+        humanAction = 'error';
+    }
+    localStorage.setItem('human_action', humanAction);
+    console.log('Human action logged:', humanAction);
     
     // Show success modal with decision data
     showSuccessMessage({

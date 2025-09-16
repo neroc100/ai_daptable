@@ -28,6 +28,7 @@ export const useHandleTrialSubmit = () => {
       // Calculate reaction time from localStorage timestamps
       const pageLoadTime = localStorage.getItem('url_page_load_time');
       const buttonClickTime = localStorage.getItem('decision_button_click_time');
+      const humanAction = localStorage.getItem('human_action');
       let reactionTimeMs = null;
       
       if (pageLoadTime && buttonClickTime) {
@@ -35,10 +36,12 @@ export const useHandleTrialSubmit = () => {
         console.log('Reaction time calculated:', reactionTimeMs, 'ms');
         console.log('Page load time:', pageLoadTime);
         console.log('Button click time:', buttonClickTime);
+        console.log('Human action:', humanAction);
       } else {
         console.warn('Missing timestamps for reaction time calculation');
         console.log('Page load time available:', !!pageLoadTime);
         console.log('Button click time available:', !!buttonClickTime);
+        console.log('Human action available:', !!humanAction);
       }
       
       // Collect trial data from global contexts
@@ -48,7 +51,8 @@ export const useHandleTrialSubmit = () => {
         mental_effort_rating: rating,
         url: actualUrl,
         true_classification: trueClassification,
-        reaction_time_ms: reactionTimeMs
+        reaction_time_ms: reactionTimeMs,
+        human_action: humanAction
       };
 
       // Send POST request to backend API
