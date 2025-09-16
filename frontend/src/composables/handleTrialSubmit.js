@@ -71,6 +71,17 @@ export const useHandleTrialSubmit = () => {
         }
         console.log('Human action result:', humanActionResult);
       }
+
+      // Calculate accuracy based on true classification and human action result
+      let accuracy = null;
+      if (humanActionResult && humanActionResult !== 'error') {
+        // Accuracy is 1 if the action result matches the true classification
+        // Malicious URLs should be blocked, Non-Malicious URLs should be allowed
+        const isCorrect = (trueClassification === 'Malicious' && humanActionResult === 'URL blocked') ||
+                         (trueClassification === 'Non-Malicious' && humanActionResult === 'URL allowed');
+        accuracy = isCorrect ? 1 : 0;
+        console.log('Accuracy calculated:', accuracy, '(True:', trueClassification, ', Result:', humanActionResult, ')');
+      }
       
       // Collect trial data from global contexts
       const trialData = {
@@ -81,7 +92,8 @@ export const useHandleTrialSubmit = () => {
         true_classification: trueClassification,
         reaction_time_ms: reactionTimeMs,
         human_action: humanAction,
-        human_action_result: humanActionResult
+        human_action_result: humanActionResult,
+        accuracy: accuracy
       };
 
       // Send POST request to backend API

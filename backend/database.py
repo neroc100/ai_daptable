@@ -22,6 +22,7 @@ class Trial(SQLModel, table=True):
     reaction_time_ms: int = Field(default=None, nullable=True)
     human_action: str = Field(default=None, nullable=True)
     human_action_result: str = Field(default=None, nullable=True)
+    accuracy: int = Field(default=None, nullable=True)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 
