@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 /**
  * URL Counter Context
@@ -56,13 +56,30 @@ export const useUrlCounter = () => {
  */
 export const UrlCounterProvider = ({ children }) => {
   // State for tracking current URL number (1-15)
-  const [urlCount, setUrlCount] = useState(1);
+  const [urlCount, setUrlCount] = useState(() => {
+    // Initialize from localStorage if available
+    const saved = localStorage.getItem('url_count');
+    return saved ? parseInt(saved) : 1;
+  });
   
   // State for tracking current URL type being displayed
-  const [currentUrl, setCurrentUrl] = useState('eth');
+  const [currentUrl, setCurrentUrl] = useState(() => {
+    // Initialize from localStorage if available
+    return localStorage.getItem('current_url') || 'eth';
+  });
   
   // Maximum number of URLs in the experiment
   const maxUrls = 15;
+
+  // Save to localStorage whenever urlCount changes
+  useEffect(() => {
+    localStorage.setItem('url_count', urlCount.toString());
+  }, [urlCount]);
+
+  // Save to localStorage whenever currentUrl changes
+  useEffect(() => {
+    localStorage.setItem('current_url', currentUrl);
+  }, [currentUrl]);
 
   // Debug logging to track state changes
   console.log('UrlCounterProvider is rendering with:', { urlCount, currentUrl, maxUrls });
@@ -128,7 +145,7 @@ export const UrlCounterProvider = ({ children }) => {
    * Resets the URL counter to initial state
    * 
    * This function resets both the URL count to 1 and the current URL
-   * type back to 'eth' (the starting URL type).
+   * type back to 'eth' (the starting URL type). Also clears localStorage.
    * 
    * @example
    * // Resets urlCount to 1 and currentUrl to 'eth'
@@ -137,6 +154,8 @@ export const UrlCounterProvider = ({ children }) => {
   const resetUrlCounter = () => {
     setUrlCount(1);
     setCurrentUrl('eth');
+    localStorage.removeItem('url_count');
+    localStorage.removeItem('current_url');
   };
 
 

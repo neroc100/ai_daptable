@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 /**
  * Button Context - Global State Management
@@ -50,8 +50,21 @@ export const useButtonContext = () => {
  * @returns {JSX.Element} Provider component with context value
  */
 export const ButtonProvider = ({ children }) => {
-  // State to store which button was clicked (1-5) or null
-  const [Condition, setCondition] = useState(null);
+  // State to store which button was clicked (1-6) or null
+  const [Condition, setCondition] = useState(() => {
+    // Initialize from localStorage if available
+    const saved = localStorage.getItem('experiment_condition');
+    return saved ? parseInt(saved) : null;
+  });
+
+  // Save to localStorage whenever Condition changes
+  useEffect(() => {
+    if (Condition !== null) {
+      localStorage.setItem('experiment_condition', Condition.toString());
+    } else {
+      localStorage.removeItem('experiment_condition');
+    }
+  }, [Condition]);
 
   // Context value object containing state and setter
   const value = {

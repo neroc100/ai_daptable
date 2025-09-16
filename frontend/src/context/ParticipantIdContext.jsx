@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 /**
  * Participant ID Context
@@ -15,7 +15,19 @@ const ParticipantIdContext = createContext();
  * Manages the global participant ID state.
  */
 export function ParticipantIdProvider({ children }) {
-  const [participantId, setParticipantId] = useState(null);
+  const [participantId, setParticipantId] = useState(() => {
+    // Initialize from localStorage if available
+    return localStorage.getItem('participant_id') || null;
+  });
+
+  // Save to localStorage whenever participantId changes
+  useEffect(() => {
+    if (participantId) {
+      localStorage.setItem('participant_id', participantId);
+    } else {
+      localStorage.removeItem('participant_id');
+    }
+  }, [participantId]);
 
   return (
     <ParticipantIdContext.Provider value={{ participantId, setParticipantId }}>
