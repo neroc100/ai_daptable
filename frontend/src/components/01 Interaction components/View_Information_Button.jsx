@@ -19,7 +19,12 @@ function View_Information_Button() {
     <div className="flex flex-col items-center space-y-4">
       {/* Toggle button with eye/eye-off icons */}
       <button
-        onClick={() => setShowAnalysis(!showAnalysis)}
+        onClick={() => {
+          // Log that the view information button was clicked
+          localStorage.setItem('view_information_clicked', '1');
+          console.log('View information button clicked');
+          setShowAnalysis(!showAnalysis);
+        }}
         className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
         style={{ backgroundColor: 'var(--eth-blue-20)' }}
       >

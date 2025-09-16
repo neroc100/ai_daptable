@@ -30,7 +30,10 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       const pageLoadTime = Date.now();
       localStorage.setItem('url_page_load_time', pageLoadTime.toString());
       localStorage.setItem('current_url_for_timestamp', currentUrl.toString());
+      // Reset view information clicked status for new URL
+      localStorage.removeItem('view_information_clicked');
       console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
+      console.log('View information clicked status reset for new URL');
     } else {
       console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
     }

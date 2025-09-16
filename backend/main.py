@@ -51,6 +51,7 @@ async def create_trial(trial_data: Trial):
             human_action=trial_data.human_action,
             human_action_result=trial_data.human_action_result,
             accuracy=trial_data.accuracy,
+            view_information_clicked=trial_data.view_information_clicked,
             created_at=datetime.datetime.now()
         )
         
@@ -69,6 +70,7 @@ async def create_trial(trial_data: Trial):
             "human_action": new_trial.human_action,
             "human_action_result": new_trial.human_action_result,
             "accuracy": new_trial.accuracy,
+            "view_information_clicked": new_trial.view_information_clicked,
             "created_at": new_trial.created_at.isoformat()
         }
 

@@ -29,6 +29,7 @@ export const useHandleTrialSubmit = () => {
       const pageLoadTime = localStorage.getItem('url_page_load_time');
       const buttonClickTime = localStorage.getItem('decision_button_click_time');
       const humanAction = localStorage.getItem('human_action');
+      const viewInformationClicked = localStorage.getItem('view_information_clicked');
       let reactionTimeMs = null;
       
       if (pageLoadTime && buttonClickTime) {
@@ -37,11 +38,13 @@ export const useHandleTrialSubmit = () => {
         console.log('Page load time:', pageLoadTime);
         console.log('Button click time:', buttonClickTime);
         console.log('Human action:', humanAction);
+        console.log('View information clicked:', viewInformationClicked);
       } else {
         console.warn('Missing timestamps for reaction time calculation');
         console.log('Page load time available:', !!pageLoadTime);
         console.log('Button click time available:', !!buttonClickTime);
         console.log('Human action available:', !!humanAction);
+        console.log('View information clicked available:', !!viewInformationClicked);
       }
 
       // Determine human action result based on action and true classification
@@ -83,6 +86,20 @@ export const useHandleTrialSubmit = () => {
         console.log('Accuracy calculated:', accuracy, '(True:', trueClassification, ', Result:', humanActionResult, ')');
       }
       
+      // Determine view information button value
+      let viewInformationValue = null;
+      if (viewInformationClicked === '1') {
+        viewInformationValue = 1; // Button was clicked
+      } else if (viewInformationClicked === null) {
+        // Check if this condition has the view information button
+        // Conditions  4, 5, 6 have the view information button
+        if (Condition >= 4 && Condition <= 6) {
+          viewInformationValue = 0; // Button was available but not clicked
+        } else {
+          viewInformationValue = null; // Button not available in this condition
+        }
+      }
+
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
@@ -93,7 +110,8 @@ export const useHandleTrialSubmit = () => {
         reaction_time_ms: reactionTimeMs,
         human_action: humanAction,
         human_action_result: humanActionResult,
-        accuracy: accuracy
+        accuracy: accuracy,
+        view_information_clicked: viewInformationValue
       };
 
       // Send POST request to backend API

@@ -44,9 +44,18 @@ function MainPage() {
   
   console.log('MainPage context values:', { setCondition, resetUrlCounter });
 
-  // Reset URL counter when returning to main page
+  // Reset URL counter and clear all localStorage when returning to main page
   React.useEffect(() => {
     resetUrlCounter();
+    
+    // Clear all localStorage items related to the experiment
+    localStorage.removeItem('url_page_load_time');
+    localStorage.removeItem('current_url_for_timestamp');
+    localStorage.removeItem('decision_button_click_time');
+    localStorage.removeItem('human_action');
+    localStorage.removeItem('view_information_clicked');
+    
+    console.log('Main page loaded - all localStorage cleared');
   }, [resetUrlCounter]);
 
   /**
