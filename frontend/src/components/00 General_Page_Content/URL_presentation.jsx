@@ -18,9 +18,22 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   const urlConfig = getUrlConfig(currentUrl);
 
   // Log URL presentation load timestamp to localStorage and console
+  // Only set timestamp when URL changes, not on page reloads
   useEffect(() => {
-    const pageLoadTime = Date.now();
-    localStorage.setItem('url_page_load_time', pageLoadTime.toString());
+    const existingTimestamp = localStorage.getItem('url_page_load_time');
+    const existingUrl = localStorage.getItem('current_url_for_timestamp');
+    
+    // Only set new timestamp if:
+    // 1. No timestamp exists, OR
+    // 2. The URL has changed since the last timestamp
+    if (!existingTimestamp || existingUrl !== currentUrl.toString()) {
+      const pageLoadTime = Date.now();
+      localStorage.setItem('url_page_load_time', pageLoadTime.toString());
+      localStorage.setItem('current_url_for_timestamp', currentUrl.toString());
+      console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
+    } else {
+      console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
+    }
   }, [currentUrl]); // Re-run when URL changes
   
   return (
