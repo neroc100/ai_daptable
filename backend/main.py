@@ -47,6 +47,7 @@ async def create_trial(trial_data: Trial):
             condition=trial_data.condition,
             mental_effort_rating=trial_data.mental_effort_rating,
             url=trial_data.url,
+            true_classification=trial_data.true_classification,
             created_at=datetime.datetime.now()
         )
         

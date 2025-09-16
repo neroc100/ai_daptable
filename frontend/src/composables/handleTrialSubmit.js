@@ -20,16 +20,18 @@ export const useHandleTrialSubmit = () => {
   // Submit trial data and navigate to next URL
   const handleTrialSubmit = async (rating) => {
     try {
-      // Get actual URL from URL config
+      // Get URL config data
       const urlConfig = getUrlConfig(currentUrl);
       const actualUrl = urlConfig.url;
+      const trueClassification = urlConfig.malicious ? 'Malicious' : 'Non-Malicious';
       
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
         condition: Condition,
         mental_effort_rating: rating,
-        url: actualUrl
+        url: actualUrl,
+        true_classification: trueClassification
       };
 
       // Send POST request to backend API

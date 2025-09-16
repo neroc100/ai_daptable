@@ -17,6 +17,7 @@ class Trial(SQLModel, table=True):
     condition: int
     mental_effort_rating: int
     url: str
+    true_classification: str
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 
