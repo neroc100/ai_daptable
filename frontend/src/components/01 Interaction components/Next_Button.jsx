@@ -40,14 +40,17 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   };
 
   return (
-    // ETH blue styled button with navigation logic
-    <button
+    // ETH blue outline styled button with navigation logic
+    <div 
+      className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 hover:shadow-lg transition-all duration-200 ${className}`}
+      style={{ outlineColor: 'var(--eth-blue-100)' }}
       onClick={handleClick}
-      className={`px-8 py-3 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl ${className}`}
-      style={{ backgroundColor: 'var(--eth-blue-100)' }}
     >
-      {text}
-    </button>
+      {/* Button text with ETH styling */}
+      <div className="justify-start text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">
+        {text}
+      </div>
+    </div>
   );
 }
 

@@ -62,15 +62,15 @@ function Decision_Button({
         };
       case 'override':
         return {
-          text: text || `Override and ${classification === 'Malicious' ? 'allow' : 'block'} instead`,
+          text: text || `Override - ${classification === 'Malicious' ? 'Allow' : 'Block'} URL`,
           decisionType: classification === 'Malicious' ? 'allow' : 'block',
           actor: 'human'
         };
       default:
         return {
-          text: text || 'Allow URL',
-          decisionType: 'allow',
-          actor: 'human'
+          text: text || 'error: no button text in decision button',
+          decisionType: 'error: no button type in decision button',
+          actor: 'error: no button actor in decision button'
         };
     }
   };
@@ -114,18 +114,38 @@ function Decision_Button({
     });
   };
 
+  // Generate text styling for override buttons
+  const getTextStyling = () => {
+    if (type === 'override') {
+      const actionText = classification === 'Malicious' ? 'Allow' : 'Block';
+      const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
+      
+      return (
+        <div className="justify-start text-2xl font-bold font-['Inter'] leading-normal">
+          <span className="text-zinc-800">Override - </span>
+          <span style={{ color: actionColor }}>{actionText} URL</span>
+        </div>
+      );
+    }
+    
+    // Default styling for non-override buttons
+    return (
+      <div className="justify-start text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">
+        {config.text}
+      </div>
+    );
+  };
+
   return (
     <>
       {/* Main Decision Button - ETH blue outline styling */}
       <div 
-        className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity ${className}`}
+        className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 hover:shadow-lg transition-all duration-200 ${className}`}
         style={{ outlineColor: 'var(--eth-blue-100)' }}
         onClick={handleClick}
       >
         {/* Dynamic button text based on configuration */}
-        <div className="justify-start text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">
-          {config.text}
-        </div>
+        {getTextStyling()}
       </div>
     </>
   );

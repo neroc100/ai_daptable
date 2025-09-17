@@ -8,7 +8,6 @@ if os.path.exists(csv_file):
     # Read CSV into pandas DataFrame
     df = pd.read_csv(csv_file)
     
-    df.head(100)
 
     print("=== TRIALS DATA ===")
     print(f"Total trials: {len(df)}")

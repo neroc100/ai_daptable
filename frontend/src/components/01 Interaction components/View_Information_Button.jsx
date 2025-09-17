@@ -25,7 +25,7 @@ function View_Information_Button() {
           console.log('View information button clicked');
           setShowAnalysis(!showAnalysis);
         }}
-        className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-colors duration-200"
+        className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:opacity-90"
         style={{ backgroundColor: 'var(--eth-blue-20)' }}
       >
         {/* Conditional icon and text based on current state */}
