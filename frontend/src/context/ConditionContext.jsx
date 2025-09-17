@@ -4,17 +4,21 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
  * Button Context - Global State Management
  * 
  * This context provides global access to the button number that was clicked on the main page.
- * It allows any component in the application to access which button (1-5) was selected
+ * It allows any component in the application to access which button (1-6) was selected
  * without needing to pass the information through props or navigation state.
  * 
  * Usage:
  * - Main page sets the button number when a button is clicked
  * - Message components (AI_in_progress_message, AI_info_analysis_message) access the button number
  * - Navigation logic is based on the globally stored button number
+ * - Tracks conditions seen for each URL
  * 
  * State:
- * - Condition: The number of the button that was clicked (1-5) or null if no button clicked
+ * - Condition: The number of the button that was clicked (1-6) or null if no button clicked
  * - setCondition: Function to update the button number
+ * - conditionsSeen: Array of conditions seen for the current URL
+ * - addConditionSeen: Function to add a condition to the seen list
+ * - resetConditionsSeen: Function to reset the conditions seen list
  * 
  */
 
@@ -27,7 +31,7 @@ const ButtonContext = createContext();
  * This hook provides access to the button context and includes error handling
  * to ensure it's only used within a ButtonProvider.
  * 
- * @returns {Object} Object containing Condition and setCondition
+ * @returns {Object} Object containing Condition, setCondition, conditionsSeen, addConditionSeen, and resetConditionsSeen
  * @throws {Error} If used outside of ButtonProvider
  */
 export const useButtonContext = () => {
@@ -57,6 +61,13 @@ export const ButtonProvider = ({ children }) => {
     return saved ? parseInt(saved) : null;
   });
 
+  // State to store conditions seen for current URL
+  const [conditionsSeen, setConditionsSeen] = useState(() => {
+    // Initialize from localStorage if available
+    const saved = localStorage.getItem('conditions_seen_for_current_url');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   // Save to localStorage whenever Condition changes
   useEffect(() => {
     if (Condition !== null) {
@@ -66,10 +77,33 @@ export const ButtonProvider = ({ children }) => {
     }
   }, [Condition]);
 
-  // Context value object containing state and setter
+  // Save to localStorage whenever conditionsSeen changes
+  useEffect(() => {
+    localStorage.setItem('conditions_seen_for_current_url', JSON.stringify(conditionsSeen));
+  }, [conditionsSeen]);
+
+  // Function to add a condition to the seen list (preserves order and allows duplicates)
+  const addConditionSeen = (condition) => {
+    setConditionsSeen(prev => {
+      const newList = [...prev, condition];
+      console.log('Conditions seen for current URL (ordered):', newList);
+      return newList;
+    });
+  };
+
+  // Function to reset the conditions seen list
+  const resetConditionsSeen = () => {
+    setConditionsSeen([]);
+    console.log('Conditions seen list reset for new URL');
+  };
+
+  // Context value object containing state and setters
   const value = {
     Condition,
-    setCondition
+    setCondition,
+    conditionsSeen,
+    addConditionSeen,
+    resetConditionsSeen
   };
 
   return (

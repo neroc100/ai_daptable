@@ -6,7 +6,9 @@ import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import Decision_Button from '../components/01 Interaction components/Decision_Button';
+import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
+import { ADAPTABLE } from '../constants/adaptable';
 
 /**
  * Info Acquisition Page - Condition 2
@@ -23,6 +25,15 @@ function Info_acquisition() {
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation />
+        
+        {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
+        {ADAPTABLE && (
+          <div className="flex flex-row justify-center items-center w-full max-w-4xl gap-4">
+            <Adapt_Automation_Button direction="decrease" />
+            <Adapt_Automation_Button direction="increase" />
+          </div>
+        )}
+        
         <Separator />
         
         {/* AI acquisition status */}

@@ -83,6 +83,8 @@ The application automatically logs comprehensive data for each trial to analyze 
 | `human_action_result` | String | Final outcome ("URL blocked" or "URL allowed") |
 | `accuracy` | Integer | Decision accuracy (1 = correct, 0 = incorrect) |
 | `view_information_clicked` | Integer | Information seeking behavior (1 = clicked, 0 = not clicked, null = not available) |
+| `conditions_seen` | String | JSON array of conditions visited for this URL in order (e.g., "[1,3,1,5]" - allows duplicates) |
+| `adaptable` | Boolean | Whether the adaptable automation feature was enabled for this experiment session |
 | `created_at` | DateTime | Timestamp when the trial was recorded |
 
 ### Data Collection Flow

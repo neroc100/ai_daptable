@@ -5,8 +5,10 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_auto_display from '../components/AI_action/AI_auto_display';
+import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { getUrlClassification } from '../composables/getURLconfig';
+import { ADAPTABLE } from '../constants/adaptable';
 
 /**
  * Auto Page - Condition 6
@@ -31,6 +33,15 @@ function Auto() {
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation showAIClassification={true} classification={classification} />
+        
+        {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
+        {ADAPTABLE && (
+          <div className="flex flex-row justify-center items-center w-full max-w-4xl gap-4">
+            <Adapt_Automation_Button direction="decrease" />
+            <Adapt_Automation_Button direction="increase" />
+          </div>
+        )}
+        
         <Separator />
         
         {/* AI action implementation status */}

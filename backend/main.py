@@ -52,6 +52,8 @@ async def create_trial(trial_data: Trial):
             human_action_result=trial_data.human_action_result,
             accuracy=trial_data.accuracy,
             view_information_clicked=trial_data.view_information_clicked,
+            conditions_seen=trial_data.conditions_seen,
+            adaptable=trial_data.adaptable,
             created_at=datetime.datetime.now()
         )
         
@@ -71,6 +73,8 @@ async def create_trial(trial_data: Trial):
             "human_action_result": new_trial.human_action_result,
             "accuracy": new_trial.accuracy,
             "view_information_clicked": new_trial.view_information_clicked,
+            "conditions_seen": new_trial.conditions_seen,
+            "adaptable": new_trial.adaptable,
             "created_at": new_trial.created_at.isoformat()
         }
 
@@ -104,6 +108,67 @@ async def reset_database():
     return {
         "message": "Database reset successfully - all tables dropped and recreated",
         "status": "reset_complete"
+    }
+
+@app.get("/trials/export/csv")
+async def export_trials_csv():
+    """Export all trials as CSV data"""
+    import csv
+    import io
+    
+    with Session(engine) as session:
+        trials = session.exec(select(Trial)).all()
+        
+        output = io.StringIO()
+        writer = csv.writer(output)
+        
+        writer.writerow([
+            'id', 'participant_id', 'condition', 'mental_effort_rating', 
+            'url', 'true_classification', 'reaction_time_ms', 'human_action', 
+            'human_action_result', 'accuracy', 'view_information_clicked', 'conditions_seen', 'adaptable', 'created_at'
+        ])
+        
+        for trial in trials:
+            writer.writerow([
+                trial.id, trial.participant_id, trial.condition, trial.mental_effort_rating,
+                trial.url, trial.true_classification, trial.reaction_time_ms, trial.human_action,
+                trial.human_action_result, trial.accuracy, trial.view_information_clicked, 
+                trial.conditions_seen, trial.adaptable, trial.created_at.isoformat() if trial.created_at else None
+            ])
+    
+    return {
+        "csv_data": output.getvalue(),
+        "total_trials": len(trials)
+    }
+
+@app.get("/trials/export/json")
+async def export_trials_json():
+    """Export all trials as JSON data"""
+    with Session(engine) as session:
+        trials = session.exec(select(Trial)).all()
+        
+        trials_data = []
+        for trial in trials:
+            trials_data.append({
+                'id': trial.id,
+                'participant_id': trial.participant_id,
+                'condition': trial.condition,
+                'mental_effort_rating': trial.mental_effort_rating,
+                'url': trial.url,
+                'true_classification': trial.true_classification,
+                'reaction_time_ms': trial.reaction_time_ms,
+                'human_action': trial.human_action,
+                'human_action_result': trial.human_action_result,
+                'accuracy': trial.accuracy,
+                'view_information_clicked': trial.view_information_clicked,
+                'conditions_seen': trial.conditions_seen,
+                'adaptable': trial.adaptable,
+                'created_at': trial.created_at.isoformat() if trial.created_at else None
+            })
+    
+    return {
+        "trials": trials_data,
+        "total_trials": len(trials_data)
     }
 
 

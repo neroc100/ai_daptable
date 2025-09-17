@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AI_classification from '../AI_action/AI_classification';
 import { useUrlCounter } from '../../context/UrlCounterContext';
+import { useButtonContext } from '../../context/ConditionContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
 
 /**
@@ -13,6 +14,7 @@ import { getUrlConfig } from '../../composables/getURLconfig';
  */
 function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   const { currentUrl } = useUrlCounter();
+  const { Condition, resetConditionsSeen, addConditionSeen } = useButtonContext();
   
   // Get current URL configuration
   const urlConfig = getUrlConfig(currentUrl);
@@ -32,8 +34,15 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       localStorage.setItem('current_url_for_timestamp', currentUrl.toString());
       // Reset view information clicked status for new URL
       localStorage.removeItem('view_information_clicked');
+      // Reset conditions seen list for new URL
+      resetConditionsSeen();
+      // Log the initial condition for this URL
+      if (Condition) {
+        addConditionSeen(Condition);
+      }
       console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
       console.log('View information clicked status reset for new URL');
+      console.log('Initial condition logged for new URL:', Condition);
     } else {
       console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
     }

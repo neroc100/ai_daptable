@@ -3,6 +3,7 @@ import { useButtonContext } from '../context/ConditionContext';
 import { useParticipantId } from '../context/ParticipantIdContext';
 import { useHandleNextUrl } from './handleNextURL';
 import { getUrlConfig } from './getURLconfig';
+import { ADAPTABLE } from '../constants/adaptable';
 
 /**
  * Handle Trial Submit Composable
@@ -13,7 +14,7 @@ import { getUrlConfig } from './getURLconfig';
 export const useHandleTrialSubmit = () => {
   // Get data from global contexts
   const { currentUrl } = useUrlCounter();
-  const { Condition } = useButtonContext();
+  const { Condition, conditionsSeen } = useButtonContext();
   const { participantId } = useParticipantId();
   const handleNextUrl = useHandleNextUrl();
 
@@ -100,6 +101,10 @@ export const useHandleTrialSubmit = () => {
         }
       }
 
+      // Get conditions seen as JSON string
+      const conditionsSeenJson = JSON.stringify(conditionsSeen);
+      console.log('Conditions seen for this URL:', conditionsSeen);
+
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
@@ -111,7 +116,9 @@ export const useHandleTrialSubmit = () => {
         human_action: humanAction,
         human_action_result: humanActionResult,
         accuracy: accuracy,
-        view_information_clicked: viewInformationValue
+        view_information_clicked: viewInformationValue,
+        conditions_seen: conditionsSeenJson,
+        adaptable: ADAPTABLE
       };
 
       // Send POST request to backend API
