@@ -12,13 +12,13 @@ import { Info } from 'lucide-react';
 function AI_Action_Message_Box({ text }) {
   const renderColoredText = (value) => {
     if (!value || typeof value !== 'string') return value;
-    // Match whole words only
-    const regex = /\b(allowed|blocked)\b/ig;
+    // Match whole words for allow/allowed and block/blocked
+    const regex = /\b(allow|allowed|block|blocked)\b/ig;
     const parts = value.split(regex);
     return parts.map((part, index) => {
       if (!part) return null;
       const lower = part.toLowerCase();
-      if (lower === 'allowed') {
+      if (lower === 'allow' || lower === 'allowed') {
         return (
           <React.Fragment key={index}>
             {'\u00A0'}
@@ -27,7 +27,7 @@ function AI_Action_Message_Box({ text }) {
           </React.Fragment>
         );
       }
-      if (lower === 'blocked') {
+      if (lower === 'block' || lower === 'blocked') {
         return (
           <React.Fragment key={index}>
             {'\u00A0'}

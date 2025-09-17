@@ -42,7 +42,7 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   return (
     // ETH blue outline styled button with navigation logic
     <div 
-      className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 hover:shadow-lg transition-all duration-200 ${className}`}
+      className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
       style={{ outlineColor: 'var(--eth-blue-100)' }}
       onClick={handleClick}
     >

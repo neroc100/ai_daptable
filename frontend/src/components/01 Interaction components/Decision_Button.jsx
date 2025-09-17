@@ -56,7 +56,7 @@ function Decision_Button({
         };
       case 'confirm':
         return {
-          text: text || 'Confirm AI Action',
+          text: text || `Confirm - ${classification === 'Malicious' ? 'Block' : 'Allow'} URL`,
           decisionType: classification === 'Malicious' ? 'block' : 'allow',
           actor: 'ai'
         };
@@ -127,6 +127,18 @@ function Decision_Button({
         </div>
       );
     }
+
+    if (type === 'confirm') {
+      const actionText = classification === 'Malicious' ? 'Block' : 'Allow';
+      const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
+      
+      return (
+        <div className="justify-start text-2xl font-bold font-['Inter'] leading-normal">
+          <span className="text-zinc-800">Confirm - </span>
+          <span style={{ color: actionColor }}>{actionText} URL</span>
+        </div>
+      );
+    }
     
     // Default styling for non-override buttons
     return (
@@ -140,7 +152,7 @@ function Decision_Button({
     <>
       {/* Main Decision Button - ETH blue outline styling */}
       <div 
-        className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer hover:opacity-90 hover:shadow-lg transition-all duration-200 ${className}`}
+        className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
         style={{ outlineColor: 'var(--eth-blue-100)' }}
         onClick={handleClick}
       >

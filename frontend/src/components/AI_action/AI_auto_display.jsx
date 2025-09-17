@@ -21,7 +21,7 @@ function AI_auto_display({ classification = 'Non-Malicious' }) {
       
       {/* AI decision message */}
       <AI_Action_Message_Box 
-        text={`AI successfully ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
+        text={`AI ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
       />
       
       {/* Navigation button to proceed to next URL */}

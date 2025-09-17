@@ -22,7 +22,7 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
       <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)' }}>
         {/* AI decision  message */}
         <AI_Action_Message_Box 
-          text={`AI successfully ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
+          text={`AI ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
         />
         
         {/* Action buttons - equally distant from center */}
