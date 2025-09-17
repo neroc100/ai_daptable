@@ -54,6 +54,11 @@ function MainPage() {
     localStorage.removeItem('decision_button_click_time');
     localStorage.removeItem('human_action');
     localStorage.removeItem('view_information_clicked');
+    localStorage.removeItem('initial_condition_logged_for_url');
+    localStorage.removeItem('conditions_seen_for_current_url');
+    localStorage.removeItem('condition_times_for_current_url');
+    localStorage.removeItem('condition_timer_start');
+    localStorage.removeItem('experiment_condition');
     
     console.log('Main page loaded - all localStorage cleared');
   }, [resetUrlCounter]);

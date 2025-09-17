@@ -84,16 +84,18 @@ The application automatically logs comprehensive data for each trial to analyze 
 | `accuracy` | Integer | Decision accuracy (1 = correct, 0 = incorrect) |
 | `view_information_clicked` | Integer | Information seeking behavior (1 = clicked, 0 = not clicked, null = not available) |
 | `conditions_seen` | String | JSON array of conditions visited for this URL in order (e.g., "[1,3,1,5]" - allows duplicates) |
+| `condition_times` | String | JSON array of time spent on each condition in milliseconds (e.g., "[5000,3000,2000]" - matches conditions_seen order) |
 | `adaptable` | Boolean | Whether the adaptable automation feature was enabled for this experiment session |
 | `created_at` | DateTime | Timestamp when the trial was recorded |
 
 ### Data Collection Flow
 
-1. **URL Presentation**: Timestamp logged when URL is displayed to user
+1. **URL Presentation**: Timestamp logged when URL is displayed to user, condition timer started
 2. **User Interaction**: Timestamp and action type logged when user makes decision
-3. **Information Seeking**: Tracks if user clicked "View Information" button (conditions 4-6)
-4. **Trial Submission**: All data compiled and sent to backend when user submits mental effort rating
-5. **Data Storage**: Complete trial data stored in database with calculated accuracy and results
+3. **Condition Changes**: Time spent on each condition logged when switching conditions (adaptable mode)
+4. **Information Seeking**: Tracks if user clicked "View Information" button (conditions 4-6)
+5. **Trial Submission**: All data compiled and sent to backend when user submits mental effort rating
+6. **Data Storage**: Complete trial data stored in database with calculated accuracy and results
 
 ### Accuracy Calculation
 

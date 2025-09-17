@@ -15,7 +15,7 @@ import { useButtonContext } from '../../context/ConditionContext';
  */
 function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
   const navigate = useNavigate();
-  const { Condition, setCondition, addConditionSeen } = useButtonContext();
+  const { Condition, setCondition, addConditionSeen, logConditionTime } = useButtonContext();
 
   // Handle button click - update condition and navigate
   const handleClick = () => {
@@ -29,11 +29,14 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
       newCondition = Math.max(1, currentCondition - 1);
     }
     
+    // Log time spent on current condition and start timer for new condition
+    logConditionTime(newCondition);
+    
+    // Add condition to the seen list (do this before updating condition to ensure proper order)
+    addConditionSeen(newCondition);
+    
     // Update the context with new condition
     setCondition(newCondition);
-    
-    // Add condition to the seen list
-    addConditionSeen(newCondition);
     
     console.log(`Condition changed from ${currentCondition} to ${newCondition}`);
     

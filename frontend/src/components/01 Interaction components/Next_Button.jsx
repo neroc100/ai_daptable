@@ -19,9 +19,15 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   // Modal control hook
   const { hideSuccessMessage } = useSuccessModal();
   // Get current condition to determine if we should log timestamp
-  const { Condition } = useButtonContext();
+  const { Condition, logConditionTime } = useButtonContext();
 
   const handleClick = () => {
+    // Only log condition time when NOT in success modal (to avoid duplicate logging with Decision_Button)
+    if (!isInSuccessModal) {
+      // Log time spent on current condition before proceeding (for all conditions)
+      logConditionTime(null); // Pass null since we're not switching to a new condition
+    }
+    
     // Only log timestamp and human action for conditions 5 (veto) and 6 (auto) where Next_Button is the primary interaction
     // AND only when NOT in success modal (to avoid overriding Decision_Button actions)
     if ((Condition === 5 || Condition === 6) && !isInSuccessModal) {

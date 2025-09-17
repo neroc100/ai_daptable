@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSuccessModal } from '../../context/SuccessModalContext';
+import { useButtonContext } from '../../context/ConditionContext';
 // import { useLogDecision } from '../../composables/logDecision';
 // import { useUrlCounter } from '../../context/UrlCounterContext';
 // import { useCondition } from '../../context/ConditionContext';
@@ -26,6 +27,9 @@ function Decision_Button({
 }) {
   // Get success modal control function from global context
   const { showSuccessMessage } = useSuccessModal();
+  
+  // Get condition context for logging time spent on current condition
+  const { logConditionTime } = useButtonContext();
   
   // Get current context for logging (commented out for now)
   // const { currentUrl } = useUrlCounter();
@@ -80,6 +84,9 @@ function Decision_Button({
 
   // Handle button click - trigger success modal and log human action
   const handleClick = async () => {
+    // Log time spent on current condition before making decision
+    logConditionTime(null); // Pass null since we're not switching to a new condition
+    
     // Save button click timestamp to localStorage and log to console
     const buttonClickTime = Date.now();
     localStorage.setItem('decision_button_click_time', buttonClickTime.toString());

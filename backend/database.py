@@ -25,6 +25,7 @@ class Trial(SQLModel, table=True):
     accuracy: int = Field(default=None, nullable=True)
     view_information_clicked: int = Field(default=None, nullable=True)
     conditions_seen: str = Field(default=None, nullable=True)  # JSON string of conditions seen for this URL
+    condition_times: str = Field(default=None, nullable=True)  # JSON string of time spent on each condition in ms
     adaptable: bool = Field(default=None, nullable=True)  # Whether adaptable automation was enabled
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 

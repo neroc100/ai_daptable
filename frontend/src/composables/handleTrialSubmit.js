@@ -14,7 +14,7 @@ import { ADAPTABLE } from '../constants/adaptable';
 export const useHandleTrialSubmit = () => {
   // Get data from global contexts
   const { currentUrl } = useUrlCounter();
-  const { Condition, conditionsSeen } = useButtonContext();
+  const { Condition, conditionsSeen, conditionTimes } = useButtonContext();
   const { participantId } = useParticipantId();
   const handleNextUrl = useHandleNextUrl();
 
@@ -105,6 +105,10 @@ export const useHandleTrialSubmit = () => {
       const conditionsSeenJson = JSON.stringify(conditionsSeen);
       console.log('Conditions seen for this URL:', conditionsSeen);
 
+      // Get condition times as JSON string
+      const conditionTimesJson = JSON.stringify(conditionTimes);
+      console.log('Condition times for this URL:', conditionTimes);
+
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
@@ -118,6 +122,7 @@ export const useHandleTrialSubmit = () => {
         accuracy: accuracy,
         view_information_clicked: viewInformationValue,
         conditions_seen: conditionsSeenJson,
+        condition_times: conditionTimesJson,
         adaptable: ADAPTABLE
       };
 

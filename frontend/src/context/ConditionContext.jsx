@@ -19,6 +19,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
  * - conditionsSeen: Array of conditions seen for the current URL
  * - addConditionSeen: Function to add a condition to the seen list
  * - resetConditionsSeen: Function to reset the conditions seen list
+ * - conditionTimes: Array of time spent on each condition for the current URL
+ * - startConditionTimer: Function to start timing a condition
+ * - logConditionTime: Function to log time spent and start new timer
+ * - resetConditionTimes: Function to reset condition times for new URL
  * 
  */
 
@@ -31,7 +35,7 @@ const ButtonContext = createContext();
  * This hook provides access to the button context and includes error handling
  * to ensure it's only used within a ButtonProvider.
  * 
- * @returns {Object} Object containing Condition, setCondition, conditionsSeen, addConditionSeen, and resetConditionsSeen
+ * @returns {Object} Object containing Condition, setCondition, conditionsSeen, addConditionSeen, resetConditionsSeen, conditionTimes, startConditionTimer, logConditionTime, and resetConditionTimes
  * @throws {Error} If used outside of ButtonProvider
  */
 export const useButtonContext = () => {
@@ -68,6 +72,20 @@ export const ButtonProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // State to store time spent on each condition for current URL
+  const [conditionTimes, setConditionTimes] = useState(() => {
+    // Initialize from localStorage if available
+    const saved = localStorage.getItem('condition_times_for_current_url');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // State to store when the current condition timer started
+  const [conditionTimerStart, setConditionTimerStart] = useState(() => {
+    // Initialize from localStorage if available
+    const saved = localStorage.getItem('condition_timer_start');
+    return saved ? parseInt(saved) : null;
+  });
+
   // Save to localStorage whenever Condition changes
   useEffect(() => {
     if (Condition !== null) {
@@ -82,8 +100,23 @@ export const ButtonProvider = ({ children }) => {
     localStorage.setItem('conditions_seen_for_current_url', JSON.stringify(conditionsSeen));
   }, [conditionsSeen]);
 
+  // Save to localStorage whenever conditionTimes changes
+  useEffect(() => {
+    localStorage.setItem('condition_times_for_current_url', JSON.stringify(conditionTimes));
+  }, [conditionTimes]);
+
+  // Save to localStorage whenever conditionTimerStart changes
+  useEffect(() => {
+    if (conditionTimerStart !== null) {
+      localStorage.setItem('condition_timer_start', conditionTimerStart.toString());
+    } else {
+      localStorage.removeItem('condition_timer_start');
+    }
+  }, [conditionTimerStart]);
+
   // Function to add a condition to the seen list (preserves order and allows duplicates)
   const addConditionSeen = (condition) => {
+    console.log('addConditionSeen called with condition:', condition);
     setConditionsSeen(prev => {
       const newList = [...prev, condition];
       console.log('Conditions seen for current URL (ordered):', newList);
@@ -97,13 +130,56 @@ export const ButtonProvider = ({ children }) => {
     console.log('Conditions seen list reset for new URL');
   };
 
+  // Function to start a new condition timer
+  const startConditionTimer = () => {
+    const startTime = Date.now();
+    setConditionTimerStart(startTime);
+    console.log('Condition timer started at:', startTime);
+  };
+
+  // Function to log time spent on current condition and optionally start new timer
+  const logConditionTime = (newCondition) => {
+    console.log('logConditionTime called with newCondition:', newCondition, 'current timer start:', conditionTimerStart);
+    
+    if (conditionTimerStart !== null) {
+      const timeSpent = Date.now() - conditionTimerStart;
+      setConditionTimes(prev => {
+        const newTimes = [...prev, timeSpent];
+        console.log('Time spent on condition:', timeSpent, 'ms. Total condition times:', newTimes);
+        return newTimes;
+      });
+    } else {
+      console.log('No active timer to log - conditionTimerStart is null');
+    }
+    
+    // Only start new timer if switching to a new condition
+    if (newCondition !== null) {
+      console.log('Starting new timer for condition:', newCondition);
+      startConditionTimer();
+    } else {
+      console.log('Not starting new timer - newCondition is null');
+    }
+  };
+
+  // Function to reset condition times for new URL
+  const resetConditionTimes = () => {
+    setConditionTimes([]);
+    setConditionTimerStart(null);
+    console.log('Condition times and timer reset for new URL');
+  };
+
   // Context value object containing state and setters
   const value = {
     Condition,
     setCondition,
     conditionsSeen,
     addConditionSeen,
-    resetConditionsSeen
+    resetConditionsSeen,
+    conditionTimes,
+    conditionTimerStart,
+    startConditionTimer,
+    logConditionTime,
+    resetConditionTimes
   };
 
   return (

@@ -14,7 +14,7 @@ import { getUrlConfig } from '../../composables/getURLconfig';
  */
 function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   const { currentUrl } = useUrlCounter();
-  const { Condition, resetConditionsSeen, addConditionSeen } = useButtonContext();
+  const { Condition, resetConditionsSeen, addConditionSeen, resetConditionTimes, startConditionTimer } = useButtonContext();
   
   // Get current URL configuration
   const urlConfig = getUrlConfig(currentUrl);
@@ -34,19 +34,40 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       localStorage.setItem('current_url_for_timestamp', currentUrl.toString());
       // Reset view information clicked status for new URL
       localStorage.removeItem('view_information_clicked');
+      // Reset initial condition logged flag for new URL
+      localStorage.removeItem('initial_condition_logged_for_url');
       // Reset conditions seen list for new URL
       resetConditionsSeen();
-      // Log the initial condition for this URL
-      if (Condition) {
-        addConditionSeen(Condition);
-      }
+      // Reset condition times for new URL
+      resetConditionTimes();
       console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
       console.log('View information clicked status reset for new URL');
-      console.log('Initial condition logged for new URL:', Condition);
     } else {
       console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
     }
   }, [currentUrl]); // Re-run when URL changes
+
+  // Separate effect to handle condition logging and timer start
+  useEffect(() => {
+    if (Condition) {
+      // Check if this is a new URL by comparing with stored URL
+      const existingUrl = localStorage.getItem('current_url_for_timestamp');
+      const existingConditionLogged = localStorage.getItem('initial_condition_logged_for_url');
+      
+      // Only log initial condition if:
+      // 1. This is the current URL, AND
+      // 2. We haven't already logged the initial condition for this URL
+      if (existingUrl === currentUrl.toString() && existingConditionLogged !== currentUrl.toString()) {
+        addConditionSeen(Condition);
+        // Start condition timer for the initial condition
+        startConditionTimer();
+        // Mark that we've logged the initial condition for this URL
+        localStorage.setItem('initial_condition_logged_for_url', currentUrl.toString());
+        console.log('Initial condition logged for new URL:', Condition);
+        console.log('Condition timer started for new URL');
+      }
+    }
+  }, [Condition, currentUrl]); // Re-run when Condition or URL changes
   
   return (
     // Main URL container with white background and light border
