@@ -8,7 +8,7 @@ import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_A
 import Decision_Button from '../components/01 Interaction components/Decision_Button';
 import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { ADAPTABLE } from '../constants/adaptable';
+import { ADAPTABLE } from '../constants/config';
 
 /**
  * Info Acquisition Page - Condition 2

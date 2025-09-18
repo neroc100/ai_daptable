@@ -8,7 +8,7 @@ import AI_auto_display from '../components/AI_action/AI_auto_display';
 import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { getUrlClassification } from '../composables/getURLconfig';
-import { ADAPTABLE } from '../constants/adaptable';
+import { ADAPTABLE } from '../constants/config';
 
 /**
  * Auto Page - Condition 6

@@ -9,7 +9,7 @@ import Adapt_Automation_Button from '../components/01 Interaction components/Ada
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import AI_allow_display from '../components/AI_action/AI_allow_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { ADAPTABLE } from '../constants/adaptable';
+import { ADAPTABLE } from '../constants/config';
 
 /**
  * Allow Page - Condition 4

@@ -1,14 +1,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { MAX_NUM_URL } from '../constants/config';
 
 /**
  * URL Counter Context
  * 
  * This context manages the state for URL progression through the experiment.
  * It tracks the current URL number, the current URL type, and provides methods
- * to navigate through a predefined set of 15 different URL types.
+ * to navigate through a predefined set of URL types.
  * 
  * The context is used throughout the application to:
- * - Track which URL the user is currently viewing (1-15)
+ * - Track which URL the user is currently viewing (1-MAX_NUM_URL)
  * - Manage the current URL type being displayed
  * - Provide navigation methods to move between URLs
  * - Reset the counter for new experiments or when returning to main page
@@ -25,9 +26,9 @@ const UrlCounterContext = createContext();
  * components that are wrapped with UrlCounterProvider.
  * 
  * @returns {Object} The URL counter context value containing:
- *   - urlCount: Current URL number (1-15)
+ *   - urlCount: Current URL number (1-MAX_NUM_URL)
  *   - currentUrl: Current URL type string
- *   - maxUrls: Maximum number of URLs (15)
+ *   - maxUrls: Maximum number of URLs (MAX_NUM_URL)
  *   - incrementUrlCount: Function to increment URL counter
  *   - switchUrl: Function to switch to next URL type
  *   - resetUrlCounter: Function to reset counter to initial state
@@ -47,7 +48,7 @@ export const useUrlCounter = () => {
  * URL Counter Provider Component
  * 
  * This provider component wraps the application and provides URL counter state
- * to all child components. It manages the progression through 15 different
+ * to all child components. It manages the progression through different
  * URL types during the experiment.
  * 
  * @param {Object} props - Component props
@@ -55,7 +56,7 @@ export const useUrlCounter = () => {
  * @returns {JSX.Element} Provider component with URL counter context
  */
 export const UrlCounterProvider = ({ children }) => {
-  // State for tracking current URL number (1-15)
+  // State for tracking current URL number (1-MAX_NUM_URL)
   const [urlCount, setUrlCount] = useState(() => {
     // Initialize from localStorage if available
     const saved = localStorage.getItem('url_count');
@@ -69,7 +70,7 @@ export const UrlCounterProvider = ({ children }) => {
   });
   
   // Maximum number of URLs in the experiment
-  const maxUrls = 15;
+  const maxUrls = MAX_NUM_URL;
 
   // Save to localStorage whenever urlCount changes
   useEffect(() => {
@@ -85,7 +86,7 @@ export const UrlCounterProvider = ({ children }) => {
   console.log('UrlCounterProvider is rendering with:', { urlCount, currentUrl, maxUrls });
 
   /**
-   * Array of all 15 URL types in the experiment
+   * Array of all URL types in the experiment
    * 
    * These represent different categories of URLs that users will evaluate:
    * - Legitimate: education, eth, socialMedia, news, government, shopping
@@ -166,9 +167,9 @@ export const UrlCounterProvider = ({ children }) => {
    * to all child components through the useUrlCounter hook.
    */
   const value = {
-    urlCount,                    // Current URL number (1-15)
+    urlCount,                    // Current URL number (1-MAX_NUM_URL)
     currentUrl,                  // Current URL type string
-    maxUrls,                     // Maximum number of URLs (15)
+    maxUrls,                     // Maximum number of URLs (MAX_NUM_URL)
     incrementUrlCount,           // Function to increment URL counter
     switchUrl,                   // Function to switch to next URL type
     resetUrlCounter              // Function to reset counter to initial state

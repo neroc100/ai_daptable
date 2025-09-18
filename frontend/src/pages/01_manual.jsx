@@ -6,7 +6,7 @@ import Decision_Button from '../components/01 Interaction components/Decision_Bu
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { ADAPTABLE } from '../constants/adaptable';
+import { ADAPTABLE } from '../constants/config';
 
 /**
  * Manual Page - Condition 1

@@ -14,6 +14,9 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
 import { SuccessModalProvider } from './context/SuccessModalContext';
+import { FreezeProbeProvider } from './context/FreezeProbeContext';
+import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
+import FreezeProbe from './pages/freeze_probe';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
 
@@ -164,7 +167,8 @@ function App() {
       <ParticipantIdProvider>
         <ButtonProvider>
           <UrlCounterProvider>
-            <SuccessModalProvider>
+            <FreezeProbeProvider>
+              <SuccessModalProvider>
               <Router>
                 <div className="min-h-screen bg-gray-50">
                   <main>
@@ -179,13 +183,17 @@ function App() {
                       <Route path="/veto" element={<Veto />} />
                       <Route path="/auto" element={<Auto/>} />
                       <Route path="/dummy" element={<Dummy />} />
+                      <Route path="/freeze-probe" element={<FreezeProbe />} />
                     </Routes>
                   </main>
                   {/* Global Success Message Modal */}
                   <Success_Message />
+                  {/* Global Freeze Probe Modal */}
+                  <FreezeProbeModal />
                 </div>
               </Router>
             </SuccessModalProvider>
+            </FreezeProbeProvider>
           </UrlCounterProvider>
         </ButtonProvider>
       </ParticipantIdProvider>

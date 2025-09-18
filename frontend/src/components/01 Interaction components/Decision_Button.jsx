@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSuccessModal } from '../../context/SuccessModalContext';
 import { useButtonContext } from '../../context/ConditionContext';
+import { useFreezeProbe } from '../../context/FreezeProbeContext';
 // import { useLogDecision } from '../../composables/logDecision';
 // import { useUrlCounter } from '../../context/UrlCounterContext';
 // import { useCondition } from '../../context/ConditionContext';
@@ -30,6 +31,9 @@ function Decision_Button({
   
   // Get condition context for logging time spent on current condition
   const { logConditionTime } = useButtonContext();
+  
+  // Get freeze probe context for immediate trigger on button click
+  const { triggerProbeOnClick } = useFreezeProbe();
   
   // Get current context for logging (commented out for now)
   // const { currentUrl } = useUrlCounter();
@@ -84,6 +88,9 @@ function Decision_Button({
 
   // Handle button click - trigger success modal and log human action
   const handleClick = async () => {
+    // Check if we should trigger freeze probe immediately on button click
+    triggerProbeOnClick();
+    
     // Log time spent on current condition before making decision
     logConditionTime(null); // Pass null since we're not switching to a new condition
     

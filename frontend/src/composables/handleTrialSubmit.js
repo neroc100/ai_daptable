@@ -3,7 +3,7 @@ import { useButtonContext } from '../context/ConditionContext';
 import { useParticipantId } from '../context/ParticipantIdContext';
 import { useHandleNextUrl } from './handleNextURL';
 import { getUrlConfig } from './getURLconfig';
-import { ADAPTABLE } from '../constants/adaptable';
+import { ADAPTABLE } from '../constants/config';
 
 /**
  * Handle Trial Submit Composable
