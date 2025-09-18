@@ -1,16 +1,35 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useUrlCounter } from './UrlCounterContext';
 import { NUM_FREEZE_PROBES, MIN_SEC_FREEZE_PROBE, MAX_SEC_FREEZE_PROBE } from '../constants/config';
+import { FREEZE_PROBE_QUESTIONS } from '../constants/freezeProbeConfig';
+
+/**
+ * Freeze Probe Context
+ * 
+ * Manages freeze probe functionality for situational awareness testing during the experiment.
+ * Freeze probes are random interruptions that test participants' attention to detail.
+ * 
+ * Features:
+ * - Random selection of URLs, timing, and questions for each experiment session
+ * - Persistent state across page reloads
+ * - Timer-based and button-triggered probe activation
+ * - Prevents duplicate probes for the same URL
+ */
 
 const FreezeProbeContext = createContext();
 
+/**
+ * Hook to access freeze probe context
+ */
 export const useFreezeProbe = () => {
   const ctx = useContext(FreezeProbeContext);
   if (!ctx) throw new Error('useFreezeProbe must be used within FreezeProbeProvider');
   return ctx;
 };
 
-// Utility to pick k unique integers in [1, max]
+/**
+ * Utility to pick k unique integers in range [1, max]
+ */
 const pickUnique = (k, max) => {
   const set = new Set();
   while (set.size < k && set.size < max) {
@@ -20,15 +39,28 @@ const pickUnique = (k, max) => {
   return Array.from(set).sort((a, b) => a - b);
 };
 
-// Utility to pick k integers in range [min, max]
+/**
+ * Utility to pick k random integers in range [min, max]
+
+ */
 const pickInRange = (k, min, max) => Array.from({ length: k }, () => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 });
 
+/**
+ * Freeze Probe Provider Component
+ * 
+ * Provides freeze probe functionality to all child components.
+ * Manages random selection of URLs, timing, and questions for freeze probes.
+ * 
+ */
 export const FreezeProbeProvider = ({ children }) => {
   const { urlCount, maxUrls } = useUrlCounter();
 
-  // Choose exactly NUM_FREEZE_PROBES URL indices for probes (once per session)
+  /**
+   * Randomly select URL indices for freeze probes (persistent across session)
+   * Each experiment session gets exactly NUM_FREEZE_PROBES unique URLs
+   */
   const [probeUrls] = useState(() => {
     // Check if freeze probe URLs are already stored in localStorage
     const stored = localStorage.getItem('freeze_probe_urls');
@@ -43,7 +75,10 @@ export const FreezeProbeProvider = ({ children }) => {
     console.log('Freeze probe URLs selected:', urls);
     return urls;
   });
-  // Choose exactly NUM_FREEZE_PROBES delays in seconds (MIN_SEC_FREEZE_PROBE..MAX_SEC_FREEZE_PROBE)
+  /**
+   * Randomly select delay times for freeze probes (persistent across session)
+   * Each probe gets a random delay between MIN_SEC_FREEZE_PROBE and MAX_SEC_FREEZE_PROBE
+   */
   const [probeDelaysSec] = useState(() => {
     // Check if freeze probe delays are already stored in localStorage
     const stored = localStorage.getItem('freeze_probe_delays');
@@ -59,7 +94,42 @@ export const FreezeProbeProvider = ({ children }) => {
     return delays;
   });
 
-  // Derived map urlIndex -> delaySec for convenience
+  /**
+   * Randomly select unique questions for freeze probes (persistent across session)
+   * Each probe gets a unique randomly selected question from FREEZE_PROBE_QUESTIONS
+   */
+  const [probeQuestions] = useState(() => {
+    // Check if freeze probe questions are already stored in localStorage
+    const stored = localStorage.getItem('freeze_probe_questions');
+    if (stored) {
+      const questions = JSON.parse(stored);
+      console.log('Freeze probe questions loaded from localStorage:', questions);
+      return questions;
+    }
+    // Generate new unique questions if not stored
+    const selectedIndices = new Set();
+    const questions = [];
+    
+    // Ensure we don't select more questions than available
+    const maxQuestions = Math.min(NUM_FREEZE_PROBES, FREEZE_PROBE_QUESTIONS.length);
+    
+    while (selectedIndices.size < maxQuestions) {
+      const randomIndex = Math.floor(Math.random() * FREEZE_PROBE_QUESTIONS.length);
+      if (!selectedIndices.has(randomIndex)) {
+        selectedIndices.add(randomIndex);
+        questions.push(FREEZE_PROBE_QUESTIONS[randomIndex]);
+      }
+    }
+    
+    localStorage.setItem('freeze_probe_questions', JSON.stringify(questions));
+    console.log('Freeze probe questions selected (unique):', questions);
+    return questions;
+  });
+
+  /**
+   * Create mapping of URL index to delay time for convenience
+   * Used for quick lookup of delay time for a specific URL
+   */
   const probeMap = useMemo(() => {
     const map = new Map();
     probeUrls.forEach((u, i) => map.set(u, probeDelaysSec[i] ?? 10));
@@ -67,20 +137,39 @@ export const FreezeProbeProvider = ({ children }) => {
     return map;
   }, [probeUrls, probeDelaysSec]);
 
-  // Modal state
-  const [activeProbeIndex, setActiveProbeIndex] = useState(null); // 0..2
+  /**
+   * Track which freeze probe is currently active (persistent across page reloads)
+   * null = no active probe, 0-2 = index of active probe
+   */
+  const [activeProbeIndex, setActiveProbeIndex] = useState(() => {
+    // Check if there's an active probe stored in localStorage
+    const stored = localStorage.getItem('active_freeze_probe_index');
+    return stored ? parseInt(stored) : null;
+  });
   
-  // Track which freeze probes have already been shown for the current URL
-  const [probeShownForCurrentUrl, setProbeShownForCurrentUrl] = useState(false);
+  /**
+   * Track whether a freeze probe has been shown for the current URL
+   * Prevents duplicate probes for the same URL (persistent across page reloads)
+   */
+  const [probeShownForCurrentUrl, setProbeShownForCurrentUrl] = useState(() => {
+    // Check if probe was shown for current URL
+    const stored = localStorage.getItem('freeze_probe_shown_for_current_url');
+    return stored === 'true';
+  });
 
   // Timer bookkeeping per URL view
   const urlShownAtRef = useRef(Date.now());
   const timeoutIdRef = useRef(null);
 
-  // Function to start freeze probe timer when URL is presented
+  /**
+   * Start freeze probe timer when URL is presented
+   * Resets state for new URL and schedules probe if current URL is a probe URL
+   */
   const startFreezeProbeTimer = () => {
     // Reset probe shown state for new URL
     setProbeShownForCurrentUrl(false);
+    localStorage.removeItem('freeze_probe_shown_for_current_url');
+    localStorage.removeItem('active_freeze_probe_index');
     
     // Clear any existing timeout
     if (timeoutIdRef.current) {
@@ -95,13 +184,18 @@ export const FreezeProbeProvider = ({ children }) => {
       timeoutIdRef.current = setTimeout(() => {
         setActiveProbeIndex(probeIdx);
         setProbeShownForCurrentUrl(true);
+        localStorage.setItem('active_freeze_probe_index', probeIdx.toString());
+        localStorage.setItem('freeze_probe_shown_for_current_url', 'true');
         console.log(`Freeze probe shown for URL ${urlCount} after timer`);
       }, delayMs);
       console.log(`Freeze probe timer started for URL ${urlCount}, will trigger after ${probeDelaysSec[probeIdx]} seconds`);
     }
   };
 
-  // Function to stop freeze probe timer
+  /**
+   * Stop freeze probe timer
+   * Clears any pending timeout for the current URL
+   */
   const stopFreezeProbeTimer = () => {
     if (timeoutIdRef.current) {
       clearTimeout(timeoutIdRef.current);
@@ -110,11 +204,20 @@ export const FreezeProbeProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Close freeze probe modal
+   * Clears active probe index and removes from localStorage
+   */
   const closeProbe = () => {
     setActiveProbeIndex(null);
+    localStorage.removeItem('active_freeze_probe_index');
   };
 
-  // Function to trigger freeze probe immediately (called by buttons)
+  /**
+   * Trigger freeze probe immediately on button click
+   * Used when user clicks Decision_Button or Next_Button before timer expires
+   * Prevents duplicate probes for the same URL
+   */
   const triggerProbeOnClick = () => {
     const probeIdx = probeUrls.indexOf(urlCount);
     if (probeIdx !== -1 && !probeShownForCurrentUrl) {
@@ -125,19 +228,31 @@ export const FreezeProbeProvider = ({ children }) => {
       }
       setActiveProbeIndex(probeIdx);
       setProbeShownForCurrentUrl(true);
+      localStorage.setItem('active_freeze_probe_index', probeIdx.toString());
+      localStorage.setItem('freeze_probe_shown_for_current_url', 'true');
       console.log(`Freeze probe triggered immediately on button click for URL ${urlCount}`);
     } else if (probeIdx !== -1 && probeShownForCurrentUrl) {
       console.log(`Freeze probe for URL ${urlCount} already shown, not triggering on button click`);
     }
   };
 
-  // Function to reset freeze probe selections (called when returning to main page)
+  /**
+   * Reset all freeze probe data (called when returning to main page)
+   * Clears all localStorage entries and prepares for new experiment session
+   */
   const resetFreezeProbes = () => {
     localStorage.removeItem('freeze_probe_urls');
     localStorage.removeItem('freeze_probe_delays');
+    localStorage.removeItem('freeze_probe_questions');
+    localStorage.removeItem('active_freeze_probe_index');
+    localStorage.removeItem('freeze_probe_shown_for_current_url');
     console.log('Freeze probe selections reset');
   };
 
+  /**
+   * Context value object containing all state and methods
+   * Made available to all child components through the context provider
+   */
   const value = {
     closeProbe,
     triggerProbeOnClick,
@@ -146,6 +261,7 @@ export const FreezeProbeProvider = ({ children }) => {
     stopFreezeProbeTimer,
     probeUrls,
     probeDelaysSec,
+    probeQuestions,
     activeProbeIndex,
     probeShownForCurrentUrl,
   };
