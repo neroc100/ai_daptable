@@ -17,6 +17,11 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
   const navigate = useNavigate();
   const { Condition, setCondition, addConditionSeen, logConditionTime } = useButtonContext();
 
+  // Hide decrease button on condition 1 and increase button on condition 6
+  if ((direction === 'decrease' && Condition === 1) || (direction === 'increase' && Condition === 6)) {
+    return null;
+  }
+
   // Handle button click - update condition and navigate
   const handleClick = () => {
     // Get current condition from context
