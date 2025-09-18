@@ -109,6 +109,10 @@ export const useHandleTrialSubmit = () => {
       const conditionTimesJson = JSON.stringify(conditionTimes);
       console.log('Condition times for this URL:', conditionTimes);
 
+      // Get freeze probe answer from localStorage
+      const freezeProbeAnswer = localStorage.getItem('freeze_probe_answer');
+      console.log('Freeze probe answer:', freezeProbeAnswer);
+
       // Collect trial data from global contexts
       const trialData = {
         participant_id: participantId,
@@ -123,7 +127,8 @@ export const useHandleTrialSubmit = () => {
         view_information_clicked: viewInformationValue,
         conditions_seen: conditionsSeenJson,
         condition_times: conditionTimesJson,
-        adaptable: ADAPTABLE
+        adaptable: ADAPTABLE,
+        freeze_probe_answer: freezeProbeAnswer
       };
 
       // Send POST request to backend API

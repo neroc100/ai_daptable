@@ -55,6 +55,7 @@ async def create_trial(trial_data: Trial):
             conditions_seen=trial_data.conditions_seen,
             condition_times=trial_data.condition_times,
             adaptable=trial_data.adaptable,
+            freeze_probe_answer=trial_data.freeze_probe_answer,
             created_at=datetime.datetime.now()
         )
         
@@ -77,6 +78,7 @@ async def create_trial(trial_data: Trial):
             "conditions_seen": new_trial.conditions_seen,
             "condition_times": new_trial.condition_times,
             "adaptable": new_trial.adaptable,
+            "freeze_probe_answer": new_trial.freeze_probe_answer,
             "created_at": new_trial.created_at.isoformat()
         }
 

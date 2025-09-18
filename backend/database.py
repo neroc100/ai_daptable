@@ -27,6 +27,7 @@ class Trial(SQLModel, table=True):
     conditions_seen: str = Field(default=None, nullable=True)  # JSON string of conditions seen for this URL
     condition_times: str = Field(default=None, nullable=True)  # JSON string of time spent on each condition in ms
     adaptable: bool = Field(default=None, nullable=True)  # Whether adaptable automation was enabled
+    freeze_probe_answer: str = Field(default=None, nullable=True)  # Answer to freeze probe question
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 

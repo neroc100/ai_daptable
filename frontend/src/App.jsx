@@ -14,7 +14,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
 import { SuccessModalProvider } from './context/SuccessModalContext';
-import { FreezeProbeProvider } from './context/FreezeProbeContext';
+import { FreezeProbeProvider, useFreezeProbe } from './context/FreezeProbeContext';
 import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
 import FreezeProbe from './pages/freeze_probe';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
@@ -44,12 +44,15 @@ function MainPage() {
   const { setCondition } = useButtonContext();
   // Access the global URL counter context to reset when returning to main page
   const { resetUrlCounter } = useUrlCounter();
+  // Access the freeze probe context to reset freeze probe selections
+  const { resetFreezeProbes } = useFreezeProbe();
   
   console.log('MainPage context values:', { setCondition, resetUrlCounter });
 
   // Reset URL counter and clear all localStorage when returning to main page
   React.useEffect(() => {
     resetUrlCounter();
+    resetFreezeProbes();
     
     // Clear all localStorage items related to the experiment
     localStorage.removeItem('url_page_load_time');
@@ -62,9 +65,10 @@ function MainPage() {
     localStorage.removeItem('condition_times_for_current_url');
     localStorage.removeItem('condition_timer_start');
     localStorage.removeItem('experiment_condition');
+    localStorage.removeItem('freeze_probe_answer');
     
     console.log('Main page loaded - all localStorage cleared');
-  }, [resetUrlCounter]);
+  }, [resetUrlCounter, resetFreezeProbes]);
 
   /**
    * Handles button clicks and sets the button number globally

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AI_classification from '../AI_action/AI_classification';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { useButtonContext } from '../../context/ConditionContext';
+import { useFreezeProbe } from '../../context/FreezeProbeContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
 
 /**
@@ -15,6 +16,7 @@ import { getUrlConfig } from '../../composables/getURLconfig';
 function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
   const { currentUrl } = useUrlCounter();
   const { Condition, resetConditionsSeen, addConditionSeen, resetConditionTimes, startConditionTimer } = useButtonContext();
+  const { startFreezeProbeTimer } = useFreezeProbe();
   
   // Get current URL configuration
   const urlConfig = getUrlConfig(currentUrl);
@@ -40,12 +42,14 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       resetConditionsSeen();
       // Reset condition times for new URL
       resetConditionTimes();
+      // Start freeze probe timer for new URL
+      startFreezeProbeTimer();
       console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
       console.log('View information clicked status reset for new URL');
     } else {
       console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
     }
-  }, [currentUrl]); // Re-run when URL changes
+  }, [currentUrl, startFreezeProbeTimer]); // Re-run when URL changes
 
   // Separate effect to handle condition logging and timer start
   useEffect(() => {
