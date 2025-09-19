@@ -10,6 +10,7 @@ import Auto from './pages/06_auto';
 import Dummy from './pages/dummy';
 import ParticipantIdPage from './pages/participant_id';
 import MentalEffortRatingPage from './pages/mental_effort_rating';
+import RedirectPage from './pages/redirect';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider, useButtonContext } from './context/ConditionContext';
 import { UrlCounterProvider, useUrlCounter } from './context/UrlCounterContext';
@@ -48,26 +49,6 @@ function MainPage() {
   
   console.log('MainPage context values:', { setCondition, resetUrlCounter });
 
-  // Reset URL counter and clear all localStorage when returning to main page
-  React.useEffect(() => {
-    resetUrlCounter();
-    resetFreezeProbes();
-    
-    // Clear all localStorage items related to the experiment
-    localStorage.removeItem('url_page_load_time');
-    localStorage.removeItem('current_url_for_timestamp');
-    localStorage.removeItem('decision_button_click_time');
-    localStorage.removeItem('human_action');
-    localStorage.removeItem('view_information_clicked');
-    localStorage.removeItem('initial_condition_logged_for_url');
-    localStorage.removeItem('conditions_seen_for_current_url');
-    localStorage.removeItem('condition_times_for_current_url');
-    localStorage.removeItem('condition_timer_start');
-    localStorage.removeItem('experiment_condition');
-    localStorage.removeItem('freeze_probe_answer');
-    
-    console.log('Main page loaded - all localStorage cleared');
-  }, [resetUrlCounter, resetFreezeProbes]);
 
   /**
    * Handles button clicks and sets the button number globally
@@ -179,6 +160,7 @@ function App() {
                       <Route path="/" element={<MainPage />} />
                       <Route path="/participant-id" element={<ParticipantIdPage />} />
                       <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
+                      <Route path="/redirect" element={<RedirectPage />} />
                       <Route path="/manual" element={<Manual />} />
                       <Route path="/info-acquisition" element={<Info_acquisition />} />
                       <Route path="/info-analysis" element={<Info_analysis />} />

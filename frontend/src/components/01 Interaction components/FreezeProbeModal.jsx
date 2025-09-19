@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFreezeProbe } from '../../context/FreezeProbeContext';
 
 function FreezeProbeModal() {
   const { closeProbe, activeProbeIndex, probeUrls, probeDelaysSec, probeQuestions, probeShownForCurrentUrl } = useFreezeProbe();
-  const [freezeProbeAnswer, setFreezeProbeAnswer] = useState(() => {
-    // Load existing answer from localStorage if available
-    return localStorage.getItem('freeze_probe_answer') || '';
-  });
+  const [freezeProbeAnswer, setFreezeProbeAnswer] = useState('');
   const [error, setError] = useState('');
+
+  // Reset answer when a new probe is shown
+  useEffect(() => {
+    if (probeShownForCurrentUrl && activeProbeIndex !== null) {
+      // Clear the answer for the new probe
+      setFreezeProbeAnswer('');
+      setError('');
+      // Also clear from localStorage
+      localStorage.removeItem('freeze_probe_answer');
+    }
+  }, [probeShownForCurrentUrl, activeProbeIndex]);
 
   if (!probeShownForCurrentUrl || activeProbeIndex === null) return null;
 
@@ -37,14 +45,12 @@ function FreezeProbeModal() {
           
           {/* Text input field */}
           <div className="flex flex-col gap-2">
-            <label htmlFor="freeze-probe-answer" className="text-lg font-medium text-neutral-700">
-              Your answer:
-            </label>
             <input
               id="freeze-probe-answer"
               type="text"
               value={freezeProbeAnswer}
               onChange={(e) => {
+                
                 setFreezeProbeAnswer(e.target.value);
                 // Save to localStorage as user types
                 localStorage.setItem('freeze_probe_answer', e.target.value);
@@ -55,7 +61,7 @@ function FreezeProbeModal() {
               style={{ borderColor: 'var(--eth-gray-100)' }}
             />
             {error && (
-              <p className="text-red-600 text-sm">{error}</p>
+              <p className="text-sm" style={{ color: 'var(--eth-red-100)' }}>{error}</p>
             )}
           </div>
           

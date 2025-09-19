@@ -61,7 +61,7 @@ export const FreezeProbeProvider = ({ children }) => {
    * Randomly select URL indices for freeze probes (persistent across session)
    * Each experiment session gets exactly NUM_FREEZE_PROBES unique URLs
    */
-  const [probeUrls] = useState(() => {
+  const [probeUrls, setProbeUrls] = useState(() => {
     // Check if freeze probe URLs are already stored in localStorage
     const stored = localStorage.getItem('freeze_probe_urls');
     if (stored) {
@@ -79,7 +79,7 @@ export const FreezeProbeProvider = ({ children }) => {
    * Randomly select delay times for freeze probes (persistent across session)
    * Each probe gets a random delay between MIN_SEC_FREEZE_PROBE and MAX_SEC_FREEZE_PROBE
    */
-  const [probeDelaysSec] = useState(() => {
+  const [probeDelaysSec, setProbeDelaysSec] = useState(() => {
     // Check if freeze probe delays are already stored in localStorage
     const stored = localStorage.getItem('freeze_probe_delays');
     if (stored) {
@@ -98,7 +98,7 @@ export const FreezeProbeProvider = ({ children }) => {
    * Randomly select unique questions for freeze probes (persistent across session)
    * Each probe gets a unique randomly selected question from FREEZE_PROBE_QUESTIONS
    */
-  const [probeQuestions] = useState(() => {
+  const [probeQuestions, setProbeQuestions] = useState(() => {
     // Check if freeze probe questions are already stored in localStorage
     const stored = localStorage.getItem('freeze_probe_questions');
     if (stored) {
@@ -122,7 +122,7 @@ export const FreezeProbeProvider = ({ children }) => {
     }
     
     localStorage.setItem('freeze_probe_questions', JSON.stringify(questions));
-    console.log('Freeze probe questions selected (unique):', questions);
+    console.log('Freeze probe questions selected:', questions);
     return questions;
   });
 
@@ -238,14 +238,16 @@ export const FreezeProbeProvider = ({ children }) => {
 
   /**
    * Reset all freeze probe data (called when returning to main page)
-   * Clears all localStorage entries and prepares for new experiment session
+   * Clears all localStorage entries and regenerates new random selections
    */
   const resetFreezeProbes = () => {
+    // Clear localStorage
     localStorage.removeItem('freeze_probe_urls');
     localStorage.removeItem('freeze_probe_delays');
     localStorage.removeItem('freeze_probe_questions');
     localStorage.removeItem('active_freeze_probe_index');
     localStorage.removeItem('freeze_probe_shown_for_current_url');
+        
     console.log('Freeze probe selections reset');
   };
 

@@ -149,6 +149,8 @@ export const useHandleTrialSubmit = () => {
       const result = await response.json();
       console.log('Trial saved successfully:', result);
       
+  
+
       // Navigate to next URL
       handleNextUrl();
       

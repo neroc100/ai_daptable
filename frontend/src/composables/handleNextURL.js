@@ -17,8 +17,8 @@ export const useHandleNextUrl = () => {
   // Handle URL progression and navigation
   const handleNextUrl = () => {
     if (urlCount >= maxUrls) {
-      // Experiment complete - navigate to main page
-      navigate('/');
+      // Experiment complete - navigate to redirect page
+      navigate('/redirect');
     } else {
       // More URLs remaining - progress to next URL
       incrementUrlCount();
