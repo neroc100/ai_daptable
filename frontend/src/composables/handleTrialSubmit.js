@@ -36,10 +36,8 @@ export const useHandleTrialSubmit = () => {
       if (pageLoadTime && buttonClickTime) {
         reactionTimeMs = parseInt(buttonClickTime) - parseInt(pageLoadTime);
         console.log('Reaction time calculated:', reactionTimeMs, 'ms');
-        console.log('Page load time:', pageLoadTime);
-        console.log('Button click time:', buttonClickTime);
-        console.log('Human action:', humanAction);
-        console.log('View information clicked:', viewInformationClicked);
+       // console.log('Human action:', humanAction);
+       // console.log('View information clicked:', viewInformationClicked);
       } else {
         console.warn('Missing timestamps for reaction time calculation');
         console.log('Page load time available:', !!pageLoadTime);
@@ -73,7 +71,7 @@ export const useHandleTrialSubmit = () => {
           default:
             humanActionResult = 'error';
         }
-        console.log('Human action result:', humanActionResult);
+       // console.log('Human action result:', humanActionResult);
       }
 
       // Calculate accuracy based on true classification and human action result
@@ -84,7 +82,7 @@ export const useHandleTrialSubmit = () => {
         const isCorrect = (trueClassification === 'Malicious' && humanActionResult === 'URL blocked') ||
                          (trueClassification === 'Non-Malicious' && humanActionResult === 'URL allowed');
         accuracy = isCorrect ? 1 : 0;
-        console.log('Accuracy calculated:', accuracy, '(True:', trueClassification, ', Result:', humanActionResult, ')');
+       // console.log('Accuracy calculated:', accuracy, '(True:', trueClassification, ', Result:', humanActionResult, ')');
       }
       
       // Determine view information button value
@@ -101,13 +99,11 @@ export const useHandleTrialSubmit = () => {
         }
       }
 
-      // Get conditions seen as JSON string
+      // Get conditions seen and times as JSON string
       const conditionsSeenJson = JSON.stringify(conditionsSeen);
-      console.log('Conditions seen for this URL:', conditionsSeen);
-
-      // Get condition times as JSON string
       const conditionTimesJson = JSON.stringify(conditionTimes);
-      console.log('Condition times for this URL:', conditionTimes);
+      console.log('Conditions seen and times for this URL:', conditionsSeen, conditionTimes);
+
 
       // Get freeze probe answer from localStorage
       const freezeProbeAnswer = localStorage.getItem('freeze_probe_answer');

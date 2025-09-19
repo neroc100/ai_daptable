@@ -1,8 +1,9 @@
 import pandas as pd
 import os
+import json
 
 # Read the CSV file
-csv_file = '2025_09_17_all_conditions_n1.csv'
+csv_file = '2025-09-19-adaptable-n1.csv'
 
 if os.path.exists(csv_file):
     # Read CSV into pandas DataFrame
@@ -37,6 +38,30 @@ if os.path.exists(csv_file):
     
     print("\n=== HUMAN ACTIONS ===")
     print(df['human_action'].value_counts())
+
+   
+
+    def count_conditions_seen(x):
+        try:
+            lst = json.loads(x)
+            return len(lst) if isinstance(lst, list) else float('nan')
+        except Exception:
+            return float('nan')
+
+    df['num_conditions_seen'] = df['conditions_seen'].apply(count_conditions_seen)
+
+    print("\n=== TRIALS PER CONDITION ===")
+    trials_per_condition = df['condition'].value_counts().sort_index()
+    print(trials_per_condition)
+
+    print("\n=== AVERAGE NUMBER OF CONDITIONS SEEN PER TRIAL IN ADAPTABLE CONDITION ===")
+    # Filter to only trials where adaptable is True/1
+    adaptable_df = df[df['adaptable'] == True]
+    # Compute number of conditions seen as length of list in conditions_seen
+    adaptable_df = adaptable_df.copy()
+    adaptable_df['num_conditions_seen'] = adaptable_df['conditions_seen'].apply(count_conditions_seen)
+    avg_conditions_seen = adaptable_df['num_conditions_seen'].mean()
+    print(avg_conditions_seen)
     
     
 else:

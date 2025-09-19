@@ -12,7 +12,7 @@
 export const FREEZE_PROBE_QUESTIONS = [
   "What color was the URL?",
   "What was the main topic of the website?",
-  "How many images were visible on the page?",
+  "How many boxes were visible on the page?",
   "What was the background color of the page?",
   "What text appeared in the page title?"
 ];

@@ -67,7 +67,6 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
         startConditionTimer();
         // Mark that we've logged the initial condition for this URL
         localStorage.setItem('initial_condition_logged_for_url', currentUrl.toString());
-        console.log('Initial condition logged for new URL:', Condition);
         console.log('Condition timer started for new URL');
       }
     }
