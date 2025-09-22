@@ -112,13 +112,13 @@ function MentalEffortRatingPage() {
                   />
                   
                   {/* Slider labels */}
-                  <div className="flex justify-between text-sm mt-2" style={{ color: 'var(--eth-gray-100)' }}>
-                    <span>0</span>
-                    <span>30</span>
-                    <span>60</span>
-                    <span>90</span>
-                    <span>120</span>
-                    <span>150</span>
+                  <div className="relative text-sm mt-2" style={{ color: 'var(--eth-gray-100)' }}>
+                    <span className="absolute left-0">0</span>
+                    <span className="absolute" style={{ left: '20%' }}>30</span>
+                    <span className="absolute" style={{ left: '39.5%' }}>60</span>
+                    <span className="absolute" style={{ left: '59%' }}>90</span>
+                    <span className="absolute" style={{ left: '78.3%' }}>120</span>
+                    <span className="absolute right-0">150</span>
                   </div>
                 </div>
               </div>

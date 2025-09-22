@@ -25,6 +25,8 @@ function FreezeProbeModal() {
   const handleSubmit = () => {
     if (!freezeProbeAnswer.trim()) {
       setError('Please provide an answer before submitting');
+      // Focus the input field to draw attention to the error
+      document.getElementById('freeze-probe-answer')?.focus();
       return;
     }
     
@@ -55,6 +57,11 @@ function FreezeProbeModal() {
                 // Save to localStorage as user types
                 localStorage.setItem('freeze_probe_answer', e.target.value);
                 setError(''); // Clear error when user types
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSubmit();
+                }
               }}
               placeholder="Enter your answer here..."
               className="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
