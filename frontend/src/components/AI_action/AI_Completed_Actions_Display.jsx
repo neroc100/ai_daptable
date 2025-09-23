@@ -1,7 +1,11 @@
 import React from 'react';
 import AI_Completed_Action_Element from './AI_Completed_Action_Element';
+import Adapt_Automation_Button from '../01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlClassification } from '../../composables/getURLconfig';
+import { ADAPTABLE } from '../../constants/config';
+
+import Separator from '../00 General_Page_Content/Separator';
 
 /**
  * AI Completed Actions Display
@@ -25,11 +29,25 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   const dynamicHeight = stageCount === 1 ? 'h-20' : stageCount === 2 ? 'h-32' : stageCount === 3 ? 'h-42' : 'h-52';
   
   return (
-    <div className={`w-[1250px] ${dynamicHeight} px-6 py-6 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
-      {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
-      {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
-      {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
-      {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
+    <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--eth-blue-10)' }}>
+      <div className="w-full flex flex-col items-center">
+        <div className="w-full max-w-[430px] flex flex-col items-start space-y-4">
+          {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
+          {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
+          {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
+          {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
+        </div>
+      </div>
+      <Separator />
+      
+      {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
+      {ADAPTABLE && (
+       
+        <div className="flex flex-row justify-center items-center gap-4">
+          <Adapt_Automation_Button direction="decrease" />
+          <Adapt_Automation_Button direction="increase" />
+        </div>
+      )}
     </div>
   );
 }

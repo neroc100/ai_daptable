@@ -74,7 +74,7 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   
   return (
     // Main URL container with white background and light border
-    <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)' }}>
+    <div className={`w-[1250px] ${showAIClassification ? 'h-80' : 'h-40'} min-w-80 p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--eth-gray-10)' }}>
       {/* URL input section container */}
       <div className="self-stretch flex flex-col justify-start items-start">
         {/* URL label */}

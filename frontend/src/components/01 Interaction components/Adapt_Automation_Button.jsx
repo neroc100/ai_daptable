@@ -72,7 +72,7 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
 
   return (
     <div 
-      className={`px-6 py-3 bg-white rounded-lg outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+      className={`px-6 py-3 bg-white rounded-lg outline outline-4 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
       style={{ outlineColor: 'var(--eth-blue-100)' }}
       onClick={handleClick}
     >

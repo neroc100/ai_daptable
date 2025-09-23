@@ -18,33 +18,37 @@ function View_Information_Button() {
   return (
     <div className="flex flex-col items-center space-y-4">
       {/* Toggle button with eye/eye-off icons */}
-      <button
+      <div 
         onClick={() => {
           // Log that the view information button was clicked
           localStorage.setItem('view_information_clicked', '1');
           console.log('View information button clicked');
           setShowAnalysis(!showAnalysis);
         }}
-        className="flex items-center space-x-2 px-6 py-3 font-semibold rounded-lg transition-all duration-200 shadow-xl hover:shadow-md hover:opacity-85"
-        style={{ backgroundColor: 'var(--eth-blue-20)' }}
+        className="px-6 py-3 bg-white rounded-lg outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+        style={{ outlineColor: 'var(--eth-blue-100)' }}
       >
         {/* Conditional icon and text based on current state */}
         {showAnalysis ? (
-          <>
+          <div className="flex items-center space-x-2">
             <EyeOff size={20} style={{ color: 'black' }} />
-            <span style={{ color: 'black' }}>Hide Information</span>
-          </>
+            <div className="justify-start text-zinc-800 text-lg font-bold font-['Inter'] leading-normal">
+              Hide Information
+            </div>
+          </div>
         ) : (
-          <>
+          <div className="flex items-center space-x-2">
             <Eye size={20} style={{ color: 'black' }} />
-            <span style={{ color: 'black' }}>View Information</span>
-          </>
+            <div className="justify-start text-zinc-800 text-lg font-bold font-['Inter'] leading-normal">
+              View Information
+            </div>
+          </div>
         )}
-      </button>
+      </div>
 
       {/* AI analysis display - shown when analysis is visible */}
       {showAnalysis && (
-        <div className="mt-6">
+        <div className="mt-6 ">
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}
