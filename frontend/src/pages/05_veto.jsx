@@ -31,7 +31,7 @@ function Veto() {
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation showAIClassification={true} classification={classification} />
-        <Separator />
+        
         <AI_Completed_Actions_Display />
         
         {/* AI veto interface */}

@@ -23,7 +23,7 @@ function Info_analysis() {
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation />
-        <Separator />
+        
         
         {/* AI analysis status */}
         <AI_Completed_Actions_Display showActionSelection={false} />

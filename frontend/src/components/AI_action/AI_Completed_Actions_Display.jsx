@@ -31,7 +31,9 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   return (
     <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--eth-blue-10)' }}>
       <div className="w-full flex flex-col items-center">
+        <div className="text-2xl item-center pb-2 font-semibold font-['Inter'] text-2xl mb-2">AI Support</div>
         <div className="w-full max-w-[430px] flex flex-col items-start space-y-4">
+          
           {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
           {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
           {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}

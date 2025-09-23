@@ -32,7 +32,7 @@ function Manual() {
           </div>
         )}
         
-        <Separator />
+        
         
         {/* Decision buttons - centered with one on each side */}
         <div className="flex flex-row justify-center items-center w-full max-w-4xl">

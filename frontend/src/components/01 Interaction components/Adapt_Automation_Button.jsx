@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useButtonContext } from '../../context/ConditionContext';
+import { ArrowUp, ArrowDown } from 'lucide-react';
 
 /**
  * Adapt Automation Button Component
@@ -76,9 +77,16 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
       style={{ outlineColor: 'var(--eth-blue-100)' }}
       onClick={handleClick}
     >
-      {/* Button text with ETH styling */}
-      <div className="justify-start text-zinc-800 text-lg font-bold font-['Inter'] leading-normal">
-        {getButtonText()}
+      {/* Button content with icon and text */}
+      <div className="flex items-center space-x-2">
+        {direction === 'increase' ? (
+          <ArrowUp size={20} style={{ color: 'black' }} />
+        ) : (
+          <ArrowDown size={20} style={{ color: 'black' }} />
+        )}
+        <div className="justify-start text-zinc-800 text-lg font-bold font-['Inter'] leading-normal">
+          {getButtonText()}
+        </div>
       </div>
     </div>
   );

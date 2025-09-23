@@ -23,7 +23,7 @@ function Info_acquisition() {
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation />
-        <Separator />
+        
         
         {/* AI acquisition status */}
         <AI_Completed_Actions_Display showAnalysis={false} showActionSelection={false} />
