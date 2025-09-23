@@ -29,10 +29,10 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   const dynamicHeight = stageCount === 1 ? 'h-20' : stageCount === 2 ? 'h-32' : stageCount === 3 ? 'h-42' : 'h-52';
   
   return (
-    <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--eth-blue-10)' }}>
+    <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
       <div className="w-full flex flex-col items-center">
-        <div className="text-2xl item-center pb-2 font-semibold font-['Inter'] text-2xl mb-2">AI Support</div>
-        <div className="w-full max-w-[430px] flex flex-col items-start space-y-4">
+        <div className="text-2xl items-center pb-2 font-semibold font-['Inter'] text-2xl mb-2">AI Support</div>
+        <div className={"bg-white rounded-lg outline outline-1 p-4 outline-offset-[-1px] flex flex-col items-start space-y-4"} style={{ outlineColor: 'var(--eth-gray-100)'}}>
           
           {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
           {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}

@@ -25,8 +25,10 @@ function View_Information_Button() {
           console.log('View information button clicked');
           setShowAnalysis(!showAnalysis);
         }}
-        className="px-6 py-3 bg-white rounded-lg outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
-        style={{ outlineColor: 'var(--eth-blue-100)' }}
+        className="px-6 py-3 bg-white rounded-4xl outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+        style={{ outlineColor: 'var(--eth-gray-10)',
+          backgroundColor: 'var(--eth-gray-10)'
+         }}
       >
         {/* Conditional icon and text based on current state */}
         {showAnalysis ? (

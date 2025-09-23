@@ -18,15 +18,18 @@ function AI_allow_display({ classification = 'Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline styling */}
-      <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--eth-blue-10)' }}>
+      <div className="w-[1250px] p-8 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var( --box-bg)' }}>
         
         {/* AI recommendation request message */}
         <AI_Action_Message_Box 
           text={`AI requests to ${classification === 'Malicious' ? 'block' : 'allow'} the URL`}
         />
         
+        {/* Toggle button for viewing AI analysis information */}
+        <View_Information_Button />
+
         {/* Action buttons container - equally distant from center */}
-        <div className="flex justify-center items-center w-full relative py-8">
+        <div className="flex justify-center items-center w-full relative py-12">
           {/* Confirm AI recommendation button - positioned left of center */}
           <div className="absolute left-1/2 transform -translate-x-full -translate-x-4">
             <Decision_Button 
@@ -44,8 +47,7 @@ function AI_allow_display({ classification = 'Malicious' }) {
           </div>
         </div>
         
-        {/* Toggle button for viewing AI analysis information */}
-        <View_Information_Button />
+        
       </div>
     </>
   );

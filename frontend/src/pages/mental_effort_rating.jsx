@@ -140,12 +140,14 @@ function MentalEffortRatingPage() {
             {/* Submit button */}
             <div className="flex justify-center">
               <div 
-                className="px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
-                style={{ outlineColor: 'var(--eth-blue-100)' }}
+                className="px-12 py-4 h-16 p-3 bg-white rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+                style={{ outlineColor: 'var(--eth-blue-100)',
+                  backgroundColor: 'var(--eth-blue-100)'
+                 }}
                 onClick={handleSubmit}
               >
                 {/* Button text with ETH styling */}
-                <div className="justify-start text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">
+                <div className="justify-start text-white text-2xl font-bold font-['Inter'] leading-normal">
                   Submit Rating
                 </div>
               </div>

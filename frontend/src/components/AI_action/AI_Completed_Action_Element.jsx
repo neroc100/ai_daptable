@@ -12,7 +12,7 @@ function AI_Completed_Action_Element({ text = "AI Action Info" }) {
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="flex items-center space-x-3 text-black">
-        <ClipboardCheck className="w-6 h-6" strokeWidth={2} style={{ color: 'var(--eth-blue-100)' }} />
+        <ClipboardCheck className="w-6 h-6" strokeWidth={2}  />
         <span className="text-xl">{text}</span>
       </div>
     </div>

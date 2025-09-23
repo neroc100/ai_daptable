@@ -24,6 +24,26 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   // Get freeze probe context for immediate trigger on button click
   const { triggerProbeOnClick } = useFreezeProbe();
 
+  // Determine button style based on context
+  const getButtonStyle = () => {
+    // Blue styling for success modal
+    if (isInSuccessModal) {
+      return {
+        outlineColor: 'var(--eth-blue-20)',
+        backgroundColor: 'var(--eth-blue-20)'
+      };
+    }
+    
+    // Gray styling for conditions 5 and 6 on the page
+    if (Condition === 5 || Condition === 6) {
+      return {
+        outlineColor: 'var( --decision-button-bg)',
+        backgroundColor: 'var( --decision-button-bg)'
+      };
+    }
+    
+  };
+
   const handleClick = () => {
     // Check if we should trigger freeze probe immediately on button click (only when not in success modal)
     if (!isInSuccessModal) {
@@ -56,8 +76,8 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   return (
     // ETH blue outline styled button with navigation logic
     <div 
-      className={`px-12 py-4 h-16 p-3 bg-white rounded-lg outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
-      style={{ outlineColor: 'var(--eth-blue-100)' }}
+      className={`px-12 py-4 h-16 p-3 bg-white rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+      style={getButtonStyle()}
       onClick={handleClick}
     >
       {/* Button text with ETH styling */}

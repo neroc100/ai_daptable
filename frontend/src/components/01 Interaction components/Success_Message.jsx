@@ -52,29 +52,23 @@ function Success_Message() {
     // Modal overlay with dark background
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       {/* Modal container */}
-      <div className="w-[760px] h-60 min-w-60 px-8 py-6 bg-gray-100 rounded-lg relative">
-        <div className="w-full h-full relative flex flex-col justify-center items-center">
-          {/* Success message content */}
-          <div className="flex flex-col items-center space-y-4 mb-6">
-            <div className="text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-tight">
-              {content.title}
-            </div>
-            
-            <div className="text-center text-neutral-500 text-2xl font-normal font-['Inter'] leading-tight max-w-lg">
-              {content.description}
-            </div>
-          </div>
-          
-          {/* Next button - automatically hides modal and navigates */}
-          <div className="flex justify-center">
-            <Next_Button isInSuccessModal={true} />
-          </div>
-          
-          {/* Status icon - positioned absolutely */}
-          <div data-svg-wrapper className="absolute left-6 top-6">
-            {content.icon}
-          </div>
+      <div className="w-[760px] h-60 px-8 py-6 bg-white rounded-lg relative flex flex-col justify-center items-center">
+        {/* Status icon - positioned absolutely */}
+        <div className="absolute left-12 top-6">
+          {content.icon}
         </div>
+        
+        {/* Success message content */}
+        <div className="text-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-tight mb-4">
+          {content.title}
+        </div>
+        
+        <div className="text-center text-neutral-500 text-2xl font-normal font-['Inter'] leading-tight max-w-lg mb-6">
+          {content.description}
+        </div>
+        
+        {/* Next button - automatically hides modal and navigates */}
+        <Next_Button isInSuccessModal={true} />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ import AI_Action_Message_Box from './AI_Action_Message_Box';
 function AI_auto_display({ classification = 'Non-Malicious' }) {
   return (
     // Main container with ETH blue outline styling
-    <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--eth-blue-10)' }}>
+    <div className="w-[1250px] p-6 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
       
       {/* AI decision message */}
       <AI_Action_Message_Box 
