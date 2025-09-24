@@ -154,7 +154,7 @@ function App() {
             <FreezeProbeProvider>
               <SuccessModalProvider>
               <Router>
-                <div className="min-h-screen bg-gray-50" style={{ transform: 'scale(0.67)', transformOrigin: 'top center' }}>
+                <div className="min-h-screen bg-gray-50">
                   <main>
                     <Routes>
                       <Route path="/" element={<MainPage />} />
