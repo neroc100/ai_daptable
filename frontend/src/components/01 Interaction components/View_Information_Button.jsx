@@ -26,8 +26,8 @@ function View_Information_Button() {
           setShowAnalysis(!showAnalysis);
         }}
         className="px-6 py-3 bg-white rounded-4xl outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
-        style={{ outlineColor: 'var(--eth-gray-10)',
-          backgroundColor: 'var(--eth-gray-10)'
+        style={{ outlineColor: 'var( --decision-button-bg)',
+          backgroundColor: 'var( --decision-button-bg)'
          }}
       >
         {/* Conditional icon and text based on current state */}
@@ -50,7 +50,7 @@ function View_Information_Button() {
 
       {/* AI analysis display - shown when analysis is visible */}
       {showAnalysis && (
-        <div className="mt-6 ">
+        <div className="mt-6 w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}

@@ -29,13 +29,16 @@ function Info_acquisition() {
         <AI_Completed_Actions_Display showAnalysis={false} showActionSelection={false} />
         
         {/* URL information display */}
-        <AI_URL_Info_Display isAnalysisDisplayed={false} />
+        <div className="w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
+          <AI_URL_Info_Display isAnalysisDisplayed={false} />
+        </div>
         
         {/* Decision buttons - centered with one on each side */}
-        <div className="flex flex-row justify-center items-center w-full max-w-4xl">
-          <Decision_Button type="allow" />
-          <div className="w-4"></div> {/* Spacer between buttons */}
-          <Decision_Button type="block" />
+        <div className="w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
+          <div className="flex flex-row justify-center items-center gap-4">
+            <Decision_Button type="allow" />
+            <Decision_Button type="block" />
+          </div>
         </div>
         
         <Progress_Bar />
