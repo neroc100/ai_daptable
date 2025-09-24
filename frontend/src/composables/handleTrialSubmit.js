@@ -108,6 +108,10 @@ export const useHandleTrialSubmit = () => {
       // Get freeze probe answer from localStorage
       const freezeProbeAnswer = localStorage.getItem('freeze_probe_answer');
       console.log('Freeze probe answer:', freezeProbeAnswer);
+      
+      // Log the timestamps being sent to database
+      console.log('Page load time being logged to database:', pageLoadTime ? parseInt(pageLoadTime) : null);
+      console.log('Button click time being logged to database:', buttonClickTime ? parseInt(buttonClickTime) : null);
 
       // Collect trial data from global contexts
       const trialData = {
@@ -117,6 +121,8 @@ export const useHandleTrialSubmit = () => {
         url: actualUrl,
         true_classification: trueClassification,
         reaction_time_ms: reactionTimeMs,
+        page_load_time: pageLoadTime ? parseInt(pageLoadTime) : null,
+        button_click_time: buttonClickTime ? parseInt(buttonClickTime) : null,
         human_action: humanAction,
         human_action_result: humanActionResult,
         accuracy: accuracy,

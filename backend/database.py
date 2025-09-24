@@ -20,6 +20,8 @@ class Trial(SQLModel, table=True):
     url: str
     true_classification: str
     reaction_time_ms: int = Field(default=None, nullable=True)
+    page_load_time: int = Field(default=None, nullable=True)  # Timestamp when URL page was loaded
+    button_click_time: int = Field(default=None, nullable=True)  # Timestamp when decision button was clicked
     human_action: str = Field(default=None, nullable=True)
     human_action_result: str = Field(default=None, nullable=True)
     accuracy: int = Field(default=None, nullable=True)
