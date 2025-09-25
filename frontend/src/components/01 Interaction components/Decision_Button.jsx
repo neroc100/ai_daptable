@@ -135,7 +135,7 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-        <div className="justify-start text-xl font-bold font-['Inter'] leading-normal">
+        <div className="justify-start text-sm font-bold font-['Arial'] leading-normal">
           <span className="text-zinc-800">Override - </span>
           <span style={{ color: actionColor }}>{actionText} URL</span>
         </div>
@@ -147,7 +147,7 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-      <div className="justify-start text-xl font-bold font-['Inter'] leading-normal">
+      <div className="justify-start text-sm font-bold font-['Arial'] leading-normal">
         <span className="text-black">Confirm - </span>
         <span style={{ color: actionColor }}>{actionText} URL</span>
       </div>
@@ -156,7 +156,7 @@ function Decision_Button({
     
     // Default styling for non-override buttons
     return (
-      <div className="justify-start text-black text-sm font-bold font-['Inter'] leading-normal">
+      <div className="justify-start text-black text-sm font-bold font-['Arial'] leading-normal">
         {config.text}
       </div>
     );

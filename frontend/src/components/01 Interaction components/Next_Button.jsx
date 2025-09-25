@@ -81,7 +81,7 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
       onClick={handleClick}
     >
       {/* Button text with ETH styling */}
-      <div className="justify-start text-zinc-800 text-xl font-bold font-['Inter'] leading-normal">
+      <div className="justify-start text-black text-sm font-bold font-['Arial'] leading-normal">
         {text}
       </div>
     </div>

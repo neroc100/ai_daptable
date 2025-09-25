@@ -41,13 +41,13 @@ function AI_Action_Message_Box({ text }) {
   };
 
   return (
-    <div className="flex items-center text-3xl font-semibold text-black mb-8 w-full justify-center rounded-lg p-6 outline"
+    <div className="flex items-center text-xl font-semibold text-black mb-5 w-full justify-center rounded-lg p-4 outline"
     style={{ backgroundColor: 'white',
      outlineColor: 'var(--eth-blue-100)'
      }}
     >
       {/* Info icon for visual context */}
-      <Info className="w-8 h-8 mr-3" />
+      <Info className="w-6 h-6 mr-2" />
       {/* Dynamic title text */}
       {renderColoredText(text)}
     </div>

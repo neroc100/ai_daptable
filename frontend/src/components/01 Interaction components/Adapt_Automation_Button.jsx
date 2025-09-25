@@ -86,7 +86,7 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
         ) : (
           <ArrowDown size={16} style={{ color: 'black' }} />
         )}
-        <div className="justify-start text-black text-sm font-bold font-['Inter'] leading-normal">
+        <div className="justify-start text-black text-sm font-bold font-['Arial'] leading-normal">
           {getButtonText()}
         </div>
       </div>

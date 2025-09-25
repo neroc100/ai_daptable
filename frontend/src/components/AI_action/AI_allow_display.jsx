@@ -18,7 +18,7 @@ function AI_allow_display({ classification = 'Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline styling */}
-      <div className="w-[1250px] p-8 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-4" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var( --box-bg)' }}>
+      <div className="w-[833px] p-5 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var( --box-bg)' }}>
         
         {/* AI recommendation request message */}
         <AI_Action_Message_Box 
@@ -29,16 +29,16 @@ function AI_allow_display({ classification = 'Malicious' }) {
         <View_Information_Button />
 
         {/* Action buttons container - equally distant from center */}
-        <div className="flex justify-center items-center w-full relative py-12">
+        <div className="flex justify-center items-center w-full relative py-8">
           {/* Confirm AI recommendation button - positioned left of center */}
-          <div className="absolute left-1/2 transform -translate-x-full -translate-x-4">
+          <div className="absolute left-1/2 transform -translate-x-full -translate-x-3">
             <Decision_Button 
               type="confirm"
               classification={classification}
             />
           </div>
           {/* Deny AI recommendation button - positioned right of center */}
-          <div className="absolute left-1/2 transform translate-x-4">
+          <div className="absolute left-1/2 transform translate-x-3">
             <Decision_Button 
               type="override"
               classification={classification}

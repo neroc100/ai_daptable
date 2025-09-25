@@ -13,7 +13,7 @@ function AI_Completed_Action_Element({ text = "AI Action Info" }) {
     <div className="flex flex-col items-center space-y-1">
       <div className="flex items-center space-x-2 text-black">
         <ClipboardCheck className="w-4 h-4" strokeWidth={2}  />
-        <span className="text-md">{text}</span>
+        <span className="text-sm">{text}</span>
       </div>
     </div>
   );

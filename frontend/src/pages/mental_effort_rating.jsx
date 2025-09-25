@@ -147,7 +147,7 @@ function MentalEffortRatingPage() {
                 onClick={handleSubmit}
               >
                 {/* Button text with ETH styling */}
-                <div className="justify-start text-white text-2xl font-bold font-['Inter'] leading-normal">
+                <div className="justify-start text-white text-2xl font-bold font-['Arial'] leading-normal">
                   Submit Rating
                 </div>
               </div>

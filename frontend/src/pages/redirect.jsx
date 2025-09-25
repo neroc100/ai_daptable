@@ -83,7 +83,7 @@ function RedirectPage() {
               onClick={handleConfirmParticipation}
             >
               {/* Button text with ETH styling */}
-              <div className="justify-start text-white text-2xl font-bold font-['Inter'] leading-normal">
+              <div className="justify-start text-white text-2xl font-bold font-['Arial'] leading-normal">
                 Confirm Participation
               </div>
             </div>
