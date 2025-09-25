@@ -50,7 +50,7 @@ function Success_Message() {
 
   return (
     // Modal overlay with dark background
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] h-full w-full">
       {/* Modal container */}
       <div className="w-[760px] h-60 px-8 py-6 bg-white rounded-lg relative flex flex-col justify-center items-center">
         {/* Status icon - positioned absolutely */}

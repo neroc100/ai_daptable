@@ -72,9 +72,9 @@ function FreezeProbeModal() {
             )}
           </div>
           
-          <div className="flex justify-end">
+          <div className="mt-2 flex justify-center">
             <button
-              className="px-8 py-3 text-white font-semibold rounded-lg transition-all duration-200 shadow-xl hover:shadow-md hover:opacity-85"
+              className="px-12 py-3 text-white font-semibold rounded-4xl transition-all duration-200 shadow-xl hover:shadow-md hover:opacity-85"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
               onClick={handleSubmit}
             >

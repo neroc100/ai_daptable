@@ -19,7 +19,7 @@ function Manual() {
   const { currentUrl } = useUrlCounter();
 
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="h-full w-full bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-8">
         <Dashboard_Header />
         <URL_presentation />

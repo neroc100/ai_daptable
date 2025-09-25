@@ -32,10 +32,4 @@
   --box-bg: var(--eth-blue-20);
 }
 
-/* Global scaling to reduce size by approximately one third */
-html, body {
-  transform: scale(0.75);
-  transform-origin: top left;
-  width: 133.33%; /* Compensate for scaling to maintain full width */
-  height: 133.33%; /* Compensate for scaling to maintain full height */
-}
+
