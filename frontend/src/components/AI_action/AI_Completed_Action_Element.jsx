@@ -10,10 +10,10 @@ import { ClipboardCheck } from 'lucide-react';
  */
 function AI_Completed_Action_Element({ text = "AI Action Info" }) {
   return (
-    <div className="flex flex-col items-center space-y-2">
-      <div className="flex items-center space-x-3 text-black">
-        <ClipboardCheck className="w-6 h-6" strokeWidth={2}  />
-        <span className="text-xl">{text}</span>
+    <div className="flex flex-col items-center space-y-1">
+      <div className="flex items-center space-x-2 text-black">
+        <ClipboardCheck className="w-4 h-4" strokeWidth={2}  />
+        <span className="text-md">{text}</span>
       </div>
     </div>
   );
