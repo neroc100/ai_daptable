@@ -24,15 +24,15 @@ function AI_auto_display({ classification = 'Non-Malicious' }) {
         text={`AI ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
       />
       
+      {/* Toggle button for viewing AI analysis information */}
+      <View_Information_Button />
+      
       {/* Navigation button to proceed to next URL */}
       <div className="flex justify-center">
         <Next_Button 
           className="px-12 py-4 text-lg"
         />
       </div>
-      
-      {/* Toggle button for viewing AI analysis information */}
-      <View_Information_Button />
     </div>
   );
 }

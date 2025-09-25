@@ -16,7 +16,7 @@ function View_Information_Button() {
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-4 w-full">
       {/* Toggle button with eye/eye-off icons */}
       <div 
         onClick={() => {
@@ -50,7 +50,7 @@ function View_Information_Button() {
 
       {/* AI analysis display - shown when analysis is visible */}
       {showAnalysis && (
-        <div className="mt-4 w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
+        <div className="w-full">
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}

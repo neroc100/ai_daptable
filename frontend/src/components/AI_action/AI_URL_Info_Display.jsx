@@ -17,7 +17,7 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
   const config = getUrlConfig(currentUrl);
   
   return (
-    <div className="w-[800px] flex gap-4">
+    <div className="w-full flex gap-4">
       {/* Column 1: URL String Analysis */}
       <div className="flex flex-col w-full">
         <Feature_Box 

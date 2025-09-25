@@ -25,6 +25,9 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
           text={`AI ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
         />
         
+        {/* Toggle button for viewing AI analysis information */}
+        <View_Information_Button />
+        
         {/* Action buttons - equally distant from center */}
         <div className="flex justify-center items-center w-full relative py-5">
           {/* Override button to change AI's decision - positioned left of center */}
@@ -42,9 +45,6 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
             />
           </div>
         </div>
-        
-        {/* Toggle button for viewing AI analysis information */}
-        <View_Information_Button />
       </div>
 
     </>
