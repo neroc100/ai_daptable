@@ -20,7 +20,7 @@ function Manual() {
 
   return (
     <div className="h-full w-full bg-white p-5">
-      <div className="container mx-auto flex flex-col items-center space-y-5">
+      <div className="container mx-auto flex flex-col items-center space-y-3">
         <Dashboard_Header />
         <URL_presentation />
         

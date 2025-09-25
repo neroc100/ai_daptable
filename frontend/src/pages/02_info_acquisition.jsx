@@ -20,7 +20,7 @@ function Info_acquisition() {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <div className="container mx-auto flex flex-col items-center space-y-8">
+      <div className="container mx-auto flex flex-col items-center space-y-3">
         <Dashboard_Header />
         <URL_presentation />
         

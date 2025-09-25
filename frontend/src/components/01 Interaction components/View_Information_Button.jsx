@@ -50,7 +50,7 @@ function View_Information_Button() {
 
       {/* AI analysis display - shown when analysis is visible */}
       {showAnalysis && (
-        <div className="mt-6 w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
+        <div className="mt-4 w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
       )}
