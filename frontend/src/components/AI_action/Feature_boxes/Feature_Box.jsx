@@ -41,15 +41,15 @@ function Feature_Box({
 
   // Dynamic height based on feature count
   const calculateExpandedHeight = () => {
-    const baseHeight = 106;
-    const featureHeight = 60;
-    const bottomPadding = 48;
+    const baseHeight = 72;
+    const featureHeight = 40;
+    const bottomPadding = 32;
     
     if (features.length <= 2) {
       return baseHeight + (features.length * featureHeight) + bottomPadding;
     } else {
       const contentHeight = features.length * featureHeight;
-      const spacingAdjustment = Math.max(0, (features.length - 1) * 12);
+      const spacingAdjustment = Math.max(0, (features.length - 1) * 8);
       return baseHeight + contentHeight + spacingAdjustment + bottomPadding;
     }
   };
@@ -61,12 +61,12 @@ function Feature_Box({
       className={`w-full relative bg-white rounded-lg outline outline-offset-[-1px] ${outlineClass} transition-all duration-200 ease-in-out overflow-hidden`} 
       style={{
         ...outlineStyle,
-        height: isExpanded ? `${expandedHeight}px` : '96px'
+        height: isExpanded ? `${expandedHeight}px` : '64px'
       }}
     >
       {/* Title */}
-      <div className="w-80 h-14 left-[24px] top-[24px] absolute inline-flex justify-start items-start">
-        <div className="flex-1 justify-start text-stone-900 text-2xl font-semibold font-['Inter'] leading-7">
+      <div className="w-48 h-10 left-[16px] top-[16px] absolute inline-flex justify-start items-start">
+        <div className="flex-1 justify-start text-black text-md font font-['Arial'] leading-tight">
           {title}<br/>
         </div>
       </div>
@@ -74,9 +74,9 @@ function Feature_Box({
       {/* Features (expanded) */}
       {isExpanded && (
         <div 
-          className={`absolute flex flex-col space-y-3 ${isAnalysisDisplayed ? 'left-[44px]' : 'left-[24px]'} top-[106px] right-[24px]`}
+          className={`absolute flex flex-col space-y-2 ${isAnalysisDisplayed ? 'left-[16px]' : 'left-[16px]'} top-[72px] right-[16px]`}
           style={{ 
-            height: `${expandedHeight - 130}px`,
+            height: `${expandedHeight - 88}px`,
             justifyContent: features.length <= 3 ? 'flex-start' : 'space-between'
           }}
         >
@@ -84,14 +84,14 @@ function Feature_Box({
             <div key={index} className="flex items-start gap-[10px]">
               {isAnalysisDisplayed && (
                 featureIcons[index] === 'thumbsUp' ? 
-                  <ThumbsUp className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-green-100)' }} /> :
-                  <ThumbsDown className="w-8 h-8 flex-shrink-0 mt-1" style={{ color: 'var(--eth-red-100)' }} />
+                  <ThumbsUp className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: 'var(--eth-green-100)' }} /> :
+                  <ThumbsDown className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: 'var(--eth-red-100)' }} />
               )}
               <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-                <div className="text-xl font-semibold font-['Inter'] leading-7 text-stone-900">
+                <div className="text-sm font-semibold font-['Arial'] leading-tight text-stone-900">
                   {feature.name}
                 </div>
-                <div className="text-zinc-400 text-base font-normal font-['Inter'] leading-snug">
+                <div className="text-xs font-normal font-['Arial'] leading-snug" style={{ color: 'var(--eth-gray-100)' }}>
                   {feature.value}
                 </div>
               </div>
@@ -102,13 +102,13 @@ function Feature_Box({
       
       {/* Collapse toggle */}
       <div 
-        className="absolute top-[23px] right-[24px] cursor-pointer hover:opacity-70 transition-opacity"
+        className="absolute top-[15px] right-[16px] cursor-pointer hover:opacity-70 transition-opacity"
         onClick={handleArrowClick}
       >
         {isExpanded ? (
-          <ChevronUp className="w-6 h-6 text-gray-800" />
+          <ChevronUp className="w-4 h-4 text-gray-800" />
         ) : (
-          <ChevronDown className="w-6 h-6 text-gray-800" />
+          <ChevronDown className="w-4 h-4 text-gray-800" />
         )}
       </div>
     </div>

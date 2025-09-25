@@ -17,7 +17,7 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
   const config = getUrlConfig(currentUrl);
   
   return (
-    <div className="w-[1200px] flex gap-6">
+    <div className="w-[800px] flex gap-4">
       {/* Column 1: URL String Analysis */}
       <div className="flex flex-col w-full">
         <Feature_Box 
@@ -28,7 +28,7 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
       </div>
       
       {/* Column 2: Domain Characteristics and DNS */}
-      <div className="flex flex-col gap-6 w-full">
+      <div className="flex flex-col gap-4 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
           title={config.domainCharacteristics.title}
@@ -42,7 +42,7 @@ function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
       </div>
       
       {/* Column 3: Encryption, Webpage Content, and Geographical */}
-      <div className="flex flex-col gap-6 w-full">
+      <div className="flex flex-col gap-4 w-full">
         <Feature_Box 
           isAnalysisDisplayed={isAnalysisDisplayed}
           title={config.encryptionHttp.title}
