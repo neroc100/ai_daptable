@@ -61,13 +61,13 @@ function ParticipantIdPage() {
             <div>
                {/* Page title */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 m-4">
+          <h1 className="text-xl font-bold text-gray-900 m-4">
             Participant ID
           </h1>
         </div>
 
 
-              <label htmlFor="participantId" className="block text-sm font-medium mb-2" style={{ color: 'var(--eth-gray-100)' }}>
+              <label htmlFor="participantId" className="block text-xs font-medium mb-2" style={{ color: 'var(--eth-gray-100)' }}>
                 Enter your Participant ID:
               </label>
               <input
@@ -78,7 +78,7 @@ function ParticipantIdPage() {
                   setParticipantId(e.target.value);
                   setError(''); // Clear error when user types
                 }}
-                className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 transition-colors"
+                className="w-full text-xs px-3 py-2 border rounded-4xl shadow-sm focus:outline-none focus:ring-2 transition-colors"
                 style={{ 
                   borderColor: 'var(--eth-gray-40)',
                   focusRingColor: 'var(--eth-blue-100)',
@@ -91,7 +91,7 @@ function ParticipantIdPage() {
 
             {/* Error message */}
             {error && (
-              <div className="text-red-600 text-sm">
+              <div className="text-red-600 text-xs">
                 {error}
               </div>
             )}
@@ -99,7 +99,7 @@ function ParticipantIdPage() {
             {/* Submit button */}
             <button
               type="submit"
-              className="w-full text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
+              className="w-full text-xs text-white py-2 px-4 rounded-4xl focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
               style={{ 
                 backgroundColor: 'var(--eth-blue-100)',
                 focusRingColor: 'var(--eth-blue-100)'

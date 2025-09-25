@@ -51,64 +51,61 @@ function ConditionPage() {
   };
 
   return (
-    <div className="h-full w-full bg-white flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-5xl font-bold text-black mb-8">
+    <div className="min-h-screen w-full bg-white flex items-center justify-center">
+      <div className="text-center w-full max-w-4xl px-4">
+        <h1 className="text-2xl font-bold text-black mb-6">
           URL Analysis Dashboard
         </h1>
-        <p className="text-xl text-black mb-8 max-w-2xl mx-auto">
+        <p className="text-md text-black mb-8 max-w-2xl mx-auto">
           Welcome to the URL Analysis Dashboard. Select a condition to get started.
         </p>
         
         {/* Condition Buttons */}
-        <div className="max-w-6xl mx-auto">
-          {/* Main numbered buttons row */}
-          <div className="grid grid-cols-6 gap-4 mb-4">
+        <div className="flex justify-center">
+          <div className="max-w-md grid grid-cols-6 gap-2">
             <button 
               onClick={() => handleButtonClick(1)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               1
             </button>
             <button 
               onClick={() => handleButtonClick(2)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               2
             </button>
             <button 
               onClick={() => handleButtonClick(3)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               3
             </button>
             <button 
               onClick={() => handleButtonClick(4)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               4
             </button>
             <button 
               onClick={() => handleButtonClick(5)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               5
             </button>
             <button 
               onClick={() => handleButtonClick(6)}
-              className="text-white font-bold text-2xl py-6 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="text-white font-bold text-md py-4 px-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             >
               6
             </button>
           </div>
-          
-
         </div>
       </div>
     </div>
