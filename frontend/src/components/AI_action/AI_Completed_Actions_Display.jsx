@@ -29,18 +29,21 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   const dynamicHeight = stageCount === 1 ? 'h-20' : stageCount === 2 ? 'h-32' : stageCount === 3 ? 'h-42' : 'h-52';
   
   return (
-    <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
+    <div className={`w-[1250px]  px-6 py-8 bg-white rounded-lg outline outline-1 outline-offset-[ -1px] flex flex-col items-center space-y-4`} style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
       <div className="w-full flex flex-col items-center">
         <div className="text-2xl items-center pb-2 font-semibold font-['Inter'] text-2xl mb-2">AI Support</div>
-        <div className={"bg-white rounded-lg outline outline-1 p-4 outline-offset-[-1px] flex flex-col items-start space-y-4"} style={{ outlineColor: 'var(--eth-gray-100)'}}>
-          
-          {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
-          {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
-          {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
-          {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
+        <div className="w-full bg-white rounded-lg p-4 items-center outline outline-1 p-6 mb-4 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)'}}>
+          <div className="flex justify-center w-full">
+            <div className="bg-white items-start rounded-lg  flex flex-col space-y-4 max-w-md w-full">
+              {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
+              {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
+              {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
+              {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
+            </div>
+          </div>
         </div>
       </div>
-      <Separator />
+      
       
       {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
       {ADAPTABLE && (
