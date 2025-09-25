@@ -19,15 +19,15 @@ function Manual() {
   const { currentUrl } = useUrlCounter();
 
   return (
-    <div className="h-full w-full bg-white p-8">
-      <div className="container mx-auto flex flex-col items-center space-y-8">
+    <div className="h-full w-full bg-white p-5">
+      <div className="container mx-auto flex flex-col items-center space-y-5">
         <Dashboard_Header />
         <URL_presentation />
         
         {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
         {ADAPTABLE && (
-          <div className="w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
-            <div className="flex flex-row justify-center items-center gap-4">
+          <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+            <div className="flex flex-row justify-center items-center gap-3">
               <Adapt_Automation_Button direction="decrease" />
               <Adapt_Automation_Button direction="increase" />
             </div>
@@ -37,8 +37,8 @@ function Manual() {
         
         
         {/* Decision buttons - centered with one on each side */}
-        <div className="w-[1250px] px-6 py-8 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-gray-100)', backgroundColor: 'var(--box-bg)' }}>
-          <div className="flex flex-row justify-center items-center gap-4">
+        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+          <div className="flex flex-row justify-center items-center gap-3">
             <Decision_Button type="allow" />
             <Decision_Button type="block" />
           </div>

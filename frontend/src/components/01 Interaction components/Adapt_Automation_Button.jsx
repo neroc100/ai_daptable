@@ -73,7 +73,7 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
 
   return (
     <div 
-      className={`px-4 py-2 bg-white rounded-4xl outline outline-3 outline-offset-[-1px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+      className={`px-6 py-2 bg-white rounded-4xl outline outline-3 outline-offset-[-1px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
       style={{ outlineColor: 'var( --decision-button-bg)', 
         backgroundColor: 'var( --decision-button-bg)'
       }}
@@ -86,7 +86,7 @@ function Adapt_Automation_Button({ direction = 'increase', className = "" }) {
         ) : (
           <ArrowDown size={16} style={{ color: 'black' }} />
         )}
-        <div className="justify-start text-zinc-800 text-sm font-bold font-['Inter'] leading-normal">
+        <div className="justify-start text-black text-sm font-bold font-['Inter'] leading-normal">
           {getButtonText()}
         </div>
       </div>

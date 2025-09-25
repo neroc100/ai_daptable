@@ -135,7 +135,7 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-        <div className="justify-start text-2xl font-bold font-['Inter'] leading-normal">
+        <div className="justify-start text-xl font-bold font-['Inter'] leading-normal">
           <span className="text-zinc-800">Override - </span>
           <span style={{ color: actionColor }}>{actionText} URL</span>
         </div>
@@ -147,16 +147,16 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-        <div className="justify-start text-2xl font-bold font-['Inter'] leading-normal">
-          <span className="text-zinc-800">Confirm - </span>
-          <span style={{ color: actionColor }}>{actionText} URL</span>
-        </div>
+      <div className="justify-start text-xl font-bold font-['Inter'] leading-normal">
+        <span className="text-black">Confirm - </span>
+        <span style={{ color: actionColor }}>{actionText} URL</span>
+      </div>
       );
     }
     
     // Default styling for non-override buttons
     return (
-      <div className="justify-start text-zinc-800 text-2xl font-bold font-['Inter'] leading-normal">
+      <div className="justify-start text-black text-sm font-bold font-['Inter'] leading-normal">
         {config.text}
       </div>
     );
@@ -166,7 +166,7 @@ function Decision_Button({
     <>
       {/* Main Decision Button - ETH blue outline styling */}
       <div 
-        className={`px-12 py-4 h-16 p-3 rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+        className={`px-6 py-2 h-12 p-1 rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
         style={{ outlineColor: 'var( --decision-button-bg)',
           backgroundColor: 'var( --decision-button-bg)'
          }}

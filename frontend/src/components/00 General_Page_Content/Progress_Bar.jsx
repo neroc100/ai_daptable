@@ -13,15 +13,15 @@ function Progress_Bar() {
   const { urlCount, maxUrls } = useUrlCounter();
   
   return (
-    <div className="w-96 h-16 flex flex-col items-center justify-center space-y-3">
+    <div className="w-48 h-8 flex flex-col items-center justify-center space-y-1">
       {/* Progress counter text */}
-      <div className="text-black text-lg font-medium font-['Inter']">
+      <div className="text-black text-sm font-medium font-['Inter']">
         Progress {urlCount} out of {maxUrls} URLs
       </div>
       
       {/* Progress bar with background */}
       <div 
-        className="w-80 h-4 rounded-full relative overflow-hidden"
+        className="w-40 h-2 rounded-full relative overflow-hidden"
         style={{ backgroundColor: 'var(--eth-gray-10)' }}
       >
         {/* Filled progress portion */}
@@ -35,9 +35,9 @@ function Progress_Bar() {
         
         {/* Starting dot for first URL */}
         {urlCount === 1 && (
-          <div className="absolute left-0.5 top-1/2 transform -translate-y-1/2">
+          <div className="absolute left-0.25 top-1/2 transform -translate-y-1/2">
             <div 
-              className="w-3 h-3 rounded-full shadow-sm"
+              className="w-1.5 h-1.5 rounded-full shadow-sm"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             />
           </div>

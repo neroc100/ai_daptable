@@ -78,14 +78,14 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       {/* URL input section container */}
       <div className="self-stretch flex flex-col justify-start items-start">
         {/* URL label */}
-        <div className="self-stretch justify-start text-stone-900 text-md font-semibold font-['Inter'] leading-loose mb-1">URL</div>
+        <div className="self-stretch justify-start text-black text-md font-semibold font-['Inter'] leading-loose mb-1">URL</div>
         
         {/* URL input field container */}
         <div className="self-stretch h-8 min-w-40 px-3 py-4 bg-white rounded-lg outline outline-1 outline-offset-[-0.50px] inline-flex justify-start items-center overflow-hidden" style={{ outlineColor: 'var(--eth-blue-100)' }}>
                   {/* URL text container */}
         <div className="w-[780px] h-6 relative">
           {/* Sample URL text - positioned relatively for natural flow */}
-          <div className="w-[780px] justify-start text-stone-900 text-md font-normal font-['Inter'] leading-normal">
+          <div className="w-[780px] justify-start text-black text-md font-normal font-['Inter'] leading-normal">
             {urlConfig.url}
           </div>
         </div>
