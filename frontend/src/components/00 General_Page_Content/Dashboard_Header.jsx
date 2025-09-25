@@ -11,7 +11,7 @@ import React from 'react';
 function Dashboard_Header() {
   return (
     // Main dashboard title with large, bold black text
-    <div className="w-[800px] text-center text-black text-5xl font-semibold font-['Arial']" id="dashboard-header">
+    <div className="w-[800px] text-center text-black text-2xl font-semibold font-['Arial']" id="dashboard-header">
       URL Analysis Dashboard
     </div>
   );
