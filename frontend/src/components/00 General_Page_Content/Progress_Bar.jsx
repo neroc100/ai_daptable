@@ -15,7 +15,7 @@ function Progress_Bar() {
   return (
     <div className="w-48 h-8 flex flex-col items-center justify-center space-y-1">
       {/* Progress counter text */}
-      <div className="text-black text-sm font-medium font-['Arial']">
+      <div className="text-black text-xs font-medium font-['Arial']">
         Progress {urlCount} out of {maxUrls} URLs
       </div>
       

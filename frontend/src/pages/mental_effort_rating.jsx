@@ -56,45 +56,45 @@ function MentalEffortRatingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-8">
-      <div className="container mx-auto flex flex-col items-center space-y-8">
+    <div className="min-h-screen bg-white flex items-center justify-center p-5">
+      <div className="container mx-auto flex flex-col items-center space-y-5">
         
         
         {/* Page title */}
         <div className="text-center">
-          <h1 className="text-5xl font-bold text-gray-900 m-4">
+          <h1 className="text-3xl font-bold text-gray-900 m-3">
             Mental Effort Rating
           </h1>
         </div>
         
-        <Separator />
+        
         
         {/* Main content box with ETH blue outline styling */}
-        <div className="w-[1250px] p-6 mb-40 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-8" style={{ outlineColor: 'var(--eth-gray-100)' }}>
-          <div className="flex items-center text-2xl font-medium text-black mb-6 w-full justify-center rounded-lg p-6 outline"
+        <div className="w-[833px] p-4 mb-12 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-5" style={{ outlineColor: 'var(--eth-gray-100)' }}>
+          <div className="flex items-center text-md font-medium text-black mb-4 w-full justify-center rounded-lg p-4 outline"
             style={{ backgroundColor: 'var(--eth-blue-20)',
              outlineColor: 'var(--eth-blue-100)'
              }}
           >
-            Please rate the mental effort required for the task you just completed
+            Please rate the mental effort required for the task you just completed!
           </div>
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-8 w-full">
+          <form onSubmit={handleSubmit} className="space-y-5 w-full">
             {/* Slider container */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Current rating display */}
               <div className="text-center">
-                <div className="text-5xl font-bold mb-2" style={{ color: getSliderColor() }}>
+                <div className="text-3xl font-bold mb-1" style={{ color: getSliderColor() }}>
                   {rating}
                 </div>
-                <div className="text-lg text-xl" style={{ color: 'var(--eth-gray-100)' }}>
+                <div className="text-s" style={{ color: 'var(--eth-gray-100)' }}>
                   {getEffortLevel()}
                 </div>
               </div>
 
               {/* Slider */}
               <div className="flex justify-center">
-                <div style={{ width: '300%', maxWidth: '1200px' }}>
+                <div style={{ width: '300%', maxWidth: '800px' }}>
                   <input
                     type="range"
                     min="0"
@@ -112,7 +112,7 @@ function MentalEffortRatingPage() {
                   />
                   
                   {/* Slider labels */}
-                  <div className="relative text-sm mt-2" style={{ color: 'var(--eth-gray-100)' }}>
+                  <div className="relative text-xs mt-1" style={{ color: 'var(--eth-gray-100)' }}>
                     <span className="absolute left-0">0</span>
                     <span className="absolute" style={{ left: '20%' }}>30</span>
                     <span className="absolute" style={{ left: '39.5%' }}>60</span>
@@ -124,7 +124,7 @@ function MentalEffortRatingPage() {
               </div>
 
               {/* Effort scale labels */}
-              <div className="flex justify-between text-lg mt-4" style={{ color: 'var(--eth-gray-100)' }}>
+              <div className="flex justify-between text-xs mt-3" style={{ color: 'var(--eth-gray-100)' }}>
                 <span className="text-left">No effort at all</span>
                 <span className="text-right">Extremely large effort</span>
               </div>
@@ -132,7 +132,7 @@ function MentalEffortRatingPage() {
 
             {/* Error message */}
             {error && (
-              <div className="text-red-600 text-sm text-center">
+              <div className="text-red-600 text-xs text-center">
                 {error}
               </div>
             )}
@@ -140,14 +140,14 @@ function MentalEffortRatingPage() {
             {/* Submit button */}
             <div className="flex justify-center">
               <div 
-                className="px-12 py-4 h-16 p-3 bg-white rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+                className="px-8 py-3 h-11 p-2 bg-white rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
                 style={{ outlineColor: 'var(--eth-blue-100)',
                   backgroundColor: 'var(--eth-blue-100)'
                  }}
                 onClick={handleSubmit}
               >
                 {/* Button text with ETH styling */}
-                <div className="justify-start text-white text-2xl font-bold font-['Arial'] leading-normal">
+                <div className="justify-start text-white text-md font-bold font-['Arial'] leading-normal">
                   Submit Rating
                 </div>
               </div>
@@ -162,23 +162,23 @@ function MentalEffortRatingPage() {
       <style>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
-          height: 24px;
-          width: 24px;
+          height: 16px;
+          width: 16px;
           border-radius: 50%;
           background: var(--eth-blue-100);
           cursor: pointer;
-          border: 3px solid #ffffff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          border: 2px solid #ffffff;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .slider::-moz-range-thumb {
-          height: 24px;
-          width: 24px;
+          height: 16px;
+          width: 16px;
           border-radius: 50%;
           background: var(--eth-blue-100);
           cursor: pointer;
-          border: 3px solid #ffffff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          border: 2px solid #ffffff;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         .slider:focus {
