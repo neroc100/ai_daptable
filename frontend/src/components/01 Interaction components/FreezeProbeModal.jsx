@@ -40,13 +40,13 @@ function FreezeProbeModal() {
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[10000]">
-      <div className="w-[760px] max-w-[90vw] px-8 py-6 bg-white rounded-lg relative outline" style={{ outlineColor: 'var(--eth-blue-100)' }}>
-        <div className="flex flex-col gap-4">
-          <h2 className="text-3xl font-bold text-stone-900">Freeze Probe</h2>
-          <p className="text-xl text-neutral-700">{currentQuestion}</p>
+      <div className="w-[507px] max-w-[90vw] px-5 py-4 bg-white rounded-lg relative outline" style={{ outlineColor: 'var(--eth-blue-100)' }}>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-xl font-bold text-stone-900">Freeze Probe</h2>
+          <p className="text-sm text-neutral-700">{currentQuestion}</p>
           
           {/* Text input field */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <input
               id="freeze-probe-answer"
               type="text"
@@ -64,17 +64,17 @@ function FreezeProbeModal() {
                 }
               }}
               placeholder="Enter your answer here..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               style={{ borderColor: 'var(--eth-gray-100)' }}
             />
             {error && (
-              <p className="text-sm" style={{ color: 'var(--eth-red-100)' }}>{error}</p>
+              <p className="text-xs" style={{ color: 'var(--eth-red-100)' }}>{error}</p>
             )}
           </div>
           
-          <div className="mt-2 flex justify-center">
+          <div className="mt-1 flex justify-center">
             <button
-              className="px-12 py-3 text-white font-semibold rounded-4xl transition-all duration-200 shadow-xl hover:shadow-md hover:opacity-85"
+              className="px-8 py-2 text-white font-semibold rounded-4xl transition-all duration-200 shadow-xl hover:shadow-md hover:opacity-85"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
               onClick={handleSubmit}
             >

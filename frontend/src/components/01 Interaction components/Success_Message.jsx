@@ -27,7 +27,7 @@ function Success_Message() {
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
         description: `You successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
-        icon: isAllow ? <Rss className="w-12 h-12 text-black" /> : <ShieldCheck className="w-12 h-12 text-black" />,
+        icon: isAllow ? <Rss className="w-8 h-8 text-black" /> : <ShieldCheck className="w-8 h-8 text-black" />,
         buttonText: 'Next'
       };
     } else {
@@ -35,7 +35,7 @@ function Success_Message() {
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
         description: `The AI successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
-        icon: isAllow ? <Rss className="w-12 h-12 text-black" /> : <ShieldCheck className="w-12 h-12 text-black" />,
+        icon: isAllow ? <Rss className="w-8 h-8 text-black" /> : <ShieldCheck className="w-8 h-8 text-black" />,
         buttonText: 'Next'
       };
     }
@@ -52,18 +52,18 @@ function Success_Message() {
     // Modal overlay with dark background
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] h-full w-full">
       {/* Modal container */}
-      <div className="w-[760px] h-60 px-8 py-6 bg-white rounded-lg relative flex flex-col justify-center items-center">
+      <div className="w-[507px] h-40 px-5 py-4 bg-white rounded-lg relative flex flex-col justify-center items-center">
         {/* Status icon - positioned absolutely */}
-        <div className="absolute left-12 top-6">
+        <div className="absolute left-8 top-4">
           {content.icon}
         </div>
         
         {/* Success message content */}
-        <div className="text-center text-stone-900 text-3xl font-semibold font-['Arial'] leading-tight mb-4">
+        <div className="text-center text-stone-900 text-xl font-semibold font-['Arial'] leading-tight mb-3">
           {content.title}
         </div>
         
-        <div className="text-center text-neutral-500 text-2xl font-normal font-['Arial'] leading-tight max-w-lg mb-6">
+        <div className="text-center text-neutral-500 text-sm font-normal font-['Arial'] leading-tight max-w-md mb-4">
           {content.description}
         </div>
         
