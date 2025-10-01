@@ -14,8 +14,14 @@ function FreezeProbeModal() {
       setError('');
       // Also clear from localStorage
       localStorage.removeItem('freeze_probe_answer');
+      localStorage.removeItem('freeze_probe_question');
+      
+      // Store the current question in localStorage
+      const currentQuestion = probeQuestions[activeProbeIndex] || "What color was the URL?";
+      localStorage.setItem('freeze_probe_question', currentQuestion);
+      console.log('Freeze probe question stored:', currentQuestion);
     }
-  }, [probeShownForCurrentUrl, activeProbeIndex]);
+  }, [probeShownForCurrentUrl, activeProbeIndex, probeQuestions]);
 
   if (!probeShownForCurrentUrl || activeProbeIndex === null) return null;
 

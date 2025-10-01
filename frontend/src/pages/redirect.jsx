@@ -32,6 +32,7 @@ function RedirectPage() {
     localStorage.removeItem('condition_times_for_current_url');
     localStorage.removeItem('condition_timer_start');
     localStorage.removeItem('experiment_condition');
+    localStorage.removeItem('freeze_probe_question');
     localStorage.removeItem('freeze_probe_answer');
     
     console.log('All localStorage cleared on participation confirmation');
