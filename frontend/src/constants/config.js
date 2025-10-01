@@ -34,3 +34,6 @@ export const MIN_SEC_FREEZE_PROBE = 5;
  * Freeze probes will appear after at most this many seconds on a target URL.
  */
 export const MAX_SEC_FREEZE_PROBE = 15;
+
+export const STARTING_CONDITION = 1;
+export const PARTICIPANT_ID = 1;

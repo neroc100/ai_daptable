@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import Manual from './pages/01_manual';
 import Info_acquisition from './pages/02_info_acquisition';
 import Info_analysis from './pages/03_info_analysis';
@@ -47,7 +48,8 @@ function App() {
                 {/* <div className="h-full w-full bg-gray-50"> */}
                   <main>
                     <Routes>
-                      <Route path="/" element={<ConditionPage />} />
+                      <Route path="/" element={<LandingPage />} />
+                      <Route path="/condition-selection" element={<ConditionPage />} />
                       <Route path="/participant-id" element={<ParticipantIdPage />} />
                       <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
                       <Route path="/redirect" element={<RedirectPage />} />
