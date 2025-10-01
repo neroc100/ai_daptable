@@ -1,0 +1,15 @@
+.env
+.venv
+.ruff_cache
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.db
+*.sqlite
+*.sqlite3
+.git
+.gitignore
+README.md

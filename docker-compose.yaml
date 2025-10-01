@@ -1,0 +1,37 @@
+# used in local development
+name: "automation"
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    restart: always
+  
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: automation-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./backend:/app
+    command: ["/bin/sh", "-c", "sleep 10 && uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload --proxy-headers --forwarded-allow-ips='*'"]
