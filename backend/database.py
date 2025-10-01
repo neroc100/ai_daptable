@@ -17,24 +17,24 @@ def get_database_url():
 engine = create_engine(get_database_url(), echo=False)
 
 class Trial(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    participant_id: str
-    condition: int
-    mental_effort_rating: int
-    url: str
-    true_classification: str
-    reaction_time_ms: int = Field(default=None, nullable=True)
-    page_load_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when URL page was loaded
-    button_click_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when decision button was clicked
-    human_action: str = Field(default=None, nullable=True)
-    human_action_result: str = Field(default=None, nullable=True)
-    accuracy: int = Field(default=None, nullable=True)
-    view_information_clicked: int = Field(default=None, nullable=True)
-    conditions_seen: str = Field(default=None, nullable=True)  # JSON string of conditions seen for this URL
-    condition_times: str = Field(default=None, nullable=True)  # JSON string of time spent on each condition in ms
-    adaptable: bool = Field(default=None, nullable=True)  # Whether adaptable automation was enabled
-    freeze_probe_answer: str = Field(default=None, nullable=True)  # Answer to freeze probe question
-    created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
+    id: int = Field(default=None, primary_key=True)  # Unique identifier for each trial
+    participant_id: str  # Unique identifier for the participant (e.g., "1143J")
+    condition: int  # Experimental condition number (1-6) determining UI behavior (last condition for adaptable automation)
+    mental_effort_rating: int  # Self-reported mental effort rating (0-150 scale)
+    url: str  # The actual URL that was presented to the participant
+    true_classification: str  # Ground truth classification ("Malicious" or "Non-Malicious")
+    reaction_time_ms: int = Field(default=None, nullable=True)  # Time taken to make decision (button_click_time - page_load_time)
+    page_load_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when URL page was loaded (milliseconds unix timestamp)
+    button_click_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when decision button was clicked (milliseconds unix timestamp)
+    human_action: str = Field(default=None, nullable=True)  # Action taken by participant ("allow", "block", "confirm", "override", "none")
+    human_action_result: str = Field(default=None, nullable=True)  # Result of human action ("URL allowed" or "URL blocked")
+    accuracy: int = Field(default=None, nullable=True)  # Whether decision was correct (1) or incorrect (0)
+    view_information_clicked: int = Field(default=None, nullable=True)  # Whether "View Information" button was clicked (1=clicked, 0=available but not clicked, null=not available)
+    conditions_seen: str = Field(default=None, nullable=True)  # JSON string of conditions seen for this URL (e.g., "[3]")
+    condition_times: str = Field(default=None, nullable=True)  # JSON string of time spent on each condition in ms (e.g., "[2141]")
+    adaptable: bool = Field(default=None, nullable=True)  # Whether adaptable automation was enabled for this trial
+    freeze_probe_answer: str = Field(default=None, nullable=True)  # Answer to freeze probe question (e.g., "green", "red")
+    created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)  # Timestamp when trial record was created
 
 
 
