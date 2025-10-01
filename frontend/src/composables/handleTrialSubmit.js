@@ -4,6 +4,7 @@ import { useParticipantId } from '../context/ParticipantIdContext';
 import { useHandleNextUrl } from './handleNextURL';
 import { getUrlConfig } from './getURLconfig';
 import { ADAPTABLE } from '../constants/config';
+import { useResetLocalStorage } from './resetLocalStorages';
 
 /**
  * Handle Trial Submit Composable
@@ -17,6 +18,7 @@ export const useHandleTrialSubmit = () => {
   const { Condition, conditionsSeen, conditionTimes } = useButtonContext();
   const { participantId } = useParticipantId();
   const handleNextUrl = useHandleNextUrl();
+  const { resetFreezeProbeData } = useResetLocalStorage();
 
   // Submit trial data and navigate to next URL
   const handleTrialSubmit = async (rating) => {
@@ -157,9 +159,7 @@ export const useHandleTrialSubmit = () => {
       
       // Clear freeze probe data after successful submission
       // This ensures freeze probe data is only logged for the trial where it occurred
-      localStorage.removeItem('freeze_probe_question');
-      localStorage.removeItem('freeze_probe_answer');
-      console.log('Freeze probe data cleared after trial submission');
+      resetFreezeProbeData();
 
       // Navigate to next URL
       handleNextUrl();

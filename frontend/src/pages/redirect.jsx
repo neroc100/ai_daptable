@@ -4,6 +4,7 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useFreezeProbe } from '../context/FreezeProbeContext';
+import { useResetLocalStorage } from '../composables/resetLocalStorages';
 
 /**
  * Redirect Page
@@ -16,26 +17,12 @@ function RedirectPage() {
   const navigate = useNavigate();
   const { resetUrlCounter } = useUrlCounter();
   const { resetFreezeProbes } = useFreezeProbe();
+  const { resetAllLocalStorage } = useResetLocalStorage();
 
   const handleConfirmParticipation = () => {
     resetUrlCounter();
     resetFreezeProbes();
-
-    // Clear all localStorage items related to the experiment
-    localStorage.removeItem('url_page_load_time');
-    localStorage.removeItem('current_url_for_timestamp');
-    localStorage.removeItem('decision_button_click_time');
-    localStorage.removeItem('human_action');
-    localStorage.removeItem('view_information_clicked');
-    localStorage.removeItem('initial_condition_logged_for_url');
-    localStorage.removeItem('conditions_seen_for_current_url');
-    localStorage.removeItem('condition_times_for_current_url');
-    localStorage.removeItem('condition_timer_start');
-    localStorage.removeItem('experiment_condition');
-    localStorage.removeItem('freeze_probe_question');
-    localStorage.removeItem('freeze_probe_answer');
-    
-    console.log('All localStorage cleared on participation confirmation');
+    resetAllLocalStorage();
     
     // Navigate back to the main page
     navigate('/');

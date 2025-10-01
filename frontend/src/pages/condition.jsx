@@ -23,7 +23,7 @@ function ConditionPage() {
   
   console.log('ConditionPage is rendering');
   
-  // Access the global button context to set the clicked button number
+  // Access the global condition context to set the clicked button number
   const { setCondition } = useButtonContext();
   // Access the global URL counter context to reset when returning to main page
   const { resetUrlCounter } = useUrlCounter();

@@ -4,6 +4,7 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
 import { useButtonContext } from '../../context/ConditionContext';
 import { useFreezeProbe } from '../../context/FreezeProbeContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
+import { useResetLocalStorage } from '../../composables/resetLocalStorages';
 
 /**
  * URL Presentation Component
@@ -17,6 +18,7 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   const { currentUrl } = useUrlCounter();
   const { Condition, resetConditionsSeen, addConditionSeen, resetConditionTimes, startConditionTimer } = useButtonContext();
   const { startFreezeProbeTimer } = useFreezeProbe();
+  const { resetUrlSpecificData } = useResetLocalStorage();
   
   // Get current URL configuration
   const urlConfig = getUrlConfig(currentUrl);
@@ -34,10 +36,8 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       const pageLoadTime = Date.now();
       localStorage.setItem('url_page_load_time', pageLoadTime.toString());
       localStorage.setItem('current_url_for_timestamp', currentUrl.toString());
-      // Reset view information clicked status for new URL
-      localStorage.removeItem('view_information_clicked');
-      // Reset initial condition logged flag for new URL
-      localStorage.removeItem('initial_condition_logged_for_url');
+      // Reset URL-specific data for new URL
+      resetUrlSpecificData();
       // Reset conditions seen list for new URL
       resetConditionsSeen();
       // Reset condition times for new URL
@@ -45,7 +45,6 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
       // Start freeze probe timer for new URL
       startFreezeProbeTimer();
       console.log('URL presentation loaded at:', pageLoadTime, 'for URL:', currentUrl);
-      console.log('View information clicked status reset for new URL');
     } else {
       console.log('URL presentation reloaded - preserving existing timestamp for URL:', currentUrl);
     }
