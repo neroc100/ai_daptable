@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { STARTING_CONDITION, PARTICIPANT_ID } from '../constants/config';
+import { useParticipantId } from '../context/ParticipantIdContext';
+import { useButtonContext } from '../context/ConditionContext';
 
 /**
  * Landing Page Component
@@ -15,13 +18,37 @@ import { useNavigate } from 'react-router-dom';
  */
 function LandingPage() {
   const navigate = useNavigate();
+  const { setParticipantId } = useParticipantId();
+  const { setCondition } = useButtonContext();
 
   /**
    * Handles the start experiment button click
-   * Navigates to the condition selection page
+   * Sets the participant ID and condition from config, then navigates to the appropriate experiment page
    */
   const handleStartExperiment = () => {
-    navigate('/condition-selection');
+    // Set participant ID from config
+    setParticipantId(PARTICIPANT_ID.toString());
+    
+    // Set condition from config
+    setCondition(STARTING_CONDITION);
+    
+    // Navigate directly to the appropriate experiment page based on starting condition
+    if (STARTING_CONDITION === 1) {
+      navigate('/manual');
+    } else if (STARTING_CONDITION === 2) {
+      navigate('/info-acquisition');
+    } else if (STARTING_CONDITION === 3) {
+      navigate('/info-analysis');
+    } else if (STARTING_CONDITION === 4) {
+      navigate('/allow');
+    } else if (STARTING_CONDITION === 5) {
+      navigate('/veto');
+    } else if (STARTING_CONDITION === 6) {
+      navigate('/auto');
+    } else {
+      // Fallback to manual if invalid condition
+      navigate('/manual');
+    }
   };
 
   return (

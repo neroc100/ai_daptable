@@ -8,10 +8,8 @@ import Allow from './pages/04_allow';
 import Veto from './pages/05_veto';
 import Auto from './pages/06_auto';
 import Dummy from './pages/dummy';
-import ParticipantIdPage from './pages/participant_id';
 import MentalEffortRatingPage from './pages/mental_effort_rating';
 import RedirectPage from './pages/redirect';
-import ConditionPage from './pages/condition';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider } from './context/ConditionContext';
 import { UrlCounterProvider } from './context/UrlCounterContext';
@@ -49,8 +47,6 @@ function App() {
                   <main>
                     <Routes>
                       <Route path="/" element={<LandingPage />} />
-                      <Route path="/condition-selection" element={<ConditionPage />} />
-                      <Route path="/participant-id" element={<ParticipantIdPage />} />
                       <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
                       <Route path="/redirect" element={<RedirectPage />} />
                       <Route path="/manual" element={<Manual />} />
