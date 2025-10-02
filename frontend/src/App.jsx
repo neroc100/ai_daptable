@@ -18,8 +18,49 @@ import { FreezeProbeProvider } from './context/FreezeProbeContext';
 import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import {useSearchParams} from 'react-router-dom';
+import { useParticipantId } from './context/ParticipantIdContext';
+
+/**
+ * Component to handle URL parameter extraction for participant ID
+ * This component must be inside ParticipantIdProvider to use the context
+ */
+function AppContent() {
+  const { setParticipantId } = useParticipantId();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const participantIdFromUrl = searchParams.get('participantId');
+    if (participantIdFromUrl) {
+      setParticipantId(participantIdFromUrl);
+      console.log('Participant ID set from URL:', participantIdFromUrl);
+    }
+  }, [searchParams, setParticipantId]);
+
+  return (
+    <Router>
+      <main>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
+          <Route path="/redirect" element={<RedirectPage />} />
+          <Route path="/manual" element={<Manual />} />
+          <Route path="/info-acquisition" element={<Info_acquisition />} />
+          <Route path="/info-analysis" element={<Info_analysis />} />
+          <Route path="/allow" element={<Allow />} />
+          <Route path="/veto" element={<Veto />} />
+          <Route path="/auto" element={<Auto/>} />
+          <Route path="/dummy" element={<Dummy />} />
+        </Routes>
+      </main>
+      {/* Global Success Message Modal */}
+      <Success_Message />
+      {/* Global Freeze Probe Modal */}
+      <FreezeProbeModal />
+    </Router>
+  );
+}
 
 /**
  * Main App Component
@@ -35,15 +76,6 @@ import {useSearchParams} from 'react-router-dom';
  * @returns {JSX.Element} App component with global context provider
  */
 function App() {
-
-  const [participantId, setParticipantId] = useState(null);
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    setParticipantId(searchParams.get('participantId'));
-    console.log('participantId:', participantId);
-  }, []);
-
   return (
     <ErrorBoundary>
       <ParticipantIdProvider>
@@ -51,29 +83,8 @@ function App() {
           <UrlCounterProvider>
             <FreezeProbeProvider>
               <SuccessModalProvider>
-              <Router>
-                {/* <div className="h-full w-full bg-gray-50"> */}
-                  <main>
-                    <Routes>
-                      <Route path="/" element={<LandingPage />} />
-                      <Route path="/mental-effort-rating" element={<MentalEffortRatingPage />} />
-                      <Route path="/redirect" element={<RedirectPage />} />
-                      <Route path="/manual" element={<Manual />} />
-                      <Route path="/info-acquisition" element={<Info_acquisition />} />
-                      <Route path="/info-analysis" element={<Info_analysis />} />
-                      <Route path="/allow" element={<Allow />} />
-                      <Route path="/veto" element={<Veto />} />
-                      <Route path="/auto" element={<Auto/>} />
-                      <Route path="/dummy" element={<Dummy />} />
-                    </Routes>
-                  </main>
-                  {/* Global Success Message Modal */}
-                  <Success_Message />
-                  {/* Global Freeze Probe Modal */}
-                  <FreezeProbeModal />
-                {/* </div> */}
-              </Router>
-            </SuccessModalProvider>
+                <AppContent />
+              </SuccessModalProvider>
             </FreezeProbeProvider>
           </UrlCounterProvider>
         </ButtonProvider>
