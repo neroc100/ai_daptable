@@ -18,8 +18,8 @@ import { FreezeProbeProvider } from './context/FreezeProbeContext';
 import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
-
-
+import { useState } from 'react';
+import {useSearchParams} from 'react-router-dom';
 
 /**
  * Main App Component
@@ -35,6 +35,15 @@ import Success_Message from './components/01 Interaction components/Success_Mess
  * @returns {JSX.Element} App component with global context provider
  */
 function App() {
+
+  const [participantId, setParticipantId] = useState(null);
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    setParticipantId(searchParams.get('participantId'));
+    console.log('participantId:', participantId);
+  }, []);
+
   return (
     <ErrorBoundary>
       <ParticipantIdProvider>
