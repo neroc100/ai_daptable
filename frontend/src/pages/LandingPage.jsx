@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { STARTING_CONDITION, PARTICIPANT_ID } from '../constants/config';
 import { useParticipantId } from '../context/ParticipantIdContext';
 import { useButtonContext } from '../context/ConditionContext';
 
@@ -13,40 +12,44 @@ import { useButtonContext } from '../context/ConditionContext';
  * Features:
  * - Welcome message explaining the experiment
  * - Clear instructions for participants
- * - Start experiment button that navigates to condition selection
+ * - Start experiment button that navigates based on condition from URL parameters
+ * - Uses participant ID and condition from URL context instead of hardcoded config
  * - Professional styling consistent with the experiment design
  */
 function LandingPage() {
   const navigate = useNavigate();
-  const { setParticipantId } = useParticipantId();
-  const { setCondition } = useButtonContext();
+  const { participantId } = useParticipantId();
+  const { Condition } = useButtonContext();
 
   /**
    * Handles the start experiment button click
-   * Sets the participant ID and condition from config, then navigates to the appropriate experiment page
+   * Navigates to the appropriate experiment page based on the condition from URL parameters
    */
   const handleStartExperiment = () => {
-    // Set participant ID from config
-    setParticipantId(PARTICIPANT_ID.toString());
-    
-    // Set condition from config
-    setCondition(STARTING_CONDITION);
-    
-    // Navigate directly to the appropriate experiment page based on starting condition
-    if (STARTING_CONDITION === 1) {
+    // Convert condition to number for comparison
+    const conditionNumber = parseInt(Condition);
+    console.log('=== LandingPage Debug ===');
+    console.log('Condition (raw):', Condition);
+    console.log('Condition (type):', typeof Condition);
+    console.log('conditionNumber:', conditionNumber);
+    console.log('participantId:', participantId);
+    console.log('========================');
+    // Navigate directly to the appropriate experiment page based on condition from URL
+    if (conditionNumber === 1) {
       navigate('/manual');
-    } else if (STARTING_CONDITION === 2) {
+    } else if (conditionNumber === 2) {
       navigate('/info-acquisition');
-    } else if (STARTING_CONDITION === 3) {
+    } else if (conditionNumber === 3) {
       navigate('/info-analysis');
-    } else if (STARTING_CONDITION === 4) {
+    } else if (conditionNumber === 4) {
       navigate('/allow');
-    } else if (STARTING_CONDITION === 5) {
+    } else if (conditionNumber === 5) {
       navigate('/veto');
-    } else if (STARTING_CONDITION === 6) {
+    } else if (conditionNumber === 6) {
       navigate('/auto');
     } else {
       // Fallback to manual if invalid condition
+      console.warn('Invalid condition from URL, defaulting to manual:', Condition);
       navigate('/manual');
     }
   };

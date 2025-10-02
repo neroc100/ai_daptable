@@ -6,7 +6,7 @@ import Decision_Button from '../components/01 Interaction components/Decision_Bu
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import Adapt_Automation_Button from '../components/01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { ADAPTABLE } from '../constants/config';
+import { useAdaptable } from '../context/AdaptableContext';
 
 /**
  * Manual Page - Condition 1
@@ -17,6 +17,7 @@ import { ADAPTABLE } from '../constants/config';
 function Manual() {
   // URL progression and navigation
   const { currentUrl } = useUrlCounter();
+  const { adaptable } = useAdaptable();
 
   return (
     <div className="h-full w-full bg-white p-5">
@@ -24,8 +25,8 @@ function Manual() {
         <Dashboard_Header />
         <URL_presentation />
         
-        {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
-        {ADAPTABLE && (
+        {/* Adaptable automation buttons - only show if adaptable is true */}
+        {adaptable && (
           <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
             <div className="flex flex-row justify-center items-center gap-3">
               <Adapt_Automation_Button direction="decrease" />

@@ -3,7 +3,7 @@ import AI_Completed_Action_Element from './AI_Completed_Action_Element';
 import Adapt_Automation_Button from '../01 Interaction components/Adapt_Automation_Button';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlClassification } from '../../composables/getURLconfig';
-import { ADAPTABLE } from '../../constants/config';
+import { useAdaptable } from '../../context/AdaptableContext';
 
 import Separator from '../00 General_Page_Content/Separator';
 
@@ -19,6 +19,7 @@ import Separator from '../00 General_Page_Content/Separator';
  */
 function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = true, showActionSelection = true, showActionImplementation = false }) {
   const { currentUrl } = useUrlCounter();
+  const { adaptable } = useAdaptable();
   
   // Get URL classification to determine action text
   const classification = getUrlClassification(currentUrl);
@@ -45,8 +46,8 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
       </div>
       
       
-      {/* Adaptable automation buttons - only show if ADAPTABLE is true */}
-      {ADAPTABLE && (
+      {/* Adaptable automation buttons - only show if adaptable is true */}
+      {adaptable && (
        
         <div className="flex flex-row justify-center items-center gap-3">
           <Adapt_Automation_Button direction="decrease" />

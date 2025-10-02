@@ -17,29 +17,53 @@ import { SuccessModalProvider } from './context/SuccessModalContext';
 import { FreezeProbeProvider } from './context/FreezeProbeContext';
 import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
+import { AdaptableProvider } from './context/AdaptableContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
 import { useEffect } from 'react';
 import {useSearchParams} from 'react-router-dom';
 import { useParticipantId } from './context/ParticipantIdContext';
+import {useButtonContext} from './context/ConditionContext';
+import { useAdaptable } from './context/AdaptableContext';
 
 /**
- * Component to handle URL parameter extraction for participant ID
- * This component must be inside ParticipantIdProvider to use the context
+ * Component to handle URL parameter extraction for participant ID, condition, and adaptable setting
+ * This component must be inside Router and all context providers to use the contexts
  */
 function AppContent() {
   const { setParticipantId } = useParticipantId();
+  const { setCondition } = useButtonContext();
+  const { setAdaptable } = useAdaptable();
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const participantIdFromUrl = searchParams.get('participantId');
+    const conditionFromUrl = searchParams.get('condition');
+    const adaptable = searchParams.get('adaptable');
+
+    console.log(adaptable);
+    console.log(participantIdFromUrl);
+    console.log(conditionFromUrl);
+
+    if (adaptable) {
+      const adaptableValue = adaptable.toLowerCase() === 'true';
+      setAdaptable(adaptableValue);
+      console.log('Adaptable set from URL:', adaptableValue);
+    }
+
     if (participantIdFromUrl) {
       setParticipantId(participantIdFromUrl);
       console.log('Participant ID set from URL:', participantIdFromUrl);
     }
-  }, [searchParams, setParticipantId]);
+    if (conditionFromUrl) {
+      const conditionNumber = parseInt(conditionFromUrl);
+      setCondition(conditionNumber);
+      console.log('Condition set from URL:', conditionNumber);
+    }
+  }, [searchParams, setParticipantId, setCondition, setAdaptable]);
 
+  
   return (
-    <Router>
+    <>
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -58,7 +82,7 @@ function AppContent() {
       <Success_Message />
       {/* Global Freeze Probe Modal */}
       <FreezeProbeModal />
-    </Router>
+    </>
   );
 }
 
@@ -78,17 +102,21 @@ function AppContent() {
 function App() {
   return (
     <ErrorBoundary>
-      <ParticipantIdProvider>
-        <ButtonProvider>
-          <UrlCounterProvider>
-            <FreezeProbeProvider>
-              <SuccessModalProvider>
-                <AppContent />
-              </SuccessModalProvider>
-            </FreezeProbeProvider>
-          </UrlCounterProvider>
-        </ButtonProvider>
-      </ParticipantIdProvider>
+      <Router>
+        <ParticipantIdProvider>
+          <AdaptableProvider>
+            <ButtonProvider>
+              <UrlCounterProvider>
+                <FreezeProbeProvider>
+                  <SuccessModalProvider>
+                    <AppContent />
+                  </SuccessModalProvider>
+                </FreezeProbeProvider>
+              </UrlCounterProvider>
+            </ButtonProvider>
+          </AdaptableProvider>
+        </ParticipantIdProvider>
+      </Router>
     </ErrorBoundary>
   );
 }

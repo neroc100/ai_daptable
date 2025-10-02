@@ -3,7 +3,7 @@ import { useButtonContext } from '../context/ConditionContext';
 import { useParticipantId } from '../context/ParticipantIdContext';
 import { useHandleNextUrl } from './handleNextURL';
 import { getUrlConfig } from './getURLconfig';
-import { ADAPTABLE } from '../constants/config';
+import { useAdaptable } from '../context/AdaptableContext';
 import { useResetLocalStorage } from './resetLocalStorages';
 
 /**
@@ -19,6 +19,7 @@ export const useHandleTrialSubmit = () => {
   const { participantId } = useParticipantId();
   const handleNextUrl = useHandleNextUrl();
   const { resetFreezeProbeData } = useResetLocalStorage();
+  const { adaptable } = useAdaptable();
 
   // Submit trial data and navigate to next URL
   const handleTrialSubmit = async (rating) => {
@@ -134,7 +135,7 @@ export const useHandleTrialSubmit = () => {
         view_information_clicked: viewInformationValue,
         conditions_seen: conditionsSeenJson,
         condition_times: conditionTimesJson,
-        adaptable: ADAPTABLE,
+        adaptable: adaptable,
         freeze_probe_question: freezeProbeQuestion,
         freeze_probe_answer: freezeProbeAnswer
       };
