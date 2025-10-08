@@ -100,6 +100,7 @@ function AppContent() {
  * @returns {JSX.Element} App component with global context provider
  */
 function App() {
+  
   return (
     <ErrorBoundary>
       <Router>
