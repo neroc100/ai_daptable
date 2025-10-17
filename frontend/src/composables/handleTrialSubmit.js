@@ -18,7 +18,6 @@ export const useHandleTrialSubmit = () => {
   const { Condition, conditionsSeen, conditionTimes } = useButtonContext();
   const { participantId } = useParticipantId();
   const handleNextUrl = useHandleNextUrl();
-  const { resetFreezeProbeData } = useResetLocalStorage();
   const { adaptable } = useAdaptable();
 
   // Submit trial data and navigate to next URL
@@ -106,14 +105,6 @@ export const useHandleTrialSubmit = () => {
       const conditionsSeenJson = JSON.stringify(conditionsSeen);
       const conditionTimesJson = JSON.stringify(conditionTimes);
       console.log('Conditions seen and times for this URL:', conditionsSeen, conditionTimes);
-
-
-      // Get freeze probe question and answer from localStorage
-      // These will be null if no freeze probe occurred for this trial
-      const freezeProbeQuestion = localStorage.getItem('freeze_probe_question');
-      const freezeProbeAnswer = localStorage.getItem('freeze_probe_answer');
-      console.log('Freeze probe question for this trial:', freezeProbeQuestion);
-      console.log('Freeze probe answer for this trial:', freezeProbeAnswer);
       
       // Log the timestamps being sent to database
       console.log('Page load time being logged to database:', pageLoadTime ? parseInt(pageLoadTime) : null);
@@ -136,8 +127,6 @@ export const useHandleTrialSubmit = () => {
         conditions_seen: conditionsSeenJson,
         condition_times: conditionTimesJson,
         adaptable: adaptable,
-        freeze_probe_question: freezeProbeQuestion,
-        freeze_probe_answer: freezeProbeAnswer
       };
 
       // Send POST request to backend API
@@ -157,10 +146,6 @@ export const useHandleTrialSubmit = () => {
       // Log successful submission
       const result = await response.json();
       console.log('Trial saved successfully:', result);
-      
-      // Clear freeze probe data after successful submission
-      // This ensures freeze probe data is only logged for the trial where it occurred
-      resetFreezeProbeData();
 
       // Navigate to next URL
       handleNextUrl();

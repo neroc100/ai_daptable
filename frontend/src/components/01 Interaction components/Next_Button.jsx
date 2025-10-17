@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { useSuccessModal } from '../../context/SuccessModalContext';
 import { useButtonContext } from '../../context/ConditionContext';
-import { useFreezeProbe } from '../../context/FreezeProbeContext';
 
 /**
  * Next Button Component
@@ -21,8 +20,6 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   const { hideSuccessMessage } = useSuccessModal();
   // Get current condition to determine if we should log timestamp
   const { Condition, logConditionTime } = useButtonContext();
-  // Get freeze probe context for immediate trigger on button click
-  const { triggerProbeOnClick } = useFreezeProbe();
 
   // Determine button style based on context
   const getButtonStyle = () => {

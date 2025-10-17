@@ -135,8 +135,6 @@ curl -X POST http://localhost:8000/database/reset
 | `conditions_seen` | String | JSON array of conditions visited for this URL in order (e.g., "[1,3,1,5]" - allows duplicates) |
 | `condition_times` | String | JSON array of time spent on each condition in milliseconds (e.g., "[5000,3000,2000]" - matches conditions_seen order) |
 | `adaptable` | Boolean | Whether the adaptable automation feature was enabled for this experiment session |
-| `freeze_probe_question` | String | The freeze probe question that was displayed (e.g., "What color was the URL?") - NULL if no freeze probe occurred |
-| `freeze_probe_answer` | String | Answer to freeze probe question (e.g., "green", "red") - NULL if no freeze probe occurred |
 | `created_at` | DateTime | Timestamp when the trial was recorded |
 
 

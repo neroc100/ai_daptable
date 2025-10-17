@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
-import { useFreezeProbe } from '../context/FreezeProbeContext';
 import { useResetLocalStorage } from '../composables/resetLocalStorages';
 
 /**
@@ -16,12 +15,10 @@ import { useResetLocalStorage } from '../composables/resetLocalStorages';
 function RedirectPage() {
   const navigate = useNavigate();
   const { resetUrlCounter } = useUrlCounter();
-  const { resetFreezeProbes } = useFreezeProbe();
   const { resetAllLocalStorage } = useResetLocalStorage();
 
   const handleConfirmParticipation = () => {
     resetUrlCounter();
-    resetFreezeProbes();
     resetAllLocalStorage();
     
     // Navigate back to the main page

@@ -29,17 +29,6 @@ export const resetAllLocalStorage = () => {
 };
 
 /**
- * Freeze probe data reset - clears only freeze probe related data
- * Used after successful trial submission to ensure freeze probe data is only logged for the trial where it occurred
- */
-export const resetFreezeProbeData = () => {
-  localStorage.removeItem('freeze_probe_question');
-  localStorage.removeItem('freeze_probe_answer');
-  
-  console.log('Freeze probe data cleared after trial submission');
-};
-
-/**
  * URL-specific data reset - clears data that should be reset for each new URL
  * Used when a new URL is presented to the user
  */
@@ -74,7 +63,6 @@ export const resetTimestampData = () => {
 export const useResetLocalStorage = () => {
   return {
     resetAllLocalStorage,
-    resetFreezeProbeData,
     resetUrlSpecificData,
     resetTimestampData,
   };

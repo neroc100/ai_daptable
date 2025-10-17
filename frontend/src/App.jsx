@@ -14,8 +14,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ButtonProvider } from './context/ConditionContext';
 import { UrlCounterProvider } from './context/UrlCounterContext';
 import { SuccessModalProvider } from './context/SuccessModalContext';
-import { FreezeProbeProvider } from './context/FreezeProbeContext';
-import FreezeProbeModal from './components/01 Interaction components/FreezeProbeModal';
 import { ParticipantIdProvider } from './context/ParticipantIdContext';
 import { AdaptableProvider } from './context/AdaptableContext';
 import Success_Message from './components/01 Interaction components/Success_Message';
@@ -81,7 +79,6 @@ function AppContent() {
       {/* Global Success Message Modal */}
       <Success_Message />
       {/* Global Freeze Probe Modal */}
-      <FreezeProbeModal />
     </>
   );
 }
@@ -108,11 +105,9 @@ function App() {
           <AdaptableProvider>
             <ButtonProvider>
               <UrlCounterProvider>
-                <FreezeProbeProvider>
                   <SuccessModalProvider>
                     <AppContent />
                   </SuccessModalProvider>
-                </FreezeProbeProvider>
               </UrlCounterProvider>
             </ButtonProvider>
           </AdaptableProvider>
