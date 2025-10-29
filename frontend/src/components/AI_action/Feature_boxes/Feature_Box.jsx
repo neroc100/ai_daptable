@@ -66,7 +66,7 @@ function Feature_Box({
     >
       {/* Title */}
       <div className="w-48 h-10 left-[16px] top-[16px] absolute inline-flex justify-start items-start">
-        <div className="flex-1 justify-start text-black text-md font font-['Arial'] leading-tight">
+        <div className="flex-1 justify-start text-black text-md font font-['ui-sans-serif']  leading-tight">
           {title}<br/>
         </div>
       </div>
@@ -88,10 +88,10 @@ function Feature_Box({
                   <ThumbsDown className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: 'var(--eth-red-100)' }} />
               )}
               <div className="flex flex-col justify-start items-start flex-1 min-w-0">
-                <div className="text-sm font-semibold font-['Arial'] leading-tight text-stone-900">
+                <div className="text-sm font-semibold font-['ui-sans-serif']  leading-tight text-stone-900">
                   {feature.name}
                 </div>
-                <div className="text-xs font-normal font-['Arial'] leading-snug" style={{ color: 'var(--eth-gray-100)' }}>
+                <div className="text-xs font-normal font-['ui-sans-serif']  leading-snug" style={{ color: 'var(--eth-gray-100)' }}>
                   {feature.value}
                 </div>
               </div>

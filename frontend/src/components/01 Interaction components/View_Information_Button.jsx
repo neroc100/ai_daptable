@@ -34,14 +34,14 @@ function View_Information_Button() {
         {showAnalysis ? (
           <div className="flex items-center space-x-2">
             <EyeOff size={20} style={{ color: 'black' }} />
-            <div className="justify-start text-black text-xs font-bold font-['Arial'] leading-normal">
+            <div className="justify-start text-black text-xs font-bold font-['ui-sans-serif']  leading-normal">
               Hide Information
             </div>
           </div>
         ) : (
           <div className="flex items-center space-x-2">
             <Eye size={20} style={{ color: 'black' }} />
-            <div className="justify-start text-black text-xs font-bold font-['Arial'] leading-normal">
+            <div className="justify-start text-black text-xs font-bold font-['ui-sans-serif']  leading-normal">
               View Information
             </div>
           </div>

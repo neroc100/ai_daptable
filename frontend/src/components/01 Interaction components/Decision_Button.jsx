@@ -69,8 +69,6 @@ function Decision_Button({
 
   // Handle button click - trigger success modal and log human action
   const handleClick = async () => {
-    // Check if we should trigger freeze probe immediately on button click
-    triggerProbeOnClick();
     
     // Log time spent on current condition before making decision
     logConditionTime(null); // Pass null since we're not switching to a new condition
@@ -116,7 +114,7 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-        <div className="justify-start text-sm font-bold font-['Arial'] leading-normal">
+        <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
           <span className="text-zinc-800">Override - </span>
           <span style={{ color: actionColor }}>{actionText} URL</span>
         </div>
@@ -128,7 +126,7 @@ function Decision_Button({
       const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
       
       return (
-      <div className="justify-start text-sm font-bold font-['Arial'] leading-normal">
+      <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
         <span className="text-black">Confirm - </span>
         <span style={{ color: actionColor }}>{actionText} URL</span>
       </div>
@@ -137,7 +135,7 @@ function Decision_Button({
     
     // Default styling for non-override buttons
     return (
-      <div className="justify-start text-black text-sm font-bold font-['Arial'] leading-normal">
+      <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif']  leading-normal">
         {config.text}
       </div>
     );

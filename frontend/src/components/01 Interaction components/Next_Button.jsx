@@ -42,10 +42,6 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   };
 
   const handleClick = () => {
-    // Check if we should trigger freeze probe immediately on button click (only when not in success modal)
-    if (!isInSuccessModal) {
-      triggerProbeOnClick();
-    }
     
     // Only log condition time when NOT in success modal (to avoid duplicate logging with Decision_Button)
     if (!isInSuccessModal) {
@@ -78,7 +74,7 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
       onClick={handleClick}
     >
       {/* Button text with ETH styling */}
-      <div className="justify-start text-black text-sm font-bold font-['Arial'] leading-normal">
+      <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif']  leading-normal">
         {text}
       </div>
     </div>

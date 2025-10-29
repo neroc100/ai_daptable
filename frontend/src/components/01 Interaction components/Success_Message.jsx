@@ -59,11 +59,11 @@ function Success_Message() {
         </div>
         
         {/* Success message content */}
-        <div className="text-center text-stone-900 text-xl font-semibold font-['Arial'] leading-tight mb-3">
+        <div className="text-center text-stone-900 text-xl font-semibold font-['ui-sans-serif']  leading-tight mb-3">
           {content.title}
         </div>
         
-        <div className="text-center text-neutral-500 text-sm font-normal font-['Arial'] leading-tight max-w-md mb-4">
+        <div className="text-center text-neutral-500 text-sm font-normal font-['ui-sans-serif']  leading-tight max-w-md mb-4">
           {content.description}
         </div>
         

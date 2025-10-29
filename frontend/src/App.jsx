@@ -78,7 +78,6 @@ function AppContent() {
       </main>
       {/* Global Success Message Modal */}
       <Success_Message />
-      {/* Global Freeze Probe Modal */}
     </>
   );
 }
