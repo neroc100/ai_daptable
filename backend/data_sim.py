@@ -35,7 +35,6 @@ def simulate_trial(participant: int, condition: int, trial_id: int):
         "reaction_time_ms": round(reaction_time_ms),
         "accuracy": np.random.binomial(1, 0.9),
         "view_information_clicked": np.random.binomial(1, 0.4),
-        "freeze_probe_accuracy": np.random.binomial(1, 0.9),
     }
 
 
@@ -87,4 +86,3 @@ if __name__ == "__main__":
     print(f"Average reaction time: {sum(t['reaction_time_ms'] for t in trials) / len(trials):.0f} ms")
     print(f"Overall accuracy: {sum(t['accuracy'] for t in trials) / len(trials) * 100:.1f}%")
     print(f"Overall view information clicked: {sum(t['view_information_clicked'] for t in trials) / len(trials) * 100:.1f}%")
-    print(f"Overall freeze probe accuracy: {sum(t['freeze_probe_accuracy'] for t in trials) / len(trials) * 100:.1f}%")

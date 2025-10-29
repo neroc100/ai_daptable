@@ -33,11 +33,4 @@ class Trial(SQLModel, table=True):
     conditions_seen: str = Field(default=None, nullable=True)  # JSON string of conditions seen for this URL (e.g., "[3]")
     condition_times: str = Field(default=None, nullable=True)  # JSON string of time spent on each condition in ms (e.g., "[2141]")
     adaptable: bool = Field(default=None, nullable=True)  # Whether adaptable automation was enabled for this trial
-    freeze_probe_question: str = Field(default=None, nullable=True)  # The freeze probe question that was displayed (e.g., "What color was the URL?")
-    freeze_probe_answer: str = Field(default=None, nullable=True)  # Answer to freeze probe question (e.g., "green", "red")
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)  # Timestamp when trial record was created
-
-
-
-
-# %%

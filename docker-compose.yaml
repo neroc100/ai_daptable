@@ -6,7 +6,7 @@ services:
     image: postgres:17-alpine
     container_name: db
     ports:
-      - "5433:5432"
+      - "5434:5432" # Host 5434 → Container 5432
     volumes:
       - ./db/data:/var/lib/postgresql/data
     environment:
@@ -26,8 +26,8 @@ services:
     environment:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
-      - DB_PORT=5432
+      - DB_HOST=db  # Connect via service name, not localhost
+      - DB_PORT=5432 # Inside Docker, use container’s internal port
       - DB_NAME=${DB_NAME}
     depends_on:
       - db
