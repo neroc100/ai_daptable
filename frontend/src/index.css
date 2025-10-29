@@ -1,32 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --eth-green-20: rgb(224, 227, 208);
-  --eth-green-40: rgb(192, 199, 161);
-  --eth-green-60: rgb(161, 171, 113);
-  --eth-green-80: rgb(129, 143, 66);
-  --eth-green-100: rgb(98, 115, 19);
-  --eth-green-120: rgb(54, 82, 19);
+/* Greens – soft, lively, modern */
+--eth-green-20: rgb(230, 240, 220);
+--eth-green-40: rgb(200, 215, 165);
+--eth-green-60: rgb(170, 190, 120);
+--eth-green-80: rgb(135, 160, 80);
+--eth-green-100: rgb(95, 125, 20);
+--eth-green-120: rgb(55, 85, 20);
 
+/* Reds – soft, modern, not harsh */
+--eth-red-10: rgb(252, 240, 238);
+--eth-red-20: rgb(245, 220, 218);
+--eth-red-40: rgb(230, 180, 175);
+--eth-red-80: rgb(200, 95, 87);
+--eth-red-100: rgb(185, 55, 45);
 
-  --eth-red-10: rgb(	248, 235, 234);
-  --eth-red-20: rgb(241, 215, 213);
-  --eth-red-40: rgb(226, 174, 171);
-  --eth-red-80: rgb(197, 93, 87);
-  --eth-red-100: rgb(183, 53, 45);
+/* Blues – light and digital-friendly */
+--eth-blue-10: rgb(235, 242, 250);
+--eth-blue-20: rgb(215, 225, 240);
+--eth-blue-40: rgb(170, 195, 225);
+--eth-blue-80: rgb(80, 130, 190);
+--eth-blue-100: rgb(35, 95, 180);
 
-  --eth-blue-10: rgb(233, 239, 247);
-  --eth-blue-20: rgb(211, 222, 239);
-  --eth-blue-40: rgb(166, 190, 223);
-  --eth-blue-80: rgb(77, 125, 191);
-  --eth-blue-100: rgb(33, 92, 175);
-
-  --eth-gray-10: rgb(241, 241,241);
-  --eth-gray-20: rgb(226, 226, 226);
-  --eth-gray-40: rgb(197, 197, 197);
-  --eth-gray-60: rgb(169, 169, 169);
-  --eth-gray-80: rgb(140, 140, 140);
-  --eth-gray-100: rgb(111, 111, 111);
+/* Grays – clean, modern, digital */
+--eth-gray-10: rgb(245, 245, 245);
+--eth-gray-20: rgb(230, 230, 230);
+--eth-gray-40: rgb(200, 200, 200);
+--eth-gray-60: rgb(170, 170, 170);
+--eth-gray-80: rgb(140, 140, 140);
+--eth-gray-100: rgb(110, 110, 110);
 
   --decision-button-bg: var(--eth-gray-10);
   --box-bg: var(--eth-blue-20);

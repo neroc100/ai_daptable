@@ -16,25 +16,29 @@ function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
     ...config.geographicalHosting.features,
   ];
 
-  return (
+ return (
     <div
-      className={`w-full rounded-2xl p-4 ${
-        isAnalysisDisplayed ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-800'
-      } shadow-sm`}
+      className="w-full rounded-2xl p-3 bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
     >
-      <ul className="space-y-2">
+      <ul className="space-y-1.5">
         {allFeatures.map((feature, i) => (
           <li
             key={i}
-            className="p-2 rounded-lg transition-colors"
+            className="px-2 py-1.5 rounded-lg flex items-center justify-between transition-colors duration-200 hover:bg-gray-50"
           >
             {typeof feature === 'object' ? (
-              <span>
-                <span className="font-medium">{feature.name}</span>
-                {feature.value && <span>: {feature.value}</span>}
-              </span>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
+                <span className="font-medium text-sm text-gray-900 truncate">
+                  {feature.name}
+                </span>
+                {feature.value && (
+                  <span className="text-xs text-gray-500 mt-0.5 sm:mt-0 sm:ml-2 truncate">
+                    {feature.value}
+                  </span>
+                )}
+              </div>
             ) : (
-              <span>{feature}</span>
+              <span className="text-sm text-gray-900">{feature}</span>
             )}
           </li>
         ))}
