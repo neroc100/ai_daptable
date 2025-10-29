@@ -1,66 +1,46 @@
 import React from 'react';
-import Feature_Box from './Feature_boxes/Feature_Box';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
 
-/**
- * AI URL Info Display
- * Renders a 3x2 grid of feature boxes for the current URL.
- *
- * @param {boolean} isAnalysisDisplayed - Use analysis styling (default: false)
- * @returns {JSX.Element}
- */
-function AI_URL_Info_Display({ isAnalysisDisplayed = false }) {
+function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
   const { currentUrl } = useUrlCounter();
-
-  // Get current URL configuration
   const config = getUrlConfig(currentUrl);
-  
+
+  // Flatten all features from all categories
+  const allFeatures = [
+    ...config.urlStringAnalysis.features,
+    ...config.domainCharacteristics.features,
+    ...config.dnsNetwork.features,
+    ...config.encryptionHttp.features,
+    ...config.webpageContent.features,
+    ...config.geographicalHosting.features,
+  ];
+
   return (
-    <div className="w-full flex gap-4">
-      {/* Column 1: URL String Analysis */}
-      <div className="flex flex-col w-full">
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.urlStringAnalysis.title}
-          features={config.urlStringAnalysis.features}
-        />
-      </div>
-      
-      {/* Column 2: Domain Characteristics and DNS */}
-      <div className="flex flex-col gap-4 w-full">
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.domainCharacteristics.title}
-          features={config.domainCharacteristics.features}
-        />
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.dnsNetwork.title}
-          features={config.dnsNetwork.features}
-        />
-      </div>
-      
-      {/* Column 3: Encryption, Webpage Content, and Geographical */}
-      <div className="flex flex-col gap-4 w-full">
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.encryptionHttp.title}
-          features={config.encryptionHttp.features}
-        />
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.webpageContent.title}
-          features={config.webpageContent.features}
-        />
-        <Feature_Box 
-          isAnalysisDisplayed={isAnalysisDisplayed}
-          title={config.geographicalHosting.title}
-          features={config.geographicalHosting.features}
-        />
-      </div>
+    <div
+      className={`w-full rounded-2xl p-4 ${
+        isAnalysisDisplayed ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-800'
+      } shadow-sm`}
+    >
+      <ul className="space-y-2">
+        {allFeatures.map((feature, i) => (
+          <li
+            key={i}
+            className="p-2 rounded-lg transition-colors"
+          >
+            {typeof feature === 'object' ? (
+              <span>
+                <span className="font-medium">{feature.name}</span>
+                {feature.value && <span>: {feature.value}</span>}
+              </span>
+            ) : (
+              <span>{feature}</span>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default AI_URL_Info_Display;
+export default AI_URL_Info_Display_unstructured;

@@ -3,7 +3,7 @@ import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_He
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import AI_URL_Info_Display from '../components/AI_action/AI_URL_Info_Display';
+import AI_URL_Info_Display_unstructured from '../components/AI_action/AI_URL_Info_Display_unstructured';
 import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
 import Decision_Button from '../components/01 Interaction components/Decision_Button';
 import { useUrlCounter } from '../context/UrlCounterContext';
@@ -30,7 +30,7 @@ function Info_acquisition() {
         
         {/* URL information display */}
         <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
-          <AI_URL_Info_Display isAnalysisDisplayed={false} />
+          <AI_URL_Info_Display_unstructured isAnalysisDisplayed={false} />
         </div>
         
         {/* Decision buttons - centered with one on each side */}
