@@ -27,7 +27,7 @@ function Manual() {
         
         {/* Adaptable automation buttons - only show if adaptable is true */}
         {adaptable && (
-          <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+          <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
             <div className="flex flex-row justify-center items-center gap-3">
               <Adapt_Automation_Button direction="decrease" />
               <Adapt_Automation_Button direction="increase" />
@@ -38,7 +38,7 @@ function Manual() {
         
         
         {/* Decision buttons - centered with one on each side */}
-        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
           <div className="flex flex-row justify-center items-center gap-3">
             <Decision_Button type="allow" />
             <Decision_Button type="block" />

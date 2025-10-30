@@ -140,7 +140,7 @@ function MentalEffortRatingPage() {
             {/* Submit button */}
             <div className="flex justify-center">
               <div 
-                className="px-8 py-3 h-11 p-2 bg-white rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+                className="px-8 py-3 h-11 p-2 bg-white rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200"
                 style={{ outlineColor: 'var(--eth-blue-100)',
                   backgroundColor: 'var(--eth-blue-100)'
                  }}

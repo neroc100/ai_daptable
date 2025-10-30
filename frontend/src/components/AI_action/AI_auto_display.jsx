@@ -17,11 +17,11 @@ import AI_Action_Message_Box from './AI_Action_Message_Box';
 function AI_auto_display({ classification = 'Non-Malicious' }) {
   return (
     // Main container with ETH blue outline styling
-    <div className="w-[833px] p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+    <div className="w-[833px] p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
       
       {/* AI decision message */}
       <AI_Action_Message_Box 
-        text={`AI ${classification === 'Malicious' ? 'blocked' : 'allowed'} the URL`}
+        text={`AI ${classification === 'Malicious' ? 'Blocked' : 'Allowed'} the URL`}
       />
       
       {/* Toggle button for viewing AI analysis information */}
@@ -29,9 +29,7 @@ function AI_auto_display({ classification = 'Non-Malicious' }) {
       
       {/* Navigation button to proceed to next URL */}
       <div className="flex justify-center">
-        <Next_Button 
-          className="px-12 py-4 text-lg"
-        />
+        <Next_Button />
       </div>
     </div>
   );

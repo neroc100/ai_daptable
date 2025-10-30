@@ -43,7 +43,7 @@ function AI_Action_Message_Box({ text }) {
   return (
     <div className="flex items-center text-xl font-semibold text-black mb-5 w-full justify-center rounded-lg p-4 outline"
     style={{ backgroundColor: 'white',
-     outlineColor: 'var(--eth-blue-100)'
+     outlineColor: 'var(--eth-blue-40)'
      }}
     >
       {/* Info icon for visual context */}

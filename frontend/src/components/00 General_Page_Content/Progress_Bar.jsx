@@ -16,7 +16,7 @@ function Progress_Bar() {
     <div className="w-48 h-8 flex flex-col items-center justify-center space-y-1">
       {/* Progress counter text */}
       <div className="text-black text-xs font-medium font-['ui-sans-serif'] ">
-        Progress {urlCount} out of {maxUrls} URLs
+        Completed {urlCount} out of {maxUrls} URLs
       </div>
       
       {/* Progress bar with background */}

@@ -26,7 +26,7 @@ function Success_Message() {
     if (isHuman) {
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
-        description: `You successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
+        description: `You Successfully ${isAllow ? 'Allowed' : 'Blocked'} Traffic to this URL`,
         icon: isAllow ? <Rss className="w-8 h-8 text-black" /> : <ShieldCheck className="w-8 h-8 text-black" />,
         buttonText: 'Next'
       };
@@ -34,7 +34,7 @@ function Success_Message() {
       // Return content for AI decisions
       return {
         title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
-        description: `The AI successfully ${isAllow ? 'allowed' : 'blocked'} traffic to this URL`,
+        description: `The AI Successfully ${isAllow ? 'Allowed' : 'Blocked'} Traffic to this URL`,
         icon: isAllow ? <Rss className="w-8 h-8 text-black" /> : <ShieldCheck className="w-8 h-8 text-black" />,
         buttonText: 'Next'
       };

@@ -18,33 +18,28 @@ function AI_allow_display({ classification = 'Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline styling */}
-      <div className="w-[833px] p-5 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var( --box-bg)' }}>
+      <div className="w-[833px] p-5 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var( --box-bg)' }}>
         
         {/* AI recommendation request message */}
         <AI_Action_Message_Box 
-          text={`AI requests to ${classification === 'Malicious' ? 'block' : 'allow'} the URL`}
+          text={`AI Requests to ${classification === 'Malicious' ? 'Block' : 'Allow'} the URL`}
         />
         
         {/* Toggle button for viewing AI analysis information */}
         <View_Information_Button />
 
         {/* Action buttons container - equally distant from center */}
-        <div className="flex justify-center items-center w-full relative py-8">
-          {/* Confirm AI recommendation button - positioned left of center */}
-          <div className="absolute left-1/2 transform -translate-x-full -translate-x-3">
+        <div className="relative flex justify-center items-center w-full py-3 sm:flex sm:flex-row flex-col gap-3">
             <Decision_Button 
               type="confirm"
               classification={classification}
             />
-          </div>
           {/* Deny AI recommendation button - positioned right of center */}
-          <div className="absolute left-1/2 transform translate-x-3">
             <Decision_Button 
               type="override"
               classification={classification}
-              text={`Deny and ${classification === 'Malicious' ? 'allow' : 'block'} URL instead`}
+              text={`Deny and ${classification === 'Malicious' ? 'Allow' : 'Block'} URL Instead`}
             />
-          </div>
         </div>
         
         

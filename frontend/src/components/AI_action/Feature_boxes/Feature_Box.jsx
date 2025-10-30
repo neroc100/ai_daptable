@@ -33,7 +33,7 @@ function Feature_Box({
 
   return (
     <div
-      className={`w-full relative rounded-2xl transition-all duration-300 ease-in-out overflow-hidden shadow-sm hover:shadow-md`}
+      className={`w-full relative rounded-xl transition-all duration-300 ease-in-out overflow-hidden shadow-sm hover:shadow-md`}
       style={{
         backgroundColor,
         height: isExpanded ? `${expandedHeight}px` : '64px'
@@ -75,17 +75,6 @@ function Feature_Box({
         </div>
       )}
 
-      {/* Collapse toggle */}
-      <div
-        className="absolute top-4 right-4 cursor-pointer hover:opacity-70 transition-opacity"
-        onClick={handleArrowClick}
-      >
-        {isExpanded ? (
-          <ChevronUp className="w-4 h-4 text-gray-700" />
-        ) : (
-          <ChevronDown className="w-4 h-4 text-gray-700" />
-        )}
-      </div>
     </div>
   );
 }

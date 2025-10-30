@@ -45,13 +45,13 @@ function Decision_Button({
         };
       case 'confirm':
         return {
-          text: text || `Confirm - ${classification === 'Malicious' ? 'Block' : 'Allow'} URL`,
+          text: text || `Confirm ${classification === 'Malicious' ? 'Block' : 'Allow'} URL`,
           decisionType: classification === 'Malicious' ? 'block' : 'allow',
           actor: 'ai'
         };
       case 'override':
         return {
-          text: text || `Override - ${classification === 'Malicious' ? 'Allow' : 'Block'} URL`,
+          text: text || `Override to ${classification === 'Malicious' ? 'Allow' : 'Block'} URL`,
           decisionType: classification === 'Malicious' ? 'allow' : 'block',
           actor: 'human'
         };
@@ -115,7 +115,7 @@ function Decision_Button({
       
       return (
         <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
-          <span className="text-zinc-800">Override - </span>
+          <span className="text-zinc-800">Override to </span>
           <span style={{ color: actionColor }}>{actionText} URL</span>
         </div>
       );
@@ -127,7 +127,7 @@ function Decision_Button({
       
       return (
       <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
-        <span className="text-black">Confirm - </span>
+        <span className="text-black">Confirm </span>
         <span style={{ color: actionColor }}>{actionText} URL</span>
       </div>
       );
@@ -145,7 +145,7 @@ function Decision_Button({
     <>
       {/* Main Decision Button - ETH blue outline styling */}
       <div 
-        className={`px-6 py-2 h-12 p-1 rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+        className={`px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
         style={{ outlineColor: 'var( --decision-button-bg)',
           backgroundColor: 'var( --decision-button-bg)'
          }}
@@ -153,6 +153,8 @@ function Decision_Button({
       >
         {/* Dynamic button text based on configuration */}
         {getTextStyling()}
+        <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif'] leading-normal">
+        </div>
       </div>
     </>
   );

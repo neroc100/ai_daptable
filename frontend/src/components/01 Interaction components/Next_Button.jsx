@@ -69,7 +69,7 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   return (
     // ETH blue outline styled button with navigation logic
     <div 
-      className={`px-6 py-2 h-12 p-1 bg-white rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+      className={`px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
       style={getButtonStyle()}
       onClick={handleClick}
     >

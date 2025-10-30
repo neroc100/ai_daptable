@@ -81,7 +81,7 @@ function LandingPage() {
         
         {/* Start button */}
         <div 
-          className="px-12 py-4 h-16 p-3 rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
+          className="px-12 py-4 h-16 p-3 rounded-4xl outline outline-4 outline-offset-[-4px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200"
           style={{ 
             outlineColor: 'var(--eth-blue-100)',
             backgroundColor: 'var(--eth-blue-100)'

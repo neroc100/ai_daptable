@@ -38,7 +38,6 @@ function Veto() {
         <AI_veto_display
           classification={classification}
         />
-        
         <Progress_Bar />
       </div>
     </div>

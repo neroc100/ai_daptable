@@ -29,12 +29,12 @@ function Info_analysis() {
         <AI_Completed_Actions_Display showActionSelection={false} />
         
         {/* URL analysis display */}
-        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-20)', backgroundColor: 'var(--box-bg)' }}>
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
         </div>
         
         {/* Decision buttons - centered with one on each side */}
-        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+        <div className="w-[833px] px-4 py-5 rounded-lg outline outline-1 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-20)', backgroundColor: 'var(--box-bg)' }}>
           <div className="flex flex-row justify-center items-center gap-3">
             <Decision_Button type="allow" />
             <Decision_Button type="block" />

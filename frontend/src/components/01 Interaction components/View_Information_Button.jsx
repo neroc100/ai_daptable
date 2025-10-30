@@ -16,7 +16,7 @@ function View_Information_Button() {
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   return (
-    <div className="flex flex-col items-center space-y-4 w-full">
+    <div className="flex flex-col items-center w-full">
       {/* Toggle button with eye/eye-off icons */}
       <div 
         onClick={() => {
@@ -25,30 +25,17 @@ function View_Information_Button() {
           console.log('View information button clicked');
           setShowAnalysis(!showAnalysis);
         }}
-        className="px-6 py-3 bg-white rounded-4xl outline outline-2 outline-offset-[-2px] inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer shadow-xl hover:opacity-85 hover:shadow-md transition-all duration-200"
-        style={{ outlineColor: 'var( --decision-button-bg)',
-          backgroundColor: 'var( --decision-button-bg)'
-         }}
-      >
-        {/* Conditional icon and text based on current state */}
-        {showAnalysis ? (
-          <div className="flex items-center space-x-2">
-            <EyeOff size={20} style={{ color: 'black' }} />
-            <div className="justify-start text-black text-xs font-bold font-['ui-sans-serif']  leading-normal">
-              Hide Information
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center space-x-2">
-            <Eye size={20} style={{ color: 'black' }} />
-            <div className="justify-start text-black text-xs font-bold font-['ui-sans-serif']  leading-normal">
-              View Information
-            </div>
-          </div>
-        )}
+         className={`px-6 py-1 rounded-xl cursor-pointer shadow-sm transition-all duration-200
+          ${showAnalysis
+          ? 'bg-white hover:bg-[var(--eth-gray-20)] text-[var(--eth-gray-100)] mb-4'
+          : 'bg-white hover:bg-[var(--eth-gray-10)] text-[var(--eth-gray-100)]'}`}
+        >
+        <span className="text-xs font-semibold font-['ui-sans-serif'] leading-normal">
+          {showAnalysis ? 'Hide Information' : 'View Information'}
+        </span>
       </div>
 
-      {/* AI analysis display - shown when analysis is visible */}
+      {/* AI analysis display */}
       {showAnalysis && (
         <div className="w-full">
           <AI_URL_Info_Display isAnalysisDisplayed={true} />
@@ -57,5 +44,4 @@ function View_Information_Button() {
     </div>
   );
 }
-
 export default View_Information_Button;

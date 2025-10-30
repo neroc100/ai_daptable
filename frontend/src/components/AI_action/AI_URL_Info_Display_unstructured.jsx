@@ -18,7 +18,7 @@ function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
 
  return (
     <div
-      className="w-full rounded-2xl p-3 bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
+      className="w-full rounded-xl p-3 bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
     >
       <ul className="space-y-1.5">
         {allFeatures.map((feature, i) => (

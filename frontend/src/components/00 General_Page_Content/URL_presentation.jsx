@@ -69,14 +69,14 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   
   return (
     // Main URL container with white background and light border
-    <div className={`w-[833px] ${showAIClassification ? 'h-52' : 'h-28'} min-w-56 p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-3`} style={{ outlineColor: 'var(--eth-blue-100)', backgroundColor: 'var(--box-bg)' }}>
+    <div className={`w-[833px] ${showAIClassification ? 'h-52' : 'h-28'} min-w-56 p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-3`} style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
       {/* URL input section container */}
       <div className="self-stretch flex flex-col justify-start items-start">
         {/* URL label */}
         <div className="self-stretch justify-start text-black text-md font-semibold font-['ui-sans-serif']  leading-loose mb-1">URL</div>
         
         {/* URL input field container */}
-        <div className="self-stretch h-8 min-w-40 px-3 py-4 bg-white rounded-lg outline outline-1 outline-offset-[-0.50px] inline-flex justify-start items-center overflow-hidden" style={{ outlineColor: 'var(--eth-blue-100)' }}>
+        <div className="self-stretch h-8 min-w-40 px-3 py-4 bg-white rounded-lg outline outline-1 outline-offset-[-0.50px] inline-flex justify-start items-center overflow-hidden" style={{ outlineColor: 'var(--eth-blue-40)' }}>
                   {/* URL text container */}
         <div className="w-[780px] h-6 relative">
           {/* Sample URL text - positioned relatively for natural flow */}
