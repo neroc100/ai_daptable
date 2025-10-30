@@ -70,13 +70,13 @@ function MentalEffortRatingPage() {
         
         
         {/* Main content box with ETH blue outline styling */}
-        <div className="w-[833px] p-4 mb-12 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-5" style={{ outlineColor: 'var(--eth-gray-100)' }}>
+        <div className="w-[833px] p-4 mb-12 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-5" style={{ outlineColor: 'var(--eth-gray-60)' }}>
           <div className="flex items-center text-md font-medium text-black mb-4 w-full justify-center rounded-lg p-4 outline"
-            style={{ backgroundColor: 'var(--eth-blue-20)',
-             outlineColor: 'var(--eth-blue-100)'
+            style={{ backgroundColor: 'var(--eth-blue-10)',
+             outlineColor: 'var(--eth-blue-40)'
              }}
           >
-            Please rate the mental effort required for the task you just completed!
+            Please rate the mental effort required for the task you just completed.
           </div>
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5 w-full">
@@ -87,7 +87,7 @@ function MentalEffortRatingPage() {
                 <div className="text-3xl font-bold mb-1" style={{ color: getSliderColor() }}>
                   {rating}
                 </div>
-                <div className="text-s" style={{ color: 'var(--eth-gray-100)' }}>
+                <div className="text-s text-black">
                   {getEffortLevel()}
                 </div>
               </div>
@@ -112,7 +112,7 @@ function MentalEffortRatingPage() {
                   />
                   
                   {/* Slider labels */}
-                  <div className="relative text-xs mt-1" style={{ color: 'var(--eth-gray-100)' }}>
+                  <div className="relative text-xs text-black mt-1" >
                     <span className="absolute left-0">0</span>
                     <span className="absolute" style={{ left: '20%' }}>30</span>
                     <span className="absolute" style={{ left: '39.5%' }}>60</span>
@@ -124,7 +124,7 @@ function MentalEffortRatingPage() {
               </div>
 
               {/* Effort scale labels */}
-              <div className="flex justify-between text-xs mt-3" style={{ color: 'var(--eth-gray-100)' }}>
+              <div className="flex justify-between text-xs text-black mt-3">
                 <span className="text-left">No effort at all</span>
                 <span className="text-right">Extremely large effort</span>
               </div>
@@ -140,14 +140,14 @@ function MentalEffortRatingPage() {
             {/* Submit button */}
             <div className="flex justify-center">
               <div 
-                className="px-8 py-3 h-11 p-2 bg-white rounded-4xl outline outline-3 outline-offset-[-3px] inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200"
-                style={{ outlineColor: 'var(--eth-blue-100)',
-                  backgroundColor: 'var(--eth-blue-100)'
-                 }}
+                className="px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200"
+               style={{ outlineColor: 'var( --eth-gray-20)',
+                        backgroundColor: 'var( --eth-gray-20)'
+                      }}
                 onClick={handleSubmit}
               >
                 {/* Button text with ETH styling */}
-                <div className="justify-start text-white text-md font-bold font-['Arial'] leading-normal">
+                <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif'] leading-normal">
                   Submit Rating
                 </div>
               </div>
