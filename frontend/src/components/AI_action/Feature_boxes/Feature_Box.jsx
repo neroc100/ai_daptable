@@ -66,7 +66,7 @@ function Feature_Box({
                 <div className="text-sm font-medium text-gray-900 truncate">
                   {feature.name}
                 </div>
-                <div className="text-xs text-gray-500 truncate">
+                <div className="text-xs text-gray-500 break-words">
                   {feature.value}
                 </div>
               </div>
