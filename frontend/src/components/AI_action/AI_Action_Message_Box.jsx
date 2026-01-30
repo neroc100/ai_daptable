@@ -9,7 +9,19 @@ import { Info } from 'lucide-react';
  * @param {string} props.text - The title text to display
  * @returns {JSX.Element} AI action message box component
  */
-function AI_Action_Message_Box({ text }) {
+function AI_Action_Message_Box({ text, higherLevel = false }) {
+  // Decide background color based on text content
+  const lowerText = text?.toLowerCase() || '';
+  const isBlocked = lowerText.includes('block');
+  const isAllowed = lowerText.includes('allow');
+
+  // Choose box color based on detected keyword
+  const boxColor = isBlocked && higherLevel
+    ? 'var(--eth-red-10)'
+    : isAllowed && higherLevel
+    ? 'var(--eth-green-10)'
+    : 'white';
+
   const renderColoredText = (value) => {
     if (!value || typeof value !== 'string') return value;
     // Match whole words for allow/allowed and block/blocked
@@ -41,13 +53,14 @@ function AI_Action_Message_Box({ text }) {
   };
 
   return (
-    <div className="flex items-center text-xl font-semibold text-black mb-5 w-full justify-center rounded-lg p-4 outline"
-    style={{ backgroundColor: 'white',
-     outlineColor: 'var(--eth-blue-40)'
+    <div className="flex items-center text-lg font-bold text-black w-full justify-center rounded-2xl px-6 py-4 border-2 shadow-sm"
+    style={{ 
+      backgroundColor: boxColor,
+      borderColor: '#9CA3AF'
      }}
     >
       {/* Info icon for visual context */}
-      <Info className="w-6 h-6 mr-2" />
+      <Info className="w-5 h-5 mr-3" />
       {/* Dynamic title text */}
       {renderColoredText(text)}
     </div>

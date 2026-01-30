@@ -37,7 +37,7 @@ function Progress_Bar() {
         {urlCount === 1 && (
           <div className="absolute left-0.25 top-1/2 transform -translate-y-1/2">
             <div 
-              className="w-1.5 h-1.5 rounded-full shadow-sm"
+              className="w-1.5 h-1.5 rounded-full shadow-md"
               style={{ backgroundColor: 'var(--eth-blue-100)' }}
             />
           </div>

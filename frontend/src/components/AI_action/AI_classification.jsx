@@ -16,7 +16,7 @@ function AI_classification({ classification = 'Malicious' }) {
   
   const containerStyle = {
     backgroundColor: isMalicious ? 'var(--eth-red-10)' : 'var(--eth-green-20)',
-    outlineColor: isMalicious ? 'var(--eth-red-60)' : 'var(--eth-green-60)'
+    borderColor: isMalicious ? 'var(--eth-red-60)' : 'var(--eth-green-60)'
   };
 
   const textStyle = {
@@ -24,17 +24,16 @@ function AI_classification({ classification = 'Malicious' }) {
   };
 
   return (
-    <div className="w-full p-3 rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col text-center items-center" style={containerStyle}>
-      {/* AI Classification label */}
-      <div className="self-stretch text-stone-900 text-xl font-semibold font-['ui-sans-serif']  leading-loose mb-1">AI Classification</div>
-      
-      {/* Separator line */}
-      <div className="w-full h-px bg-gray-300 mb-1"></div>
-      
+  <>
+    {/* Header outside the colored component */}
+    <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-2 mb-3">Classification</h1>
+    
+    {/* Color-coded component */}
+    <div className="w-full px-6 py-4 rounded-2xl border-2 flex flex-col text-center items-center shadow-sm" style={containerStyle}>
       {/* Classification result */}
-      <div className="text-lg font-semibold " style={textStyle}>{classification}</div>
+      <div className="text-xl font-bold" style={textStyle}>{classification}</div>
     </div>
-  );
+  </>
+);
 }
-
 export default AI_classification;

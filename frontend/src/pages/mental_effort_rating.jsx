@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useHandleTrialSubmit } from '../composables/handleTrialSubmit';
@@ -57,51 +56,42 @@ function MentalEffortRatingPage() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-5">
-      <div className="container mx-auto flex flex-col items-center space-y-5">
+      <div className="container mx-auto flex flex-col items-center space-y-8">
         
-        
-        {/* Page title */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 m-3">
-            Mental Effort Rating
-          </h1>
+        {/* Header with gradient background */}
+        <div className="w-[90%] bg-gradient-to-r from-gray-800 to-gray-700 py-8 mb-6 rounded-2xl">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-white font-['ui-sans-serif']">Mental Effort Rating</h1>
+            <p className="text-gray-300 mt-2 text-sm">Rate the mental effort required for the task</p>
+          </div>
         </div>
         
-        
-        
-        {/* Main content box with ETH blue outline styling */}
-        <div className="w-[833px] p-4 mb-12 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-5" style={{ outlineColor: 'var(--eth-gray-60)' }}>
-          <div className="flex items-center text-md font-medium text-black mb-4 w-full justify-center rounded-lg p-4 outline"
-            style={{ backgroundColor: 'var(--eth-blue-10)',
-             outlineColor: 'var(--eth-blue-40)'
-             }}
-          >
-            Please rate the mental effort required for the task you just completed.
-          </div>
+        {/* Main content box */}
+        <div className="w-[90%] p-6 mb-8 bg-white rounded-2xl border-2 flex flex-col items-center space-y-6" style={{ borderColor: '#9CA3AF' }}>
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-5 w-full">
+          <form onSubmit={handleSubmit} className="space-y-6 w-full">
             {/* Slider container */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               {/* Current rating display */}
               <div className="text-center">
-                <div className="text-3xl font-bold mb-1" style={{ color: getSliderColor() }}>
+                <div className="text-4xl font-bold mb-2" style={{ color: getSliderColor() }}>
                   {rating}
                 </div>
-                <div className="text-s text-black">
+                <div className="text-sm text-gray-700">
                   {getEffortLevel()}
                 </div>
               </div>
 
               {/* Slider */}
               <div className="flex justify-center">
-                <div style={{ width: '300%', maxWidth: '800px' }}>
+                <div style={{ width: '100%', maxWidth: '600px' }}>
                   <input
                     type="range"
                     min="0"
                     max="150"
                     value={rating}
                     onChange={handleSliderChange}
-                    className="w-full h-3 rounded-lg appearance-none cursor-pointer slider"
+                    className="w-full h-2 rounded-lg appearance-none cursor-pointer slider"
                     style={{
                       backgroundColor: 'var(--eth-gray-40)',
                       background: `linear-gradient(to right, 
@@ -112,7 +102,7 @@ function MentalEffortRatingPage() {
                   />
                   
                   {/* Slider labels */}
-                  <div className="relative text-xs text-black mt-1" >
+                  <div className="relative text-xs text-gray-600 mt-2" >
                     <span className="absolute left-0">0</span>
                     <span className="absolute" style={{ left: '20%' }}>30</span>
                     <span className="absolute" style={{ left: '39.5%' }}>60</span>
@@ -124,7 +114,7 @@ function MentalEffortRatingPage() {
               </div>
 
               {/* Effort scale labels */}
-              <div className="flex justify-between text-xs text-black mt-3">
+              <div className="flex justify-between text-xs text-gray-600 mt-4">
                 <span className="text-left">No effort at all</span>
                 <span className="text-right">Extremely large effort</span>
               </div>
@@ -132,21 +122,18 @@ function MentalEffortRatingPage() {
 
             {/* Error message */}
             {error && (
-              <div className="text-red-600 text-xs text-center">
+              <div className="text-red-600 text-sm text-center">
                 {error}
               </div>
             )}
 
             {/* Submit button */}
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-8">
               <div 
-                className="px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200"
-               style={{ outlineColor: 'var( --eth-gray-20)',
-                        backgroundColor: 'var( --eth-gray-20)'
-                      }}
+                className="px-6 py-2 bg-gray-100 rounded-2xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-lg hover:shadow-xl border border-gray-400 transition-all duration-200"
                 onClick={handleSubmit}
               >
-                {/* Button text with ETH styling */}
+                {/* Button text */}
                 <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif'] leading-normal">
                   Submit Rating
                 </div>
@@ -162,23 +149,34 @@ function MentalEffortRatingPage() {
       <style>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
-          height: 16px;
-          width: 16px;
+          height: 20px;
+          width: 20px;
           border-radius: 50%;
           background: var(--eth-blue-100);
           cursor: pointer;
           border: 2px solid #ffffff;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         .slider::-moz-range-thumb {
-          height: 16px;
-          width: 16px;
+          height: 20px;
+          width: 20px;
           border-radius: 50%;
           background: var(--eth-blue-100);
           cursor: pointer;
           border: 2px solid #ffffff;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider::-webkit-slider-runnable-track {
+          height: 8px;
+          border-radius: 4px;
+        }
+
+        .slider::-moz-range-track {
+          height: 8px;
+          border-radius: 4px;
+          background: transparent;
         }
 
         .slider:focus {
@@ -186,11 +184,11 @@ function MentalEffortRatingPage() {
         }
 
         .slider:focus::-webkit-slider-thumb {
-          box-shadow: 0 0 0 3px rgba(33, 92, 175, 0.3);
+          box-shadow: 0 0 0 4px rgba(33, 92, 175, 0.3);
         }
 
         .slider:focus::-moz-range-thumb {
-          box-shadow: 0 0 0 3px rgba(33, 92, 175, 0.3);
+          box-shadow: 0 0 0 4px rgba(33, 92, 175, 0.3);
         }
       `}</style>
     </div>

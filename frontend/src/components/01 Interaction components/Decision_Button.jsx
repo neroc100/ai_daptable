@@ -107,15 +107,15 @@ function Decision_Button({
     });
   };
 
-  // Generate text styling for override buttons
+  // Generate text styling for all button types
   const getTextStyling = () => {
     if (type === 'override') {
       const actionText = classification === 'Malicious' ? 'Allow' : 'Block';
-      const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
+      const actionColor = actionText === 'Allow' ? '#B8E6B8' : '#E8B4C8';
       
       return (
         <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
-          <span className="text-zinc-800">Override to </span>
+          <span className="text-gray-200">Override to </span>
           <span style={{ color: actionColor }}>{actionText} URL</span>
         </div>
       );
@@ -123,19 +123,35 @@ function Decision_Button({
 
     if (type === 'confirm') {
       const actionText = classification === 'Malicious' ? 'Block' : 'Allow';
-      const actionColor = actionText === 'Allow' ? 'var(--eth-green-100)' : 'var(--eth-red-100)';
+      const actionColor = actionText === 'Allow' ? '#B8E6B8' : '#E8B4C8';
       
       return (
       <div className="justify-start text-sm font-bold font-['ui-sans-serif']  leading-normal">
-        <span className="text-black">Confirm </span>
+        <span className="text-gray-200">Confirm </span>
         <span style={{ color: actionColor }}>{actionText} URL</span>
       </div>
       );
     }
+
+    if (type === 'allow') {
+      return (
+        <div className="justify-start text-sm font-bold font-['ui-sans-serif'] leading-normal" style={{ color: '#B8E6B8' }}>
+          {config.text}
+        </div>
+      );
+    }
+
+    if (type === 'block') {
+      return (
+        <div className="justify-start text-sm font-bold font-['ui-sans-serif'] leading-normal" style={{ color: '#E8B4C8' }}>
+          {config.text}
+        </div>
+      );
+    }
     
-    // Default styling for non-override buttons
+    // Default styling for any other cases
     return (
-      <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif']  leading-normal">
+      <div className="justify-start text-white text-sm font-bold font-['ui-sans-serif']  leading-normal">
         {config.text}
       </div>
     );
@@ -143,17 +159,14 @@ function Decision_Button({
 
   return (
     <>
-      {/* Main Decision Button - ETH blue outline styling */}
+      {/* Main Decision Button - Dark blue gradient background */}
       <div 
-        className={`px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
-        style={{ outlineColor: 'var( --decision-button-bg)',
-          backgroundColor: 'var( --decision-button-bg)'
-         }}
+        className={`px-6 py-2 rounded-2xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-lg hover:shadow-xl border border-gray-400 transition-all duration-200 bg-gradient-to-r from-gray-800 to-gray-700 ${className}`}
         onClick={handleClick}
       >
         {/* Dynamic button text based on configuration */}
-        {getTextStyling()}
-        <div className="justify-start text-black text-sm font-bold font-['ui-sans-serif'] leading-normal">
+        <div className="flex items-center space-x-1">
+          {getTextStyling()}
         </div>
       </div>
     </>

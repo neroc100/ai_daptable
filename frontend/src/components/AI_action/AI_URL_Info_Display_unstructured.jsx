@@ -1,6 +1,7 @@
 import React from 'react';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
+import AI_Completed_Actions_Display from './AI_Completed_Actions_Display';
 
 function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
   const { currentUrl } = useUrlCounter();
@@ -17,9 +18,9 @@ function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
   ];
 
  return (
-    <div
-      className="w-full rounded-xl p-3 bg-white transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
-    >
+    <>
+      <div className="w-full text-center text-xl font-semibold font-['ui-sans-serif'] pb-1 mb-1">URL Analysis</div>
+       <div className="w-full bg-white rounded-lg p-3 items-center outline outline-1 p-4 mb-3 outline-offset-[-1px]" style={{ outlineColor: 'var(--eth-blue-40)'}}>
       <ul className="space-y-1.5">
         {allFeatures.map((feature, i) => (
           <li
@@ -44,6 +45,7 @@ function AI_URL_Info_Display_unstructured({ isAnalysisDisplayed = false }) {
         ))}
       </ul>
     </div>
+    </>
   );
 }
 

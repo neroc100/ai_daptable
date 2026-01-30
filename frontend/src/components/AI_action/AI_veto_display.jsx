@@ -19,26 +19,11 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline styling */}
-      <div className="w-[833px] p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
+          <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1 mt-1 mb-1">Completed Action</h1>
         {/* AI decision  message */}
         <AI_Action_Message_Box 
           text={`AI ${classification === 'Malicious' ? 'Blocked' : 'Allowed'} the URL`}
         />
-        
-        {/* Toggle button for viewing AI analysis information */}
-        <View_Information_Button />
-        
-        {/* Action buttons - equally distant from center */}
-        <div className="relative flex justify-center items-center w-full py-3 sm:flex sm:flex-row flex-col gap-3">
-          {/* Override button to change AI's decision - positioned left of center */}
-            <Decision_Button 
-              type="override"
-              classification={classification}
-            />
-          {/* Navigation button to proceed to next URL - positioned right of center */}
-            <Next_Button/>
-        </div>
-      </div>
 
     </>
   );

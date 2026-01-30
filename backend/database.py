@@ -23,7 +23,7 @@ class Trial(SQLModel, table=True):
     mental_effort_rating: int  # Self-reported mental effort rating (0-150 scale)
     url: str  # The actual URL that was presented to the participant
     true_classification: str  # Ground truth classification ("Malicious" or "Non-Malicious")
-    reaction_time_ms: int = Field(default=None, nullable=True)  # Time taken to make decision (button_click_time - page_load_time)
+    reaction_time_ms: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Time taken to make decision (button_click_time - page_load_time)
     page_load_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when URL page was loaded (milliseconds unix timestamp)
     button_click_time: int = Field(default=None, nullable=True, sa_type=BigInteger)  # Timestamp when decision button was clicked (milliseconds unix timestamp)
     human_action: str = Field(default=None, nullable=True)  # Action taken by participant ("allow", "block", "confirm", "override", "none")

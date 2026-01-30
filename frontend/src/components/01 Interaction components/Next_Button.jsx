@@ -31,14 +31,6 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
       };
     }
     
-    // Gray styling for conditions 5 and 6 on the page
-    if (Condition === 5 || Condition === 6) {
-      return {
-        outlineColor: 'var( --decision-button-bg)',
-        backgroundColor: 'var( --decision-button-bg)'
-      };
-    }
-    
   };
 
   const handleClick = () => {
@@ -69,7 +61,7 @@ function Next_Button({ className = "", text = "Next URL", isInSuccessModal = fal
   return (
     // ETH blue outline styled button with navigation logic
     <div 
-      className={`px-6 py-2 bg-white rounded-xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-sm hover:opacity-85 hover:shadow-md transition-all duration-200 ${className}`}
+      className={`px-6 py-2 rounded-2xl inline-flex justify-center items-center gap-1 overflow-hidden cursor-pointer shadow-lg hover:shadow-xl border border-gray-400 transition-all duration-200 hover:bg-gray-50 bg-gray-100 ${className}`}
       style={getButtonStyle()}
       onClick={handleClick}
     >

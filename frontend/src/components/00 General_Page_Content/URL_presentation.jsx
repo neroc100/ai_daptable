@@ -4,6 +4,7 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
 import { useButtonContext } from '../../context/ConditionContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
 import { useResetLocalStorage } from '../../composables/resetLocalStorages';
+import AI_Action_Message_Box from '../AI_action/AI_Action_Message_Box';
 
 /**
  * URL Presentation Component
@@ -13,7 +14,7 @@ import { useResetLocalStorage } from '../../composables/resetLocalStorages';
  * Used across all experiment conditions to present the target URL.
  * 
  */
-function URL_presentation({ showAIClassification = false, classification = 'Malicious' }) {
+function URL_presentation({ showAIClassification = false, classification = 'Malicious', alreadyExecuted = false }) {
   const { currentUrl } = useUrlCounter();
   const { Condition, resetConditionsSeen, addConditionSeen, resetConditionTimes, startConditionTimer } = useButtonContext();
   const { resetUrlSpecificData } = useResetLocalStorage();
@@ -68,28 +69,25 @@ function URL_presentation({ showAIClassification = false, classification = 'Mali
   }, [Condition, currentUrl]); // Re-run when Condition or URL changes
   
   return (
-    // Main URL container with white background and light border
-    <div className={`w-[833px] ${showAIClassification ? 'h-52' : 'h-28'} min-w-56 p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] inline-flex flex-col justify-start items-start space-y-3`} style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
+    <>
       {/* URL input section container */}
-      <div className="self-stretch flex flex-col justify-start items-start">
+      <div className="flex flex-col justify-start items-center w-[90%]">
         {/* URL label */}
-        <div className="self-stretch justify-start text-black text-md font-semibold font-['ui-sans-serif']  leading-loose mb-1">URL</div>
+        <div className="w-full text-center text-xl font-bold font-['ui-sans-serif'] pb-3">URL</div>
         
         {/* URL input field container */}
-        <div className="self-stretch h-8 min-w-40 px-3 py-4 bg-white rounded-lg outline outline-1 outline-offset-[-0.50px] inline-flex justify-start items-center overflow-hidden" style={{ outlineColor: 'var(--eth-blue-40)' }}>
-                  {/* URL text container */}
-        <div className="w-[780px] h-6 relative">
+        <div className="w-full px-6 py-4 bg-white rounded-2xl border-2 flex justify-center items-center shadow-sm" style={{ borderColor: '#9CA3AF' }}>
+        {/* URL text container */}
           {/* Sample URL text - positioned relatively for natural flow */}
-          <div className="w-[780px] justify-start text-black text-md font-normal font-['ui-sans-serif']  leading-normal">
+          <div className="justify-center text-black text-lg font-semibold font-['ui-sans-serif'] leading-normal">
             {urlConfig.url}
           </div>
         </div>
-        </div>
       </div>
       
-      {/* AI Classification - Only shown when showAIClassification is true */}
-      {showAIClassification && <AI_classification classification={classification} />}
-    </div>
+      {/* Horizontal separator */}
+      <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
+    </>
   );
 }
 

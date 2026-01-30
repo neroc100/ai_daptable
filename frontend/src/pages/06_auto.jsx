@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Dashboard_Header from '../components/00 General_Page_Content/Dashboard_Header';
 import URL_presentation from '../components/00 General_Page_Content/URL_presentation';
-import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
-import AI_Completed_Actions_Display from '../components/AI_action/AI_Completed_Actions_Display';
-import AI_auto_display from '../components/AI_action/AI_auto_display';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { getUrlClassification } from '../composables/getURLconfig';
-
+import AI_Overview_Component from '../components/AI_action/AI_Overview_Component';
+import View_Information_Button from '../components/01 Interaction components/View_Information_Button';
+import Next_Button from '../components/01 Interaction components/Next_Button';
 /**
  * Auto Page - Condition 6
  * AI automatic decision implementation with review interface
@@ -30,18 +29,15 @@ function Auto() {
     <div className="min-h-screen bg-white p-8">
       <div className="container mx-auto flex flex-col items-center space-y-3">
         <Dashboard_Header />
-        <URL_presentation showAIClassification={true} classification={classification} />
+        <URL_presentation/>
       
+        <AI_Overview_Component automation_level={'automated'} classification={classification} />
         
-        {/* AI action implementation status */}
-        <AI_Completed_Actions_Display showActionImplementation={true} />
-        
-        {/* AI automatic action interface */}
-        <AI_auto_display 
-          classification={classification}
-        />
-        
-        <Progress_Bar />
+        {/* Navigation button to proceed to next URL */}
+        <div className="flex justify-center">
+          <Next_Button />
+        </div>
+          <Progress_Bar />
       </div>
     </div>
   );

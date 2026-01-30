@@ -33,7 +33,7 @@ function Feature_Box({
 
   return (
     <div
-      className={`w-full relative rounded-xl transition-all duration-300 ease-in-out overflow-hidden shadow-sm hover:shadow-md`}
+      className={`w-full relative rounded-lg transition-all duration-300 ease-in-out overflow-hidden shadow-md hover:shadow-lg`}
       style={{
         backgroundColor,
         height: isExpanded ? `${expandedHeight}px` : '64px'

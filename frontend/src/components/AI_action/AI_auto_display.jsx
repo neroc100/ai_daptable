@@ -16,22 +16,15 @@ import AI_Action_Message_Box from './AI_Action_Message_Box';
  */
 function AI_auto_display({ classification = 'Non-Malicious' }) {
   return (
-    // Main container with ETH blue outline styling
-    <div className="w-[833px] p-4 bg-white rounded-lg outline outline-1 outline-offset-[-1px] flex flex-col items-center space-y-3" style={{ outlineColor: 'var(--eth-blue-40)', backgroundColor: 'var(--box-bg)' }}>
-      
-      {/* AI decision message */}
-      <AI_Action_Message_Box 
-        text={`AI ${classification === 'Malicious' ? 'Blocked' : 'Allowed'} the URL`}
-      />
-      
-      {/* Toggle button for viewing AI analysis information */}
-      <View_Information_Button />
-      
-      {/* Navigation button to proceed to next URL */}
-      <div className="flex justify-center">
-        <Next_Button />
-      </div>
-    </div>
+    <>
+      {/* Main container with ETH blue outline styling */}
+          <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1 mt-1 mb-1">Completed Action</h1>
+        {/* AI decision  message */}
+        <AI_Action_Message_Box 
+          text={`AI ${classification === 'Malicious' ? 'Blocked' : 'Allowed'} the URL`}
+        />
+
+    </>
   );
 }
 
