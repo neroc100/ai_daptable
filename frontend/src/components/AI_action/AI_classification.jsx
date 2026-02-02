@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
  * @param {string} props.classification - The classification to display ('Malicious' or 'Non-Malicious')
  * @returns {JSX.Element} AI classification component
  */
-function AI_classification({ classification = 'Malicious' }) {
+function AI_Classification({ classification = 'Malicious' }) {
 
   const isMalicious = classification === 'Malicious';
   
@@ -36,4 +36,4 @@ function AI_classification({ classification = 'Malicious' }) {
   </>
 );
 }
-export default AI_classification;
+export default AI_Classification;
