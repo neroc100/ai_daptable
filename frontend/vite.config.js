@@ -8,4 +8,11 @@ export default defineConfig({
     react(),
   ],
   root: 'src',
+  build: {
+    outDir: '../dist',  // Output relative to root (src)
+    emptyOutDir: true,
+  },
+  server: {
+    port: 5173,
+  },
 })

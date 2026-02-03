@@ -5,8 +5,6 @@ import { useUrlCounter } from '../../context/UrlCounterContext';
 import { getUrlClassification } from '../../composables/getURLconfig';
 import { useAdaptable } from '../../context/AdaptableContext';
 
-import Separator from '../00 General_Page_Content/Separator';
-
 /**
  * AI Completed Actions Display
  * Shows AI processing stages with completed checkmarks

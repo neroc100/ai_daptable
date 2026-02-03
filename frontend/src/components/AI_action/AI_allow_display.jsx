@@ -1,8 +1,5 @@
 import React from 'react';
-import View_Information_Button from '../01 Interaction components/View_Information_Button';
-import Decision_Button from '../01 Interaction components/Decision_Button';
 import AI_Action_Message_Box from './AI_Action_Message_Box';
-import AI_classification from './AI_classification';
 
 /**
  * AI Allow Display Component

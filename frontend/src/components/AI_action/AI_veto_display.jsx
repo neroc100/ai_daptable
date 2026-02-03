@@ -19,7 +19,7 @@ function AI_veto_display({ classification = 'Non-Malicious' }) {
   return (
     <>
       {/* Main container with ETH blue outline styling */}
-          <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1 mt-1 mb-1">Completed Action</h1>
+          <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1 mt-1mb-1">Completed Action</h1>
         {/* AI decision  message */}
         <AI_Action_Message_Box 
           text={`AI ${classification === 'Malicious' ? 'Blocked' : 'Allowed'} the URL`}

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import AI_classification from '../AI_action/AI_classification';
 import { useUrlCounter } from '../../context/UrlCounterContext';
 import { useButtonContext } from '../../context/ConditionContext';
 import { getUrlConfig } from '../../composables/getURLconfig';
 import { useResetLocalStorage } from '../../composables/resetLocalStorages';
-import AI_Action_Message_Box from '../AI_action/AI_Action_Message_Box';
 
 /**
  * URL Presentation Component

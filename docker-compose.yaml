@@ -1,20 +1,31 @@
-# used in local development
 name: "automation"
-
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: always
+
   db:
     image: postgres:17-alpine
     container_name: db
     ports:
-      - "5434:5432" # Host 5434 → Container 5432
+      - "5434:5432"
     volumes:
       - ./db/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    networks:
+      - app-network
     restart: always
-  
 
   backend:
     build:
@@ -23,15 +34,22 @@ services:
     container_name: automation-backend
     ports:
       - "8000:8000"
+      - "3000:3000"  # If you need WebSocket
     environment:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db  # Connect via service name, not localhost
-      - DB_PORT=5432 # Inside Docker, use container’s internal port
+      - DB_HOST=db
+      - DB_PORT=5432
       - DB_NAME=${DB_NAME}
     depends_on:
       - db
-    restart: always
+    networks:
+      - app-network
     volumes:
       - ./backend:/app
+    restart: always
     command: ["/bin/sh", "-c", "sleep 10 && uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload --proxy-headers --forwarded-allow-ips='*'"]
+
+networks:
+  app-network:
+    driver: bridge

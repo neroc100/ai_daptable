@@ -1,6 +1,4 @@
 import React from 'react';
-import Next_Button from '../01 Interaction components/Next_Button';
-import View_Information_Button from '../01 Interaction components/View_Information_Button';
 import AI_Action_Message_Box from './AI_Action_Message_Box';
 
 /**
