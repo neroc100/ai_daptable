@@ -6,7 +6,7 @@ import AI_auto_Display from './AI_auto_display';
 import AI_veto_display from './AI_veto_display';
 import Adapt_Automation_Button from '../01 Interaction components/Adapt_Automation_Button';
 import View_Information_Button from '../01 Interaction components/View_Information_Button';
-import AI_Classification from './AI_Classification';
+import AI_Classification from './AI_classification';
 
 const AI_Overview_Component = ({ 
     automation_level, 
