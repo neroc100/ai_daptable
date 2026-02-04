@@ -9,10 +9,22 @@ export default defineConfig({
   ],
   root: 'src',
   build: {
-    outDir: '../dist',  // Output relative to root (src)
+    outDir: '../dist',
     emptyOutDir: true,
   },
   server: {
     port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/ws': {
+        target: 'http://localhost:3000',
+        ws: true,
+        changeOrigin: true,
+      }
+    }
   },
 })

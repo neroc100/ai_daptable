@@ -130,7 +130,7 @@ export const useHandleTrialSubmit = () => {
       };
 
       // Send POST request to backend API
-      const response = await fetch('http://localhost:8000/trials', {
+      const response = await fetch('/api/trials', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

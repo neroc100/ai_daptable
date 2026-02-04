@@ -10,7 +10,9 @@ app = FastAPI(title="URL Analysis API")
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite dev server
+    allow_origins=["http://localhost:5173",         # Frontend dev server
+                   "http://aidaptable.ethz.ch",     # Frontend production
+                    "https://aidaptable.ethz.ch" ], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
