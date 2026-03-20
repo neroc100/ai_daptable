@@ -1,19 +1,20 @@
 import { 
-  ethUrlConfig,
-  maliciousUrlConfig,
-  ambiguousLegitimateUrlConfig,
-  ambiguousMaliciousUrlConfig,
-  newsUrlConfig,
-  shoppingUrlConfig,
-  educationUrlConfig,
-  governmentUrlConfig,
-  socialMediaUrlConfig,
-  phishingUrlConfig,
-  cryptoScamUrlConfig,
-  techSupportScamUrlConfig,
-  lotteryScamUrlConfig,
-  bankPhishingUrlConfig,
-  socialMediaScamUrlConfig
+eprintIacrConfig,
+  gnuFtpConfig,
+  princetonMirrorConfig,
+  freebsdPeopleConfig,
+  pkgGoDevConfig,
+  googleSupportConfig,
+  bbcDownloadsConfig,
+  appleDevNewsConfig,
+  cdcDataApiConfig,
+  githubMediaTensorflowConfig,
+  // ─── Malicious configs ──────────────────────────────────────────────────────
+  noreplinfobluewinConfig,
+  linkedlnContactConfig,
+  kungaguesthouseConfig,
+  resolutionCenterAccountConfig,
+  gatcoinsConfig,
 } from '../constants/URL_config';
 
 /**
@@ -37,24 +38,27 @@ import {
  */
 export const getUrlConfig = (urlType) => {
   const urlConfigs = {
-    'eth': ethUrlConfig,
-    'malicious': maliciousUrlConfig,
-    'ambiguousLegitimate': ambiguousLegitimateUrlConfig,
-    'ambiguousMalicious': ambiguousMaliciousUrlConfig,
-    'news': newsUrlConfig,
-    'shopping': shoppingUrlConfig,
-    'education': educationUrlConfig,
-    'government': governmentUrlConfig,
-    'socialMedia': socialMediaUrlConfig,
-    'phishing': phishingUrlConfig,
-    'cryptoScam': cryptoScamUrlConfig,
-    'techSupportScam': techSupportScamUrlConfig,
-    'lotteryScam': lotteryScamUrlConfig,
-    'bankPhishing': bankPhishingUrlConfig,
-    'socialMediaScam': socialMediaScamUrlConfig
+    // Legitimate
+    'academic':          eprintIacrConfig,         // eprint.iacr.org — research paper PDF
+    'softwareDownload':  gnuFtpConfig,              // ftp.gnu.org — open-source archive
+    'education':         princetonMirrorConfig,     // mirror.math.princeton.edu — .edu mirror
+    'personalPage':      freebsdPeopleConfig,       // people.freebsd.org — personal dev page
+    'developer':         pkgGoDevConfig,            // pkg.go.dev — package docs
+    'support':           googleSupportConfig,       // support.google.com — help article
+    'media':             bbcDownloadsConfig,        // downloads.bbc.co.uk — podcast MP3
+    'news':              appleDevNewsConfig,        // developer.apple.com — release notes
+    'government':        cdcDataApiConfig,          // data.cdc.gov — .gov API/CSV
+    'openSource':        githubMediaTensorflowConfig, // media.githubusercontent.com — raw file
+
+    // Malicious
+    'phishing':          noreplinfobluewinConfig,   // fake login on free host, no SSL
+    'socialMediaScam':   linkedlnContactConfig,     // LinkedIn typosquat + redirect
+    'invoiceFraud':      kungaguesthouseConfig,     // subdomain abuse, fake invoice PDF
+    'accountPhishing':   resolutionCenterAccountConfig, // fake resolution-center domain
+    'cryptoScam':        gatcoinsConfig,            // fake crypto site serving .exe
   };
-  
-  return urlConfigs[urlType] || ethUrlConfig; // Default to ethUrlConfig if not found
+
+  return urlConfigs[urlType] || eprintIacrConfig; // Default to eprintIacrConfig if not found
 };
 
 /**

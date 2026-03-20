@@ -18,6 +18,7 @@ export const useHandleNextUrl = () => {
   const handleNextUrl = () => {
     if (urlCount >= maxUrls) {
       // Experiment complete - navigate to redirect page
+      console.log("Experiment complete. Navigating to redirect page.");
       navigate('/redirect');
     } else {
       // More URLs remaining - progress to next URL

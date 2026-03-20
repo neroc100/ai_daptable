@@ -4,6 +4,8 @@ import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useUrlCounter } from '../context/UrlCounterContext';
 import { useResetLocalStorage } from '../composables/resetLocalStorages';
+import { useButtonContext } from '../context/ConditionContext';
+import { useParticipantId } from '../context/ParticipantIdContext';
 
 /**
  * Redirect Page
@@ -16,13 +18,33 @@ function RedirectPage() {
   const navigate = useNavigate();
   const { resetUrlCounter } = useUrlCounter();
   const { resetAllLocalStorage } = useResetLocalStorage();
+  const { Condition } = useButtonContext();
+  const { participantId } = useParticipantId();
+
+  console.log("RedirectPage rendered with Condition:", Condition, "participantId:", participantId);
+  // Qualtrics survey base URL
+  const qualtricsBaseUrl = "https://descil.eu.qualtrics.com/jfe/form/SV_9Kwgn7sjHatyhv0?";
 
   const handleConfirmParticipation = () => {
+    // Extract values BEFORE clearing storage
+    const conditionValue = Condition;
+    const participantIdValue = participantId;
+    
+    console.log("handleConfirmParticipation called. Condition:", conditionValue, "participantId:", participantIdValue);
+    
     resetUrlCounter();
     resetAllLocalStorage();
     
-    // Navigate back to the main page
-    navigate('/');
+    // Redirect to Qualtrics with condition and participantId parameters
+    if (conditionValue && participantIdValue) {
+      const url = `${qualtricsBaseUrl}condition=${encodeURIComponent(conditionValue)}&participantId=${encodeURIComponent(participantIdValue)}`;
+      console.log("Redirecting to:", url);
+      window.location.href = url;
+    } else {
+      // Fallback if contexts are not available
+      console.log("Fallback triggered. Condition:", conditionValue, "participantId:", participantIdValue);
+      navigate('/');
+    }
   };
 
   return (

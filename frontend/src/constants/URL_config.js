@@ -1,112 +1,718 @@
-/**
- * Feature Configuration
- * 
- * This file contains the configuration data for all six feature boxes.
- * Each feature box has a title and an array of features with name and value properties.
- */
+// NOTE: The following dataset was generated without live network access.
+// It is SYNTHETIC / ESTIMATED data for testing and demo purposes only.
+// Do not present these values as results of actual network queries.
 
-// ETH Zurich URL (legitimate)
-export const ethUrlConfig = {
-  url: "https://spg.ethz.ch/group/people/doctoral-students/neele-roch.html",
+export const eprintIacrConfig = {
+  source: "SYNTHETIC",
+  url: "https://eprint.iacr.org/2020/1234.pdf",
   malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "Entropy", value: "High" },
-      { name: "Length", value: "67 characters" },
-      { name: "Letter Count", value: "47 letters" },
-      { name: "Letter Ratio", value: "70.1%" },
-      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "38 characters" },
+      { name: "Letter Count", value: "21 letters" },
+      { name: "Letter Ratio", value: "55.3%" },
+      { name: "Numeric Count", value: "8 numbers" },
       { name: "Out of Place HTTP(S)", value: "0 instances" },
       { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "20 characters" },
-      { name: "Special Characters Ratio", value: "29.9%" },
+      { name: "Special Characters Count", value: "9 characters" },
+      { name: "Special Characters Ratio", value: "23.7%" },
       { name: "Unusual Characters Count", value: "0 characters" },
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-  
+
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
-      { name: "Active Time (Days)", value: "730 days" },
-      { name: "Host", value: "spg.ethz.ch" },
-      { name: "Lifetime (Days)", value: "730 days" },
-      { name: "Number of Directories", value: "3 directories" },
-      { name: "Path", value: "/group/people/doctoral-students/" },
-      { name: "Top Level Domain", value: ".ch" }
+      { name: "Active Time (Days)", value: "4,867 days" },
+      { name: "Host", value: "eprint.iacr.org" },
+      { name: "Lifetime (Days)", value: "4,872 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/2020/" },
+      { name: "Top Level Domain", value: ".org" }
     ]
   },
-  
+
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
-      { name: "HTTP Response", value: "200 OK" },
+      { name: "HTTP Response", value: "200 OK" }, // PDF served
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-  
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // official org hosts
+      { name: "Number of Mail Exchange Records", value: "2 records" },
+      { name: "Number of Name Servers", value: "5 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "N/A" }, // direct PDF
+      { name: "Attachment Type", value: "PDF" } //eprint paper
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const gnuFtpConfig = {
+  source: "SYNTHETIC",
+  url: "https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "47 characters" },
+      { name: "Letter Count", value: "30 letters" },
+      { name: "Letter Ratio", value: "63.8%" },
+      { name: "Numeric Count", value: "4 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "13 characters" },
+      { name: "Special Characters Ratio", value: "27.7%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "7,453 days" },
+      { name: "Host", value: "ftp.gnu.org" },
+      { name: "Lifetime (Days)", value: "7,459 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/gnu/wget/" },
+      { name: "Top Level Domain", value: ".org" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // file served
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // official infra
+      { name: "Number of Mail Exchange Records", value: "3 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "N/A" }, // binary/archive listing
+      { name: "Attachment Type", value: "tar.gz" } // archive
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "France" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const princetonMirrorConfig = {
+  source: "SYNTHETIC",
+  url: "https://mirror.math.princeton.edu/pub/tex-archive/",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "50 characters" },
+      { name: "Letter Count", value: "40 letters" },
+      { name: "Letter Ratio", value: "80.0%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "10 characters" },
+      { name: "Special Characters Ratio", value: "20.0%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "9,137 days" },
+      { name: "Host", value: "mirror.math.princeton.edu" },
+      { name: "Lifetime (Days)", value: "9,140 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/pub/tex-archive/" },
+      { name: "Top Level Domain", value: ".edu" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, //directory listing
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
       { name: "Similarity of Name Server Names", value: "High" },
       { name: "Number of Mail Exchange Records", value: "2 records" },
-      { name: "Number of Name Servers", value: "4 servers" }
+      { name: "Number of Name Servers", value: "3 servers" }
     ]
   },
-  
+
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "156 elements" }
+      { name: "Number of HTML Elements", value: "118 elements" }
     ]
   },
-  
+
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
-      { name: "Registration Country", value: "Switzerland" },
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const freebsdPeopleConfig = {
+  source: "SYNTHETIC",
+  url: "https://people.freebsd.org/~phk/",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "32 characters" },
+      { name: "Letter Count", value: "24 letters" },
+      { name: "Letter Ratio", value: "75.0%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "8 characters" },
+      { name: "Special Characters Ratio", value: "25.0%" },
+      { name: "Unusual Characters Count", value: "1 character" }, // tilde ~
+      { name: "Unusual Characters Ratio", value: "3.1%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "8,912 days" },
+      { name: "Host", value: "people.freebsd.org" },
+      { name: "Lifetime (Days)", value: "8,915 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/~phk/" },
+      { name: "Top Level Domain", value: ".org" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // personal page
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // project infra
+      { name: "Number of Mail Exchange Records", value: "2 records" },
+      { name: "Number of Name Servers", value: "3 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "42 elements" }
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const pkgGoDevConfig = {
+  source: "SYNTHETIC",
+  url: "https://pkg.go.dev/github.com/spf13/cobra",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "41 characters" },
+      { name: "Letter Count", value: "30 letters" },
+      { name: "Letter Ratio", value: "73.2%" },
+      { name: "Numeric Count", value: "2 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "9 characters" },
+      { name: "Special Characters Ratio", value: "22.0%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "2,327 days" },
+      { name: "Host", value: "pkg.go.dev" },
+      { name: "Lifetime (Days)", value: "2,330 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/github.com/spf13/cobra" },
+      { name: "Top Level Domain", value: ".dev" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // package page
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // managed infra
+      { name: "Number of Mail Exchange Records", value: "1 record" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "237 elements" }
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const googleSupportConfig = {
+  source: "SYNTHETIC",
+  url: "https://support.google.com/accounts/answer/7682439?hl=en",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "56 characters" },
+      { name: "Letter Count", value: "39 letters" },
+      { name: "Letter Ratio", value: "69.6%" },
+      { name: "Numeric Count", value: "7 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "10 characters" },
+      { name: "Special Characters Ratio", value: "17.9%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "7,981 days" },
+      { name: "Host", value: "support.google.com" },
+      { name: "Lifetime (Days)", value: "7,984 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/accounts/answer/" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // support article
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // global infra
+      { name: "Number of Mail Exchange Records", value: "5 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "513 elements" }
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
       { name: "Number of Countries for IP Lookup", value: "3 countries" }
     ]
   }
 };
 
-// Malicious URL example
-export const maliciousUrlConfig = {
-  url: "https://free-gift-card-claim-now.xyz/secure-verification/account-update",
+
+export const bbcDownloadsConfig = {
+  source: "SYNTHETIC",
+  url: "https://downloads.bbc.co.uk/podcasts/worldservice/globalnews/globalnews_20251014-2000a.mp3",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "90 characters" },
+      { name: "Letter Count", value: "64 letters" },
+      { name: "Letter Ratio", value: "71.1%" },
+      { name: "Numeric Count", value: "13 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "13 characters" },
+      { name: "Special Characters Ratio", value: "14.4%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "10,142 days" },
+      { name: "Host", value: "downloads.bbc.co.uk" },
+      { name: "Lifetime (Days)", value: "10,145 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/podcasts/worldservice/globalnews/" },
+      { name: "Top Level Domain", value: ".uk" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // MP3 served
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // corporate infra
+      { name: "Number of Mail Exchange Records", value: "2 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "N/A" }, // direct media file
+      { name: "Attachment Type", value: "MP3" } // podcast episode
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United Kingdom" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const appleDevNewsConfig = {
+  source: "SYNTHETIC",
+  url: "https://developer.apple.com/news/releases/?id=10142025a",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "55 characters" },
+      { name: "Letter Count", value: "37 letters" },
+      { name: "Letter Ratio", value: "67.3%" },
+      { name: "Numeric Count", value: "8 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "10 characters" },
+      { name: "Special Characters Ratio", value: "18.2%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "7,996 days" },
+      { name: "Host", value: "developer.apple.com" },
+      { name: "Lifetime (Days)", value: "8,002 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/news/releases/" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // news list
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // corporate
+      { name: "Number of Mail Exchange Records", value: "5 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "223 elements" }
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "3 countries" }
+    ]
+  }
+};
+
+
+export const cdcDataApiConfig = {
+  source: "SYNTHETIC",
+  url: "https://data.cdc.gov/api/views/9mfq-cb36/rows.csv?accessType=DOWNLOAD",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Medium" },
+      { name: "Length", value: "69 characters" },
+      { name: "Letter Count", value: "53 letters" },
+      { name: "Letter Ratio", value: "76.8%" },
+      { name: "Numeric Count", value: "3 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "13 characters" },
+      { name: "Special Characters Ratio", value: "18.8%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "4,013 days" },
+      { name: "Host", value: "data.cdc.gov" },
+      { name: "Lifetime (Days)", value: "4,018 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/api/views/" },
+      { name: "Top Level Domain", value: ".gov" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // CSV served
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // gov infra
+      { name: "Number of Mail Exchange Records", value: "1 record" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "N/A" }, // CSV resource
+      { name: "Attachment Type", value: "CSV" } // tabular download
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+export const githubMediaTensorflowConfig = {
+  source: "SYNTHETIC",
+  url: "https://media.githubusercontent.com/media/tensorflow/tensorflow/master/README.md",
+  malicious: false,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Low" },
+      { name: "Length", value: "78 characters" },
+      { name: "Letter Count", value: "67 letters" },
+      { name: "Letter Ratio", value: "85.9%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "11 characters" },
+      { name: "Special Characters Ratio", value: "14.1%" },
+      { name: "Unusual Characters Count", value: "0 characters" },
+      { name: "Unusual Characters Ratio", value: "0.0%" }
+    ]
+  },
+
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "4,029 days" },
+      { name: "Host", value: "media.githubusercontent.com" },
+      { name: "Lifetime (Days)", value: "4,032 days" },
+      { name: "Number of Directories", value: "4 directories" },
+      { name: "Path", value: "/media/tensorflow/tensorflow/master/" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" }, // raw README text
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "High" }, // github infra
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "4 servers" }
+    ]
+  },
+
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "N/A" }, // raw markdown
+      { name: "Attachment Type", value: "Markdown" } // README.md
+    ]
+  },
+
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "United States" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+
+// MALICIOUS SAMPLES BELOW
+export const noreplinfobluewinConfig = {
+  url: "http://noreplinfobluewin89525.myfreesites.net/secure-login?user=admin&id=001",
   malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
       { name: "Entropy", value: "Very High" },
-      { name: "Length", value: "89 characters" },
-      { name: "Letter Count", value: "32 letters" },
-      { name: "Letter Ratio", value: "36.0%" },
-      { name: "Numeric Count", value: "8 numbers" },
+      { name: "Length", value: "68 characters" },
+      { name: "Letter Count", value: "47 letters" },
+      { name: "Letter Ratio", value: "69.1%" },
+      { name: "Numeric Count", value: "5 numbers" },
       { name: "Out of Place HTTP(S)", value: "0 instances" },
       { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "49 characters" },
-      { name: "Special Characters Ratio", value: "55.1%" },
-      { name: "Unusual Characters Count", value: "3 characters" },
-      { name: "Unusual Characters Ratio", value: "3.4%" }
+      { name: "Special Characters Count", value: "16 characters" },
+      { name: "Special Characters Ratio", value: "23.5%" },
+      { name: "Unusual Characters Count", value: "1 characters" },
+      { name: "Unusual Characters Ratio", value: "1.5%" }
     ]
   },
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
-      { name: "Active Time (Days)", value: "45 days" },
-      { name: "Host", value: "free-gift-card-claim-now.xyz" },
-      { name: "Lifetime (Days)", value: "45 days" },
-      { name: "Number of Directories", value: "5 directories" },
-      { name: "Path", value: "/secure-verification/account-update" },
-      { name: "Top Level Domain", value: ".xyz" }
+      { name: "Active Time (Days)", value: "87 days" },
+      { name: "Host", value: "noreplinfobluewin89525.myfreesites.net" },
+      { name: "Lifetime (Days)", value: "180 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/secure-login/" },
+      { name: "Top Level Domain", value: ".net" }
     ]
   },
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
       { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
+      { name: "SSL Enabled", value: "No" }
     ]
   },
   dnsNetwork: {
@@ -114,296 +720,159 @@ export const maliciousUrlConfig = {
     features: [
       { name: "Similarity of Name Server Names", value: "Low" },
       { name: "Number of Mail Exchange Records", value: "1 record" },
-      { name: "Number of Name Servers", value: "1 server" }
+      { name: "Number of Name Servers", value: "2 servers" }
     ]
   },
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "850 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Panama" },
-      { name: "Number of Countries for IP Lookup", value: "7 countries" }
-    ]
-  }
-};
-
-// Ambiguous legitimate URL (e-commerce site with some suspicious features)
-export const ambiguousLegitimateUrlConfig = {
-  url: "https://discount-electronics-store.net/shop/electronics/phones/smartphones/prizes",
-  malicious: false,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "High" },
-      { name: "Length", value: "78 characters" },
-      { name: "Letter Count", value: "58 letters" },
-      { name: "Letter Ratio", value: "74.4%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "20 characters" },
-      { name: "Special Characters Ratio", value: "25.6%" },
-      { name: "Unusual Characters Count", value: "2 characters" },
-      { name: "Unusual Characters Ratio", value: "2.6%" }
-    ]
-  },
-  
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "200 days" },
-      { name: "Host", value: "discount-electronics-store.net" },
-      { name: "Lifetime (Days)", value: "200 days" },
-      { name: "Number of Directories", value: "5 directories" },
-      { name: "Path", value: "/shop/electronics/phones/" },
-      { name: "Top Level Domain", value: ".net" }
-    ]
-  },
-  
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "420 elements" }
-    ]
-  },
-  
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Panama" },
-      { name: "Number of Countries for IP Lookup", value: "7 countries" }
-    ]
-  }
-};
-
-// Ambiguous malicious URL (phishing site that looks legitimate)
-export const ambiguousMaliciousUrlConfig = {
-  url: "https://secure-banking-login-verification.com/аccount/security/updаte",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Medium" },
-      { name: "Length", value: "72 characters" },
-      { name: "Letter Count", value: "55 letters" },
-      { name: "Letter Ratio", value: "76.4%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "17 characters" },
-      { name: "Special Characters Ratio", value: "23.6%" },
-      { name: "Unusual Characters Count", value: "2 characters" },
-      { name: "Unusual Characters Ratio", value: "2.8%" }
-    ]
-  },
-  
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "120 days" },
-      { name: "Host", value: "secure-banking-login-verification.com" },
-      { name: "Lifetime (Days)", value: "120 days" },
-      { name: "Number of Directories", value: "3 directories" },
-      { name: "Path", value: "/account/security/" },
-      { name: "Top Level Domain", value: ".com" }
-    ]
-  },
-  
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "680 elements" }
-    ]
-  },
-  
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Costa Rica" },
-      { name: "Number of Countries for IP Lookup", value: "6 countries" }
-    ]
-  }
-};
-
-// Additional URL configurations for testing variety
-
-// Legitimate news website
-export const newsUrlConfig = {
-  url: "https://www.bbc.com/news/technology/2024/01/15/artificial-intelligence-breakthrough",
-  malicious: false,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Medium" },
-      { name: "Length", value: "95 characters" },
-      { name: "Letter Count", value: "78 letters" },
-      { name: "Letter Ratio", value: "82.1%" },
-      { name: "Numeric Count", value: "4 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "13 characters" },
-      { name: "Special Characters Ratio", value: "13.7%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "10950 days" },
-      { name: "Host", value: "www.bbc.com" },
-      { name: "Lifetime (Days)", value: "10950 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/news/technology/2024/01/15/" },
-      { name: "Top Level Domain", value: ".com" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "High" },
-      { name: "Number of Mail Exchange Records", value: "5 records" },
-      { name: "Number of Name Servers", value: "8 servers" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "320 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "United Kingdom" },
-      { name: "Number of Countries for IP Lookup", value: "2 countries" }
-    ]
-  }
-};
-
-// E-commerce shopping site
-export const shoppingUrlConfig = {
-  url: "https://shop.amazon.com/dp/B08N5WRWNW/ref=sr_1_1",
-  malicious: false,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "High" },
-      { name: "Length", value: "68 characters" },
-      { name: "Letter Count", value: "45 letters" },
-      { name: "Letter Ratio", value: "66.2%" },
-      { name: "Numeric Count", value: "10 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "13 characters" },
-      { name: "Special Characters Ratio", value: "19.1%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "10950 days" },
-      { name: "Host", value: "shop.amazon.com" },
-      { name: "Lifetime (Days)", value: "10950 days" },
-      { name: "Number of Directories", value: "2 directories" },
-      { name: "Path", value: "/dp/B08N5WRWNW/" },
-      { name: "Top Level Domain", value: ".com" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "High" },
-      { name: "Number of Mail Exchange Records", value: "10 records" },
-      { name: "Number of Name Servers", value: "12 servers" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "1250 elements" }
+      { name: "Number of HTML Elements", value: "53 elements" }
     ]
   },
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
       { name: "Registration Country", value: "United States" },
-      { name: "Number of Countries for IP Lookup", value: "5 countries" }
+      { name: "Number of Countries for IP Lookup", value: "2 countries" }
     ]
   }
 };
 
-// Educational institution
-export const educationUrlConfig = {
-  url: "https://web.mit.edu/18.06/www/Spring17/Spring17.html",
-  malicious: false,
+export const linkedlnContactConfig = {
+  url: "https://linkedln-contact.000webhostapp.com/update-account/verify.php?redirect=http://linkedln-contact.000webhostapp.com",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "Entropy", value: "Medium" },
-      { name: "Length", value: "58 characters" },
-      { name: "Letter Count", value: "42 letters" },
-      { name: "Letter Ratio", value: "72.4%" },
-      { name: "Numeric Count", value: "4 numbers" },
+      { name: "Entropy", value: "High" },
+      { name: "Length", value: "114 characters" },
+      { name: "Letter Count", value: "70 letters" },
+      { name: "Letter Ratio", value: "61.4%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "1 instance" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "43 characters" },
+      { name: "Special Characters Ratio", value: "37.7%" },
+      { name: "Unusual Characters Count", value: "2 characters" },
+      { name: "Unusual Characters Ratio", value: "1.8%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "120 days" },
+      { name: "Host", value: "linkedln-contact.000webhostapp.com" },
+      { name: "Lifetime (Days)", value: "180 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/update-account/verify.php" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "404 Not Found" },
+      { name: "SSL Enabled", value: "Yes" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Medium" },
+      { name: "Number of Mail Exchange Records", value: "2 records" },
+      { name: "Number of Name Servers", value: "3 servers" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "28 elements" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Netherlands" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+export const kungaguesthouseConfig = {
+  url: "http://kungaguesthouse.com/payments.secure-login.kungaguesthouse.com.com/invoice.pdf",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Very High" },
+      { name: "Length", value: "78 characters" },
+      { name: "Letter Count", value: "51 letters" },
+      { name: "Letter Ratio", value: "65.4%" },
+      { name: "Numeric Count", value: "0 numbers" },
       { name: "Out of Place HTTP(S)", value: "0 instances" },
       { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "12 characters" },
-      { name: "Special Characters Ratio", value: "20.7%" },
+      { name: "Special Characters Count", value: "27 characters" },
+      { name: "Special Characters Ratio", value: "34.6%" },
+      { name: "Unusual Characters Count", value: "3 characters" },
+      { name: "Unusual Characters Ratio", value: "3.8%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "45 days" },
+      { name: "Host", value: "kungaguesthouse.com" },
+      { name: "Lifetime (Days)", value: "90 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/payments.secure-login.kungaguesthouse.com.com/" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "12 elements" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Russia" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+export const resolutionCenterAccountConfig = {
+  url: "https://signin.resolution-center-account.com/support/signin?sessiontoken=AAA123&utm_source=email",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "High" },
+      { name: "Length", value: "79 characters" },
+      { name: "Letter Count", value: "54 letters" },
+      { name: "Letter Ratio", value: "68.4%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "25 characters" },
+      { name: "Special Characters Ratio", value: "31.6%" },
       { name: "Unusual Characters Count", value: "0 characters" },
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
@@ -411,12 +880,12 @@ export const educationUrlConfig = {
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
-      { name: "Active Time (Days)", value: "10950 days" },
-      { name: "Host", value: "web.mit.edu" },
-      { name: "Lifetime (Days)", value: "10950 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/18.06/www/Spring17/" },
-      { name: "Top Level Domain", value: ".edu" }
+      { name: "Active Time (Days)", value: "150 days" },
+      { name: "Host", value: "signin.resolution-center-account.com" },
+      { name: "Lifetime (Days)", value: "365 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/support/signin" },
+      { name: "Top Level Domain", value: ".com" }
     ]
   },
   encryptionHttp: {
@@ -431,162 +900,39 @@ export const educationUrlConfig = {
     features: [
       { name: "Similarity of Name Server Names", value: "High" },
       { name: "Number of Mail Exchange Records", value: "3 records" },
-      { name: "Number of Name Servers", value: "6 servers" }
+      { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "180 elements" }
+      { name: "Number of HTML Elements", value: "65 elements" }
     ]
   },
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
-      { name: "Registration Country", value: "United States" },
-      { name: "Number of Countries for IP Lookup", value: "1 country" }
+      { name: "Registration Country", value: "United Kingdom" },
+      { name: "Number of Countries for IP Lookup", value: "2 countries" }
     ]
   }
 };
 
-// Government website
-export const governmentUrlConfig = {
-  url: "https://www.usa.gov/visas-and-immigration",
-  malicious: false,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Low" },
-      { name: "Length", value: "45 characters" },
-      { name: "Letter Count", value: "35 letters" },
-      { name: "Letter Ratio", value: "77.8%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "10 characters" },
-      { name: "Special Characters Ratio", value: "22.2%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "7300 days" },
-      { name: "Host", value: "www.usa.gov" },
-      { name: "Lifetime (Days)", value: "7300 days" },
-      { name: "Number of Directories", value: "1 directory" },
-      { name: "Path", value: "/visas-and-immigration" },
-      { name: "Top Level Domain", value: ".gov" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "High" },
-      { name: "Number of Mail Exchange Records", value: "4 records" },
-      { name: "Number of Name Servers", value: "8 servers" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "450 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "United States" },
-      { name: "Number of Countries for IP Lookup", value: "1 country" }
-    ]
-  }
-};
-
-// Social media platform
-export const socialMediaUrlConfig = {
-  url: "https://www.linkedin.com/in/johndoe123/recent-activity/",
-  malicious: false,
+export const gatcoinsConfig = {
+  url: "http://gatcoins.io//downloads/update_installer.exe",
+  malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
       { name: "Entropy", value: "Medium" },
-      { name: "Length", value: "58 characters" },
-      { name: "Letter Count", value: "45 letters" },
-      { name: "Letter Ratio", value: "77.6%" },
-      { name: "Numeric Count", value: "3 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "10 characters" },
-      { name: "Special Characters Ratio", value: "17.2%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "7300 days" },
-      { name: "Host", value: "www.linkedin.com" },
-      { name: "Lifetime (Days)", value: "7300 days" },
-      { name: "Number of Directories", value: "3 directories" },
-      { name: "Path", value: "/in/johndoe123/recent-activity/" },
-      { name: "Top Level Domain", value: ".com" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "Yes" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "High" },
-      { name: "Number of Mail Exchange Records", value: "6 records" },
-      { name: "Number of Name Servers", value: "10 servers" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "890 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "United States" },
-      { name: "Number of Countries for IP Lookup", value: "3 countries" }
-    ]
-  }
-};
-
-// Suspicious phishing attempt
-export const phishingUrlConfig = {
-  url: "https://secure-paypal-verification-urgent.tk/account/security/update-now",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Very High" },
-      { name: "Length", value: "78 characters" },
-      { name: "Letter Count", value: "52 letters" },
-      { name: "Letter Ratio", value: "66.7%" },
+      { name: "Length", value: "42 characters" },
+      { name: "Letter Count", value: "27 letters" },
+      { name: "Letter Ratio", value: "64.3%" },
       { name: "Numeric Count", value: "0 numbers" },
       { name: "Out of Place HTTP(S)", value: "0 instances" },
       { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "26 characters" },
-      { name: "Special Characters Ratio", value: "33.3%" },
+      { name: "Special Characters Count", value: "15 characters" },
+      { name: "Special Characters Ratio", value: "35.7%" },
       { name: "Unusual Characters Count", value: "0 characters" },
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
@@ -594,12 +940,12 @@ export const phishingUrlConfig = {
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
-      { name: "Active Time (Days)", value: "15 days" },
-      { name: "Host", value: "secure-paypal-verification-urgent.tk" },
-      { name: "Lifetime (Days)", value: "15 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/account/security/update-now" },
-      { name: "Top Level Domain", value: ".tk" }
+      { name: "Active Time (Days)", value: "240 days" },
+      { name: "Host", value: "gatcoins.io" },
+      { name: "Lifetime (Days)", value: "365 days" },
+      { name: "Number of Directories", value: "1 directory" },
+      { name: "Path", value: "/downloads/" },
+      { name: "Top Level Domain", value: ".io" }
     ]
   },
   encryptionHttp: {
@@ -612,330 +958,22 @@ export const phishingUrlConfig = {
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
+      { name: "Similarity of Name Server Names", value: "Medium" },
+      { name: "Number of Mail Exchange Records", value: "1 record" },
+      { name: "Number of Name Servers", value: "2 servers" }
     ]
   },
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "1200 elements" }
+      { name: "Number of HTML Elements", value: "15 elements" }
     ]
   },
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
-      { name: "Registration Country", value: "Tokelau" },
-      { name: "Number of Countries for IP Lookup", value: "12 countries" }
+      { name: "Registration Country", value: "Canada" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
     ]
   }
 };
-
-// Cryptocurrency scam
-export const cryptoScamUrlConfig = {
-  url: "https://bitcoin-double-investment-now.cf/secure-wallet/claim-rewards",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Very High" },
-      { name: "Length", value: "75 characters" },
-      { name: "Letter Count", value: "48 letters" },
-      { name: "Letter Ratio", value: "64.0%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "27 characters" },
-      { name: "Special Characters Ratio", value: "36.0%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "8 days" },
-      { name: "Host", value: "bitcoin-double-investment-now.cf" },
-      { name: "Lifetime (Days)", value: "8 days" },
-      { name: "Number of Directories", value: "3 directories" },
-      { name: "Path", value: "/secure-wallet/claim-rewards" },
-      { name: "Top Level Domain", value: ".cf" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "No" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "950 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Central African Republic" },
-      { name: "Number of Countries for IP Lookup", value: "15 countries" }
-    ]
-  }
-};
-
-// Fake tech support
-export const techSupportScamUrlConfig = {
-  url: "https://microsoft-security-alert-urgent.ml/support/remote-access/fix-now",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "High" },
-      { name: "Length", value: "72 characters" },
-      { name: "Letter Count", value: "52 letters" },
-      { name: "Letter Ratio", value: "72.2%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "20 characters" },
-      { name: "Special Characters Ratio", value: "27.8%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "12 days" },
-      { name: "Host", value: "microsoft-security-alert-urgent.ml" },
-      { name: "Lifetime (Days)", value: "12 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/support/remote-access/fix-now" },
-      { name: "Top Level Domain", value: ".ml" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "No" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "1100 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Mali" },
-      { name: "Number of Countries for IP Lookup", value: "18 countries" }
-    ]
-  }
-};
-
-// Fake lottery winner
-export const lotteryScamUrlConfig = {
-  url: "https://euro-millions-winner-claim-prize.gq/verify-identity/collect-now",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Very High" },
-      { name: "Length", value: "68 characters" },
-      { name: "Letter Count", value: "48 letters" },
-      { name: "Letter Ratio", value: "70.6%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "20 characters" },
-      { name: "Special Characters Ratio", value: "29.4%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "6 days" },
-      { name: "Host", value: "euro-millions-winner-claim-prize.gq" },
-      { name: "Lifetime (Days)", value: "6 days" },
-      { name: "Number of Directories", value: "3 directories" },
-      { name: "Path", value: "/verify-identity/collect-now" },
-      { name: "Top Level Domain", value: ".gq" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "No" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "800 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Equatorial Guinea" },
-      { name: "Number of Countries for IP Lookup", value: "20 countries" }
-    ]
-  }
-};
-
-// Fake bank phishing
-export const bankPhishingUrlConfig = {
-  url: "https://chase-bank-security-update-required.ga/online-banking/login/verify",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "High" },
-      { name: "Length", value: "74 characters" },
-      { name: "Letter Count", value: "58 letters" },
-      { name: "Letter Ratio", value: "78.4%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "16 characters" },
-      { name: "Special Characters Ratio", value: "21.6%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "10 days" },
-      { name: "Host", value: "chase-bank-security-update-required.ga" },
-      { name: "Lifetime (Days)", value: "10 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/online-banking/login/verify" },
-      { name: "Top Level Domain", value: ".ga" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "No" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "1050 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Gabon" },
-      { name: "Number of Countries for IP Lookup", value: "22 countries" }
-    ]
-  }
-};
-
-// Fake social media verification
-export const socialMediaScamUrlConfig = {
-  url: "https://instagram-account-verification-urgent.tk/verify/identity/restore-access",
-  malicious: true,
-  urlStringAnalysis: {
-    title: "URL String Analysis",
-    features: [
-      { name: "Entropy", value: "Very High" },
-      { name: "Length", value: "82 characters" },
-      { name: "Letter Count", value: "62 letters" },
-      { name: "Letter Ratio", value: "75.6%" },
-      { name: "Numeric Count", value: "0 numbers" },
-      { name: "Out of Place HTTP(S)", value: "0 instances" },
-      { name: "Out of Place WWW", value: "0 instances" },
-      { name: "Special Characters Count", value: "20 characters" },
-      { name: "Special Characters Ratio", value: "24.4%" },
-      { name: "Unusual Characters Count", value: "0 characters" },
-      { name: "Unusual Characters Ratio", value: "0.0%" }
-    ]
-  },
-  domainCharacteristics: {
-    title: "Domain Characteristics and Structure",
-    features: [
-      { name: "Active Time (Days)", value: "7 days" },
-      { name: "Host", value: "instagram-account-verification-urgent.tk" },
-      { name: "Lifetime (Days)", value: "7 days" },
-      { name: "Number of Directories", value: "4 directories" },
-      { name: "Path", value: "/verify/identity/restore-access" },
-      { name: "Top Level Domain", value: ".tk" }
-    ]
-  },
-  encryptionHttp: {
-    title: "Encryption and HTTP Response",
-    features: [
-      { name: "HTTP Response", value: "200 OK" },
-      { name: "SSL Enabled", value: "No" }
-    ]
-  },
-  dnsNetwork: {
-    title: "DNS and Network Information",
-    features: [
-      { name: "Similarity of Name Server Names", value: "Very Low" },
-      { name: "Number of Mail Exchange Records", value: "0 records" },
-      { name: "Number of Name Servers", value: "1 server" }
-    ]
-  },
-  webpageContent: {
-    title: "Webpage Content and Structure",
-    features: [
-      { name: "Number of HTML Elements", value: "1150 elements" }
-    ]
-  },
-  geographicalHosting: {
-    title: "Geographical and Hosting Information",
-    features: [
-      { name: "Registration Country", value: "Tokelau" },
-      { name: "Number of Countries for IP Lookup", value: "25 countries" }
-    ]
-  }
-};
-
-// Default to ETH URL
-export const urlConfigs = ethUrlConfig;
