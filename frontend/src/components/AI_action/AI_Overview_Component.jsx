@@ -7,6 +7,7 @@ import AI_veto_display from './AI_veto_display';
 import Adapt_Automation_Button from '../01 Interaction components/Adapt_Automation_Button';
 import View_Information_Button from '../01 Interaction components/View_Information_Button';
 import AI_Classification from './AI_classification';
+import Separator from '../00 General_Page_Content/Separator';
 
 const AI_Overview_Component = ({ 
     automation_level, 
@@ -73,7 +74,7 @@ const AI_Overview_Component = ({
                 )
             ) : (
                 <div className="flex flex-col gap-6 w-full mt-8">
-                    <div className="flex flex-row gap-8 items-start w-full">
+                    <div className="flex flex-row gap-8 items-stretch w-full">
                         {/* Left Column */}
                         <div className="w-1/2 flex flex-col gap-3 border-r border-gray-300 pr-8">
                             <AI_Completed_Actions_Display {...getCompletedActionsProps()} />
@@ -83,7 +84,7 @@ const AI_Overview_Component = ({
                         <div className="w-1/2 flex flex-col gap-3 pl-8">
                             <AI_Classification classification={classification} />
                             {/* Horizontal separator */}
-                            <div className="w-full h-px bg-gray-400 mb-4 mt-4"></div>
+                            <Separator />
                             {renderAutomationLevelComponent()}
                         </div>
                     </div>
@@ -93,7 +94,7 @@ const AI_Overview_Component = ({
                 </div>
             )}
                   {/* Horizontal separator */}
-      <div className="w-full h-px bg-gray-400 mb-4 mt-4"></div>
+        <Separator />
         </div>
     );
 };

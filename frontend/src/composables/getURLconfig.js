@@ -15,7 +15,7 @@ eprintIacrConfig,
   kungaguesthouseConfig,
   resolutionCenterAccountConfig,
   gatcoinsConfig,
-} from '../constants/URL_config';
+} from '../constants/URL_config.js';
 
 /**
  * Get URL configuration based on URL type

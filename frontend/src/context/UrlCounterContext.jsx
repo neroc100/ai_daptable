@@ -56,6 +56,44 @@ export const useUrlCounter = () => {
  * @returns {JSX.Element} Provider component with URL counter context
  */
 export const UrlCounterProvider = ({ children }) => {
+  /**
+   * Array of all URL types in the experiment
+   * 
+   * These represent different categories of URLs that users will evaluate:
+   * - Legitimate: academic, softwareDownload, education, personalPage, developer, support, media, news, government, openSource
+   * - Malicious: phishing, socialMediaScam, invoiceFraud, accountPhishing, cryptoScam
+   * 
+   * The order is consistent with the URL configuration.
+   */
+  const urlTypes = [
+    // Legitimate
+    'academic',         // eprint.iacr.org — research paper PDF
+    'softwareDownload',  // ftp.gnu.org — open-source archive
+    'education',         // mirror.math.princeton.edu — .edu mirror
+    'personalPage',      // people.freebsd.org — personal dev page
+    'developer',         // pkg.go.dev — package docs
+    'support',           // support.google.com — help article
+    'media',             // downloads.bbc.co.uk — podcast MP3
+    'news',              // developer.apple.com — release notes
+    'government',        // data.cdc.gov — .gov API/CSV
+    'openSource',        // media.githubusercontent.com — raw file
+
+    // Malicious
+    'phishing',          // fake login on free host, no SSL
+    'socialMediaScam',   // LinkedIn typosquat + redirect
+    'invoiceFraud',      // subdomain abuse, fake invoice PDF
+    'accountPhishing',   // fake resolution-center domain
+    'cryptoScam',        // fake crypto site serving .exe
+  ];
+
+  /**
+   * Gets a random URL type from the urlTypes array
+   * @returns {string} A random URL type
+   */
+  const getRandomUrlType = () => {
+    return urlTypes[Math.floor(Math.random() * urlTypes.length)];
+  };
+
   // State for tracking current URL number (1-MAX_NUM_URL)
   const [urlCount, setUrlCount] = useState(() => {
     // Initialize from localStorage if available
@@ -66,7 +104,7 @@ export const UrlCounterProvider = ({ children }) => {
   // State for tracking current URL type being displayed
   const [currentUrl, setCurrentUrl] = useState(() => {
     // Initialize from localStorage if available
-    return localStorage.getItem('current_url') || 'eth';
+    return localStorage.getItem('current_url') || getRandomUrlType();
   });
   
   // Maximum number of URLs in the experiment
@@ -84,34 +122,6 @@ export const UrlCounterProvider = ({ children }) => {
 
   // Debug logging to track state changes
   console.log('UrlCounterProvider is rendering with:', { urlCount, currentUrl, maxUrls });
-
-  /**
-   * Array of all URL types in the experiment
-   * 
-   * These represent different categories of URLs that users will evaluate:
-   * - Legitimate: education, eth, socialMedia, news, government, shopping
-   * - Malicious: phishing, cryptoScam, techSupportScam, bankPhishing, malicious, lotteryScam, socialMediaScam
-   * - Ambiguous: ambiguousLegitimate, ambiguousMalicious
-   * 
-   * The order is shuffled to prevent learning effects during the experiment.
-   */
-  const urlTypes = [
-    'phishing',           // Malicious phishing site
-    'education',          // Legitimate educational site
-    'cryptoScam',         // Malicious cryptocurrency scam
-    'eth',                // Legitimate ETH-related site
-    'socialMedia',        // Legitimate social media platform
-    'techSupportScam',    // Malicious tech support scam
-    'ambiguousLegitimate', // Ambiguous but legitimate site
-    'bankPhishing',       // Malicious banking phishing site
-    'news',               // Legitimate news website
-    'malicious',          // General malicious site
-    'lotteryScam',        // Malicious lottery scam
-    'government',         // Legitimate government website
-    'shopping',           // Legitimate e-commerce site
-    'socialMediaScam',    // Malicious social media scam
-    'ambiguousMalicious'  // Ambiguous but malicious site
-  ];
 
   /**
    * Increments the URL counter to the next number
@@ -146,15 +156,15 @@ export const UrlCounterProvider = ({ children }) => {
    * Resets the URL counter to initial state
    * 
    * This function resets both the URL count to 1 and the current URL
-   * type back to 'eth' (the starting URL type). Also clears localStorage.
+   * type to a random URL type. Also clears localStorage.
    * 
    * @example
-   * // Resets urlCount to 1 and currentUrl to 'eth'
+   * // Resets urlCount to 1 and currentUrl to a random URL type
    * resetUrlCounter();
    */
   const resetUrlCounter = () => {
     setUrlCount(1);
-    setCurrentUrl('eth');
+    setCurrentUrl(getRandomUrlType());
     localStorage.removeItem('url_count');
     localStorage.removeItem('current_url');
   };

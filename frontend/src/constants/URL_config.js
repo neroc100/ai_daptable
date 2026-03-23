@@ -3,7 +3,6 @@
 // Do not present these values as results of actual network queries.
 
 export const eprintIacrConfig = {
-  source: "SYNTHETIC",
   url: "https://eprint.iacr.org/2020/1234.pdf",
   malicious: false,
   urlStringAnalysis: {
@@ -71,7 +70,6 @@ export const eprintIacrConfig = {
 
 
 export const gnuFtpConfig = {
-  source: "SYNTHETIC",
   url: "https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz",
   malicious: false,
   urlStringAnalysis: {
@@ -139,7 +137,6 @@ export const gnuFtpConfig = {
 
 
 export const princetonMirrorConfig = {
-  source: "SYNTHETIC",
   url: "https://mirror.math.princeton.edu/pub/tex-archive/",
   malicious: false,
   urlStringAnalysis: {
@@ -206,7 +203,6 @@ export const princetonMirrorConfig = {
 
 
 export const freebsdPeopleConfig = {
-  source: "SYNTHETIC",
   url: "https://people.freebsd.org/~phk/",
   malicious: false,
   urlStringAnalysis: {
@@ -273,7 +269,6 @@ export const freebsdPeopleConfig = {
 
 
 export const pkgGoDevConfig = {
-  source: "SYNTHETIC",
   url: "https://pkg.go.dev/github.com/spf13/cobra",
   malicious: false,
   urlStringAnalysis: {
@@ -340,7 +335,6 @@ export const pkgGoDevConfig = {
 
 
 export const googleSupportConfig = {
-  source: "SYNTHETIC",
   url: "https://support.google.com/accounts/answer/7682439?hl=en",
   malicious: false,
   urlStringAnalysis: {
@@ -407,7 +401,6 @@ export const googleSupportConfig = {
 
 
 export const bbcDownloadsConfig = {
-  source: "SYNTHETIC",
   url: "https://downloads.bbc.co.uk/podcasts/worldservice/globalnews/globalnews_20251014-2000a.mp3",
   malicious: false,
   urlStringAnalysis: {
@@ -475,7 +468,6 @@ export const bbcDownloadsConfig = {
 
 
 export const appleDevNewsConfig = {
-  source: "SYNTHETIC",
   url: "https://developer.apple.com/news/releases/?id=10142025a",
   malicious: false,
   urlStringAnalysis: {
@@ -542,7 +534,6 @@ export const appleDevNewsConfig = {
 
 
 export const cdcDataApiConfig = {
-  source: "SYNTHETIC",
   url: "https://data.cdc.gov/api/views/9mfq-cb36/rows.csv?accessType=DOWNLOAD",
   malicious: false,
   urlStringAnalysis: {
@@ -610,7 +601,6 @@ export const cdcDataApiConfig = {
 
 
 export const githubMediaTensorflowConfig = {
-  source: "SYNTHETIC",
   url: "https://media.githubusercontent.com/media/tensorflow/tensorflow/master/README.md",
   malicious: false,
   urlStringAnalysis: {
