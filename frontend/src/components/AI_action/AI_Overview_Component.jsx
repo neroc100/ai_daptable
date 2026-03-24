@@ -76,7 +76,7 @@ const AI_Overview_Component = ({
                 <div className="flex flex-col gap-6 w-full mt-8">
                     <div className="flex flex-row gap-8 items-stretch w-full">
                         {/* Left Column */}
-                        <div className="w-1/2 flex flex-col gap-3 border-r border-gray-300 pr-8">
+                        <div className="w-1/2 flex flex-col gap-3 pr-8">
                             <AI_Completed_Actions_Display {...getCompletedActionsProps()} />
                         </div>
 
