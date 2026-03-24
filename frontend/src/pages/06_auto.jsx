@@ -32,6 +32,8 @@ function Auto() {
         <URL_presentation/>
       
         <AI_Overview_Component automation_level={'automated'} classification={classification} />
+        {/* Horizontal separator */}
+        <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
         
         {/* Navigation button to proceed to next URL */}
         <div className="flex justify-center">

@@ -33,6 +33,8 @@ function Allow() {
       <URL_presentation/>
       
       <AI_Overview_Component automation_level={'allow'} classification={classification} />
+      {/* Horizontal separator */}
+      <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
         {/* Action buttons container */}
         <AI_Action_Buttons classification={classification} case='allow' />
       <Progress_Bar />

@@ -34,6 +34,8 @@ function Allow() {
         <URL_presentation showAIClassification={true} classification={classification} />
         
         <AI_Completed_Actions_Display />
+              {/* Horizontal separator */}
+      <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
         {/* AI decision interface */}
         <AI_allow_display
           classification={classification}

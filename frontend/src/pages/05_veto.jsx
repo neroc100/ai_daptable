@@ -32,6 +32,9 @@ function Veto() {
         <Dashboard_Header />
         <URL_presentation/>
         <AI_Overview_Component automation_level={'veto'} classification={classification} />
+        
+        {/* Horizontal separator */}
+        <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
     
         {/* Action buttons - equally distant from center */}
         <div className="relative flex-col justify-center items-center w-full py-3 sm:flex sm:flex-row flex-col gap-3">

@@ -24,6 +24,8 @@ function Info_acquisition() {
         <URL_presentation />
         
         <AI_Overview_Component automation_level={'infoacqu'} classification={null} />
+
+        <div className="w-[90%] min-h-[1px] bg-gray-400 mb-4 mt-4"></div>
         
         {/* URL information display */}
         <div className="w-[90%] px-4 py-5">

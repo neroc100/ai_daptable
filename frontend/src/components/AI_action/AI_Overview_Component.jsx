@@ -79,6 +79,9 @@ const AI_Overview_Component = ({
                         <div className="w-1/2 flex flex-col gap-3 border-r border-gray-300 pr-8">
                             <AI_Completed_Actions_Display {...getCompletedActionsProps()} />
                         </div>
+
+                        {/* Vertical Divider */}
+                        <div className="self-stretch w-px shrink-0 bg-gray-400" />
                         
                         {/* Right Column */}
                         <div className="w-1/2 flex flex-col gap-3 pl-8">
@@ -93,8 +96,6 @@ const AI_Overview_Component = ({
                     </div>
                 </div>
             )}
-                  {/* Horizontal separator */}
-        <Separator />
         </div>
     );
 };

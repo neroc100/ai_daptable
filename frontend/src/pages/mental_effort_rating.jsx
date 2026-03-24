@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Separator from '../components/00 General_Page_Content/Separator';
 import Progress_Bar from '../components/00 General_Page_Content/Progress_Bar';
 import { useHandleTrialSubmit } from '../composables/handleTrialSubmit';
 

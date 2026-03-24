@@ -28,31 +28,26 @@ function AI_Completed_Actions_Display({ showAcquisition = true, showAnalysis = t
   const dynamicHeight = stageCount === 1 ? 'h-20' : stageCount === 2 ? 'h-32' : stageCount === 3 ? 'h-42' : 'h-52';
   
   return (
-    <div className={`px-4 py-0 flex flex-col items-center space-y-3`}>
-      <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1 mb-1">Processing Stages</h1>
-      <div className="w-full flex flex-col items-center">
-        <div className="w-full bg-white rounded-lg p-3 items-center p-4 mb-3">
-          <div className="flex justify-center w-full">
-            <div className="bg-white items-start rounded-lg font-['ui-sans-serif']  flex flex-col space-y-3 max-w-2xs w-full">
-              {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
-              {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
-              {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
-              {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
-            </div>
-          </div>
+    <>
+    <h1 className="w-full text-center font-bold font-['ui-sans-serif'] pb-1">Processing Stages</h1>
+    <div className="w-full bg-white rounded-lg p-8 flex flex-col gap-3 outline outline-1 outline-offset-[-1px]" style={{ outlineColor: '#9CA3AF' }}>
+      <div className="flex justify-center w-full">
+        <div className="items-center rounded-lg font-['ui-sans-serif'] flex flex-col space-y-3 w-full">
+          {showAcquisition && <AI_Completed_Action_Element text="AI gathered information about the URL" />}
+          {showAnalysis && <AI_Completed_Action_Element text="AI analysed the URL" />}
+          {showActionSelection && <AI_Completed_Action_Element text="AI found an appropriate action" />}
+          {showActionImplementation && <AI_Completed_Action_Element text={actionText} />}
         </div>
       </div>
-      
-      
-      {/* Adaptable automation buttons - only show if adaptable is true */}
+    </div>
+     {/* Adaptable automation buttons - only show if adaptable is true */}
       {adaptable && (
-       
         <div className="w-full flex flex-col gap-3">
           <Adapt_Automation_Button direction="increase" />
           <Adapt_Automation_Button direction="decrease" />
         </div>
       )}
-    </div>
+    </>
   );
 }
 

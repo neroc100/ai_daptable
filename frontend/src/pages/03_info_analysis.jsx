@@ -24,6 +24,8 @@ function Info_analysis() {
         <URL_presentation />
         
         <AI_Overview_Component automation_level={'infoanalysis'} classification={null} />
+              {/* Horizontal separator */}
+      <div className="w-[90%] h-px bg-gray-400 mb-4 mt-4"></div>
         
         {/* URL analysis display */}
         <div className="w-[90%] px-4 py-5">
