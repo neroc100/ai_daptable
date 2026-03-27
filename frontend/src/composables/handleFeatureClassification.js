@@ -11,7 +11,7 @@
  * 
  * @param {string} featureName - The name of the feature (case insensitive)
  * @param {string} featureValue - The value of the feature (case insensitive)
- * @returns {string} 'thumbsUp' or 'thumbsDown'
+ * @returns {string} 'positive', 'negative', or 'neutral'
  */
 export const classifyFeature = (featureName, featureValue) => {
   const name = featureName.toLowerCase();
@@ -19,166 +19,139 @@ export const classifyFeature = (featureName, featureValue) => {
   
   // URL String Analysis
   if (name.includes('entropy')) {
-    if (value.includes('very high')) return 'thumbsDown';
-    if (value.includes('high')) return 'thumbsDown';
-    if (value.includes('medium')) return 'thumbsUp';
-    if (value.includes('low')) return 'thumbsUp';
-    return 'thumbsUp';
+    if (value.includes('very high')) return 'negative';
+    if (value.includes('high')) return 'negative';
+    if (value.includes('medium')) return 'neutral';
+    if (value.includes('low')) return 'positive';
+    return 'neutral';
   }
   
   if (name.includes('length')) {
     const length = parseInt(value);
-    if (length > 80) return 'thumbsDown';
-    if (length > 60) return 'thumbsDown';
-    if (length > 40) return 'thumbsUp';
-    return 'thumbsUp';
+    if (length >= 75) return 'negative';
+    return 'positive';
   }
   
   if (name.includes('letter ratio')) {
     const ratio = parseFloat(value);
-    if (ratio < 0.5) return 'thumbsDown';
-    if (ratio < 0.6) return 'thumbsDown';
-    if (ratio > 0.7) return 'thumbsUp';
-    return 'thumbsUp';
+    if (ratio < 0.6) return 'negative';
+    if (ratio > 0.7) return 'positive';
+    return 'neutral';
   }
   
   if (name.includes('numeric count')) {
-    const count = parseInt(value);
-    if (count > 8) return 'thumbsDown';
-    if (count > 5) return 'thumbsDown';
-    if (count > 2) return 'thumbsUp';
-    return 'thumbsUp';
+    return 'neutral';
   }
   
   if (name.includes('out of place http') || name.includes('out of place www')) {
     const count = parseInt(value);
-    return count > 0 ? 'thumbsDown' : 'thumbsUp';
+    return count > 0 ? 'negative' : 'positive';
   }
   
   if (name.includes('special characters count')) {
     const count = parseInt(value);
-    if (count > 30) return 'thumbsDown';
-    if (count > 20) return 'thumbsDown';
-    if (count > 10) return 'thumbsUp';
-    return 'thumbsUp';
+    if (count > 15) return 'negative';
+    if (count <= 15 && count > 5) return 'positive';
+    return 'neutral';
   }
   
   if (name.includes('special characters ratio')) {
     const ratio = parseFloat(value);
-    if (ratio > 0.4) return 'thumbsDown';
-    if (ratio > 0.3) return 'thumbsDown';
-    if (ratio > 0.2) return 'thumbsUp';
-    return 'thumbsUp';
+    if (ratio >= 0.25) return 'negative';
+    if (ratio >= 0.1 && ratio < 0.25) return 'positive';
+    return 'neutral';
   }
   
   if (name.includes('unusual characters')) {
     const count = parseInt(value);
-    return count > 0 ? 'thumbsDown' : 'thumbsUp';
+    return count > 0 ? 'negative' : 'positive';
   }
   
   // Domain Characteristics
   if (name.includes('active time') || name.includes('lifetime')) {
     const days = parseInt(value);
-    if (days < 30) return 'thumbsDown';
-    if (days < 90) return 'thumbsDown';
-    if (days < 180) return 'thumbsDown';
-    if (days > 365) return 'thumbsUp';
-    return 'thumbsUp';
+    if (days < 180) return 'negative';
+    if (days > 365) return 'positive';
+    return 'neutral';
   }
   
   if (name.includes('host')) {
-    if (value.includes('ethz.ch')) return 'thumbsUp';
-    if (value.includes('google.com')) return 'thumbsUp';
-    if (value.includes('amazon.com')) return 'thumbsUp';
-    if (value.includes('free-gift')) return 'thumbsDown';
-    if (value.includes('secure-banking')) return 'thumbsDown';
-    if (value.includes('claim-now')) return 'thumbsDown';
-    if (value.includes('verification')) return 'thumbsDown';
-    return 'thumbsUp';
+    return 'neutral';
   }
   
   if (name.includes('number of directories')) {
-    const count = parseInt(value);
-    if (count > 5) return 'thumbsDown';
-    if (count > 4) return 'thumbsDown';
-    if (count > 3) return 'thumbsUp';
-    return 'thumbsUp';
+    return 'neutral';
   }
   
   if (name.includes('top level domain')) {
-    if (value.includes('.ch')) return 'thumbsUp';
-    if (value.includes('.com')) return 'thumbsUp';
-    if (value.includes('.org')) return 'thumbsUp';
-    if (value.includes('.net')) return 'thumbsUp';
-    if (value.includes('.xyz')) return 'thumbsDown';
-    if (value.includes('.top')) return 'thumbsDown';
-    if (value.includes('.club')) return 'thumbsDown';
-    return 'thumbsDown';
+    if (value.includes('.org')) return 'positive';
+    if (value.includes('.edu')) return 'positive';
+    if (value.includes('.gov')) return 'positive';
+    if (value.includes('.com')) return 'neutral';
+    if (value.includes('.dev')) return 'positive';
+    if (value.includes('.uk')) return 'neutal';
+    if (value.includes('.net')) return 'negative';
+    if (value.includes('.io')) return 'negative';
+    return 'neutral';
   }
   
   // DNS & Network
   if (name.includes('similarity of name server names')) {
-    if (value.includes('high')) return 'thumbsUp';
-    if (value.includes('medium')) return 'thumbsUp';
-    if (value.includes('low')) return 'thumbsDown';
-    return 'thumbsUp';
+    if (value.includes('high')) return 'positive';
+    if (value.includes('medium')) return 'neutral';
+    if (value.includes('low')) return 'negative';
+    return 'positive';
   }
   
   if (name.includes('number of mail exchange records')) {
-    const count = parseInt(value);
-    if (count >= 2 && count <= 5) return 'thumbsUp';
-    if (count === 1) return 'thumbsUp';
-    if (count === 0) return 'thumbsDown';
-    return 'thumbsUp';
+    return 'neutral';
   }
   
   if (name.includes('number of name servers')) {
     const count = parseInt(value);
-    if (count >= 2 && count <= 6) return 'thumbsUp';
-    if (count === 1) return 'thumbsDown';
-    return 'thumbsUp';
+    if (count <= 1) return 'negative';
+    return 'positive';
   }
   
   // Encryption & HTTP
   if (name.includes('http response')) {
-    return value.includes('200') ? 'thumbsUp' : 'thumbsDown';
+    return value.includes('200') ? 'positive' : 'negative';
   }
   
   if (name.includes('ssl enabled')) {
-    return value.includes('yes') || value.includes('true') ? 'thumbsUp' : 'thumbsDown';
+    return value.includes('yes') || value.includes('true') ? 'positive' : 'negative';
   }
   
   // Webpage Content
   if (name.includes('number of html elements')) {
     const count = parseInt(value);
-    if (count > 800) return 'thumbsDown';
-    if (count > 500) return 'thumbsDown';
-    if (count > 200) return 'thumbsUp';
-    return 'thumbsUp';
+    if (count < 30) return 'negative';
+    if (count >= 30 && count < 60) return 'neutral';
+    return 'positive';
+  }
+  if (name.includes('attachment')) {
+    return value.includes('.exe') || value.includes('.php') ? 'negative' : 'positive';
   }
   
   // Geographical & Hosting
   if (name.includes('registration country')) {
-    if (value.includes('switzerland')) return 'thumbsUp';
-    if (value.includes('united states')) return 'thumbsUp';
-    if (value.includes('germany')) return 'thumbsUp';
-    if (value.includes('united kingdom')) return 'thumbsUp';
-    if (value.includes('panama')) return 'thumbsDown';
-    if (value.includes('costa rica')) return 'thumbsDown';
-    if (value.includes('marshall islands')) return 'thumbsDown';
-    return 'thumbsUp';
+    if (value.includes('united states')) return 'neutral';
+    if (value.includes('france')) return 'positive';
+    if (value.includes('united kingdom')) return 'neutral';
+    if (value.includes('netherlands')) return 'positive';
+    if (value.includes('russia')) return 'negative';
+    if (value.includes('canada')) return 'positive';
+    return 'positive';
   }
   
   if (name.includes('number of countries for ip lookup')) {
     const count = parseInt(value);
-    if (count > 5) return 'thumbsDown';
-    if (count > 3) return 'thumbsDown';
-    if (count <= 3) return 'thumbsUp';
-    return 'thumbsUp';
+    if (count > 5) return 'negative';
+    return 'neutral';
   }
   
-  // Default to thumbs up for unknown features
-  return 'thumbsUp';
+  // Default to positive for unknown features
+  return 'positive';
 };
 
 /**
@@ -194,11 +167,18 @@ export const classifyFeatures = (features) => {
 /**
  * Calculates the majority classification from an array of classifications
  * 
- * @param {Array} classifications - Array of 'thumbsUp' or 'thumbsDown' values
- * @returns {boolean} true if majority is positive (thumbsUp), false otherwise
+ * @param {Array} classifications - Array of 'positive', 'negative', or 'neutral' values
+ * @returns {string} 'positive', 'negative', or 'neutral' based on majority
  */
 export const getMajorityClassification = (classifications) => {
-  const thumbsUpCount = classifications.filter(icon => icon === 'thumbsUp').length;
-  const thumbsDownCount = classifications.filter(icon => icon === 'thumbsDown').length;
-  return thumbsUpCount >= thumbsDownCount;
+  const positiveCount = classifications.filter(icon => icon === 'positive').length;
+  const negativeCount = classifications.filter(icon => icon === 'negative').length;
+  const neutralCount = classifications.filter(icon => icon === 'neutral').length;
+  
+  if (positiveCount > negativeCount && positiveCount > neutralCount) {
+    return 'positive';
+  } else if (negativeCount > positiveCount && negativeCount > neutralCount) {
+    return 'negative';
+  }
+  return 'neutral';
 };

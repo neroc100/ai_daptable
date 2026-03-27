@@ -94,6 +94,42 @@ export const UrlCounterProvider = ({ children }) => {
     return urlTypes[Math.floor(Math.random() * urlTypes.length)];
   };
 
+  /**
+   * Gets the next unused URL type
+   * Maintains a list of used URLs and selects from remaining ones
+   * @returns {string} The next unused URL type or any URL if all have been used
+   */
+  const getNextUnusedUrl = () => {
+    const usedUrls = localStorage.getItem('used_urls');
+    const usedUrlsArray = usedUrls ? JSON.parse(usedUrls) : [];
+    
+    // Find URLs that haven't been used yet
+    const unusedUrls = urlTypes.filter(url => !usedUrlsArray.includes(url));
+    
+    // If all URLs have been used, reset the used list
+    if (unusedUrls.length === 0) {
+      localStorage.removeItem('used_urls');
+      return urlTypes[Math.floor(Math.random() * urlTypes.length)];
+    }
+    
+    // Return a random URL from the unused ones
+    return unusedUrls[Math.floor(Math.random() * unusedUrls.length)];
+  };
+
+  /**
+   * Marks a URL as used
+   * @param {string} url - The URL type to mark as used
+   */
+  const markUrlAsUsed = (url) => {
+    const usedUrls = localStorage.getItem('used_urls');
+    const usedUrlsArray = usedUrls ? JSON.parse(usedUrls) : [];
+    
+    if (!usedUrlsArray.includes(url)) {
+      usedUrlsArray.push(url);
+      localStorage.setItem('used_urls', JSON.stringify(usedUrlsArray));
+    }
+  };
+
   // State for tracking current URL number (1-MAX_NUM_URL)
   const [urlCount, setUrlCount] = useState(() => {
     // Initialize from localStorage if available
@@ -104,7 +140,12 @@ export const UrlCounterProvider = ({ children }) => {
   // State for tracking current URL type being displayed
   const [currentUrl, setCurrentUrl] = useState(() => {
     // Initialize from localStorage if available
-    return localStorage.getItem('current_url') || getRandomUrlType();
+    const saved = localStorage.getItem('current_url');
+    if (saved) {
+      return saved;
+    }
+    // Get first unused URL for new sessions
+    return getNextUnusedUrl();
   });
   
   // Maximum number of URLs in the experiment
@@ -138,35 +179,35 @@ export const UrlCounterProvider = ({ children }) => {
   };
 
   /**
-   * Switches to the next URL type in the sequence
+   * Switches to the next unused URL type
    * 
-   * This function cycles through the urlTypes array to get the next
-   * URL type. When it reaches the end of the array, it wraps around
-   * to the beginning (circular navigation).
+   * Marks the current URL as used and selects the next unused URL.
+   * When all URLs have been shown, resets the tracking.
    */
   const switchUrl = () => {
-    setCurrentUrl(prev => {
-      const currentIndex = urlTypes.indexOf(prev);
-      const nextIndex = (currentIndex + 1) % urlTypes.length;
-      return urlTypes[nextIndex];
-    });
+    // Mark current URL as used
+    markUrlAsUsed(currentUrl);
+    // Get the next unused URL
+    const nextUrl = getNextUnusedUrl();
+    setCurrentUrl(nextUrl);
   };
 
   /**
    * Resets the URL counter to initial state
    * 
    * This function resets both the URL count to 1 and the current URL
-   * type to a random URL type. Also clears localStorage.
+   * type to a new unused URL. Also clears localStorage tracking.
    * 
    * @example
-   * // Resets urlCount to 1 and currentUrl to a random URL type
+   * // Resets urlCount to 1 and currentUrl to next unused URL
    * resetUrlCounter();
    */
   const resetUrlCounter = () => {
     setUrlCount(1);
-    setCurrentUrl(getRandomUrlType());
+    setCurrentUrl(getNextUnusedUrl());
     localStorage.removeItem('url_count');
     localStorage.removeItem('current_url');
+    localStorage.removeItem('used_urls');
   };
 
 

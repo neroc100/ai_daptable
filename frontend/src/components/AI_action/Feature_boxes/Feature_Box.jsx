@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowUpRight, ArrowDownRight, ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Minus, ChevronUp, ChevronDown } from 'lucide-react';
 import { classifyFeatures, getMajorityClassification } from '../../../composables/handleFeatureClassification';
 
 function Feature_Box({ 
@@ -10,15 +10,17 @@ function Feature_Box({
   const [isExpanded, setIsExpanded] = useState(true);
 
   const featureIcons = useMemo(() => classifyFeatures(features), [features]);
-  const majorityIsPositive = getMajorityClassification(featureIcons);
+  const majorityClassification = getMajorityClassification(featureIcons);
 
   const handleArrowClick = () => setIsExpanded(!isExpanded);
 
-  // Color the box green or red depending on majority classification
+  // Color the box based on majority classification
   const backgroundColor = isAnalysisDisplayed
-    ? majorityIsPositive
-      ? '#F2FAF4' 
-      : '#FFF6F6' 
+    ? majorityClassification === 'positive'
+      ? '#F2FAF4'
+      : majorityClassification === 'negative'
+      ? '#FFF6F6'
+      : '#F9F9F9'
     : 'rgba(0, 0, 0, 0.02)';
 
   const calculateExpandedHeight = () => {
@@ -56,10 +58,12 @@ function Feature_Box({
           {features.map((feature, index) => (
             <div key={index} className="flex items-start gap-2">
               {isAnalysisDisplayed && (
-                featureIcons[index] === 'thumbsUp' ? (
+                featureIcons[index] === 'positive' ? (
                   <ArrowUpRight className="w-5 h-5 mt-1" style={{ color: '#74C69D' }} />
-                ) : (
+                ) : featureIcons[index] === 'negative' ? (
                   <ArrowDownRight className="w-5 h-5 mt-1" style={{ color: '#E57373' }} />
+                ) : (
+                  <Minus className="w-5 h-5 mt-1" style={{ color: '#A0AEC0' }} />
                 )
               )}
               <div className="flex flex-col justify-start flex-1 min-w-0">

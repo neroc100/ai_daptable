@@ -669,7 +669,7 @@ export const githubMediaTensorflowConfig = {
 
 // MALICIOUS SAMPLES BELOW
 export const noreplinfobluewinConfig = {
-  url: "http://noreplinfobluewin89525.myfreesites.net/secure-login?user=admin&id=001",
+  url: "http://noreplinfobluewin89525.myfreesites.net/secure-login?user=admin&id=001", // /secure-login?user=admin&id=001 is a classic credential harvesting pattern
   malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
@@ -729,7 +729,7 @@ export const noreplinfobluewinConfig = {
 };
 
 export const linkedlnContactConfig = {
-  url: "https://linkedln-contact.000webhostapp.com/update-account/verify.php?redirect=http://linkedln-contact.000webhostapp.com",
+  url: "https://linkedln-contact.000webhostapp.com/update-account/verify.php?redirect=http://linkedln-contact.000webhostapp.com", // subdomain spoofing trick designed to make the URL look like it's coming from a trusted subdomain when it's actually just a path on a different host
   malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
@@ -751,7 +751,7 @@ export const linkedlnContactConfig = {
     title: "Domain Characteristics and Structure",
     features: [
       { name: "Active Time (Days)", value: "120 days" },
-      { name: "Host", value: "linkedln-contact.000webhostapp.com" },
+      { name: "Host", value: "linkedln-contact.000webhostapp.com" }, // typo squatting "linkedin"
       { name: "Lifetime (Days)", value: "180 days" },
       { name: "Number of Directories", value: "2 directories" },
       { name: "Path", value: "/update-account/verify.php" },
@@ -776,7 +776,7 @@ export const linkedlnContactConfig = {
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "28 elements" }
+      { name: "Number of HTML Elements", value: "28 elements" },
     ]
   },
   geographicalHosting: {
@@ -836,7 +836,8 @@ export const kungaguesthouseConfig = {
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "12 elements" }
+      { name: "Number of HTML Elements", value: "12 elements" },
+      { name: "Attachment Type", value: "PDF" } // invoice.pdf
     ]
   },
   geographicalHosting: {
@@ -849,7 +850,7 @@ export const kungaguesthouseConfig = {
 };
 
 export const resolutionCenterAccountConfig = {
-  url: "https://signin.resolution-center-account.com/support/signin?sessiontoken=AAA123&utm_source=email",
+  url: "https://signin.resolution-center-account.com/support/signin?sessiontoken=AAA123&utm_source=email", // domain "resolution-center-account.com" is designed to look like a legitimate support portal, but is actually a phishing site. The query parameter "sessiontoken=AAA123" is a placeholder and utm_source=email is used for tracking purposes, and suggest an email redirectl, i.e. strng phishing indicator.
   malicious: true,
   urlStringAnalysis: {
     title: "URL String Analysis",
@@ -956,7 +957,8 @@ export const gatcoinsConfig = {
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "15 elements" }
+      { name: "Number of HTML Elements", value: "15 elements" },
+      { name: "Attachment Type", value: "Executable" } // update_installer.exe
     ]
   },
   geographicalHosting: {
