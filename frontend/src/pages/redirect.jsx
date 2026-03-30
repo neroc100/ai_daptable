@@ -55,8 +55,11 @@ function RedirectPage() {
         {/* Page title */}
         <div className="text-center">
           <h1 className="text-5xl font-bold text-gray-900 m-4">
-            Study Complete
+            All Trials Complete
           </h1>
+          <p className="text-2xl text-gray-700 mt-2">
+            You have successfully completed all 15 trials
+          </p>
         </div>
         
         <Separator />
@@ -70,13 +73,16 @@ function RedirectPage() {
              outlineColor: 'var(--eth-blue-100)'
              }}
           >
-            Thank you for your participation in this study
+            Thank you for completing the experiment
           </div>
 
           {/* Compensation message */}
           <div className="text-center space-y-4">
             <p className="text-xl text-gray-700">
-              Click the button below to confirm your participation to be eligible for compensation
+              Please click the button below to proceed to the post-task survey.
+            </p>
+            <p className="text-lg text-gray-600">
+              You will need to complete this survey to finalize your participation and be eligible for compensation.
             </p>
           </div>
 
@@ -91,7 +97,7 @@ function RedirectPage() {
             >
               {/* Button text with ETH styling */}
               <div className="justify-start text-white text-2xl font-bold font-['Arial'] leading-normal">
-                Confirm Participation
+                Go to Post-Task Survey
               </div>
             </div>
           </div>
