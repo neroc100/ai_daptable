@@ -10,11 +10,11 @@ eprintIacrConfig,
   cdcDataApiConfig,
   githubMediaTensorflowConfig,
   // ─── Malicious configs ──────────────────────────────────────────────────────
-  noreplinfobluewinConfig,
-  linkedlnContactConfig,
-  kungaguesthouseConfig,
-  resolutionCenterAccountConfig,
-  gatcoinsConfig,
+  appleSoftwareUpdateConfig,
+  microsoftCredentialHarvestConfig,
+  bankLoginProtocolDeceptionConfig,
+  googleAccountRecoveryConfig,
+  paypalConfirmationScamConfig,
 } from '../constants/URL_config.js';
 
 /**
@@ -51,13 +51,12 @@ export const getUrlConfig = (urlType) => {
     'openSource':        githubMediaTensorflowConfig, // media.githubusercontent.com — raw file
 
     // Malicious
-    'phishing':          noreplinfobluewinConfig,   // fake login on free host, no SSL
-    'socialMediaScam':   linkedlnContactConfig,     // LinkedIn typosquat + redirect
-    'invoiceFraud':      kungaguesthouseConfig,     // subdomain abuse, fake invoice PDF
-    'accountPhishing':   resolutionCenterAccountConfig, // fake resolution-center domain
-    'cryptoScam':        gatcoinsConfig,            // fake crypto site serving .exe
-  };
-
+    'typosquatting':               appleSoftwareUpdateConfig,            //  Brand impersonation through misspelling
+    'subdomainSpoofing':           microsoftCredentialHarvestConfig,     // Legitimate-looking subdomain masking malicious parent domain
+    'httpsprotocolDeception':      bankLoginProtocolDeceptionConfig,     //  Embedding 'https' in domain name while using unencrypted HTTP
+    'homoglyph':                   googleAccountRecoveryConfig,          // Using Cyrillic characters that look identical to Latin characters
+    'credentalHarvesting':         paypalConfirmationScamConfig,         // : URL encoding + nested subdomains + credentials in multiple forms
+  }
   return urlConfigs[urlType] || eprintIacrConfig; // Default to eprintIacrConfig if not found
 };
 

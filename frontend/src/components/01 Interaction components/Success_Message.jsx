@@ -25,8 +25,8 @@ function Success_Message() {
     // Return content for human decisions
     if (isHuman) {
       return {
-        title: `URL successfully ${isAllow ? 'allowed' : 'blocked'}`,
-        description: `You Successfully ${isAllow ? 'Allowed' : 'Blocked'} Traffic to this URL`,
+        title: `URL ${isAllow ? 'allowed' : 'blocked'}`,
+        description: `You ${isAllow ? 'Allowed' : 'Blocked'} Traffic to this URL`,
         icon: isAllow ? <Rss className="w-8 h-8 text-black" /> : <ShieldCheck className="w-8 h-8 text-black" />,
         buttonText: 'Next'
       };
@@ -53,10 +53,6 @@ function Success_Message() {
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] h-full w-full">
       {/* Modal container */}
       <div className="w-[507px] h-40 px-5 py-4 bg-white rounded-lg relative flex flex-col justify-center items-center">
-        {/* Status icon - positioned absolutely */}
-        <div className="absolute left-8 top-4">
-          {content.icon}
-        </div>
         
         {/* Success message content */}
         <div className="text-center text-stone-900 text-xl font-semibold font-['ui-sans-serif']  leading-tight mb-3">

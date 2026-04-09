@@ -59,24 +59,8 @@ function LandingPage() {
       <div className="text-center w-full max-w-4xl px-4">
         {/* Main heading */}
         <h1 className="text-4xl font-bold text-black mb-6">
-          Welcome to the URL Analysis Experiment
-        </h1>
-        
-      
-        
-        {/* Experiment description */}
-        <div className="rounded-lg p-8 mb-8 max-w-3xl mx-auto" style={{ backgroundColor: 'var(--eth-blue-10)' }}>
-          <h2 className="text-2xl font-semibold text-black mb-4">
-            About This Experiment
-          </h2>
-          <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-            In this experiment, you will be asked to evaluate URLs for potential security threats. 
-            You'll work with different types of AI assistance to help you make decisions about 
-            whether URLs are safe or potentially malicious.
-          </p>
-        
-        </div>
-        
+          Welcome to the URL Analysis Task
+        </h1>    
   
         
         {/* Start button */}

@@ -3,7 +3,7 @@ import { Info } from 'lucide-react';
 
 /**
  * AI Action Message Box Component
- * Displays a title box with ETH blue styling and info icon.
+ * Displays a title box with ETH blue styling.
  * 
  * @param {Object} props - Component props
  * @param {string} props.text - The title text to display
@@ -59,8 +59,6 @@ function AI_Action_Message_Box({ text, higherLevel = false }) {
       borderColor: '#9CA3AF'
      }}
     >
-      {/* Info icon for visual context */}
-      <Info className="w-5 h-5 mr-3" />
       {/* Dynamic title text */}
       {renderColoredText(text)}
     </div>

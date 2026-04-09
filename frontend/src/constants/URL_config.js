@@ -2,13 +2,19 @@
 // It is SYNTHETIC / ESTIMATED data for testing and demo purposes only.
 // Do not present these values as results of actual network queries.
 
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 1: Academic Repository
+ * Clear Indicators: Pristine DNS infrastructure, legitimate .org, straightforward URL, consistent geographic hosting
+ * ============================================
+ */
 export const eprintIacrConfig = {
   url: "https://eprint.iacr.org/2020/1234.pdf",
   malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "Entropy", value: "Medium" },
+      { name: "Entropy", value: "Low" },
       { name: "Length", value: "38 characters" },
       { name: "Letter Count", value: "21 letters" },
       { name: "Letter Ratio", value: "55.3%" },
@@ -21,7 +27,6 @@ export const eprintIacrConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -33,7 +38,6 @@ export const eprintIacrConfig = {
       { name: "Top Level Domain", value: ".org" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -41,7 +45,6 @@ export const eprintIacrConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -50,15 +53,13 @@ export const eprintIacrConfig = {
       { name: "Number of Name Servers", value: "5 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "N/A" }, // direct PDF
-      { name: "Attachment Type", value: "PDF" } //eprint paper
+      { name: "Number of HTML Elements", value: "N/A" },
+      { name: "Attachment Type", value: "PDF (Research paper)" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -68,7 +69,12 @@ export const eprintIacrConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 2: Official Software Repository
+ * Clear Indicators: Perfect DNS infrastructure, legitimate .org, clear software purpose, geographic consistency
+ * ============================================
+ */
 export const gnuFtpConfig = {
   url: "https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz",
   malicious: false,
@@ -88,7 +94,6 @@ export const gnuFtpConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -100,7 +105,6 @@ export const gnuFtpConfig = {
       { name: "Top Level Domain", value: ".org" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -108,7 +112,6 @@ export const gnuFtpConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -117,15 +120,13 @@ export const gnuFtpConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "N/A" }, // binary/archive listing
-      { name: "Attachment Type", value: "tar.gz" } // archive
+      { name: "Number of HTML Elements", value: "N/A" },
+      { name: "Attachment Type", value: "tar.gz (Software archive)" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -135,7 +136,12 @@ export const gnuFtpConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 3: University Mirror
+ * Clear Indicators: 25+ year .edu domain, HTTPS, High name server count, Princeton institutional
+ * ============================================
+ */
 export const princetonMirrorConfig = {
   url: "https://mirror.math.princeton.edu/pub/tex-archive/",
   malicious: false,
@@ -155,7 +161,6 @@ export const princetonMirrorConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -167,7 +172,6 @@ export const princetonMirrorConfig = {
       { name: "Top Level Domain", value: ".edu" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -175,7 +179,6 @@ export const princetonMirrorConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -184,14 +187,12 @@ export const princetonMirrorConfig = {
       { name: "Number of Name Servers", value: "3 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
       { name: "Number of HTML Elements", value: "118 elements" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -201,7 +202,12 @@ export const princetonMirrorConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 4: FreeBSD Community Project
+ * Clear Indicators: 24+ year .org domain, HTTPS, Consistent name servers, Tilde path is standard
+ * ============================================
+ */
 export const freebsdPeopleConfig = {
   url: "https://people.freebsd.org/~phk/",
   malicious: false,
@@ -217,11 +223,10 @@ export const freebsdPeopleConfig = {
       { name: "Out of Place WWW", value: "0 instances" },
       { name: "Special Characters Count", value: "8 characters" },
       { name: "Special Characters Ratio", value: "25.0%" },
-      { name: "Unusual Characters Count", value: "1 character" }, // tilde ~
+      { name: "Unusual Characters Count", value: "1 character" },
       { name: "Unusual Characters Ratio", value: "3.1%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -233,7 +238,6 @@ export const freebsdPeopleConfig = {
       { name: "Top Level Domain", value: ".org" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -241,7 +245,6 @@ export const freebsdPeopleConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -250,14 +253,12 @@ export const freebsdPeopleConfig = {
       { name: "Number of Name Servers", value: "3 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
       { name: "Number of HTML Elements", value: "42 elements" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -267,7 +268,12 @@ export const freebsdPeopleConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 5: Go Package Registry
+ * Clear Indicators: 6+ year .dev domain, HTTPS, High name servers, Official Google managed
+ * ============================================
+ */
 export const pkgGoDevConfig = {
   url: "https://pkg.go.dev/github.com/spf13/cobra",
   malicious: false,
@@ -287,7 +293,6 @@ export const pkgGoDevConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -299,7 +304,6 @@ export const pkgGoDevConfig = {
       { name: "Top Level Domain", value: ".dev" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -307,7 +311,6 @@ export const pkgGoDevConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -316,14 +319,12 @@ export const pkgGoDevConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
       { name: "Number of HTML Elements", value: "237 elements" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -333,7 +334,12 @@ export const pkgGoDevConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 6: Google Support Documentation
+ * Clear Indicators: Pristine DNS infrastructure, legitimate content type, perfect geographic match, very low entropy
+ * ============================================
+ */
 export const googleSupportConfig = {
   url: "https://support.google.com/accounts/answer/7682439?hl=en",
   malicious: false,
@@ -353,7 +359,6 @@ export const googleSupportConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -365,7 +370,6 @@ export const googleSupportConfig = {
       { name: "Top Level Domain", value: ".com" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -373,7 +377,6 @@ export const googleSupportConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -382,14 +385,12 @@ export const googleSupportConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
       { name: "Number of HTML Elements", value: "513 elements" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -399,7 +400,12 @@ export const googleSupportConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 7: BBC Media Download
+ * Clear Indicators: 27+ year .uk domain, HTTPS, Multiple name servers, Established broadcaster
+ * ============================================
+ */
 export const bbcDownloadsConfig = {
   url: "https://downloads.bbc.co.uk/podcasts/worldservice/globalnews/globalnews_20251014-2000a.mp3",
   malicious: false,
@@ -419,7 +425,6 @@ export const bbcDownloadsConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -431,7 +436,6 @@ export const bbcDownloadsConfig = {
       { name: "Top Level Domain", value: ".uk" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -439,7 +443,6 @@ export const bbcDownloadsConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -448,7 +451,6 @@ export const bbcDownloadsConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
@@ -456,7 +458,6 @@ export const bbcDownloadsConfig = {
       { name: "Attachment Type", value: "MP3" } // podcast episode
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -466,7 +467,12 @@ export const bbcDownloadsConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 8: Apple Developer News
+ * Clear Indicators: 21+ year .com domain, HTTPS, Multiple mail records, Global corporate infrastructure
+ * ============================================
+ */
 export const appleDevNewsConfig = {
   url: "https://developer.apple.com/news/releases/?id=10142025a",
   malicious: false,
@@ -486,7 +492,6 @@ export const appleDevNewsConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -498,7 +503,6 @@ export const appleDevNewsConfig = {
       { name: "Top Level Domain", value: ".com" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -506,7 +510,6 @@ export const appleDevNewsConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -515,14 +518,12 @@ export const appleDevNewsConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
       { name: "Number of HTML Elements", value: "223 elements" }
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -532,14 +533,19 @@ export const appleDevNewsConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 9: CDC Public Data API
+ * Clear Indicators: Perfect DNS infrastructure, legitimate .gov, clear public data purpose, geographic consistency
+ * ============================================
+ */
 export const cdcDataApiConfig = {
   url: "https://data.cdc.gov/api/views/9mfq-cb36/rows.csv?accessType=DOWNLOAD",
   malicious: false,
   urlStringAnalysis: {
     title: "URL String Analysis",
     features: [
-      { name: "Entropy", value: "Medium" },
+      { name: "Entropy", value: "Low" },
       { name: "Length", value: "69 characters" },
       { name: "Letter Count", value: "53 letters" },
       { name: "Letter Ratio", value: "76.8%" },
@@ -552,7 +558,6 @@ export const cdcDataApiConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -564,7 +569,6 @@ export const cdcDataApiConfig = {
       { name: "Top Level Domain", value: ".gov" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -572,7 +576,6 @@ export const cdcDataApiConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -581,7 +584,6 @@ export const cdcDataApiConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
@@ -589,7 +591,6 @@ export const cdcDataApiConfig = {
       { name: "Attachment Type", value: "CSV" } // tabular download
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -599,7 +600,12 @@ export const cdcDataApiConfig = {
   }
 };
 
-
+/*
+ * ============================================
+ * LEGITIMATE EXAMPLE 10: GitHub Raw Content
+ * Clear Indicators: 11+ year .com domain, HTTPS, GitHub CDN infrastructure, Trusted host
+ * ============================================
+ */
 export const githubMediaTensorflowConfig = {
   url: "https://media.githubusercontent.com/media/tensorflow/tensorflow/master/README.md",
   malicious: false,
@@ -619,7 +625,6 @@ export const githubMediaTensorflowConfig = {
       { name: "Unusual Characters Ratio", value: "0.0%" }
     ]
   },
-
   domainCharacteristics: {
     title: "Domain Characteristics and Structure",
     features: [
@@ -631,7 +636,6 @@ export const githubMediaTensorflowConfig = {
       { name: "Top Level Domain", value: ".com" }
     ]
   },
-
   encryptionHttp: {
     title: "Encryption and HTTP Response",
     features: [
@@ -639,7 +643,6 @@ export const githubMediaTensorflowConfig = {
       { name: "SSL Enabled", value: "Yes" }
     ]
   },
-
   dnsNetwork: {
     title: "DNS and Network Information",
     features: [
@@ -648,7 +651,6 @@ export const githubMediaTensorflowConfig = {
       { name: "Number of Name Servers", value: "4 servers" }
     ]
   },
-
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
@@ -656,7 +658,6 @@ export const githubMediaTensorflowConfig = {
       { name: "Attachment Type", value: "Markdown" } // README.md
     ]
   },
-
   geographicalHosting: {
     title: "Geographical and Hosting Information",
     features: [
@@ -668,6 +669,333 @@ export const githubMediaTensorflowConfig = {
 
 
 // MALICIOUS SAMPLES BELOW
+
+// ============================================
+// EXAMPLE 1: TYPOSQUATTING + URGENCY
+// Attack Vector: Brand impersonation through misspelling
+// ============================================
+export const appleSoftwareUpdateConfig = {
+  url: "http://applé-security-update.com/verify-account/check-status.html",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Very High" },
+      { name: "Length", value: "68 characters" },
+      { name: "Letter Count", value: "48 letters" },
+      { name: "Letter Ratio", value: "70.6%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "20 characters" },
+      { name: "Special Characters Ratio", value: "29.4%" },
+      { name: "Unusual Characters Count", value: "1 character" },
+      { name: "Unusual Characters Ratio", value: "1.5%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "3 days" },
+      { name: "Host", value: "applé-security-update.com" },
+      { name: "Lifetime (Days)", value: "30 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/verify-account/check-status.html" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "28 elements" },
+      { name: "Attachment Type", value: "Login form requesting Apple ID and password" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Pakistan" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+// ============================================
+// EXAMPLE 2: SUBDOMAIN SPOOFING + DOMAIN CONFUSION
+// Attack Vector: Legitimate-looking subdomain masking malicious parent domain
+// ============================================
+export const microsoftCredentialHarvestConfig = {
+  url: "http://account-verify.microsoft-cloud-services.secure-login.com/office365/signin.php",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Very High" },
+      { name: "Length", value: "98 characters" },
+      { name: "Letter Count", value: "68 letters" },
+      { name: "Letter Ratio", value: "69.4%" },
+      { name: "Numeric Count", value: "365 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "30 characters" },
+      { name: "Special Characters Ratio", value: "30.6%" },
+      { name: "Unusual Characters Count", value: "4 characters" },
+      { name: "Unusual Characters Ratio", value: "4.1%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "5 days" },
+      { name: "Host", value: "account-verify.microsoft-cloud-services.secure-login.com" },
+      { name: "Lifetime (Days)", value: "30 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/office365/signin.php" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Very Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "35 elements" },
+      { name: "Attachment Type", value: "Multi-step form: Email → Password → 2FA Code" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Nigeria" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+// ============================================
+// EXAMPLE 3: HTTPS PROTOCOL DECEPTION IN DOMAIN
+// Attack Vector: Embedding 'https' in domain name while using unencrypted HTTP
+// ============================================
+export const bankLoginProtocolDeceptionConfig = {
+  url: "http://secure-https-bankofamerica-login.verification-service.com/customer/authenticate",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Very High" },
+      { name: "Length", value: "104 characters" },
+      { name: "Letter Count", value: "75 letters" },
+      { name: "Letter Ratio", value: "72.1%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "1 instance - 'https' and 'secure' in subdomain with HTTP protocol" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "29 characters" },
+      { name: "Special Characters Ratio", value: "27.9%" },
+      { name: "Unusual Characters Count", value: "5 characters" },
+      { name: "Unusual Characters Ratio", value: "4.8%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "2 days" },
+      { name: "Host", value: "secure-https-bankofamerica-login.verification-service.com" },
+      { name: "Lifetime (Days)", value: "30 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/customer/authenticate" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "42 elements" },
+      { name: "Attachment Type", value: "Login form requesting username, password, PIN, account number" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Kazakhstan" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+// ============================================
+// EXAMPLE 4: HOMOGLYPH ATTACK + INTERNATIONALIZED DOMAIN
+// Attack Vector: Using Cyrillic characters that look identical to Latin characters
+// ============================================
+export const googleAccountRecoveryConfig = {
+  url: "http://accounts-recovery-gооgle-support.com/verify/identity-check.php",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Very High" },
+      { name: "Length", value: "85 characters" },
+      { name: "Letter Count", value: "61 letters" },
+      { name: "Letter Ratio", value: "71.8%" },
+      { name: "Numeric Count", value: "0 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "24 characters" },
+      { name: "Special Characters Ratio", value: "28.2%" },
+      { name: "Unusual Characters Count", value: "3 characters - Cyrillic 'о' (o) characters" },
+      { name: "Unusual Characters Ratio", value: "3.5%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "6 days" },
+      { name: "Host", value: "accounts-recovery-gооgle-support.com" },
+      { name: "Lifetime (Days)", value: "30 days" },
+      { name: "Number of Directories", value: "2 directories" },
+      { name: "Path", value: "/verify/identity-check.php" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Very Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "2 servers" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "31 elements" },
+      { name: "Attachment Type", value: "Recovery form requesting email, phone, recovery codes" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Russia" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+// ============================================
+// EXAMPLE 5: CREDENTIAL HARVESTING + EXTREME URL OBFUSCATION
+// Attack Vector: URL encoding + nested subdomains + credentials in multiple forms
+// ============================================
+export const paypalConfirmationScamConfig = {
+  url: "http://verify%2Epaypal%2Eaccount%2Dsecurity.confirm-payment-details.com/user/billing/validate%3Ftoken%3D8f7e6d5c4b3a2",
+  malicious: true,
+  urlStringAnalysis: {
+    title: "URL String Analysis",
+    features: [
+      { name: "Entropy", value: "Extremely High" },
+      { name: "Length", value: "142 characters" },
+      { name: "Letter Count", value: "82 letters" },
+      { name: "Letter Ratio", value: "57.7%" },
+      { name: "Numeric Count", value: "12 numbers" },
+      { name: "Out of Place HTTP(S)", value: "0 instances" },
+      { name: "Out of Place WWW", value: "0 instances" },
+      { name: "Special Characters Count", value: "48 characters" },
+      { name: "Special Characters Ratio", value: "33.8%" },
+      { name: "Unusual Characters Count", value: "8 characters" },
+      { name: "Unusual Characters Ratio", value: "5.6%" }
+    ]
+  },
+  domainCharacteristics: {
+    title: "Domain Characteristics and Structure",
+    features: [
+      { name: "Active Time (Days)", value: "1 day" },
+      { name: "Host", value: "verify%2Epaypal%2Eaccount%2Dsecurity.confirm-payment-details.com" },
+      { name: "Lifetime (Days)", value: "30 days" },
+      { name: "Number of Directories", value: "3 directories" },
+      { name: "Path", value: "/user/billing/validate%3Ftoken%3D8f7e6d5c4b3a2" },
+      { name: "Top Level Domain", value: ".com" }
+    ]
+  },
+  encryptionHttp: {
+    title: "Encryption and HTTP Response",
+    features: [
+      { name: "HTTP Response", value: "200 OK" },
+      { name: "SSL Enabled", value: "No" }
+    ]
+  },
+  dnsNetwork: {
+    title: "DNS and Network Information",
+    features: [
+      { name: "Similarity of Name Server Names", value: "Very Low" },
+      { name: "Number of Mail Exchange Records", value: "0 records" },
+      { name: "Number of Name Servers", value: "1 server" }
+    ]
+  },
+  webpageContent: {
+    title: "Webpage Content and Structure",
+    features: [
+      { name: "Number of HTML Elements", value: "67 elements" },
+      { name: "Attachment Type", value: "Multiple forms: Email/Password → Card Number → CVV → Billing Address" }
+    ]
+  },
+  geographicalHosting: {
+    title: "Geographical and Hosting Information",
+    features: [
+      { name: "Registration Country", value: "Vietnam" },
+      { name: "Number of Countries for IP Lookup", value: "1 country" }
+    ]
+  }
+};
+
+/*
 export const noreplinfobluewinConfig = {
   url: "http://noreplinfobluewin89525.myfreesites.net/secure-login?user=admin&id=001", // /secure-login?user=admin&id=001 is a classic credential harvesting pattern
   malicious: true,
@@ -776,7 +1104,7 @@ export const linkedlnContactConfig = {
   webpageContent: {
     title: "Webpage Content and Structure",
     features: [
-      { name: "Number of HTML Elements", value: "28 elements" },
+      { name: "Number of HTML Elements", value: "28 elements" }
     ]
   },
   geographicalHosting: {
@@ -788,7 +1116,7 @@ export const linkedlnContactConfig = {
   }
 };
 
-export const kungaguesthouseConfig = {
+export const kungaguesthouseConfig = { // maybe add more context 
   url: "http://kungaguesthouse.com/payments.secure-login.kungaguesthouse.com.com/invoice.pdf",
   malicious: true,
   urlStringAnalysis: {
@@ -969,3 +1297,4 @@ export const gatcoinsConfig = {
     ]
   }
 };
+*/

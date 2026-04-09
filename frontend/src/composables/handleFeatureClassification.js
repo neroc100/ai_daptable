@@ -130,7 +130,7 @@ export const classifyFeature = (featureName, featureValue) => {
     return 'positive';
   }
   if (name.includes('attachment')) {
-    return value.includes('.exe') || value.includes('.php') ? 'negative' : 'positive';
+    return value.includes('executable') || value.includes('.php') ? 'negative' : 'positive';
   }
   
   // Geographical & Hosting

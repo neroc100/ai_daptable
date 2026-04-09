@@ -61,7 +61,7 @@ export const UrlCounterProvider = ({ children }) => {
    * 
    * These represent different categories of URLs that users will evaluate:
    * - Legitimate: academic, softwareDownload, education, personalPage, developer, support, media, news, government, openSource
-   * - Malicious: phishing, socialMediaScam, invoiceFraud, accountPhishing, cryptoScam
+   * - Malicious: typosquatting, subdomainSpoofing, httpsprotocolDeception, homoglyph, credentalHarvesting
    * 
    * The order is consistent with the URL configuration.
    */
@@ -79,11 +79,11 @@ export const UrlCounterProvider = ({ children }) => {
     'openSource',        // media.githubusercontent.com — raw file
 
     // Malicious
-    'phishing',          // fake login on free host, no SSL
-    'socialMediaScam',   // LinkedIn typosquat + redirect
-    'invoiceFraud',      // subdomain abuse, fake invoice PDF
-    'accountPhishing',   // fake resolution-center domain
-    'cryptoScam',        // fake crypto site serving .exe
+    'typosquatting',        
+    'subdomainSpoofing',   
+    'httpsprotocolDeception',      
+    'homoglyph',   
+    'credentalHarvesting',      
   ];
 
   /**

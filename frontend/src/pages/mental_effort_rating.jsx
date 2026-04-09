@@ -112,11 +112,11 @@ function MentalEffortRatingPage() {
                 </div>
               </div>
 
-              {/* Effort scale labels */}
-              <div className="flex justify-between text-xs text-gray-600 mt-4">
-                <span className="text-left">No effort at all</span>
-                <span className="text-right">Extremely large effort</span>
-              </div>
+{/* Effort scale labels */}
+<div className="relative text-xs text-gray-600 mt-8 h-6">
+  <span className="absolute left-0">No effort at all</span>
+  <span className="absolute right-0 text-right">Extremely large effort</span>
+</div>
             </div>
 
             {/* Error message */}
